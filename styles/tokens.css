@@ -1,0 +1,22 @@
+:root {
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-ink: #10231d;
+  --color-muted: #52635d;
+  --color-surface: #ffffff;
+  --color-background: #f6faf8;
+  --color-border: #dce7e2;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --shadow-sm: 0 1px 2px rgb(16 35 29 / 8%);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --focus-ring: 0 0 0 3px rgb(5 150 105 / 35%);
+}
