@@ -81,7 +81,7 @@ export default function HomePage() {
         </ul>
       </section>
       <section className="grid gap-4 md:grid-cols-2">
-        <ContentCard className="bg-emerald-950 text-white">
+        <ContentCard className="!bg-emerald-950 text-white">
           <Icon className="size-8 text-emerald-200" name="spark" />
           <p className="mt-4 text-sm font-bold uppercase tracking-wider text-emerald-200">
             AI assistant

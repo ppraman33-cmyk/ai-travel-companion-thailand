@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 
+import { getTrustedExternalMapUrl } from "@/application/traveler/external-map-links";
 import {
   Button,
   Dialog,
@@ -11,6 +12,8 @@ import {
   Toast,
 } from "@/components/ui/design-system";
 import { Icon } from "@/components/ui/icon";
+
+import { useTravelerLocale } from "./locale-provider";
 
 const readCookie = (name: string) =>
   document.cookie
@@ -27,6 +30,7 @@ export function TravelerActions({
   readonly placeId: string;
   readonly emergency?: boolean;
 }) {
+  const { strings } = useTravelerLocale();
   const [saved, setSaved] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
   const [mapOpen, setMapOpen] = useState(false);
@@ -109,29 +113,27 @@ export function TravelerActions({
       >
         <span className="inline-flex items-center gap-2">
           <Icon name="map" />
-          External maps
+          {strings.externalMaps}
         </span>
       </Button>
       <Button onClick={() => setReportOpen(true)} variant="ghost">
         <span className="inline-flex items-center gap-2">
           <Icon name="report" />
-          Report information
+          {strings.reportInformation}
         </span>
       </Button>
       <Dialog
         onClose={() => setMapOpen(false)}
         open={mapOpen}
         sheet
-        title="Leave Thailand Companion?"
+        title={strings.leaveApp}
+        closeLabel={strings.closeDialog}
       >
-        <p className="text-slate-600">
-          Navigation is provided only through Google Maps or Apple Maps. This app does
-          not calculate routes.
-        </p>
+        <p className="text-slate-600">{strings.mapExplanation}</p>
         <div className="mt-5 flex flex-wrap gap-3">
           <a
             className="inline-flex min-h-11 items-center rounded-xl bg-emerald-800 px-4 font-bold text-white"
-            href="https://www.google.com/maps"
+            href={getTrustedExternalMapUrl("google_maps")}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -139,7 +141,7 @@ export function TravelerActions({
           </a>
           <a
             className="inline-flex min-h-11 items-center rounded-xl border border-emerald-800 px-4 font-bold text-emerald-900"
-            href="https://maps.apple.com"
+            href={getTrustedExternalMapUrl("apple_maps")}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -150,10 +152,11 @@ export function TravelerActions({
       <Dialog
         onClose={() => setReportOpen(false)}
         open={reportOpen}
-        title="Report incorrect information"
+        title={strings.reportTitle}
+        closeLabel={strings.closeDialog}
       >
         <form className="grid gap-4" onSubmit={submitReport}>
-          <Field label="What is incorrect?">
+          <Field label={strings.reportQuestion}>
             <Select name="category" required>
               <option value="details">Place details</option>
               <option value="hours">Hours or dates</option>
@@ -161,13 +164,10 @@ export function TravelerActions({
               <option value="safety">Safety-critical information</option>
             </Select>
           </Field>
-          <Field
-            label="Details"
-            hint="Do not include private or sensitive information."
-          >
+          <Field label={strings.reportDetails} hint={strings.reportHint}>
             <TextArea name="description" minLength={5} maxLength={4000} required />
           </Field>
-          <Button type="submit">Submit private report</Button>
+          <Button type="submit">{strings.submitReport}</Button>
         </form>
       </Dialog>
       {notice ? <Toast>{notice}</Toast> : null}

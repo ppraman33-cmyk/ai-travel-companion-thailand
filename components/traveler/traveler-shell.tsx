@@ -30,7 +30,7 @@ function TravelerFrame({ children }: { readonly children: ReactNode }) {
         className="sr-only z-50 rounded bg-white p-3 focus:not-sr-only focus:fixed focus:left-3 focus:top-3"
         href="#main-content"
       >
-        Skip to content
+        {strings.skipToContent}
       </a>
       <div
         className="bg-sky-950 px-4 py-2 text-center text-xs font-bold text-white"
@@ -40,7 +40,10 @@ function TravelerFrame({ children }: { readonly children: ReactNode }) {
       </div>
       <header className="sticky top-0 z-30 border-b border-[var(--color-border)] bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-          <Link className="flex items-center gap-2 font-bold text-emerald-950" href="/">
+          <Link
+            className="flex min-h-11 items-center gap-2 font-bold text-emerald-950"
+            href="/"
+          >
             <span
               className="grid size-10 place-items-center rounded-xl bg-emerald-800 text-sm text-white"
               aria-hidden="true"

@@ -27,7 +27,7 @@ export function TravelerNavigation({ mobile = false }: { readonly mobile?: boole
   ];
   const items = mobile ? primary : desktop;
   return (
-    <nav aria-label={mobile ? "Mobile navigation" : "Primary navigation"}>
+    <nav aria-label={mobile ? strings.mobileNavigation : strings.primaryNavigation}>
       <ul className={mobile ? "grid grid-cols-5" : "grid gap-1"}>
         {items.map((item) => {
           const current = isCurrent(pathname, item.href);

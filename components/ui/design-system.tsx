@@ -312,12 +312,14 @@ export function Dialog({
   onClose,
   children,
   sheet = false,
+  closeLabel = "Close dialog",
 }: {
   open: boolean;
   title: string;
   onClose: () => void;
   children: ReactNode;
   sheet?: boolean;
+  closeLabel?: string;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
@@ -344,7 +346,7 @@ export function Dialog({
           <h2 id={titleId} className="text-xl font-bold">
             {title}
           </h2>
-          <Button variant="ghost" onClick={onClose} aria-label="Close dialog">
+          <Button variant="ghost" onClick={onClose} aria-label={closeLabel}>
             ×
           </Button>
         </div>

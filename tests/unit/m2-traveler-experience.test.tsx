@@ -7,6 +7,7 @@ import {
   demoProvince,
   findDemoItem,
 } from "@/application/traveler/synthetic-content";
+import { getTrustedExternalMapUrl } from "@/application/traveler/external-map-links";
 import {
   LanguageSwitch,
   TravelerLocaleProvider,
@@ -19,6 +20,7 @@ vi.mock("next/navigation", () => ({ usePathname: () => "/explore" }));
 describe("M2 traveler experience", () => {
   beforeEach(() => {
     window.localStorage.clear();
+    document.documentElement.lang = "en";
     HTMLDialogElement.prototype.showModal = vi.fn(function (this: HTMLDialogElement) {
       this.setAttribute("open", "");
     });
@@ -41,6 +43,19 @@ describe("M2 traveler experience", () => {
     );
     await user.click(screen.getByRole("button", { name: "TH" }));
     expect(screen.getByRole("link", { name: "สำรวจ" })).toBeInTheDocument();
+    expect(document.documentElement.lang).toBe("th");
+  });
+
+  it("restores a persisted locale after a deterministic English first render", async () => {
+    window.localStorage.setItem("atct-locale", "th");
+    render(
+      <TravelerLocaleProvider>
+        <TravelerNavigation mobile />
+      </TravelerLocaleProvider>,
+    );
+    expect(
+      (await screen.findAllByRole("link", { name: "สำรวจ" })).length,
+    ).toBeGreaterThan(0);
     expect(document.documentElement.lang).toBe("th");
   });
 
@@ -80,5 +95,16 @@ describe("M2 traveler experience", () => {
     expect(demoItems.find((item) => item.category === "emergency")?.summary).toMatch(
       /Not a real emergency service/,
     );
+  });
+
+  it("allows only trusted external map providers", () => {
+    expect(new URL(getTrustedExternalMapUrl("google_maps")!).hostname).toBe(
+      "www.google.com",
+    );
+    expect(new URL(getTrustedExternalMapUrl("apple_maps")!).hostname).toBe(
+      "maps.apple.com",
+    );
+    expect(getTrustedExternalMapUrl("javascript:alert(1)")).toBeUndefined();
+    expect(getTrustedExternalMapUrl("https://evil.example")).toBeUndefined();
   });
 });

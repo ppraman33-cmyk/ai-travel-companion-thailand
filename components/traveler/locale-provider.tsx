@@ -1,7 +1,13 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import type { Dispatch, ReactNode, SetStateAction } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useSyncExternalStore,
+} from "react";
+import type { ReactNode } from "react";
 
 import {
   normalizeTravelerLocale,
@@ -12,7 +18,7 @@ import {
 
 interface LocaleContextValue {
   readonly locale: TravelerLocale;
-  readonly setLocale: Dispatch<SetStateAction<TravelerLocale>>;
+  readonly setLocale: (locale: TravelerLocale) => void;
   readonly strings: TravelerStrings;
 }
 
@@ -22,22 +28,38 @@ const LocaleContext = createContext<LocaleContextValue>({
   strings: travelerStrings.en,
 });
 
+const localeChangeEvent = "atct-locale-change";
+const subscribeLocale = (callback: () => void) => {
+  window.addEventListener("storage", callback);
+  window.addEventListener(localeChangeEvent, callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(localeChangeEvent, callback);
+  };
+};
+const clientLocaleSnapshot = () =>
+  normalizeTravelerLocale(
+    window.localStorage.getItem("atct-locale") ?? navigator.language,
+  );
+const serverLocaleSnapshot = (): TravelerLocale => "en";
+const updateLocale = (nextLocale: TravelerLocale) => {
+  window.localStorage.setItem("atct-locale", nextLocale);
+  window.dispatchEvent(new Event(localeChangeEvent));
+};
+
 export function TravelerLocaleProvider({ children }: { readonly children: ReactNode }) {
-  const [locale, setLocale] = useState<TravelerLocale>(() =>
-    typeof window === "undefined"
-      ? "en"
-      : normalizeTravelerLocale(
-          window.localStorage.getItem("atct-locale") ?? navigator.language,
-        ),
+  const locale = useSyncExternalStore(
+    subscribeLocale,
+    clientLocaleSnapshot,
+    serverLocaleSnapshot,
   );
 
   useEffect(() => {
     document.documentElement.lang = locale;
-    window.localStorage.setItem("atct-locale", locale);
   }, [locale]);
 
   const value = useMemo(
-    () => ({ locale, setLocale, strings: travelerStrings[locale] }),
+    () => ({ locale, setLocale: updateLocale, strings: travelerStrings[locale] }),
     [locale],
   );
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
@@ -55,7 +77,7 @@ export function LanguageSwitch() {
       {(["en", "th"] as const).map((option) => (
         <button
           aria-pressed={locale === option}
-          className={`min-h-9 min-w-10 rounded-full px-3 text-xs font-bold ${locale === option ? "bg-emerald-800 text-white" : "text-slate-600"}`}
+          className={`min-h-11 min-w-11 rounded-full px-3 text-xs font-bold ${locale === option ? "bg-emerald-800 text-white" : "text-slate-600"}`}
           key={option}
           onClick={() => setLocale(option)}
           type="button"

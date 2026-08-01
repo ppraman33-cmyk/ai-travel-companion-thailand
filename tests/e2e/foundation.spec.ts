@@ -1,6 +1,34 @@
+import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
+const responsiveViewports = [
+  { width: 320, height: 568 },
+  { width: 375, height: 667 },
+  { width: 390, height: 844 },
+  { width: 768, height: 1024 },
+  { width: 1280, height: 800 },
+  { width: 1440, height: 900 },
+] as const;
+
+const travelerRoutes = [
+  "/",
+  "/explore",
+  "/thailand/northern/demo-lanna-province",
+  "/thailand/northern/demo-lanna-province/restaurants",
+  "/thailand/northern/demo-lanna-province/restaurants/river-leaf-kitchen",
+  "/saved",
+  "/trips",
+  "/assistant",
+  "/profile",
+  "/help",
+] as const;
+
 test("renders the traveler PWA shell and primary navigation", async ({ page }) => {
+  const hydrationErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error" && message.text().includes("Hydration failed"))
+      hydrationErrors.push(message.text());
+  });
   await page.setViewportSize({ width: 390, height: 844 });
   const documentResponse = await page.goto("/");
   const csp = documentResponse?.headers()["content-security-policy"] ?? "";
@@ -25,6 +53,52 @@ test("renders the traveler PWA shell and primary navigation", async ({ page }) =
   await page.getByRole("button", { name: "TH" }).click();
   await expect(page.getByRole("link", { name: "สำรวจ" })).toBeVisible();
   await expect(page.locator("html")).toHaveAttribute("lang", "th");
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("lang", "th");
+  expect(hydrationErrors).toEqual([]);
+  const thaiButtonBox = await page.getByRole("button", { name: "TH" }).boundingBox();
+  expect(thaiButtonBox?.width).toBeGreaterThanOrEqual(44);
+  expect(thaiButtonBox?.height).toBeGreaterThanOrEqual(44);
+});
+
+test("traveler routes have no document overflow at approved viewports", async ({
+  page,
+}) => {
+  for (const viewport of responsiveViewports) {
+    await page.setViewportSize(viewport);
+    for (const route of travelerRoutes) {
+      await page.goto(route);
+      const overflow = await page.evaluate(
+        () =>
+          document.documentElement.scrollWidth > document.documentElement.clientWidth,
+      );
+      expect(
+        overflow,
+        `${route} overflowed at ${viewport.width}x${viewport.height}`,
+      ).toBe(false);
+    }
+  }
+});
+
+test("primary traveler pages have no serious or critical axe violations", async ({
+  page,
+}) => {
+  for (const route of [
+    "/",
+    "/explore",
+    "/thailand/northern/demo-lanna-province/restaurants/river-leaf-kitchen",
+    "/help",
+  ]) {
+    await page.goto(route);
+    const result = await new AxeBuilder({ page }).analyze();
+    expect(
+      result.violations.filter(
+        (violation) =>
+          violation.impact === "serious" || violation.impact === "critical",
+      ),
+      `serious/critical accessibility violations on ${route}`,
+    ).toEqual([]);
+  }
 });
 
 test("fails closed for Admin and unavailable catalog configuration", async ({
