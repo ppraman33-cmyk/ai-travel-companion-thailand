@@ -6,6 +6,7 @@ export type ExternalMapApplication = "google_maps" | "apple_maps";
 
 export interface MapHandoffRequest {
   readonly application: ExternalMapApplication;
+  readonly action: "view" | "directions";
   readonly placeId: EntityId;
   readonly destination: Coordinates;
   readonly destinationLabel: string;

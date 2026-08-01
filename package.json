@@ -16,7 +16,11 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "db:types:generate": "bash scripts/supabase-types.sh update",
+    "db:types:check": "bash scripts/supabase-types.sh check",
+    "db:schema:check": "node scripts/check-schema-contract.mjs",
+    "security:secrets": "node scripts/check-secrets.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.111.0",
