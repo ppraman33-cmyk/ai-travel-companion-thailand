@@ -16,6 +16,22 @@ body {
   min-height: 100vh;
 }
 
+::selection {
+  background: var(--color-emerald-100);
+  color: var(--color-ink);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 a,
 button,
 input,

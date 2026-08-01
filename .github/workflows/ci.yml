@@ -20,7 +20,52 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      - run: npm run security:secrets
+      - run: npm run db:schema:check
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
       - run: npm run build
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+
+  database:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.109.1
+      - run: npm ci
+      - run: supabase start
+      - run: supabase db reset
+      - run: supabase test db
+      - name: Generate Supabase schema types
+        id: generate_types
+        run: |
+          mkdir -p "$RUNNER_TEMP/supabase-types"
+          supabase gen types typescript --local > "$RUNNER_TEMP/supabase-types/types.generated.ts"
+          test -s "$RUNNER_TEMP/supabase-types/types.generated.ts"
+      - name: Upload generated-types handoff
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supabase-types-${{ github.sha }}
+          path: ${{ runner.temp }}/supabase-types/types.generated.ts
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Compare generated schema snapshot
+        if: always()
+        env:
+          GENERATION_OUTCOME: ${{ steps.generate_types.outcome }}
+        run: |
+          test "$GENERATION_OUTCOME" = "success"
+          test -s "$RUNNER_TEMP/supabase-types/types.generated.ts"
+          test -s infrastructure/supabase/types.generated.ts
+          cmp infrastructure/supabase/types.generated.ts "$RUNNER_TEMP/supabase-types/types.generated.ts"
