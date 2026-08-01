@@ -1,5 +1,6 @@
 import type { PublicationEligibility } from "@/application/content/types";
 import { AdminContentWorkspace } from "./admin-content-workspace";
+import { ChiangMaiCoverageDashboard } from "./chiang-mai-coverage-dashboard";
 
 export interface AdminDashboardSummary {
   readonly draft: number;
@@ -93,6 +94,7 @@ export function AdminDashboard({
             </section>
           ) : null}
           <AdminContentWorkspace />
+          <ChiangMaiCoverageDashboard />
         </section>
       </div>
     </main>
