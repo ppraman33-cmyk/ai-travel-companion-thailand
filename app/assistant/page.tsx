@@ -1,25 +1,55 @@
 import { TravelerShell } from "@/components/traveler/traveler-shell";
+import {
+  Badge,
+  ContentCard,
+  HeroShell,
+  LinkButton,
+  StatusState,
+  SyntheticNotice,
+} from "@/components/ui/design-system";
+import { Icon } from "@/components/ui/icon";
 
 export default function AssistantPage() {
   return (
     <TravelerShell>
-      <section className="mx-auto w-full max-w-2xl rounded-[2rem] bg-gradient-to-br from-emerald-900 to-teal-600 p-8 text-white shadow-xl sm:p-12">
-        <p className="text-sm font-bold uppercase tracking-[0.18em] text-emerald-100">
-          Grounded assistant
-        </p>
-        <h1 className="mt-3 text-4xl font-bold">AI travel help</h1>
-        <p className="mt-5 text-lg text-emerald-50">
-          AI trip planning is not part of Phase 4. This entry point is reserved for the
-          existing provider-neutral assistant, which remains disabled until an approved
-          provider and budget are configured.
-        </p>
-        <div className="mt-8 rounded-2xl bg-white/10 p-5">
-          <p className="font-semibold">No live AI request will be sent.</p>
-          <p className="mt-2 text-sm text-emerald-100">
-            Verified catalog browsing and trip tools continue to work independently.
+      <SyntheticNotice />
+      <HeroShell
+        compact
+        eyebrow="Provider-neutral safety state"
+        title="AI assistant is not active"
+        description="No prompt, location or trip data will be sent to an AI provider until approval, budget and grounding checks are complete."
+      >
+        <Badge tone="warning">Disabled-safe</Badge>
+      </HeroShell>
+      <div className="grid gap-4 md:grid-cols-3">
+        <ContentCard>
+          <Icon className="size-7 text-emerald-700" name="search" />
+          <h2 className="mt-3 font-bold">Explore manually</h2>
+          <p className="mt-2 text-sm text-slate-600">
+            Deterministic catalog browsing stays available.
           </p>
-        </div>
-      </section>
+        </ContentCard>
+        <ContentCard>
+          <Icon className="size-7 text-emerald-700" name="trip" />
+          <h2 className="mt-3 font-bold">Plan manually</h2>
+          <p className="mt-2 text-sm text-slate-600">Trip tools do not depend on AI.</p>
+        </ContentCard>
+        <ContentCard>
+          <Icon className="size-7 text-red-700" name="help" />
+          <h2 className="mt-3 font-bold">Emergency stays separate</h2>
+          <p className="mt-2 text-sm text-slate-600">
+            AI never invents emergency facts or contacts.
+          </p>
+        </ContentCard>
+      </div>
+      <StatusState
+        state="empty"
+        title="No live AI request will be sent"
+        description="An approved provider can be connected later through the existing provider-independent boundary."
+      />
+      <LinkButton className="justify-self-start" href="/explore">
+        Continue with Explore
+      </LinkButton>
     </TravelerShell>
   );
 }
