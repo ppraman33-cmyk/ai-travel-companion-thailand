@@ -1,7 +1,15 @@
 "use client";
 
-import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react";
-import { useEffect, useRef } from "react";
+import Link from "next/link";
+import type {
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  InputHTMLAttributes,
+  ReactNode,
+  SelectHTMLAttributes,
+  TextareaHTMLAttributes,
+} from "react";
+import { useEffect, useId, useRef } from "react";
 
 const cx = (...values: (string | false | null | undefined)[]) =>
   values.filter(Boolean).join(" ");
@@ -32,6 +40,74 @@ export function Button({
   );
 }
 
+export function LinkButton({
+  href,
+  children,
+  variant = "primary",
+  className,
+}: {
+  readonly href: string;
+  readonly children: ReactNode;
+  readonly variant?: "primary" | "secondary" | "danger" | "ghost";
+  readonly className?: string;
+}) {
+  const variants = {
+    primary: "bg-emerald-800 text-white hover:bg-emerald-900",
+    secondary:
+      "border border-emerald-800 bg-white text-emerald-900 hover:bg-emerald-50",
+    danger: "bg-red-700 text-white hover:bg-red-800",
+    ghost: "text-emerald-900 hover:bg-emerald-50",
+  };
+  return (
+    <Link
+      className={cx(
+        "inline-flex min-h-11 items-center justify-center rounded-xl px-4 py-2 font-semibold transition",
+        variants[variant],
+        className,
+      )}
+      href={href}
+    >
+      {children}
+    </Link>
+  );
+}
+
+export function TextInput(props: InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <input
+      className={cx(
+        "min-h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-base text-slate-950 placeholder:text-slate-400",
+        props.className,
+      )}
+      {...props}
+    />
+  );
+}
+
+export function Select(props: SelectHTMLAttributes<HTMLSelectElement>) {
+  return (
+    <select
+      className={cx(
+        "min-h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-base text-slate-950",
+        props.className,
+      )}
+      {...props}
+    />
+  );
+}
+
+export function TextArea(props: TextareaHTMLAttributes<HTMLTextAreaElement>) {
+  return (
+    <textarea
+      className={cx(
+        "min-h-32 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-950 placeholder:text-slate-400",
+        props.className,
+      )}
+      {...props}
+    />
+  );
+}
+
 export function Field({
   label,
   hint,
@@ -56,7 +132,7 @@ export function Badge({
   tone = "neutral",
   children,
 }: {
-  tone?: "neutral" | "success" | "warning" | "danger";
+  tone?: "neutral" | "success" | "warning" | "danger" | "info";
   children: ReactNode;
 }) {
   const tones = {
@@ -64,6 +140,7 @@ export function Badge({
     success: "bg-emerald-100 text-emerald-900",
     warning: "bg-amber-100 text-amber-900",
     danger: "bg-red-100 text-red-800",
+    info: "bg-sky-100 text-sky-900",
   };
   return (
     <span
@@ -110,6 +187,90 @@ export function StatusState({
       ) : null}
     </div>
   );
+}
+
+export function SyntheticNotice({
+  children = "DEMO MODE — not real travel or emergency information",
+}: {
+  readonly children?: ReactNode;
+}) {
+  return (
+    <div
+      className="rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm font-semibold text-sky-950"
+      role="note"
+    >
+      {children}
+    </div>
+  );
+}
+
+export function HeroShell({
+  eyebrow,
+  title,
+  description,
+  children,
+  compact = false,
+}: {
+  readonly eyebrow?: string;
+  readonly title: string;
+  readonly description?: string;
+  readonly children?: ReactNode;
+  readonly compact?: boolean;
+}) {
+  return (
+    <section
+      className={cx(
+        "relative isolate overflow-hidden rounded-[2rem] bg-gradient-to-br from-emerald-950 via-emerald-800 to-teal-500 text-white shadow-[var(--shadow-card)]",
+        compact ? "px-6 py-8" : "min-h-[25rem] px-6 py-12 sm:px-10",
+      )}
+    >
+      <div
+        aria-hidden="true"
+        className="absolute -right-16 -top-20 -z-10 size-72 rounded-full bg-white/10 blur-3xl"
+      />
+      <div className="flex h-full max-w-2xl flex-col justify-end">
+        {eyebrow ? (
+          <p className="text-sm font-bold uppercase tracking-[0.16em] text-emerald-100">
+            {eyebrow}
+          </p>
+        ) : null}
+        <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">{title}</h1>
+        {description ? (
+          <p className="mt-4 max-w-xl text-lg text-emerald-50">{description}</p>
+        ) : null}
+        {children ? <div className="mt-7 flex flex-wrap gap-3">{children}</div> : null}
+      </div>
+    </section>
+  );
+}
+
+export function CategoryChip({
+  href,
+  active = false,
+  children,
+}: {
+  readonly href: string;
+  readonly active?: boolean;
+  readonly children: ReactNode;
+}) {
+  return (
+    <Link
+      aria-current={active ? "page" : undefined}
+      className={cx(
+        "inline-flex min-h-11 items-center rounded-full border px-4 text-sm font-bold",
+        active
+          ? "border-emerald-800 bg-emerald-800 text-white"
+          : "border-emerald-100 bg-white text-emerald-900 hover:bg-emerald-50",
+      )}
+      href={href}
+    >
+      {children}
+    </Link>
+  );
+}
+
+export function QuickActionGrid({ children }: { readonly children: ReactNode }) {
+  return <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">{children}</div>;
 }
 
 export function Skeleton({ className }: { className?: string }) {
@@ -159,6 +320,7 @@ export function Dialog({
   sheet?: boolean;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
   useEffect(() => {
     const dialog = ref.current;
     if (!dialog) return;
@@ -170,7 +332,7 @@ export function Dialog({
       ref={ref}
       onCancel={onClose}
       onClose={onClose}
-      aria-labelledby="dialog-title"
+      aria-labelledby={titleId}
       className={cx(
         "m-auto w-[min(36rem,calc(100%-2rem))] rounded-2xl border-0 p-0 shadow-2xl backdrop:bg-slate-950/50",
         sheet &&
@@ -179,7 +341,7 @@ export function Dialog({
     >
       <section className="p-6">
         <div className="flex items-start justify-between gap-4">
-          <h2 id="dialog-title" className="text-xl font-bold">
+          <h2 id={titleId} className="text-xl font-bold">
             {title}
           </h2>
           <Button variant="ghost" onClick={onClose} aria-label="Close dialog">

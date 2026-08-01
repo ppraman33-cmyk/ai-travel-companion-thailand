@@ -1,5 +1,6 @@
-const SHELL_CACHE = "atct-shell-v1";
-const SHELL_PATHS = ["/", "/explore", "/food", "/events", "/trips", "/help"];
+const SHELL_CACHE = "atct-shell-v2";
+// Safety-critical Help/Emergency pages and all API responses are deliberately excluded.
+const SHELL_PATHS = ["/", "/explore", "/saved", "/trips", "/profile"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(SHELL_CACHE).then((cache) => cache.addAll(SHELL_PATHS)));
