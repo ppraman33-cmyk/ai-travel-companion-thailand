@@ -46,7 +46,13 @@ jobs:
       - run: npm ci
       - run: supabase start
       - run: supabase db reset
-      - run: supabase test db
+      - name: Load quarantined nationwide fixture for tests only
+        run: supabase db query --local --file supabase/nationwide-draft-seed.sql
+      - name: Run SQL and RLS regression tests
+        run: |
+          for test_file in supabase/tests/*.sql; do
+            supabase db query --local --file "$test_file"
+          done
       - name: Generate Supabase schema types
         id: generate_types
         run: |

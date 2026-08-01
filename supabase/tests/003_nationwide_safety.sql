@@ -1,6 +1,3 @@
--- Explicit test-only load of the quarantined nationwide fixture. Production reset does not load it.
-\ir ../nationwide-draft-seed.sql
-
 begin;
 
 do $$
