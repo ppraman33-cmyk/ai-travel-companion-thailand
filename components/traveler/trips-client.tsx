@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 
 import {
   Button,
@@ -25,14 +25,59 @@ const readCookie = (name: string) =>
 
 type DraftItem = { id: number; title: string; notes: string };
 
+type Trip = {
+  readonly id: string;
+  readonly title: string;
+  readonly status: "draft" | "active" | "completed" | "deleted";
+};
+
+type TripsState =
+  | { readonly status: "loading" }
+  | { readonly status: "ready"; readonly trips: readonly Trip[] }
+  | { readonly status: "unavailable" };
+
 export function TripsClient() {
   const [message, setMessage] = useState(
     "Create a secure anonymous session only when you save your first trip.",
   );
-  const [created, setCreated] = useState(false);
+  const [tripsState, setTripsState] = useState<TripsState>({
+    status: "loading",
+  });
+  const [activeTrip, setActiveTrip] = useState<Trip | null>(null);
   const [items, setItems] = useState<DraftItem[]>([]);
   const [dialog, setDialog] = useState(false);
   const [toast, setToast] = useState<string>();
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/v1/trips", { credentials: "same-origin" })
+      .then((response) =>
+        response.ok ? response.json() : Promise.reject(new Error("unavailable")),
+      )
+      .then((body: { data: readonly Trip[] }) => {
+        if (cancelled) return;
+        const list = body.data.filter((trip) => trip.status !== "deleted");
+        setTripsState({ status: "ready", trips: list });
+      })
+      .catch(() => {
+        if (!cancelled) setTripsState({ status: "unavailable" });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const refreshTrips = async () => {
+    const response = await fetch("/api/v1/trips", { credentials: "same-origin" });
+    if (response.ok) {
+      const body = (await response.json()) as { data: readonly Trip[] };
+      const list = body.data.filter((trip) => trip.status !== "deleted");
+      setTripsState({ status: "ready", trips: list });
+      return list;
+    }
+    setTripsState({ status: "unavailable" });
+    return null;
+  };
 
   const createTrip = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,14 +102,36 @@ export function TripsClient() {
       headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
       body: JSON.stringify({ title: form.get("title") }),
     });
-    setMessage(
-      response.ok
-        ? "Trip created for this anonymous session."
-        : "Trip could not be created safely.",
-    );
-    setCreated(response.ok);
-    if (response.ok) event.currentTarget.reset();
+    if (response.ok) {
+      const created = (await response.json()) as { data: Trip };
+      setMessage("Trip created for this anonymous session.");
+      const list = await refreshTrips();
+      const newTrip = list?.find((trip) => trip.id === created.data.id) ?? created.data;
+      setActiveTrip(newTrip);
+      setItems([]);
+      event.currentTarget.reset();
+    } else {
+      setMessage("Trip could not be created safely.");
+    }
   };
+
+  async function deleteTrip(trip: Trip) {
+    const csrf = readCookie("atct_csrf");
+    const response = await fetch(`/api/v1/trips/${trip.id}`, {
+      method: "DELETE",
+      headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
+    });
+    if (response.ok) {
+      setToast(`"${trip.title}" was deleted.`);
+      if (activeTrip?.id === trip.id) {
+        setActiveTrip(null);
+        setItems([]);
+      }
+      await refreshTrips();
+    } else {
+      setToast("Trip could not be deleted safely.");
+    }
+  }
 
   function addDraft(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -82,6 +149,7 @@ export function TripsClient() {
       "Added to the itinerary UI draft. Server day persistence remains evidence-gated.",
     );
   }
+
   function move(index: number, direction: -1 | 1) {
     const target = index + direction;
     if (target < 0 || target >= items.length) return;
@@ -91,6 +159,9 @@ export function TripsClient() {
       return copy;
     });
   }
+
+  const isReady = tripsState.status === "ready";
+  const hasTrips = isReady && tripsState.trips.length > 0;
 
   return (
     <div className="grid gap-5">
@@ -113,22 +184,86 @@ export function TripsClient() {
             Create trip
           </Button>
         </form>
-        <p aria-live="polite" className="mt-4 text-sm text-slate-600" role="status">
+        <p
+          aria-live="polite"
+          className="mt-4 text-sm text-slate-600"
+          role="status"
+        >
           {message}
         </p>
       </ContentCard>
-      {!created ? (
+
+      {tripsState.status === "loading" ? (
+        <StatusState
+          state="loading"
+          title="Loading your trips"
+          description="Checking anonymous-session ownership…"
+        />
+      ) : tripsState.status === "unavailable" ? (
+        <StatusState
+          state="error"
+          title="Trips are unavailable"
+          description="Trip creation still works. Nothing is stored outside the secure session service."
+        />
+      ) : hasTrips ? (
+        <ContentCard>
+          <h2 className="text-xl font-bold">Your trips</h2>
+          <ul className="mt-4 grid gap-3">
+            {tripsState.trips.map((trip) => (
+              <li
+                className={
+                  "flex items-center gap-3 rounded-xl border p-4 transition" +
+                  (activeTrip?.id === trip.id
+                    ? " border-emerald-600 bg-emerald-50"
+                    : " border-slate-200 hover:border-emerald-300")
+                }
+                key={trip.id}
+              >
+                <button
+                  aria-pressed={activeTrip?.id === trip.id}
+                  className="min-w-0 flex-1 text-left"
+                  onClick={() => {
+                    setActiveTrip(trip);
+                    setItems([]);
+                  }}
+                  type="button"
+                >
+                  <strong className="block truncate">{trip.title}</strong>
+                  <small className="text-slate-500">
+                    {trip.status === "draft"
+                      ? "Draft"
+                      : trip.status === "active"
+                        ? "Active"
+                        : "Completed"}
+                  </small>
+                </button>
+                <Button
+                  aria-label={`Delete trip ${trip.title}`}
+                  onClick={() => deleteTrip(trip)}
+                  variant="ghost"
+                >
+                  ×
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </ContentCard>
+      ) : (
         <StatusState
           state="empty"
-          title="No active itinerary"
+          title="No trips yet"
           description="Create a session-owned trip to unlock the itinerary interaction foundation."
         />
-      ) : (
+      )}
+
+      {activeTrip ? (
         <ContentCard>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-bold text-emerald-700">Day 1</p>
-              <h2 className="text-xl font-bold">Itinerary foundation</h2>
+              <p className="text-sm font-bold text-emerald-700">
+                {activeTrip.status === "draft" ? "Draft" : activeTrip.status === "active" ? "Active" : "Completed"}
+              </p>
+              <h2 className="text-xl font-bold">{activeTrip.title}</h2>
             </div>
             <Button onClick={() => setDialog(true)}>Add item</Button>
           </div>
@@ -186,7 +321,8 @@ export function TripsClient() {
             </ol>
           )}
         </ContentCard>
-      )}
+      ) : null}
+
       <Dialog
         onClose={() => setDialog(false)}
         open={dialog}
