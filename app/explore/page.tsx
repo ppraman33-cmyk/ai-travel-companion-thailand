@@ -6,6 +6,7 @@ import {
   demoProvince,
   type DemoCategory,
 } from "@/application/traveler/synthetic-content";
+import { ExploreRecommendations } from "@/components/traveler/explore-recommendations";
 import { DemoCard } from "@/components/traveler/demo-card";
 import { TravelerShell } from "@/components/traveler/traveler-shell";
 import {
@@ -50,6 +51,7 @@ export default function ExplorePage() {
           </CategoryChip>
         ))}
       </nav>
+      <ExploreRecommendations />
       <section>
         <div className="flex items-end justify-between">
           <div>

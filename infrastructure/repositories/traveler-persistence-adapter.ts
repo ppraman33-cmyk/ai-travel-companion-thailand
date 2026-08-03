@@ -1,9 +1,11 @@
 import type {
+  TravelerItineraryDay,
+  TravelerItineraryItem,
+  TravelerPreferences,
   TravelerReport,
   TravelerRepository,
   TravelerSavedPlace,
   TravelerTrip,
-  TravelerItineraryItem,
 } from "@/application/public-api/traveler-service";
 import type { PersistenceClient } from "@/infrastructure/supabase/persistence-client";
 import { appError } from "@/shared/errors/app-error";
@@ -14,6 +16,9 @@ interface TripRecord {
   readonly traveler_session_id: string;
   readonly title: string;
   readonly trip_status: TravelerTrip["status"];
+  readonly start_date: string | null;
+  readonly end_date: string | null;
+  readonly notes: string | null;
 }
 
 interface SavedRecord {
@@ -25,6 +30,9 @@ interface SavedRecord {
 interface DayRecord {
   readonly id: string;
   readonly trip_id: string;
+  readonly planned_date: string;
+  readonly day_order: number;
+  readonly notes: string | null;
 }
 
 interface ItemRecord {
@@ -34,7 +42,13 @@ interface ItemRecord {
   readonly place_id: string | null;
   readonly event_occurrence_id: string | null;
   readonly notes: string | null;
+  readonly planned_at: string | null;
   readonly ai_generated: boolean;
+}
+
+interface SessionRecord {
+  readonly id: string;
+  readonly traveler_preferences: Record<string, unknown> | null;
 }
 
 export class TravelerPersistenceAdapter implements TravelerRepository {
@@ -51,7 +65,7 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
           value: ["draft", "active", "completed"],
         },
       ],
-      orderBy: { column: "id", ascending: true },
+      orderBy: { column: "start_date", ascending: true },
       limit,
     });
     return result.ok ? success(result.value.map(this.mapTrip)) : result;
@@ -75,6 +89,9 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
         traveler_session_id: trip.sessionId,
         title: trip.title,
         trip_status: trip.status,
+        start_date: trip.startDate ?? null,
+        end_date: trip.endDate ?? null,
+        notes: trip.notes ?? null,
         timezone: "Asia/Bangkok",
         data_classification: "real",
       },
@@ -161,14 +178,7 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
     });
     if (!day.ok) return day;
     if (!day.value) {
-      return {
-        ok: false as const,
-        error: {
-          code: "NOT_FOUND" as const,
-          message: "Itinerary day was not found.",
-          retryable: false,
-        },
-      };
+      return failure(appError("NOT_FOUND", "Itinerary day was not found."));
     }
     const result = await this.client.upsert<ItemRecord, Record<string, unknown>>(
       "itinerary_items",
@@ -179,6 +189,7 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
         place_id: item.placeId ?? null,
         event_occurrence_id: item.eventOccurrenceId ?? null,
         notes: item.notes ?? null,
+        planned_at: item.plannedAt ?? null,
         item_status: "confirmed",
         ai_generated: item.aiGenerated,
         data_classification: "real",
@@ -193,6 +204,7 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
           placeId: result.value.place_id ?? undefined,
           eventOccurrenceId: result.value.event_occurrence_id ?? undefined,
           notes: result.value.notes ?? undefined,
+          plannedAt: result.value.planned_at ?? undefined,
           aiGenerated: result.value.ai_generated,
         })
       : result;
@@ -223,12 +235,119 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
     ]);
   }
 
+  async listItems(sessionId: string, tripId: string) {
+    const days = await this.listDays(sessionId, tripId);
+    if (!days.ok) return days;
+    if (days.value.length === 0) return success([] as readonly TravelerItineraryItem[]);
+    const dayIds = days.value.map((d) => d.id);
+    const result = await this.client.selectMany<ItemRecord>({
+      table: "itinerary_items",
+      filters: [{ column: "itinerary_day_id", operator: "in", value: dayIds }],
+      orderBy: { column: "item_order", ascending: true },
+    });
+    return result.ok
+      ? success(
+          result.value.map((row): TravelerItineraryItem => ({
+            id: row.id,
+            dayId: row.itinerary_day_id,
+            order: row.item_order,
+            placeId: row.place_id ?? undefined,
+            eventOccurrenceId: row.event_occurrence_id ?? undefined,
+            notes: row.notes ?? undefined,
+            plannedAt: row.planned_at ?? undefined,
+            aiGenerated: row.ai_generated,
+          })),
+        )
+      : result;
+  }
+
+  async listDays(_sessionId: string, tripId: string) {
+    const result = await this.client.selectMany<DayRecord>({
+      table: "itinerary_days",
+      filters: [{ column: "trip_id", operator: "eq", value: tripId }],
+      orderBy: { column: "day_order", ascending: true },
+    });
+    return result.ok
+      ? success(
+          result.value.map((row): TravelerItineraryDay => ({
+            id: row.id,
+            tripId: row.trip_id,
+            plannedDate: row.planned_date,
+            dayOrder: row.day_order,
+            notes: row.notes ?? undefined,
+          })),
+        )
+      : result;
+  }
+
+  async saveDay(day: TravelerItineraryDay) {
+    const result = await this.client.upsert<DayRecord, Record<string, unknown>>(
+      "itinerary_days",
+      {
+        id: day.id,
+        trip_id: day.tripId,
+        planned_date: day.plannedDate,
+        day_order: day.dayOrder,
+        notes: day.notes ?? null,
+      },
+      "id",
+    );
+    return result.ok
+      ? success({
+          id: result.value.id,
+          tripId: result.value.trip_id,
+          plannedDate: result.value.planned_date,
+          dayOrder: result.value.day_order,
+          notes: result.value.notes ?? undefined,
+        })
+      : result;
+  }
+
+  async getPreferences(sessionId: string) {
+    const result = await this.client.selectOne<SessionRecord>({
+      table: "traveler_sessions",
+      filters: [{ column: "id", operator: "eq", value: sessionId }],
+    });
+    if (!result.ok) return result;
+    if (!result.value) {
+      return failure(appError("NOT_FOUND", "Session was not found."));
+    }
+    const prefs = (result.value.traveler_preferences ?? {}) as Partial<TravelerPreferences>;
+    return success({
+      transportation: prefs.transportation,
+      travelStyle: prefs.travelStyle,
+      companions: prefs.companions,
+      activityLevel: prefs.activityLevel,
+      budget: prefs.budget,
+      language: prefs.language,
+    } as TravelerPreferences);
+  }
+
+  async savePreferences(sessionId: string, preferences: TravelerPreferences) {
+    const result = await this.client.upsert<SessionRecord, Record<string, unknown>>(
+      "traveler_sessions",
+      {
+        id: sessionId,
+        traveler_preferences: preferences as Record<string, unknown>,
+      },
+      "id",
+    );
+    return result.ok
+      ? success(
+          (result.value.traveler_preferences ?? {}) as TravelerPreferences,
+        )
+      : result;
+  }
+
   private mapTrip(row: TripRecord): TravelerTrip {
     return {
       id: row.id,
       sessionId: row.traveler_session_id,
       title: row.title,
       status: row.trip_status,
+      startDate: row.start_date ?? undefined,
+      endDate: row.end_date ?? undefined,
+      notes: row.notes ?? undefined,
     };
   }
 }

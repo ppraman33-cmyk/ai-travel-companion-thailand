@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useState, type FormEvent } from "react";
 
+import { demoItems, demoProvince } from "@/application/traveler/synthetic-content";
 import {
   Button,
   ContentCard,
@@ -23,30 +24,94 @@ const readCookie = (name: string) =>
     .slice(1)
     .join("=");
 
-type DraftItem = { id: number; title: string; notes: string };
-
-type Trip = {
+interface Trip {
   readonly id: string;
   readonly title: string;
   readonly status: "draft" | "active" | "completed" | "deleted";
-};
+  readonly startDate?: string;
+  readonly endDate?: string;
+  readonly notes?: string;
+}
+
+interface ItineraryDay {
+  readonly id: string;
+  readonly tripId: string;
+  readonly plannedDate: string;
+  readonly dayOrder: number;
+  readonly notes?: string;
+}
+
+interface ItineraryItem {
+  readonly id: string;
+  readonly dayId: string;
+  readonly order: number;
+  readonly placeId?: string;
+  readonly notes?: string;
+  readonly plannedAt?: string;
+  readonly aiGenerated: boolean;
+}
 
 type TripsState =
   | { readonly status: "loading" }
   | { readonly status: "ready"; readonly trips: readonly Trip[] }
   | { readonly status: "unavailable" };
 
+const detailHref = (placeId: string): string | undefined => {
+  const item = demoItems.find((entry) => entry.id === placeId);
+  if (!item) return undefined;
+  return `/thailand/${demoProvince.region}/${demoProvince.slug}/${item.category}/${item.slug}`;
+};
+
+const resolveDemoItem = (placeId: string) =>
+  demoItems.find((entry) => entry.id === placeId);
+
+const formatDate = (date?: string): string => {
+  if (!date) return "Unscheduled";
+  try {
+    return new Date(date).toLocaleDateString(undefined, {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  } catch {
+    return date;
+  }
+};
+
+const formatDateShort = (date: string): string => {
+  try {
+    return new Date(date).toLocaleDateString(undefined, {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    });
+  } catch {
+    return date;
+  }
+};
+
 export function TripsClient() {
-  const [message, setMessage] = useState(
-    "Create a secure anonymous session only when you save your first trip.",
-  );
-  const [tripsState, setTripsState] = useState<TripsState>({
-    status: "loading",
-  });
+  const [tripsState, setTripsState] = useState<TripsState>({ status: "loading" });
   const [activeTrip, setActiveTrip] = useState<Trip | null>(null);
-  const [items, setItems] = useState<DraftItem[]>([]);
-  const [dialog, setDialog] = useState(false);
+  const [days, setDays] = useState<ItineraryDay[]>([]);
+  const [items, setItems] = useState<ItineraryItem[]>([]);
+  const [editingTrip, setEditingTrip] = useState<Trip | null>(null);
+  const [addDayDialog, setAddDayDialog] = useState(false);
+  const [addItemDialog, setAddItemDialog] = useState<{ dayId: string } | null>(null);
   const [toast, setToast] = useState<string>();
+  const [itineraryLoading, setItineraryLoading] = useState(false);
+
+  const refreshTrips = useCallback(async () => {
+    const response = await fetch("/api/v1/trips", { credentials: "same-origin" });
+    if (response.ok) {
+      const body = (await response.json()) as { data: readonly Trip[] };
+      const list = body.data.filter((trip) => trip.status !== "deleted");
+      setTripsState({ status: "ready", trips: list });
+      return list;
+    }
+    setTripsState({ status: "unavailable" });
+    return null;
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -67,19 +132,41 @@ export function TripsClient() {
     };
   }, []);
 
-  const refreshTrips = async () => {
-    const response = await fetch("/api/v1/trips", { credentials: "same-origin" });
-    if (response.ok) {
-      const body = (await response.json()) as { data: readonly Trip[] };
-      const list = body.data.filter((trip) => trip.status !== "deleted");
-      setTripsState({ status: "ready", trips: list });
-      return list;
+  const loadItinerary = useCallback(async (tripId: string) => {
+    setItineraryLoading(true);
+    try {
+      const [daysRes, itemsRes] = await Promise.all([
+        fetch(`/api/v1/trips/${tripId}/days`, { credentials: "same-origin" }),
+        fetch(`/api/v1/trips/${tripId}/items`, { credentials: "same-origin" }),
+      ]);
+      if (daysRes.ok) {
+        const daysBody = (await daysRes.json()) as { data: readonly ItineraryDay[] };
+        setDays([...daysBody.data].sort((a, b) => a.dayOrder - b.dayOrder));
+      } else {
+        setDays([]);
+      }
+      if (itemsRes.ok) {
+        const itemsBody = (await itemsRes.json()) as { data: readonly ItineraryItem[] };
+        setItems([...itemsBody.data].sort((a, b) => a.order - b.order));
+      } else {
+        setItems([]);
+      }
+    } catch {
+      setDays([]);
+      setItems([]);
     }
-    setTripsState({ status: "unavailable" });
-    return null;
-  };
+    setItineraryLoading(false);
+  }, []);
 
-  const createTrip = async (event: FormEvent<HTMLFormElement>) => {
+  const selectTrip = useCallback(
+    (trip: Trip) => {
+      setActiveTrip(trip);
+      void loadItinerary(trip.id);
+    },
+    [loadItinerary],
+  );
+
+  async function createTrip(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     let csrf = readCookie("atct_csrf");
@@ -89,13 +176,7 @@ export function TripsClient() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ locale: document.documentElement.lang }),
       });
-      if (!session.ok) {
-        setMessage(
-          "Trip saving is unavailable until secure session persistence is configured.",
-        );
-        return;
-      }
-      csrf = readCookie("atct_csrf");
+      if (session.ok) csrf = readCookie("atct_csrf");
     }
     const response = await fetch("/api/v1/trips", {
       method: "POST",
@@ -103,17 +184,49 @@ export function TripsClient() {
       body: JSON.stringify({ title: form.get("title") }),
     });
     if (response.ok) {
-      const created = (await response.json()) as { data: Trip };
-      setMessage("Trip created for this anonymous session.");
+      setToast("Trip created.");
       const list = await refreshTrips();
-      const newTrip = list?.find((trip) => trip.id === created.data.id) ?? created.data;
-      setActiveTrip(newTrip);
-      setItems([]);
+      const created = (await response.json()) as { data: Trip };
+      const newTrip = list?.find((t) => t.id === created.data.id) ?? created.data;
+      selectTrip(newTrip);
       event.currentTarget.reset();
     } else {
-      setMessage("Trip could not be created safely.");
+      setToast("Trip could not be created.");
     }
-  };
+  }
+
+  async function saveTripEdit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!editingTrip) return;
+    const form = new FormData(event.currentTarget);
+    const csrf = readCookie("atct_csrf");
+    const response = await fetch("/api/v1/trips", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
+      body: JSON.stringify({
+        id: editingTrip.id,
+        title: form.get("title"),
+        status: form.get("status") ?? editingTrip.status,
+        startDate: form.get("startDate") || undefined,
+        endDate: form.get("endDate") || undefined,
+        notes: form.get("notes") || undefined,
+      }),
+    });
+    if (response.ok) {
+      setToast("Trip updated.");
+      setEditingTrip(null);
+      const list = await refreshTrips();
+      if (list && activeTrip) {
+        const updated = list.find((t) => t.id === activeTrip.id);
+        if (updated) {
+          setActiveTrip(updated);
+          void loadItinerary(updated.id);
+        }
+      }
+    } else {
+      setToast("Trip could not be updated.");
+    }
+  }
 
   async function deleteTrip(trip: Trip) {
     const csrf = readCookie("atct_csrf");
@@ -125,35 +238,87 @@ export function TripsClient() {
       setToast(`"${trip.title}" was deleted.`);
       if (activeTrip?.id === trip.id) {
         setActiveTrip(null);
+        setDays([]);
         setItems([]);
       }
       await refreshTrips();
     } else {
-      setToast("Trip could not be deleted safely.");
+      setToast("Trip could not be deleted.");
     }
   }
 
-  function addDraft(event: FormEvent<HTMLFormElement>) {
+  async function addDay(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!activeTrip) return;
     const form = new FormData(event.currentTarget);
-    setItems((current) => [
-      ...current,
-      {
-        id: Date.now(),
-        title: String(form.get("item")),
-        notes: String(form.get("notes") ?? ""),
-      },
-    ]);
-    setDialog(false);
-    setToast(
-      "Added to the itinerary UI draft. Server day persistence remains evidence-gated.",
-    );
+    const csrf = readCookie("atct_csrf");
+    const dayOrder = days.length;
+    const response = await fetch(`/api/v1/trips/${activeTrip.id}/days`, {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
+      body: JSON.stringify({
+        tripId: activeTrip.id,
+        plannedDate: form.get("plannedDate"),
+        dayOrder,
+        notes: form.get("notes") || undefined,
+      }),
+    });
+    if (response.ok) {
+      setToast("Day added.");
+      setAddDayDialog(false);
+      await loadItinerary(activeTrip.id);
+    } else {
+      setToast("Day could not be added.");
+    }
   }
 
-  function move(index: number, direction: -1 | 1) {
-    const target = index + direction;
-    if (target < 0 || target >= items.length) return;
+  async function addItem(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!addItemDialog) return;
+    const form = new FormData(event.currentTarget);
+    const csrf = readCookie("atct_csrf");
+    const dayItems = items.filter((i) => i.dayId === addItemDialog.dayId);
+    const order = dayItems.length;
+    const response = await fetch("/api/v1/trips/items", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
+      body: JSON.stringify({
+        dayId: addItemDialog.dayId,
+        order,
+        placeId: form.get("placeId"),
+        notes: form.get("notes") || undefined,
+        plannedAt: form.get("plannedAt") || undefined,
+        aiGenerated: false,
+      }),
+    });
+    if (response.ok) {
+      setToast("Item added to itinerary.");
+      setAddItemDialog(null);
+      if (activeTrip) await loadItinerary(activeTrip.id);
+    } else {
+      setToast("Item could not be added.");
+    }
+  }
+
+  async function removeItem(itemId: string) {
+    if (!activeTrip) return;
+    const csrf = readCookie("atct_csrf");
+    const response = await fetch(`/api/v1/trips/${activeTrip.id}/items/${itemId}`, {
+      method: "DELETE",
+      headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
+    });
+    if (response.ok) {
+      setToast("Item removed.");
+      await loadItinerary(activeTrip.id);
+    }
+  }
+
+  function moveItem(itemId: string, direction: -1 | 1) {
     setItems((current) => {
+      const index = current.findIndex((i) => i.id === itemId);
+      if (index < 0) return current;
+      const target = index + direction;
+      if (target < 0 || target >= current.length) return current;
       const copy = [...current];
       [copy[index], copy[target]] = [copy[target], copy[index]];
       return copy;
@@ -162,6 +327,13 @@ export function TripsClient() {
 
   const isReady = tripsState.status === "ready";
   const hasTrips = isReady && tripsState.trips.length > 0;
+  const totalItems = items.length;
+  const totalDays = days.length;
+  const statusLabels: Record<string, string> = {
+    draft: "Draft",
+    active: "Active",
+    completed: "Completed",
+  };
 
   return (
     <div className="grid gap-5">
@@ -184,13 +356,6 @@ export function TripsClient() {
             Create trip
           </Button>
         </form>
-        <p
-          aria-live="polite"
-          className="mt-4 text-sm text-slate-600"
-          role="status"
-        >
-          {message}
-        </p>
       </ContentCard>
 
       {tripsState.status === "loading" ? (
@@ -222,21 +387,24 @@ export function TripsClient() {
                 <button
                   aria-pressed={activeTrip?.id === trip.id}
                   className="min-w-0 flex-1 text-left"
-                  onClick={() => {
-                    setActiveTrip(trip);
-                    setItems([]);
-                  }}
+                  onClick={() => selectTrip(trip)}
                   type="button"
                 >
                   <strong className="block truncate">{trip.title}</strong>
                   <small className="text-slate-500">
-                    {trip.status === "draft"
-                      ? "Draft"
-                      : trip.status === "active"
-                        ? "Active"
-                        : "Completed"}
+                    {statusLabels[trip.status] ?? trip.status}
+                    {" · "}
+                    {formatDate(trip.startDate)}
+                    {trip.endDate ? ` → ${formatDate(trip.endDate)}` : ""}
                   </small>
                 </button>
+                <Button
+                  aria-label={`Edit trip ${trip.title}`}
+                  onClick={() => setEditingTrip(trip)}
+                  variant="ghost"
+                >
+                  Edit
+                </Button>
                 <Button
                   aria-label={`Delete trip ${trip.title}`}
                   onClick={() => deleteTrip(trip)}
@@ -258,96 +426,305 @@ export function TripsClient() {
 
       {activeTrip ? (
         <ContentCard>
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-bold text-emerald-700">
-                {activeTrip.status === "draft" ? "Draft" : activeTrip.status === "active" ? "Active" : "Completed"}
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-900">
+                  {statusLabels[activeTrip.status] ?? activeTrip.status}
+                </span>
+                {totalDays > 0 && (
+                  <span className="rounded-full bg-sky-100 px-2.5 py-1 text-xs font-semibold text-sky-900">
+                    {totalDays} {totalDays === 1 ? "day" : "days"}
+                  </span>
+                )}
+                {totalItems > 0 && (
+                  <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-900">
+                    {totalItems} {totalItems === 1 ? "stop" : "stops"}
+                  </span>
+                )}
+              </div>
+              <h2 className="mt-2 text-xl font-bold">{activeTrip.title}</h2>
+              <p className="text-sm text-slate-500">
+                {formatDate(activeTrip.startDate)}
+                {activeTrip.endDate ? ` → ${formatDate(activeTrip.endDate)}` : ""}
               </p>
-              <h2 className="text-xl font-bold">{activeTrip.title}</h2>
+              {activeTrip.notes ? (
+                <p className="mt-3 text-sm text-slate-600">{activeTrip.notes}</p>
+              ) : null}
             </div>
-            <Button onClick={() => setDialog(true)}>Add item</Button>
+            <div className="flex gap-2">
+              <Button onClick={() => setEditingTrip(activeTrip)} variant="secondary">
+                Edit
+              </Button>
+              <Button onClick={() => setAddDayDialog(true)}>Add day</Button>
+            </div>
           </div>
-          {items.length === 0 ? (
-            <p className="mt-5 rounded-xl bg-slate-50 p-4 text-sm text-slate-600">
-              No items yet. Add a synthetic catalog idea or traveler note.
-            </p>
-          ) : (
-            <ol className="mt-5 grid gap-3">
-              {items.map((item, index) => (
-                <li
-                  className="flex items-center gap-3 rounded-xl border border-slate-200 p-4"
-                  key={item.id}
-                >
-                  <span className="grid size-8 shrink-0 place-items-center rounded-full bg-emerald-100 font-bold text-emerald-900">
-                    {index + 1}
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <strong className="block">{item.title}</strong>
-                    {item.notes ? (
-                      <small className="text-slate-500">{item.notes}</small>
-                    ) : null}
-                  </span>
-                  <div className="flex gap-1">
-                    <Button
-                      aria-label={`Move ${item.title} earlier`}
-                      disabled={index === 0}
-                      onClick={() => move(index, -1)}
-                      variant="ghost"
-                    >
-                      ↑
-                    </Button>
-                    <Button
-                      aria-label={`Move ${item.title} later`}
-                      disabled={index === items.length - 1}
-                      onClick={() => move(index, 1)}
-                      variant="ghost"
-                    >
-                      ↓
-                    </Button>
-                    <Button
-                      aria-label={`Remove ${item.title}`}
-                      onClick={() =>
-                        setItems((current) =>
-                          current.filter((entry) => entry.id !== item.id),
-                        )
-                      }
-                      variant="ghost"
-                    >
-                      ×
-                    </Button>
-                  </div>
-                </li>
+
+          {itineraryLoading ? (
+            <div className="mt-6 grid gap-3">
+              {[0, 1].map((i) => (
+                <div
+                  key={i}
+                  className="h-24 animate-pulse rounded-xl bg-slate-100"
+                  aria-hidden="true"
+                />
               ))}
-            </ol>
+            </div>
+          ) : days.length === 0 ? (
+            <div className="mt-6 rounded-xl border border-dashed border-slate-300 p-6 text-center">
+              <p className="font-semibold">No itinerary days yet</p>
+              <p className="mt-1 text-sm text-slate-500">
+                Add a day to start building your timeline.
+              </p>
+              <Button
+                className="mt-4"
+                onClick={() => setAddDayDialog(true)}
+              >
+                Add first day
+              </Button>
+            </div>
+          ) : (
+            <div className="mt-6 grid gap-6">
+              {days.map((day) => {
+                const dayItems = items.filter((i) => i.dayId === day.id);
+                return (
+                  <div key={day.id}>
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-bold">
+                        Day {day.dayOrder + 1}
+                        <span className="ml-2 text-sm font-normal text-slate-500">
+                          {formatDateShort(day.plannedDate)}
+                        </span>
+                      </h3>
+                      <Button
+                        onClick={() => setAddItemDialog({ dayId: day.id })}
+                        variant="ghost"
+                      >
+                        + Add stop
+                      </Button>
+                    </div>
+                    {day.notes ? (
+                      <p className="mt-1 text-sm text-slate-500">{day.notes}</p>
+                    ) : null}
+                    {dayItems.length === 0 ? (
+                      <p className="mt-3 rounded-lg bg-slate-50 p-3 text-sm text-slate-500">
+                        No stops planned for this day.
+                      </p>
+                    ) : (
+                      <ol className="mt-3 grid gap-2">
+                        {dayItems.map((item, index) => {
+                          const demo = item.placeId
+                            ? resolveDemoItem(item.placeId)
+                            : undefined;
+                          const href = item.placeId
+                            ? detailHref(item.placeId)
+                            : undefined;
+                          return (
+                            <li
+                              className="flex items-start gap-3 rounded-xl border border-slate-200 p-4"
+                              key={item.id}
+                            >
+                              <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-900">
+                                {index + 1}
+                              </span>
+                              <div className="min-w-0 flex-1">
+                                <div className="flex flex-wrap items-center gap-2">
+                                  {item.plannedAt ? (
+                                    <span className="text-xs font-bold text-emerald-700">
+                                      {item.plannedAt}
+                                    </span>
+                                  ) : null}
+                                  {demo ? (
+                                    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-600">
+                                      {demo.category}
+                                    </span>
+                                  ) : null}
+                                </div>
+                                <p className="mt-1 font-semibold">
+                                  {demo?.name ?? "Unknown place"}
+                                </p>
+                                {item.notes ? (
+                                  <p className="mt-1 text-sm text-slate-500">
+                                    {item.notes}
+                                  </p>
+                                ) : null}
+                                {href ? (
+                                  <a
+                                    className="mt-1 inline-block text-xs font-bold text-emerald-700 hover:underline"
+                                    href={href}
+                                    rel="noopener noreferrer"
+                                  >
+                                    View details →
+                                  </a>
+                                ) : null}
+                              </div>
+                              <div className="flex shrink-0 gap-1">
+                                <Button
+                                  aria-label="Move up"
+                                  disabled={index === 0}
+                                  onClick={() => moveItem(item.id, -1)}
+                                  variant="ghost"
+                                >
+                                  ↑
+                                </Button>
+                                <Button
+                                  aria-label="Move down"
+                                  disabled={index === dayItems.length - 1}
+                                  onClick={() => moveItem(item.id, 1)}
+                                  variant="ghost"
+                                >
+                                  ↓
+                                </Button>
+                                <Button
+                                  aria-label="Remove stop"
+                                  onClick={() => removeItem(item.id)}
+                                  variant="ghost"
+                                >
+                                  ×
+                                </Button>
+                              </div>
+                            </li>
+                          );
+                        })}
+                      </ol>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           )}
         </ContentCard>
       ) : null}
 
-      <Dialog
-        onClose={() => setDialog(false)}
-        open={dialog}
-        sheet
-        title="Add itinerary item"
-      >
-        <form className="grid gap-4" onSubmit={addDraft}>
-          <Field label="Synthetic catalog idea">
-            <Select name="item">
-              <option>Lantern Garden</option>
-              <option>River Leaf Kitchen</option>
-              <option>Moon Market</option>
-            </Select>
-          </Field>
-          <Field label="Traveler notes">
-            <TextArea maxLength={1000} name="notes" />
-          </Field>
-          <Button type="submit">
-            <span className="inline-flex items-center gap-2">
-              <Icon name="trip" />
-              Add to Day 1
-            </span>
-          </Button>
-        </form>
-      </Dialog>
+      {editingTrip ? (
+        <Dialog
+          onClose={() => setEditingTrip(null)}
+          open
+          title="Edit trip"
+        >
+          <form className="grid gap-4" onSubmit={saveTripEdit}>
+            <Field label="Trip name">
+              <TextInput
+                defaultValue={editingTrip.title}
+                maxLength={120}
+                name="title"
+                required
+              />
+            </Field>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field label="Start date">
+                <TextInput
+                  defaultValue={editingTrip.startDate ?? ""}
+                  name="startDate"
+                  type="date"
+                />
+              </Field>
+              <Field label="End date">
+                <TextInput
+                  defaultValue={editingTrip.endDate ?? ""}
+                  name="endDate"
+                  type="date"
+                />
+              </Field>
+            </div>
+            <Field label="Status">
+              <Select defaultValue={editingTrip.status} name="status">
+                <option value="draft">Draft</option>
+                <option value="active">Active</option>
+                <option value="completed">Completed</option>
+              </Select>
+            </Field>
+            <Field label="Notes">
+              <TextArea
+                defaultValue={editingTrip.notes ?? ""}
+                maxLength={5000}
+                name="notes"
+              />
+            </Field>
+            <div className="flex justify-end gap-2">
+              <Button
+                onClick={() => setEditingTrip(null)}
+                type="button"
+                variant="secondary"
+              >
+                Cancel
+              </Button>
+              <Button type="submit">Save changes</Button>
+            </div>
+          </form>
+        </Dialog>
+      ) : null}
+
+      {addDayDialog ? (
+        <Dialog
+          onClose={() => setAddDayDialog(false)}
+          open
+          title="Add itinerary day"
+        >
+          <form className="grid gap-4" onSubmit={addDay}>
+            <Field label="Date">
+              <TextInput name="plannedDate" required type="date" />
+            </Field>
+            <Field label="Day notes (optional)">
+              <TextArea maxLength={2000} name="notes" />
+            </Field>
+            <div className="flex justify-end gap-2">
+              <Button
+                onClick={() => setAddDayDialog(false)}
+                type="button"
+                variant="secondary"
+              >
+                Cancel
+              </Button>
+              <Button type="submit">
+                <span className="inline-flex items-center gap-2">
+                  <Icon name="trip" />
+                  Add day
+                </span>
+              </Button>
+            </div>
+          </form>
+        </Dialog>
+      ) : null}
+
+      {addItemDialog ? (
+        <Dialog
+          onClose={() => setAddItemDialog(null)}
+          open
+          title="Add stop to itinerary"
+        >
+          <form className="grid gap-4" onSubmit={addItem}>
+            <Field label="Place">
+              <Select name="placeId" required>
+                {demoItems
+                  .filter((item) => item.category !== "emergency")
+                  .map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name} ({item.category})
+                    </option>
+                  ))}
+              </Select>
+            </Field>
+            <Field label="Planned time (optional)">
+              <TextInput name="plannedAt" type="time" />
+            </Field>
+            <Field label="Notes (optional)">
+              <TextArea maxLength={1000} name="notes" />
+            </Field>
+            <div className="flex justify-end gap-2">
+              <Button
+                onClick={() => setAddItemDialog(null)}
+                type="button"
+                variant="secondary"
+              >
+                Cancel
+              </Button>
+              <Button type="submit">Add stop</Button>
+            </div>
+          </form>
+        </Dialog>
+      ) : null}
+
       {toast ? <Toast>{toast}</Toast> : null}
     </div>
   );

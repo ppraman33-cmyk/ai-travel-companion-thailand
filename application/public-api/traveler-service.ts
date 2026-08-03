@@ -7,6 +7,9 @@ export interface TravelerTrip {
   readonly sessionId: string;
   readonly title: string;
   readonly status: "draft" | "active" | "completed" | "deleted";
+  readonly startDate?: string;
+  readonly endDate?: string;
+  readonly notes?: string;
 }
 
 export interface TravelerSavedPlace {
@@ -30,7 +33,25 @@ export interface TravelerItineraryItem {
   readonly placeId?: string;
   readonly eventOccurrenceId?: string;
   readonly notes?: string;
+  readonly plannedAt?: string;
   readonly aiGenerated: boolean;
+}
+
+export interface TravelerItineraryDay {
+  readonly id: string;
+  readonly tripId: string;
+  readonly plannedDate: string;
+  readonly dayOrder: number;
+  readonly notes?: string;
+}
+
+export interface TravelerPreferences {
+  readonly transportation?: string;
+  readonly travelStyle?: string;
+  readonly companions?: string;
+  readonly activityLevel?: string;
+  readonly budget?: string;
+  readonly language?: string;
 }
 
 export interface TravelerRepository {
@@ -58,6 +79,20 @@ export interface TravelerRepository {
     tripId: string,
     itemId: string,
   ): Promise<Result<void, AppError>>;
+  listItems(
+    sessionId: string,
+    tripId: string,
+  ): Promise<Result<readonly TravelerItineraryItem[], AppError>>;
+  listDays(
+    sessionId: string,
+    tripId: string,
+  ): Promise<Result<readonly TravelerItineraryDay[], AppError>>;
+  saveDay(day: TravelerItineraryDay): Promise<Result<TravelerItineraryDay, AppError>>;
+  getPreferences(sessionId: string): Promise<Result<TravelerPreferences, AppError>>;
+  savePreferences(
+    sessionId: string,
+    preferences: TravelerPreferences,
+  ): Promise<Result<TravelerPreferences, AppError>>;
 }
 
 export class TravelerService {
@@ -112,5 +147,32 @@ export class TravelerService {
     return trip.ok && trip.value
       ? this.repository.deleteItem(sessionId, tripId, itemId)
       : trip;
+  }
+
+  async listItems(sessionId: string, tripId: string) {
+    const trip = await this.findOwnedTrip(sessionId, tripId);
+    return trip.ok && trip.value
+      ? this.repository.listItems(sessionId, tripId)
+      : trip;
+  }
+
+  async listDays(sessionId: string, tripId: string) {
+    const trip = await this.findOwnedTrip(sessionId, tripId);
+    return trip.ok && trip.value
+      ? this.repository.listDays(sessionId, tripId)
+      : trip;
+  }
+
+  async saveDay(sessionId: string, day: TravelerItineraryDay) {
+    const trip = await this.findOwnedTrip(sessionId, day.tripId);
+    return trip.ok && trip.value ? this.repository.saveDay(day) : trip;
+  }
+
+  getPreferences(sessionId: string) {
+    return this.repository.getPreferences(sessionId);
+  }
+
+  savePreferences(sessionId: string, preferences: TravelerPreferences) {
+    return this.repository.savePreferences(sessionId, preferences);
   }
 }

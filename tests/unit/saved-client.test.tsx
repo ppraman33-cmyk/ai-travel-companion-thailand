@@ -68,7 +68,6 @@ describe("SavedClient", () => {
     );
     (global.fetch as ReturnType<typeof vi.fn>).mockImplementation(
       (input: RequestInfo | URL, init?: RequestInit) => {
-        const url = String(input);
         const method = init?.method ?? "GET";
         if (method === "DELETE") {
           return deleteSpy();

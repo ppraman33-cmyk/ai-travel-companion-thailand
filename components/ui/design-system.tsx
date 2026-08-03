@@ -210,20 +210,31 @@ export function HeroShell({
   description,
   children,
   compact = false,
+  coverImage,
 }: {
   readonly eyebrow?: string;
   readonly title: string;
   readonly description?: string;
   readonly children?: ReactNode;
   readonly compact?: boolean;
+  readonly coverImage?: string;
 }) {
   return (
     <section
       className={cx(
-        "relative isolate overflow-hidden rounded-[2rem] bg-gradient-to-br from-emerald-950 via-emerald-800 to-teal-500 text-white shadow-[var(--shadow-card)]",
+        "relative isolate overflow-hidden rounded-[2rem] text-white shadow-[var(--shadow-card)]",
         compact ? "px-6 py-8" : "min-h-[25rem] px-6 py-12 sm:px-10",
+        coverImage ? "bg-emerald-950" : "bg-gradient-to-br from-emerald-950 via-emerald-800 to-teal-500",
       )}
     >
+      {coverImage ? (
+        <img
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
+          src={coverImage}
+        />
+      ) : null}
       <div
         aria-hidden="true"
         className="absolute -right-16 -top-20 -z-10 size-72 rounded-full bg-white/10 blur-3xl"

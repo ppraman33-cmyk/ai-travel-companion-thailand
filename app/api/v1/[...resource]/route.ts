@@ -42,6 +42,9 @@ const tripSchema = z.object({
   id: z.uuid().optional(),
   title: z.string().trim().min(1).max(120),
   status: z.enum(["draft", "active", "completed"]).default("draft"),
+  startDate: z.string().trim().max(10).optional(),
+  endDate: z.string().trim().max(10).optional(),
+  notes: z.string().trim().max(5000).optional(),
 });
 const savedSchema = z.object({
   placeId: z.uuid(),
@@ -65,6 +68,21 @@ const itemSchema = z
   .refine((value) => Boolean(value.placeId) !== Boolean(value.eventOccurrenceId), {
     message: "Exactly one itinerary target is required.",
   });
+const daySchema = z.object({
+  id: z.uuid().optional(),
+  tripId: z.uuid(),
+  plannedDate: z.string().trim().min(1).max(10),
+  dayOrder: z.number().int().min(0).max(100),
+  notes: z.string().trim().max(2000).optional(),
+});
+const preferencesSchema = z.object({
+  transportation: z.string().trim().max(80).optional(),
+  travelStyle: z.string().trim().max(80).optional(),
+  companions: z.string().trim().max(80).optional(),
+  activityLevel: z.string().trim().max(80).optional(),
+  budget: z.string().trim().max(80).optional(),
+  language: z.string().trim().max(20).optional(),
+});
 
 const catalogKinds = new Set<PublicCatalogKind>([
   "destinations",
@@ -96,7 +114,7 @@ const parseBody = async (request: NextRequest) => {
 export async function GET(request: NextRequest, context: RouteContext) {
   const requestId = correlationId();
   const { resource } = await context.params;
-  const [area, id] = resource;
+  const [area, id, nested] = resource;
   const rate = appRuntime.rateLimiter.consume(`read:${requestKey(request)}`, 120, 60);
   if (!rate.ok) return errorResponse(rate.error, requestId);
 
@@ -139,9 +157,27 @@ export async function GET(request: NextRequest, context: RouteContext) {
   }
 
   if (area === "trips" && appRuntime.traveler) {
+    if (id && nested === "items") {
+      const result = await appRuntime.traveler.listItems(authenticated.value.id, id);
+      return result.ok
+        ? okResponse(result.value, requestId)
+        : errorResponse(result.error, requestId);
+    }
+    if (id && nested === "days") {
+      const result = await appRuntime.traveler.listDays(authenticated.value.id, id);
+      return result.ok
+        ? okResponse(result.value, requestId)
+        : errorResponse(result.error, requestId);
+    }
     const result = id
       ? await appRuntime.traveler.findOwnedTrip(authenticated.value.id, id)
       : await appRuntime.traveler.listTrips(authenticated.value.id);
+    return result.ok
+      ? okResponse(result.value, requestId)
+      : errorResponse(result.error, requestId);
+  }
+  if (area === "preferences" && appRuntime.traveler) {
+    const result = await appRuntime.traveler.getPreferences(authenticated.value.id);
     return result.ok
       ? okResponse(result.value, requestId)
       : errorResponse(result.error, requestId);
@@ -258,9 +294,47 @@ export async function POST(request: NextRequest, context: RouteContext) {
       id: parsed.data.id ?? randomUUID(),
       title: parsed.data.title,
       status: parsed.data.status,
+      startDate: parsed.data.startDate,
+      endDate: parsed.data.endDate,
+      notes: parsed.data.notes,
     });
     return result.ok
-      ? okResponse(result.value, requestId, 201)
+      ? okResponse(result.value, requestId, parsed.data.id ? 200 : 201)
+      : errorResponse(result.error, requestId);
+  }
+  if (area === "trips" && resourceId && nested === "days") {
+    const parsed = daySchema.safeParse(await parseBody(request));
+    if (!parsed.success) {
+      return errorResponse(
+        appError("VALIDATION", "Invalid itinerary day request."),
+        requestId,
+      );
+    }
+    const result = await appRuntime.traveler.saveDay(authenticated.value.id, {
+      id: parsed.data.id ?? randomUUID(),
+      tripId: resourceId,
+      plannedDate: parsed.data.plannedDate,
+      dayOrder: parsed.data.dayOrder,
+      notes: parsed.data.notes,
+    });
+    return result.ok
+      ? okResponse(result.value, requestId, parsed.data.id ? 200 : 201)
+      : errorResponse(result.error, requestId);
+  }
+  if (area === "preferences" && appRuntime.traveler) {
+    const parsed = preferencesSchema.safeParse(await parseBody(request));
+    if (!parsed.success) {
+      return errorResponse(
+        appError("VALIDATION", "Invalid preferences request."),
+        requestId,
+      );
+    }
+    const result = await appRuntime.traveler.savePreferences(
+      authenticated.value.id,
+      parsed.data,
+    );
+    return result.ok
+      ? okResponse(result.value, requestId, 200)
       : errorResponse(result.error, requestId);
   }
   if (area === "saved-places") {
