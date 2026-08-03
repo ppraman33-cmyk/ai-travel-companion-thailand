@@ -14,7 +14,7 @@ const seedSql = readFileSync(resolve(process.cwd(), "supabase/seed.sql"), "utf8"
 
 describe("Phase 3B migration contract", () => {
   it("uses deterministic ordered migration names", () => {
-    expect(migrations).toHaveLength(11);
+    expect(migrations).toHaveLength(12);
     expect(migrations).toEqual([...migrations].sort());
     expect(new Set(migrations.map((file) => file.slice(0, 12))).size).toBe(
       migrations.length,
