@@ -39,7 +39,6 @@ const sessionSchema = z.object({
     .default("en"),
 });
 const tripSchema = z.object({
-  id: z.uuid().optional(),
   title: z.string().trim().min(1).max(120),
   status: z.enum(["draft", "active", "completed"]).default("draft"),
   startDate: z.string().trim().max(10).optional(),
@@ -57,7 +56,6 @@ const reportSchema = z.object({
 });
 const itemSchema = z
   .object({
-    id: z.uuid().optional(),
     dayId: z.uuid(),
     order: z.number().int().min(0).max(100),
     placeId: z.uuid().optional(),
@@ -74,8 +72,6 @@ const itemSchema = z
     message: "Exactly one itinerary target is required.",
   });
 const daySchema = z.object({
-  id: z.uuid().optional(),
-  tripId: z.uuid(),
   plannedDate: z.string().trim().min(1).max(10),
   dayOrder: z.number().int().min(0).max(100),
   notes: z.string().trim().max(2000).optional(),
@@ -272,7 +268,7 @@ export async function POST(request: NextRequest, context: RouteContext) {
   );
   if (!authenticated.ok) return errorResponse(authenticated.error, requestId);
 
-  if (area === "trips" && resourceId && nested === "items") {
+  if (area === "trips" && resourceId && nested === "items" && resource.length <= 4) {
     const parsed = itemSchema.safeParse(await parseBody(request));
     if (!parsed.success) {
       return errorResponse(
@@ -285,7 +281,7 @@ export async function POST(request: NextRequest, context: RouteContext) {
       resourceId,
       {
         ...parsed.data,
-        id: nestedId ?? parsed.data.id ?? randomUUID(),
+        id: nestedId ?? randomUUID(),
       },
     );
     return result.ok
@@ -315,7 +311,7 @@ export async function POST(request: NextRequest, context: RouteContext) {
     }
   }
 
-  if (area === "trips" && resourceId && nested === "days") {
+  if (area === "trips" && resourceId && nested === "days" && !nestedId) {
     const parsed = daySchema.safeParse(await parseBody(request));
     if (!parsed.success) {
       return errorResponse(
@@ -324,23 +320,23 @@ export async function POST(request: NextRequest, context: RouteContext) {
       );
     }
     const result = await appRuntime.traveler.saveDay(authenticated.value.id, {
-      id: parsed.data.id ?? randomUUID(),
+      id: randomUUID(),
       tripId: resourceId,
       plannedDate: parsed.data.plannedDate,
       dayOrder: parsed.data.dayOrder,
       notes: parsed.data.notes,
     });
     return result.ok
-      ? okResponse(result.value, requestId, parsed.data.id ? 200 : 201)
+      ? okResponse(result.value, requestId, 201)
       : errorResponse(result.error, requestId);
   }
-  if (area === "trips") {
+  if (area === "trips" && !nested) {
     const parsed = tripSchema.safeParse(await parseBody(request));
     if (!parsed.success) {
       return errorResponse(appError("VALIDATION", "Invalid Trip request."), requestId);
     }
     const result = await appRuntime.traveler.saveTrip(authenticated.value.id, {
-      id: parsed.data.id ?? randomUUID(),
+      id: resourceId ?? randomUUID(),
       title: parsed.data.title,
       status: parsed.data.status,
       startDate: parsed.data.startDate,
@@ -348,7 +344,7 @@ export async function POST(request: NextRequest, context: RouteContext) {
       notes: parsed.data.notes,
     });
     return result.ok
-      ? okResponse(result.value, requestId, parsed.data.id ? 200 : 201)
+      ? okResponse(result.value, requestId, resourceId ? 200 : 201)
       : errorResponse(result.error, requestId);
   }
   if (area === "preferences" && appRuntime.traveler) {

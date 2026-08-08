@@ -60,6 +60,8 @@ export interface TravelerRepository {
     limit: number,
   ): Promise<Result<readonly TravelerTrip[], AppError>>;
   findTrip(id: string): Promise<Result<TravelerTrip | null, AppError>>;
+  findDay(id: string): Promise<Result<TravelerItineraryDay | null, AppError>>;
+  findItem(id: string): Promise<Result<TravelerItineraryItem | null, AppError>>;
   saveTrip(trip: TravelerTrip): Promise<Result<TravelerTrip, AppError>>;
   deleteTrip(id: string, sessionId: string): Promise<Result<void, AppError>>;
   listSaved(
@@ -111,12 +113,20 @@ export class TravelerService {
   async findOwnedTrip(sessionId: string, tripId: string) {
     const result = await this.repository.findTrip(tripId);
     if (!result.ok || !result.value) return result;
-    return result.value.sessionId === sessionId
+    return result.value.sessionId === sessionId && result.value.status !== "deleted"
       ? result
       : failure(appError("NOT_FOUND", "Trip was not found."));
   }
 
-  saveTrip(sessionId: string, trip: Omit<TravelerTrip, "sessionId">) {
+  async saveTrip(sessionId: string, trip: Omit<TravelerTrip, "sessionId">) {
+    const existing = await this.repository.findTrip(trip.id);
+    if (!existing.ok) return existing;
+    if (
+      existing.value &&
+      (existing.value.sessionId !== sessionId || existing.value.status === "deleted")
+    ) {
+      return failure(appError("NOT_FOUND", "Trip was not found."));
+    }
     return this.repository.saveTrip({ ...trip, sessionId });
   }
 
@@ -129,7 +139,11 @@ export class TravelerService {
     return this.repository.listSaved(sessionId, 50);
   }
 
-  savePlace(sessionId: string, placeId: string, tripId?: string) {
+  async savePlace(sessionId: string, placeId: string, tripId?: string) {
+    if (tripId) {
+      const trip = await this.findOwnedTrip(sessionId, tripId);
+      if (!trip.ok || !trip.value) return trip;
+    }
     return this.repository.savePlace({ sessionId, placeId, tripId });
   }
 
@@ -143,9 +157,21 @@ export class TravelerService {
 
   async saveItem(sessionId: string, tripId: string, item: TravelerItineraryItem) {
     const trip = await this.findOwnedTrip(sessionId, tripId);
-    return trip.ok && trip.value
-      ? this.repository.saveItem(sessionId, tripId, item)
-      : trip;
+    if (!trip.ok || !trip.value) return trip;
+    const existing = await this.repository.findItem(item.id);
+    if (!existing.ok) return existing;
+    if (existing.value) {
+      const existingDay = await this.repository.findDay(existing.value.dayId);
+      if (
+        !existingDay.ok ||
+        !existingDay.value ||
+        existingDay.value.tripId !== tripId ||
+        existing.value.dayId !== item.dayId
+      ) {
+        return failure(appError("NOT_FOUND", "Itinerary item was not found."));
+      }
+    }
+    return this.repository.saveItem(sessionId, tripId, item);
   }
 
   async deleteItem(sessionId: string, tripId: string, itemId: string) {
@@ -167,7 +193,13 @@ export class TravelerService {
 
   async saveDay(sessionId: string, day: TravelerItineraryDay) {
     const trip = await this.findOwnedTrip(sessionId, day.tripId);
-    return trip.ok && trip.value ? this.repository.saveDay(day) : trip;
+    if (!trip.ok || !trip.value) return trip;
+    const existing = await this.repository.findDay(day.id);
+    if (!existing.ok) return existing;
+    if (existing.value && existing.value.tripId !== day.tripId) {
+      return failure(appError("NOT_FOUND", "Itinerary day was not found."));
+    }
+    return this.repository.saveDay(day);
   }
 
   async reorderItems(

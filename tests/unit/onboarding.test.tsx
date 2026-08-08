@@ -1,4 +1,4 @@
-import { render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -126,5 +126,24 @@ describe("OnboardingFlow", () => {
     ) as HTMLButtonElement;
     await user.click(finishSkip);
     await waitFor(() => expect(complete).toHaveBeenCalledTimes(1));
+  });
+
+  it("prevents duplicate persistence when the final action fires twice", async () => {
+    const user = userEvent.setup();
+    const complete = vi.fn();
+    const { container } = render(<OnboardingFlow onComplete={complete} />);
+    for (let step = 0; step < 4; step += 1) {
+      const skip = Array.from(container.querySelectorAll("button")).find(
+        (button) => button.textContent === "Skip" && !button.hasAttribute("disabled"),
+      ) as HTMLButtonElement;
+      await user.click(skip);
+    }
+    const finishSkip = Array.from(container.querySelectorAll("button")).find(
+      (button) => button.textContent === "Skip" && !button.hasAttribute("disabled"),
+    ) as HTMLButtonElement;
+    fireEvent.click(finishSkip);
+    fireEvent.click(finishSkip);
+    await waitFor(() => expect(complete).toHaveBeenCalledTimes(1));
+    expect(global.fetch).toHaveBeenCalledTimes(2);
   });
 });

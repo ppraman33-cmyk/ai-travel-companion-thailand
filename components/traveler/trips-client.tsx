@@ -198,13 +198,13 @@ export function TripsClient() {
   async function saveTripEdit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!editingTrip) return;
+    const editingTripId = editingTrip.id;
     const form = new FormData(event.currentTarget);
     const csrf = readCookie("atct_csrf");
-    const response = await fetch("/api/v1/trips", {
-      method: "POST",
+    const response = await fetch(`/api/v1/trips/${editingTripId}`, {
+      method: "PATCH",
       headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
       body: JSON.stringify({
-        id: editingTrip.id,
         title: form.get("title"),
         status: form.get("status") ?? editingTrip.status,
         startDate: form.get("startDate") || undefined,
@@ -257,7 +257,6 @@ export function TripsClient() {
       method: "POST",
       headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
       body: JSON.stringify({
-        tripId: activeTrip.id,
         plannedDate: form.get("plannedDate"),
         dayOrder,
         notes: form.get("notes") || undefined,

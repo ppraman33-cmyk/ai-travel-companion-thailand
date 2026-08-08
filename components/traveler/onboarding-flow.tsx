@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 
 import {
   Button,
@@ -47,8 +47,11 @@ export function OnboardingFlow({ onComplete }: { readonly onComplete: () => void
   const [prefs, setPrefs] = useState<Record<string, string>>({});
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const savingRef = useRef(false);
 
   async function savePreferences(finalPrefs: Record<string, string>) {
+    if (savingRef.current) return false;
+    savingRef.current = true;
     setSaving(true);
     setSaveError(null);
     try {
@@ -74,6 +77,7 @@ export function OnboardingFlow({ onComplete }: { readonly onComplete: () => void
       setSaveError("Your preferences could not be saved. Please try again.");
       return false;
     } finally {
+      savingRef.current = false;
       setSaving(false);
     }
   }

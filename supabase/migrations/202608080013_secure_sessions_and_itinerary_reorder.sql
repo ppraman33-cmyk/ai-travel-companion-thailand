@@ -8,6 +8,14 @@
 */
 
 revoke insert on public.traveler_sessions from anon, authenticated;
+revoke update on public.traveler_sessions from anon, authenticated;
+revoke update (locale, destination_id, privacy_consent_state, last_activity_at, revoked_at)
+  on public.traveler_sessions from anon, authenticated;
+revoke insert, update, delete on public.trips from anon, authenticated;
+revoke insert, update, delete on public.itinerary_days from anon, authenticated;
+revoke insert, update, delete on public.itinerary_items from anon, authenticated;
+revoke insert, update, delete on public.saved_places from anon, authenticated;
+revoke insert, update on public.incorrect_information_reports from anon, authenticated;
 
 -- Trusted server persistence requires explicit table privileges in addition to
 -- BYPASSRLS. These grants are never exposed to browser credentials.
@@ -69,7 +77,7 @@ begin
 
   select count(*) into expected_count
   from public.itinerary_items
-  where itinerary_day_id = target_day_id and item_status <> 'deleted';
+  where itinerary_day_id = target_day_id;
 
   if expected_count <> cardinality(ordered_item_ids)
      or exists (
@@ -78,7 +86,6 @@ begin
          select 1 from public.itinerary_items i
          where i.id = item_id
            and i.itinerary_day_id = target_day_id
-           and i.item_status <> 'deleted'
        )
      ) then
     raise exception 'ordered items do not match itinerary day' using errcode = '22023';
@@ -117,7 +124,7 @@ begin
 
   return query
   select i.* from public.itinerary_items i
-  where i.itinerary_day_id = target_day_id and i.item_status <> 'deleted'
+  where i.itinerary_day_id = target_day_id
   order by i.item_order;
 end;
 $$;

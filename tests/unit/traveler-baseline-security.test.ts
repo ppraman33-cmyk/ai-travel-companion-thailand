@@ -22,6 +22,14 @@ describe("traveler baseline high-defect regressions", () => {
     expect(client).not.toContain('fetch("/api/v1/trips/items"');
   });
 
+  it("updates Trips through an ID-bearing route instead of a client-owned body ID", () => {
+    const client = read("components/traveler/trips-client.tsx");
+    expect(client).toContain("const editingTripId = editingTrip.id");
+    expect(client).toContain("/api/v1/trips/${editingTripId}");
+    expect(client).toContain('method: "PATCH"');
+    expect(client).not.toContain("id: editingTrip.id");
+  });
+
   it("validates plannedAt instead of silently stripping it", () => {
     const route = read("app/api/v1/[...resource]/route.ts");
     expect(route).toContain("plannedAt: z");

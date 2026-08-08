@@ -6,6 +6,7 @@ import { failure, success } from "@/shared/result/result";
 
 const state = vi.hoisted(() => ({
   saveItem: vi.fn(),
+  saveTrip: vi.fn(),
   reorderItems: vi.fn(),
 }));
 
@@ -23,6 +24,7 @@ vi.mock("@/server/runtime", () => ({
     },
     traveler: {
       saveItem: state.saveItem,
+      saveTrip: state.saveTrip,
       reorderItems: state.reorderItems,
     },
   },
@@ -56,6 +58,14 @@ describe("traveler itinerary route contracts", () => {
       }),
     );
     state.reorderItems.mockReset().mockResolvedValue(success([]));
+    state.saveTrip.mockReset().mockResolvedValue(
+      success({
+        id: "71000000-0000-4000-8000-000000000001",
+        sessionId: "70000000-0000-4000-8000-000000000001",
+        title: "Owned trip",
+        status: "draft",
+      }),
+    );
   });
 
   it("persists a valid wall-clock plannedAt through the canonical owned-Trip route", async () => {
@@ -132,5 +142,18 @@ describe("traveler itinerary route contracts", () => {
     );
     expect(response.status).toBe(404);
     expect((await response.json()).error.message).toBe("Trip was not found.");
+  });
+
+  it("does not accept a client-selected UUID when creating a Trip", async () => {
+    const attackerId = "71000000-0000-4000-8000-000000000099";
+    const response = await POST(
+      request("/api/v1/trips", { id: attackerId, title: "New trip" }),
+      context(["trips"]),
+    );
+    expect(response.status).toBe(201);
+    expect(state.saveTrip).toHaveBeenCalledWith(
+      "70000000-0000-4000-8000-000000000001",
+      expect.objectContaining({ id: expect.not.stringMatching(attackerId) }),
+    );
   });
 });

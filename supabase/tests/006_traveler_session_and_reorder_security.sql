@@ -1,6 +1,29 @@
 begin;
 
 do $test$
+declare role_name text;
+declare table_name text;
+begin
+  foreach role_name in array array['anon', 'authenticated'] loop
+    foreach table_name in array array[
+      'traveler_sessions', 'trips', 'itinerary_days', 'itinerary_items',
+      'saved_places', 'incorrect_information_reports'
+    ] loop
+      if has_table_privilege(role_name, 'public.' || table_name, 'INSERT')
+        or has_table_privilege(role_name, 'public.' || table_name, 'UPDATE')
+        or has_table_privilege(role_name, 'public.' || table_name, 'DELETE')
+      then
+        raise exception '% retains direct traveler mutation privilege on %', role_name, table_name;
+      end if;
+    end loop;
+    if has_any_column_privilege(role_name, 'public.traveler_sessions', 'UPDATE') then
+      raise exception '% retains direct traveler session column-update privilege', role_name;
+    end if;
+  end loop;
+end;
+$test$;
+
+do $test$
 begin
   begin
     set local role anon;
@@ -123,6 +146,15 @@ begin
   where id = '73000000-0000-4000-8000-000000000001';
   if persisted_time <> '09:30'::time then
     raise exception 'planned wall-clock time was not persisted';
+  end if;
+  if not exists (
+    select 1 from public.audit_events
+    where action = 'traveler.itinerary_reordered'
+      and subject_table = 'itinerary_days'
+      and subject_id = '72000000-0000-4000-8000-000000000001'
+      and data_classification = 'synthetic'
+  ) then
+    raise exception 'itinerary reorder audit event is missing or inconsistent';
   end if;
 
   begin

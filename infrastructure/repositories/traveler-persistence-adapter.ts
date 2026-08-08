@@ -81,6 +81,36 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       : result;
   }
 
+  async findDay(id: string) {
+    const result = await this.client.selectOne<DayRecord>({
+      table: "itinerary_days",
+      filters: [{ column: "id", operator: "eq", value: id }],
+    });
+    return result.ok
+      ? success(
+          result.value
+            ? {
+                id: result.value.id,
+                tripId: result.value.trip_id,
+                plannedDate: result.value.planned_date,
+                dayOrder: result.value.day_order,
+                notes: result.value.notes ?? undefined,
+              }
+            : null,
+        )
+      : result;
+  }
+
+  async findItem(id: string) {
+    const result = await this.client.selectOne<ItemRecord>({
+      table: "itinerary_items",
+      filters: [{ column: "id", operator: "eq", value: id }],
+    });
+    return result.ok
+      ? success(result.value ? this.mapItem(result.value) : null)
+      : result;
+  }
+
   async saveTrip(trip: TravelerTrip) {
     const result = await this.client.upsert<TripRecord, Record<string, unknown>>(
       "trips",
@@ -196,18 +226,7 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       },
       "id",
     );
-    return result.ok
-      ? success({
-          id: result.value.id,
-          dayId: result.value.itinerary_day_id,
-          order: result.value.item_order,
-          placeId: result.value.place_id ?? undefined,
-          eventOccurrenceId: result.value.event_occurrence_id ?? undefined,
-          notes: result.value.notes ?? undefined,
-          plannedAt: result.value.planned_at ?? undefined,
-          aiGenerated: result.value.ai_generated,
-        })
-      : result;
+    return result.ok ? success(this.mapItem(result.value)) : result;
   }
 
   async deleteItem(_sessionId: string, tripId: string, itemId: string) {
@@ -246,18 +265,7 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       orderBy: { column: "item_order", ascending: true },
     });
     return result.ok
-      ? success(
-          result.value.map((row): TravelerItineraryItem => ({
-            id: row.id,
-            dayId: row.itinerary_day_id,
-            order: row.item_order,
-            placeId: row.place_id ?? undefined,
-            eventOccurrenceId: row.event_occurrence_id ?? undefined,
-            notes: row.notes ?? undefined,
-            plannedAt: row.planned_at ?? undefined,
-            aiGenerated: row.ai_generated,
-          })),
-        )
+      ? success(result.value.map((row): TravelerItineraryItem => this.mapItem(row)))
       : result;
   }
 
@@ -323,20 +331,7 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
         ordered_item_ids: orderedItemIds,
       },
     );
-    return result.ok
-      ? success(
-          result.value.map((row) => ({
-            id: row.id,
-            dayId: row.itinerary_day_id,
-            order: row.item_order,
-            placeId: row.place_id ?? undefined,
-            eventOccurrenceId: row.event_occurrence_id ?? undefined,
-            notes: row.notes ?? undefined,
-            plannedAt: row.planned_at ?? undefined,
-            aiGenerated: row.ai_generated,
-          })),
-        )
-      : result;
+    return result.ok ? success(result.value.map((row) => this.mapItem(row))) : result;
   }
 
   async getPreferences(sessionId: string) {
@@ -383,6 +378,19 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       startDate: row.start_date ?? undefined,
       endDate: row.end_date ?? undefined,
       notes: row.notes ?? undefined,
+    };
+  }
+
+  private mapItem(row: ItemRecord): TravelerItineraryItem {
+    return {
+      id: row.id,
+      dayId: row.itinerary_day_id,
+      order: row.item_order,
+      placeId: row.place_id ?? undefined,
+      eventOccurrenceId: row.event_occurrence_id ?? undefined,
+      notes: row.notes ?? undefined,
+      plannedAt: row.planned_at ? row.planned_at.slice(0, 5) : undefined,
+      aiGenerated: row.ai_generated,
     };
   }
 }
