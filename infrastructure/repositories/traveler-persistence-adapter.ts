@@ -303,6 +303,42 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       : result;
   }
 
+  async reorderItems(
+    sessionId: string,
+    tripId: string,
+    dayId: string,
+    orderedItemIds: readonly string[],
+  ) {
+    if (!this.client.rpc) {
+      return failure(
+        appError("UNAVAILABLE", "Atomic itinerary reorder is unavailable."),
+      );
+    }
+    const result = await this.client.rpc<readonly ItemRecord[]>(
+      "reorder_itinerary_items",
+      {
+        target_session_id: sessionId,
+        target_trip_id: tripId,
+        target_day_id: dayId,
+        ordered_item_ids: orderedItemIds,
+      },
+    );
+    return result.ok
+      ? success(
+          result.value.map((row) => ({
+            id: row.id,
+            dayId: row.itinerary_day_id,
+            order: row.item_order,
+            placeId: row.place_id ?? undefined,
+            eventOccurrenceId: row.event_occurrence_id ?? undefined,
+            notes: row.notes ?? undefined,
+            plannedAt: row.planned_at ?? undefined,
+            aiGenerated: row.ai_generated,
+          })),
+        )
+      : result;
+  }
+
   async getPreferences(sessionId: string) {
     const result = await this.client.selectOne<SessionRecord>({
       table: "traveler_sessions",
@@ -312,7 +348,8 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
     if (!result.value) {
       return failure(appError("NOT_FOUND", "Session was not found."));
     }
-    const prefs = (result.value.traveler_preferences ?? {}) as Partial<TravelerPreferences>;
+    const prefs = (result.value.traveler_preferences ??
+      {}) as Partial<TravelerPreferences>;
     return success({
       transportation: prefs.transportation,
       travelStyle: prefs.travelStyle,
@@ -333,9 +370,7 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       "id",
     );
     return result.ok
-      ? success(
-          (result.value.traveler_preferences ?? {}) as TravelerPreferences,
-        )
+      ? success((result.value.traveler_preferences ?? {}) as TravelerPreferences)
       : result;
   }
 

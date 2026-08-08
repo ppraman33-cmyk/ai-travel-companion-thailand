@@ -21,5 +21,8 @@ describe("nonce Content Security Policy", () => {
     expect(first).toContain("frame-ancestors 'none'");
     expect(first).not.toContain("'unsafe-inline'");
     expect(first).not.toContain("'unsafe-eval'");
+    expect(first).toContain("img-src 'self' blob: data:");
+    expect(first).not.toContain("images.pexels.com");
+    expect(first).not.toMatch(/img-src[^;]*https:\/\//);
   });
 });

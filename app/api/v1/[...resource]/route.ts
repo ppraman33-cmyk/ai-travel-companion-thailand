@@ -63,6 +63,11 @@ const itemSchema = z
     placeId: z.uuid().optional(),
     eventOccurrenceId: z.uuid().optional(),
     notes: z.string().trim().max(1000).optional(),
+    // Local wall-clock time in the Trip timezone (Asia/Bangkok for MVP).
+    plannedAt: z
+      .string()
+      .regex(/^(?:[01]\d|2[0-3]):[0-5]\d$/)
+      .optional(),
     aiGenerated: z.boolean().default(false),
   })
   .refine((value) => Boolean(value.placeId) !== Boolean(value.eventOccurrenceId), {
@@ -74,6 +79,9 @@ const daySchema = z.object({
   plannedDate: z.string().trim().min(1).max(10),
   dayOrder: z.number().int().min(0).max(100),
   notes: z.string().trim().max(2000).optional(),
+});
+const reorderSchema = z.object({
+  orderedItemIds: z.array(z.uuid()).min(1).max(100),
 });
 const preferencesSchema = z.object({
   transportation: z.string().trim().max(80).optional(),
@@ -285,23 +293,28 @@ export async function POST(request: NextRequest, context: RouteContext) {
       : errorResponse(result.error, requestId);
   }
 
-  if (area === "trips") {
-    const parsed = tripSchema.safeParse(await parseBody(request));
-    if (!parsed.success) {
-      return errorResponse(appError("VALIDATION", "Invalid Trip request."), requestId);
+  if (area === "trips" && resourceId && nested === "days" && nestedId) {
+    const action = resource[4];
+    if (action === "reorder") {
+      const parsed = reorderSchema.safeParse(await parseBody(request));
+      if (!parsed.success) {
+        return errorResponse(
+          appError("VALIDATION", "Invalid itinerary reorder request."),
+          requestId,
+        );
+      }
+      const result = await appRuntime.traveler.reorderItems(
+        authenticated.value.id,
+        resourceId,
+        nestedId,
+        parsed.data.orderedItemIds,
+      );
+      return result.ok
+        ? okResponse(result.value, requestId)
+        : errorResponse(result.error, requestId);
     }
-    const result = await appRuntime.traveler.saveTrip(authenticated.value.id, {
-      id: parsed.data.id ?? randomUUID(),
-      title: parsed.data.title,
-      status: parsed.data.status,
-      startDate: parsed.data.startDate,
-      endDate: parsed.data.endDate,
-      notes: parsed.data.notes,
-    });
-    return result.ok
-      ? okResponse(result.value, requestId, parsed.data.id ? 200 : 201)
-      : errorResponse(result.error, requestId);
   }
+
   if (area === "trips" && resourceId && nested === "days") {
     const parsed = daySchema.safeParse(await parseBody(request));
     if (!parsed.success) {
@@ -315,6 +328,23 @@ export async function POST(request: NextRequest, context: RouteContext) {
       tripId: resourceId,
       plannedDate: parsed.data.plannedDate,
       dayOrder: parsed.data.dayOrder,
+      notes: parsed.data.notes,
+    });
+    return result.ok
+      ? okResponse(result.value, requestId, parsed.data.id ? 200 : 201)
+      : errorResponse(result.error, requestId);
+  }
+  if (area === "trips") {
+    const parsed = tripSchema.safeParse(await parseBody(request));
+    if (!parsed.success) {
+      return errorResponse(appError("VALIDATION", "Invalid Trip request."), requestId);
+    }
+    const result = await appRuntime.traveler.saveTrip(authenticated.value.id, {
+      id: parsed.data.id ?? randomUUID(),
+      title: parsed.data.title,
+      status: parsed.data.status,
+      startDate: parsed.data.startDate,
+      endDate: parsed.data.endDate,
       notes: parsed.data.notes,
     });
     return result.ok

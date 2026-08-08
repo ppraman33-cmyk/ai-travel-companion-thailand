@@ -88,6 +88,12 @@ export interface TravelerRepository {
     tripId: string,
   ): Promise<Result<readonly TravelerItineraryDay[], AppError>>;
   saveDay(day: TravelerItineraryDay): Promise<Result<TravelerItineraryDay, AppError>>;
+  reorderItems(
+    sessionId: string,
+    tripId: string,
+    dayId: string,
+    orderedItemIds: readonly string[],
+  ): Promise<Result<readonly TravelerItineraryItem[], AppError>>;
   getPreferences(sessionId: string): Promise<Result<TravelerPreferences, AppError>>;
   savePreferences(
     sessionId: string,
@@ -151,21 +157,29 @@ export class TravelerService {
 
   async listItems(sessionId: string, tripId: string) {
     const trip = await this.findOwnedTrip(sessionId, tripId);
-    return trip.ok && trip.value
-      ? this.repository.listItems(sessionId, tripId)
-      : trip;
+    return trip.ok && trip.value ? this.repository.listItems(sessionId, tripId) : trip;
   }
 
   async listDays(sessionId: string, tripId: string) {
     const trip = await this.findOwnedTrip(sessionId, tripId);
-    return trip.ok && trip.value
-      ? this.repository.listDays(sessionId, tripId)
-      : trip;
+    return trip.ok && trip.value ? this.repository.listDays(sessionId, tripId) : trip;
   }
 
   async saveDay(sessionId: string, day: TravelerItineraryDay) {
     const trip = await this.findOwnedTrip(sessionId, day.tripId);
     return trip.ok && trip.value ? this.repository.saveDay(day) : trip;
+  }
+
+  async reorderItems(
+    sessionId: string,
+    tripId: string,
+    dayId: string,
+    orderedItemIds: readonly string[],
+  ) {
+    const trip = await this.findOwnedTrip(sessionId, tripId);
+    return trip.ok && trip.value
+      ? this.repository.reorderItems(sessionId, tripId, dayId, orderedItemIds)
+      : trip;
   }
 
   getPreferences(sessionId: string) {

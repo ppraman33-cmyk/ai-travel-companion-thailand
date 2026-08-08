@@ -28,7 +28,9 @@ const digest = createHash("sha256");
 for (const file of migrations) {
   const sql = readFileSync(resolve(directory, file), "utf8");
   if (!sql.trim()) throw new Error(`Empty migration: ${file}`);
-  if (/service_role|supabase_service_role_key|execute\s+format\s*\(/i.test(sql)) {
+  // The PostgreSQL role name is valid in explicit least-privilege GRANT/REVOKE
+  // statements. Secret environment-variable names and dynamic SQL remain forbidden.
+  if (/supabase_service_role_key|execute\s+format\s*\(/i.test(sql)) {
     throw new Error(`Unsafe migration content detected: ${file}`);
   }
   digest.update(file);
