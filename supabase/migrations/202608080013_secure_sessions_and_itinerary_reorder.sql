@@ -9,6 +9,15 @@
 
 revoke insert on public.traveler_sessions from anon, authenticated;
 
+-- Trusted server persistence requires explicit table privileges in addition to
+-- BYPASSRLS. These grants are never exposed to browser credentials.
+grant select, insert, update on public.traveler_sessions to service_role;
+grant select, insert, update, delete on public.trips to service_role;
+grant select, insert, update, delete on public.itinerary_days to service_role;
+grant select, insert, update, delete on public.itinerary_items to service_role;
+grant select, insert, update, delete on public.saved_places to service_role;
+grant select, insert, update on public.incorrect_information_reports to service_role;
+
 alter table public.itinerary_items
   drop constraint itinerary_items_itinerary_day_id_item_order_key;
 
