@@ -132,6 +132,11 @@ select public.reorder_itinerary_items(
   ]::uuid[]
 );
 
+-- The RPC is invoked as service_role above. Return to the test runner role so
+-- audit integrity can be inspected without granting audit-table reads to the
+-- runtime service role.
+reset role;
+
 do $test$
 declare first_id uuid;
 declare persisted_time time;
