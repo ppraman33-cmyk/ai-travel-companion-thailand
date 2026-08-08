@@ -84,7 +84,7 @@ begin
     raise exception 'ordered items do not match itinerary day' using errcode = '22023';
   end if;
 
-  set constraints itinerary_items_itinerary_day_id_item_order_key deferred;
+  set constraints public.itinerary_items_itinerary_day_id_item_order_key deferred;
 
   update public.itinerary_items i
   set item_order = requested.item_order,
