@@ -2285,6 +2285,7 @@ export type Database = {
           privacy_consent_state: Json
           revoked_at: string | null
           session_secret_hash: string
+          traveler_preferences: Json
         }
         Insert: {
           created_at?: string
@@ -2298,6 +2299,7 @@ export type Database = {
           privacy_consent_state?: Json
           revoked_at?: string | null
           session_secret_hash: string
+          traveler_preferences?: Json
         }
         Update: {
           created_at?: string
@@ -2311,6 +2313,7 @@ export type Database = {
           privacy_consent_state?: Json
           revoked_at?: string | null
           session_secret_hash?: string
+          traveler_preferences?: Json
         }
         Relationships: [
           {
@@ -2505,6 +2508,36 @@ export type Database = {
       place_has_current_evidence: {
         Args: { target_place_id: string }
         Returns: boolean
+      }
+      reorder_itinerary_items: {
+        Args: {
+          ordered_item_ids: string[]
+          target_day_id: string
+          target_session_id: string
+          target_trip_id: string
+        }
+        Returns: {
+          ai_generated: boolean
+          data_classification: Database["public"]["Enums"]["data_classification"]
+          event_occurrence_id: string | null
+          external_navigation_label: string | null
+          external_navigation_latitude: number | null
+          external_navigation_longitude: number | null
+          id: string
+          item_order: number
+          item_status: string
+          itinerary_day_id: string
+          notes: string | null
+          place_id: string | null
+          planned_at: string | null
+          traveler_modified_at: string | null
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "itinerary_items"
+          isOneToOne: false
+          isSetofReturn: true
+        }
       }
     }
     Enums: {
