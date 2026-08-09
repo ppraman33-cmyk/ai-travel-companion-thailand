@@ -141,6 +141,11 @@ begin
      <> '75000000-0000-4000-8000-000000000002' then
     raise exception 'Trip profile reassignment was not atomic';
   end if;
+end;
+$test$;
+
+do $test$
+begin
   if not exists (
     select 1 from public.traveler_profiles
     where id = '75000000-0000-4000-8000-000000000001'
@@ -160,7 +165,15 @@ begin
     raise exception 'soft-deleted profile attachment unexpectedly succeeded';
   exception when foreign_key_violation then null;
   end;
+end;
+$test$;
 
+-- Audit rows are intentionally not readable by service_role. The SQL test harness
+-- returns to its privileged transaction role only to verify immutable evidence.
+reset role;
+
+do $test$
+begin
   if not exists (
     select 1 from public.audit_events
     where action = 'traveler.profile_activated'
@@ -177,5 +190,4 @@ begin
 end;
 $test$;
 
-reset role;
 rollback;
