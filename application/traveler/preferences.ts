@@ -17,17 +17,21 @@ export const preferenceOptions = {
     { value: "mixed", label: "Mixed" },
   ],
   travelStyle: [
+    { value: "budget", label: "Budget" },
     { value: "cultural", label: "Cultural & historical" },
     { value: "nature", label: "Nature & outdoors" },
     { value: "food", label: "Food & culinary" },
     { value: "adventure", label: "Adventure & sports" },
-    { value: "relaxation", label: "Relaxation & wellness" },
-    { value: "shopping", label: "Shopping" },
+    { value: "relaxation", label: "Relaxed" },
+    { value: "family", label: "Family-friendly" },
+    { value: "mixed", label: "Mixed" },
   ],
   companions: [
     { value: "solo", label: "Solo traveler" },
     { value: "couple", label: "Couple" },
     { value: "family", label: "Family with children" },
+    { value: "children", label: "Children" },
+    { value: "older_adults", label: "Older adults" },
     { value: "friends", label: "Friends" },
     { value: "group", label: "Organized group" },
   ],
@@ -46,8 +50,9 @@ export const preferenceOptions = {
 } as const;
 
 export const preferenceLabels: Record<string, string> = Object.fromEntries(
-  Object.values(preferenceOptions)
-    .flatMap((options) => options.map((o) => [o.value, o.label])),
+  Object.values(preferenceOptions).flatMap((options) =>
+    options.map((o) => [o.value, o.label]),
+  ),
 );
 
 export function summarizePreferences(prefs: TravelerPreferences): string[] {
@@ -73,21 +78,23 @@ export function summarizePreferences(prefs: TravelerPreferences): string[] {
 export function hasPreferences(prefs: TravelerPreferences): boolean {
   return Boolean(
     prefs.transportation ||
-      prefs.travelStyle ||
-      prefs.companions ||
-      prefs.activityLevel ||
-      prefs.budget ||
-      prefs.language,
+    prefs.travelStyle ||
+    prefs.companions ||
+    prefs.activityLevel ||
+    prefs.budget ||
+    prefs.language,
   );
 }
 
 const categoryAffinity: Record<string, string[]> = {
+  budget: ["foods", "events"],
   cultural: ["attractions", "foods", "events"],
   nature: ["attractions"],
   food: ["restaurants", "foods"],
   adventure: ["attractions", "events"],
   relaxation: ["attractions"],
-  shopping: ["events"],
+  family: ["attractions", "foods", "events"],
+  mixed: ["attractions", "restaurants", "foods", "events"],
 };
 
 export function recommendedCategories(prefs: TravelerPreferences): string[] {

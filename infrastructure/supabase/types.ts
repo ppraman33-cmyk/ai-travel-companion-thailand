@@ -63,10 +63,31 @@ export interface TripRow {
   readonly timezone: string;
   readonly trip_status: string;
   readonly notes: string | null;
+  readonly destination: string | null;
+  readonly traveler_profile_id: string | null;
   readonly data_classification: DataClassificationRow;
   readonly created_at: string;
   readonly updated_at: string;
   readonly deleted_at: string | null;
+}
+
+export interface TravelerProfileRow {
+  readonly id: string;
+  readonly traveler_session_id: string;
+  readonly profile_name: string;
+  readonly description: string | null;
+  readonly transportation: string | null;
+  readonly travel_style: string | null;
+  readonly companions: string | null;
+  readonly activity_level: string | null;
+  readonly mobility_needs: string | null;
+  readonly budget_style: string | null;
+  readonly preferred_interests: readonly string[];
+  readonly is_active: boolean;
+  readonly created_at: string;
+  readonly updated_at: string;
+  readonly deleted_at: string | null;
+  readonly correlation_id: string;
 }
 
 export interface EmergencyProfileRow {
@@ -126,6 +147,7 @@ export interface Database {
     readonly Tables: {
       readonly places: TableDefinition<PlaceRow, PlaceInsert, PlaceUpdate>;
       readonly trips: TableDefinition<TripRow, TripInsert, TripUpdate>;
+      readonly traveler_profiles: TableDefinition<TravelerProfileRow, never, never>;
       readonly emergency_service_profiles: TableDefinition<
         EmergencyProfileRow,
         never,
@@ -146,8 +168,13 @@ interface TableDefinition<Row, Insert, Update> {
 
 export type PlaceInsert = Omit<PlaceRow, "created_at" | "updated_at">;
 export type PlaceUpdate = Partial<Omit<PlaceInsert, "id">>;
-export type TripInsert = Omit<TripRow, "created_at" | "updated_at" | "deleted_at"> & {
+export type TripInsert = Omit<
+  TripRow,
+  "created_at" | "updated_at" | "deleted_at" | "destination" | "traveler_profile_id"
+> & {
   readonly deleted_at?: string | null;
+  readonly destination?: string | null;
+  readonly traveler_profile_id?: string | null;
 };
 export type TripUpdate = Partial<Omit<TripInsert, "id" | "traveler_session_id">>;
 

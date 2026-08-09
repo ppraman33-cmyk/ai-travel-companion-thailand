@@ -10,6 +10,27 @@ export interface TravelerTrip {
   readonly startDate?: string;
   readonly endDate?: string;
   readonly notes?: string;
+  readonly destination?: string;
+  readonly timezone?: string;
+  readonly travelerProfileId?: string;
+}
+
+export interface TravelerProfile {
+  readonly id: string;
+  readonly sessionId: string;
+  readonly name: string;
+  readonly description?: string;
+  readonly transportation?: string;
+  readonly travelStyle?: string;
+  readonly companions?: string;
+  readonly activityLevel?: string;
+  readonly mobilityNeeds?: string;
+  readonly budget?: string;
+  readonly interests: readonly string[];
+  readonly active: boolean;
+  readonly createdAt: string;
+  readonly updatedAt: string;
+  readonly deletedAt?: string;
 }
 
 export interface TravelerSavedPlace {
@@ -55,6 +76,21 @@ export interface TravelerPreferences {
 }
 
 export interface TravelerRepository {
+  listProfiles(
+    sessionId: string,
+  ): Promise<Result<readonly TravelerProfile[], AppError>>;
+  findProfile(id: string): Promise<Result<TravelerProfile | null, AppError>>;
+  saveProfile(profile: TravelerProfile): Promise<Result<TravelerProfile, AppError>>;
+  setActiveProfile(
+    sessionId: string,
+    profileId: string,
+  ): Promise<Result<TravelerProfile, AppError>>;
+  deleteProfile(
+    sessionId: string,
+    profileId: string,
+    action: "block" | "reassign" | "detach",
+    replacementProfileId?: string,
+  ): Promise<Result<void, AppError>>;
   listTrips(
     sessionId: string,
     limit: number,
@@ -110,6 +146,71 @@ export class TravelerService {
     return this.repository.listTrips(sessionId, 50);
   }
 
+  listProfiles(sessionId: string) {
+    return this.repository.listProfiles(sessionId);
+  }
+
+  async findOwnedProfile(sessionId: string, profileId: string) {
+    const result = await this.repository.findProfile(profileId);
+    if (!result.ok || !result.value) return result;
+    return result.value.sessionId === sessionId && !result.value.deletedAt
+      ? result
+      : failure(appError("NOT_FOUND", "Travel profile was not found."));
+  }
+
+  async saveProfile(
+    sessionId: string,
+    profile: Omit<TravelerProfile, "sessionId" | "createdAt" | "updatedAt">,
+  ) {
+    const existing = await this.repository.findProfile(profile.id);
+    if (!existing.ok) return existing;
+    if (
+      existing.value &&
+      (existing.value.sessionId !== sessionId || existing.value.deletedAt)
+    ) {
+      return failure(appError("NOT_FOUND", "Travel profile was not found."));
+    }
+    const now = new Date().toISOString();
+    const saved = await this.repository.saveProfile({
+      ...profile,
+      sessionId,
+      // New profiles are first persisted inactive. Activation then happens through
+      // the atomic database RPC, avoiding the one-active-profile unique-index race.
+      active: existing.value?.active ?? false,
+      createdAt: existing.value?.createdAt ?? now,
+      updatedAt: now,
+    });
+    if (!saved.ok || !profile.active) return saved;
+    return this.repository.setActiveProfile(sessionId, profile.id);
+  }
+
+  async setActiveProfile(sessionId: string, profileId: string) {
+    const owned = await this.findOwnedProfile(sessionId, profileId);
+    return owned.ok && owned.value
+      ? this.repository.setActiveProfile(sessionId, profileId)
+      : owned;
+  }
+
+  async deleteProfile(
+    sessionId: string,
+    profileId: string,
+    action: "block" | "reassign" | "detach",
+    replacementProfileId?: string,
+  ) {
+    const owned = await this.findOwnedProfile(sessionId, profileId);
+    if (!owned.ok || !owned.value) return owned;
+    if (replacementProfileId) {
+      const replacement = await this.findOwnedProfile(sessionId, replacementProfileId);
+      if (!replacement.ok || !replacement.value) return replacement;
+    }
+    return this.repository.deleteProfile(
+      sessionId,
+      profileId,
+      action,
+      replacementProfileId,
+    );
+  }
+
   async findOwnedTrip(sessionId: string, tripId: string) {
     const result = await this.repository.findTrip(tripId);
     if (!result.ok || !result.value) return result;
@@ -126,6 +227,10 @@ export class TravelerService {
       (existing.value.sessionId !== sessionId || existing.value.status === "deleted")
     ) {
       return failure(appError("NOT_FOUND", "Trip was not found."));
+    }
+    if (trip.travelerProfileId) {
+      const profile = await this.findOwnedProfile(sessionId, trip.travelerProfileId);
+      if (!profile.ok || !profile.value) return profile;
     }
     return this.repository.saveTrip({ ...trip, sessionId });
   }
@@ -169,6 +274,19 @@ export class TravelerService {
         existing.value.dayId !== item.dayId
       ) {
         return failure(appError("NOT_FOUND", "Itinerary item was not found."));
+      }
+    } else if (item.placeId) {
+      const currentItems = await this.repository.listItems(sessionId, tripId);
+      if (!currentItems.ok) return currentItems;
+      if (
+        currentItems.value.some(
+          (candidate) =>
+            candidate.dayId === item.dayId && candidate.placeId === item.placeId,
+        )
+      ) {
+        return failure(
+          appError("CONFLICT", "This Place is already planned for that day."),
+        );
       }
     }
     return this.repository.saveItem(sessionId, tripId, item);

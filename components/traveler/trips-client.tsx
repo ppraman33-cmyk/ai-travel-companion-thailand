@@ -3,6 +3,11 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 
 import { demoItems, demoProvince } from "@/application/traveler/synthetic-content";
+import { getTrustedExternalMapUrl } from "@/application/traveler/external-map-links";
+import {
+  recommendedCategories,
+  type TravelerPreferences,
+} from "@/application/traveler/preferences";
 import {
   Button,
   ContentCard,
@@ -31,6 +36,14 @@ interface Trip {
   readonly startDate?: string;
   readonly endDate?: string;
   readonly notes?: string;
+  readonly destination?: string;
+  readonly timezone?: string;
+  readonly travelerProfileId?: string;
+}
+interface TravelProfile extends TravelerPreferences {
+  readonly id: string;
+  readonly name: string;
+  readonly active: boolean;
 }
 
 interface ItineraryDay {
@@ -98,8 +111,11 @@ export function TripsClient() {
   const [editingTrip, setEditingTrip] = useState<Trip | null>(null);
   const [addDayDialog, setAddDayDialog] = useState(false);
   const [addItemDialog, setAddItemDialog] = useState<{ dayId: string } | null>(null);
+  const [editingItem, setEditingItem] = useState<ItineraryItem | null>(null);
+  const [mapOpen, setMapOpen] = useState(false);
   const [toast, setToast] = useState<string>();
   const [itineraryLoading, setItineraryLoading] = useState(false);
+  const [profiles, setProfiles] = useState<readonly TravelProfile[]>([]);
 
   const refreshTrips = useCallback(async () => {
     const response = await fetch("/api/v1/trips", { credentials: "same-origin" });
@@ -130,6 +146,15 @@ export function TripsClient() {
     return () => {
       cancelled = true;
     };
+  }, []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/api/v1/profiles", { signal: controller.signal })
+      .then((response) => (response.ok ? response.json() : Promise.reject()))
+      .then((body: { data: readonly TravelProfile[] }) => setProfiles(body.data))
+      .catch(() => undefined);
+    return () => controller.abort();
   }, []);
 
   const loadItinerary = useCallback(async (tripId: string) => {
@@ -181,7 +206,13 @@ export function TripsClient() {
     const response = await fetch("/api/v1/trips", {
       method: "POST",
       headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
-      body: JSON.stringify({ title: form.get("title") }),
+      body: JSON.stringify({
+        title: form.get("title"),
+        destination: form.get("destination") || undefined,
+        startDate: form.get("startDate") || undefined,
+        endDate: form.get("endDate") || undefined,
+        travelerProfileId: form.get("travelerProfileId") || null,
+      }),
     });
     if (response.ok) {
       setToast("Trip created.");
@@ -210,6 +241,8 @@ export function TripsClient() {
         startDate: form.get("startDate") || undefined,
         endDate: form.get("endDate") || undefined,
         notes: form.get("notes") || undefined,
+        destination: form.get("destination") || undefined,
+        travelerProfileId: form.get("travelerProfileId") || null,
       }),
     });
     if (response.ok) {
@@ -229,6 +262,12 @@ export function TripsClient() {
   }
 
   async function deleteTrip(trip: Trip) {
+    if (
+      !window.confirm(
+        `Delete “${trip.title}”? Its itinerary will no longer appear in your Trips.`,
+      )
+    )
+      return;
     const csrf = readCookie("atct_csrf");
     const response = await fetch(`/api/v1/trips/${trip.id}`, {
       method: "DELETE",
@@ -313,6 +352,37 @@ export function TripsClient() {
     }
   }
 
+  async function saveItemEdit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!editingItem || !activeTrip) return;
+    const form = new FormData(event.currentTarget);
+    const response = await fetch(
+      `/api/v1/trips/${activeTrip.id}/items/${editingItem.id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          "x-csrf-token": readCookie("atct_csrf") ?? "",
+        },
+        body: JSON.stringify({
+          dayId: editingItem.dayId,
+          order: editingItem.order,
+          placeId: editingItem.placeId,
+          notes: form.get("notes") || undefined,
+          plannedAt: form.get("plannedAt") || undefined,
+          aiGenerated: false,
+        }),
+      },
+    );
+    if (!response.ok) {
+      setToast("Itinerary stop could not be updated.");
+      return;
+    }
+    setEditingItem(null);
+    await loadItinerary(activeTrip.id);
+    setToast("Itinerary stop updated.");
+  }
+
   async function moveItem(itemId: string, direction: -1 | 1) {
     if (!activeTrip) return;
     const original = [...items];
@@ -357,23 +427,46 @@ export function TripsClient() {
     active: "Active",
     completed: "Completed",
   };
+  const tripProfile = profiles.find(
+    (profile) => profile.id === activeTrip?.travelerProfileId,
+  );
+  const tripCategoryAffinity = new Set(
+    tripProfile ? recommendedCategories(tripProfile) : [],
+  );
 
   return (
-    <div className="grid gap-5">
-      <ContentCard>
+    <div className="grid min-w-0 max-w-[calc(100vw-2rem)] gap-5 overflow-x-clip [&>article]:min-w-0 [&>article]:max-w-full">
+      <ContentCard className="min-w-0 max-w-[calc(100vw-2rem)] overflow-x-clip">
         <h2 className="text-xl font-bold">Create a trip</h2>
         <form
-          className="mt-4 grid gap-4 sm:grid-cols-[1fr_10rem_10rem_auto]"
+          className="mt-4 grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-[1fr_1fr_10rem_10rem_14rem_auto] [&>*]:min-w-0 [&_input]:min-w-0 [&_select]:min-w-0"
           onSubmit={createTrip}
         >
           <Field label="Trip name">
             <TextInput maxLength={120} name="title" required />
           </Field>
+          <Field label="Destination">
+            <TextInput maxLength={160} name="destination" required />
+          </Field>
           <Field label="Start date">
-            <TextInput name="start" type="date" />
+            <TextInput name="startDate" type="date" />
           </Field>
           <Field label="End date">
-            <TextInput name="end" type="date" />
+            <TextInput name="endDate" type="date" />
+          </Field>
+          <Field label="Travel profile">
+            <Select
+              defaultValue={profiles.find((profile) => profile.active)?.id ?? ""}
+              name="travelerProfileId"
+            >
+              <option value="">No personalization</option>
+              {profiles.map((profile) => (
+                <option key={profile.id} value={profile.id}>
+                  {profile.name}
+                  {profile.active ? " · active" : ""}
+                </option>
+              ))}
+            </Select>
           </Field>
           <Button className="self-end" type="submit">
             Create trip
@@ -400,7 +493,7 @@ export function TripsClient() {
             {tripsState.trips.map((trip) => (
               <li
                 className={
-                  "flex items-center gap-3 rounded-xl border p-4 transition" +
+                  "flex flex-wrap items-center gap-3 rounded-xl border p-4 transition" +
                   (activeTrip?.id === trip.id
                     ? " border-emerald-600 bg-emerald-50"
                     : " border-slate-200 hover:border-emerald-300")
@@ -420,6 +513,10 @@ export function TripsClient() {
                     {formatDate(trip.startDate)}
                     {trip.endDate ? ` → ${formatDate(trip.endDate)}` : ""}
                   </small>
+                  <span className="mt-2 inline-flex rounded-full bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700">
+                    {profiles.find((profile) => profile.id === trip.travelerProfileId)
+                      ?.name ?? "No personalization"}
+                  </span>
                 </button>
                 <Button
                   aria-label={`Edit trip ${trip.title}`}
@@ -467,6 +564,20 @@ export function TripsClient() {
                 )}
               </div>
               <h2 className="mt-2 text-xl font-bold">{activeTrip.title}</h2>
+              <p className="mt-1 text-sm font-semibold text-emerald-700">
+                {activeTrip.destination ?? "Destination not set"} ·{" "}
+                {activeTrip.timezone ?? "Asia/Bangkok"}
+              </p>
+              <p className="mt-1 text-sm text-slate-600">
+                Personalization:{" "}
+                {profiles.find((profile) => profile.id === activeTrip.travelerProfileId)
+                  ?.name ?? "Off"}
+              </p>
+              <p className="mt-1 text-xs text-slate-500">
+                {tripProfile
+                  ? `Deterministic suggestions use “${tripProfile.name}”. Live AI is off.`
+                  : "No personalization: suggestions use a neutral deterministic order."}
+              </p>
               <p className="text-sm text-slate-500">
                 {formatDate(activeTrip.startDate)}
                 {activeTrip.endDate ? ` → ${formatDate(activeTrip.endDate)}` : ""}
@@ -541,7 +652,7 @@ export function TripsClient() {
                             : undefined;
                           return (
                             <li
-                              className="flex items-start gap-3 rounded-xl border border-slate-200 p-4"
+                              className="flex flex-wrap items-start gap-3 rounded-xl border border-slate-200 p-4"
                               key={item.id}
                             >
                               <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-900">
@@ -578,7 +689,14 @@ export function TripsClient() {
                                   </a>
                                 ) : null}
                               </div>
-                              <div className="flex shrink-0 gap-1">
+                              <div className="ml-10 flex shrink-0 flex-wrap gap-1 sm:ml-0">
+                                <Button
+                                  aria-label="Edit stop"
+                                  onClick={() => setEditingItem(item)}
+                                  variant="ghost"
+                                >
+                                  Edit
+                                </Button>
                                 <Button
                                   aria-label="Move up"
                                   disabled={index === 0}
@@ -627,6 +745,14 @@ export function TripsClient() {
                 required
               />
             </Field>
+            <Field label="Destination">
+              <TextInput
+                defaultValue={editingTrip.destination ?? ""}
+                maxLength={160}
+                name="destination"
+                required
+              />
+            </Field>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label="Start date">
                 <TextInput
@@ -648,6 +774,19 @@ export function TripsClient() {
                 <option value="draft">Draft</option>
                 <option value="active">Active</option>
                 <option value="completed">Completed</option>
+              </Select>
+            </Field>
+            <Field label="Travel profile">
+              <Select
+                defaultValue={editingTrip.travelerProfileId ?? ""}
+                name="travelerProfileId"
+              >
+                <option value="">No personalization</option>
+                {profiles.map((profile) => (
+                  <option key={profile.id} value={profile.id}>
+                    {profile.name}
+                  </option>
+                ))}
               </Select>
             </Field>
             <Field label="Notes">
@@ -708,8 +847,13 @@ export function TripsClient() {
           <form className="grid gap-4" onSubmit={addItem}>
             <Field label="Place">
               <Select name="placeId" required>
-                {demoItems
+                {[...demoItems]
                   .filter((item) => item.category !== "emergency")
+                  .sort(
+                    (a, b) =>
+                      Number(tripCategoryAffinity.has(b.category)) -
+                      Number(tripCategoryAffinity.has(a.category)),
+                  )
                   .map((item) => (
                     <option key={item.id} value={item.id}>
                       {item.name} ({item.category})
@@ -736,6 +880,78 @@ export function TripsClient() {
           </form>
         </Dialog>
       ) : null}
+
+      {editingItem ? (
+        <Dialog onClose={() => setEditingItem(null)} open title="Edit itinerary stop">
+          <form className="grid gap-4" onSubmit={saveItemEdit}>
+            <Field label="Planned time (optional)">
+              <TextInput
+                defaultValue={editingItem.plannedAt ?? ""}
+                name="plannedAt"
+                type="time"
+              />
+            </Field>
+            <Field label="Notes (optional)">
+              <TextArea
+                defaultValue={editingItem.notes ?? ""}
+                maxLength={1000}
+                name="notes"
+              />
+            </Field>
+            <p className="text-sm text-slate-500">
+              Moving a stop to another day is unavailable until a dedicated audited
+              cross-day operation is approved.
+            </p>
+            <div className="flex flex-wrap justify-between gap-2">
+              <Button
+                onClick={() => {
+                  setEditingItem(null);
+                  setMapOpen(true);
+                }}
+                type="button"
+                variant="ghost"
+              >
+                Open external map
+              </Button>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => setEditingItem(null)}
+                  type="button"
+                  variant="secondary"
+                >
+                  Cancel
+                </Button>
+                <Button type="submit">Save stop</Button>
+              </div>
+            </div>
+          </form>
+        </Dialog>
+      ) : null}
+
+      <Dialog onClose={() => setMapOpen(false)} open={mapOpen} title="Leave ATC?">
+        <p className="text-sm text-slate-600">
+          Navigation is handed off to an external map provider. ATC does not provide
+          turn-by-turn navigation.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <a
+            className="inline-flex min-h-11 items-center rounded-xl bg-emerald-800 px-4 font-bold text-white"
+            href={getTrustedExternalMapUrl("google_maps")}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Google Maps
+          </a>
+          <a
+            className="inline-flex min-h-11 items-center rounded-xl border border-emerald-800 px-4 font-bold text-emerald-900"
+            href={getTrustedExternalMapUrl("apple_maps")}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Apple Maps
+          </a>
+        </div>
+      </Dialog>
 
       {toast ? <Toast>{toast}</Toast> : null}
     </div>

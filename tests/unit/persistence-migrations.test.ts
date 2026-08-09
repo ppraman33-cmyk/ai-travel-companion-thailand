@@ -14,7 +14,7 @@ const seedSql = readFileSync(resolve(process.cwd(), "supabase/seed.sql"), "utf8"
 
 describe("Phase 3B migration contract", () => {
   it("uses deterministic ordered migration names", () => {
-    expect(migrations).toHaveLength(13);
+    expect(migrations).toHaveLength(14);
     expect(migrations).toEqual([...migrations].sort());
     expect(new Set(migrations.map((file) => file.slice(0, 12))).size).toBe(
       migrations.length,
@@ -35,6 +35,10 @@ describe("Phase 3B migration contract", () => {
     expect(migrationSql).toContain("revoke insert on public.traveler_sessions");
     expect(migrationSql).toContain("reorder_itinerary_items");
     expect(migrationSql).toContain("deferrable initially immediate");
+    expect(migrationSql).toContain("create table public.traveler_profiles");
+    expect(migrationSql).toContain("enforce_trip_profile_ownership");
+    expect(migrationSql).toContain("set_active_traveler_profile");
+    expect(migrationSql).toContain("delete_traveler_profile");
   });
 
   it("keeps Event and Food separate from the Place subtype constraint", () => {

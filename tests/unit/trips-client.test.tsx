@@ -15,6 +15,7 @@ describe("TripsClient", () => {
 
   beforeEach(() => {
     vi.restoreAllMocks();
+    window.confirm = vi.fn(() => true);
     global.fetch = vi.fn();
   });
 
@@ -27,8 +28,7 @@ describe("TripsClient", () => {
       (input: RequestInfo | URL, init?: RequestInit) => {
         const url = String(input);
         if (init?.signal?.aborted) return new Promise(() => {});
-        if (url.includes("/days") || url.includes("/items"))
-          return tripsResponse([]);
+        if (url.includes("/days") || url.includes("/items")) return tripsResponse([]);
         return tripsResponse([
           { id: "trip-1", title: "Chiang Mai weekend", status: "active" },
         ]);
@@ -52,16 +52,19 @@ describe("TripsClient", () => {
 
     render(<TripsClient />);
 
-    expect(
-      (await screen.findAllByText("No trips yet")).length,
-    ).toBeGreaterThanOrEqual(1);
+    expect((await screen.findAllByText("No trips yet")).length).toBeGreaterThanOrEqual(
+      1,
+    );
   });
 
   it("shows an error state when the trips endpoint is unavailable", async () => {
     (global.fetch as ReturnType<typeof vi.fn>).mockImplementation(
       (input: RequestInfo | URL, init?: RequestInit) => {
         if (init?.signal?.aborted) return new Promise(() => {});
-        return Promise.resolve({ ok: false, json: () => Promise.resolve({}) } as Response);
+        return Promise.resolve({
+          ok: false,
+          json: () => Promise.resolve({}),
+        } as Response);
       },
     );
 
@@ -78,8 +81,7 @@ describe("TripsClient", () => {
       (input: RequestInfo | URL, init?: RequestInit) => {
         const url = String(input);
         if (init?.signal?.aborted) return new Promise(() => {});
-        if (url.includes("/days") || url.includes("/items"))
-          return tripsResponse([]);
+        if (url.includes("/days") || url.includes("/items")) return tripsResponse([]);
         return tripsResponse([
           { id: "trip-2", title: "Bangkok day tour", status: "draft" },
         ]);
@@ -91,7 +93,9 @@ describe("TripsClient", () => {
     const tripButtons = await screen.findAllByText("Bangkok day tour");
     await user.click(tripButtons[0]);
 
-    expect(screen.getAllByRole("button", { name: "Add day" }).length).toBeGreaterThanOrEqual(1);
+    expect(
+      screen.getAllByRole("button", { name: "Add day" }).length,
+    ).toBeGreaterThanOrEqual(1);
   });
 
   it("deletes a trip and removes it from the list", async () => {
@@ -106,8 +110,7 @@ describe("TripsClient", () => {
           trips = [];
           return Promise.resolve({ ok: true } as Response);
         }
-        if (url.includes("/days") || url.includes("/items"))
-          return tripsResponse([]);
+        if (url.includes("/days") || url.includes("/items")) return tripsResponse([]);
         return tripsResponse(trips);
       },
     );
@@ -120,8 +123,8 @@ describe("TripsClient", () => {
     });
     await user.click(deleteButtons[0]);
 
-    expect(
-      (await screen.findAllByText(/was deleted/)).length,
-    ).toBeGreaterThanOrEqual(1);
+    expect((await screen.findAllByText(/was deleted/)).length).toBeGreaterThanOrEqual(
+      1,
+    );
   });
 });

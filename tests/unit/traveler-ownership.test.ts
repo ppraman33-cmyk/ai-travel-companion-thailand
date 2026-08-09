@@ -5,6 +5,7 @@ import {
   type TravelerItineraryDay,
   type TravelerItineraryItem,
   type TravelerRepository,
+  type TravelerProfile,
   type TravelerTrip,
 } from "@/application/public-api/traveler-service";
 import { TravelerPersistenceAdapter } from "@/infrastructure/repositories/traveler-persistence-adapter";
@@ -28,6 +29,11 @@ const foreignTrip: TravelerTrip = {
 
 const repository = (overrides: Partial<TravelerRepository> = {}) =>
   ({
+    listProfiles: vi.fn().mockResolvedValue(success([])),
+    findProfile: vi.fn().mockResolvedValue(success(null)),
+    saveProfile: vi.fn(),
+    setActiveProfile: vi.fn(),
+    deleteProfile: vi.fn(),
     listTrips: vi.fn().mockResolvedValue(success([])),
     findTrip: vi.fn().mockResolvedValue(success(null)),
     findDay: vi.fn().mockResolvedValue(success(null)),
@@ -50,6 +56,86 @@ const repository = (overrides: Partial<TravelerRepository> = {}) =>
   }) as TravelerRepository;
 
 describe("service-role traveler ownership boundary", () => {
+  const ownProfile: TravelerProfile = {
+    id: "75000000-0000-4000-8000-000000000001",
+    sessionId: ownTrip.sessionId,
+    name: "Solo Thailand",
+    interests: [],
+    active: true,
+    createdAt: "2030-01-01T00:00:00Z",
+    updatedAt: "2030-01-01T00:00:00Z",
+  };
+
+  it("rejects a foreign or deleted profile when linking a Trip", async () => {
+    const repo = repository({
+      findTrip: vi.fn().mockResolvedValue(success(null)),
+      findProfile: vi
+        .fn()
+        .mockResolvedValue(
+          success({ ...ownProfile, sessionId: foreignTrip.sessionId }),
+        ),
+    });
+    const result = await new TravelerService(repo).saveTrip(ownTrip.sessionId, {
+      ...ownTrip,
+      travelerProfileId: ownProfile.id,
+    });
+    expect(result).toMatchObject({ ok: false, error: { code: "NOT_FOUND" } });
+    expect(repo.saveTrip).not.toHaveBeenCalled();
+  });
+
+  it("changes the active profile without rewriting existing Trips", async () => {
+    const repo = repository({
+      findProfile: vi.fn().mockResolvedValue(success(ownProfile)),
+      setActiveProfile: vi.fn().mockResolvedValue(success(ownProfile)),
+    });
+    const result = await new TravelerService(repo).setActiveProfile(
+      ownTrip.sessionId,
+      ownProfile.id,
+    );
+    expect(result).toMatchObject({ ok: true });
+    expect(repo.saveTrip).not.toHaveBeenCalled();
+  });
+
+  it("persists a new active profile inactive before atomic activation", async () => {
+    const persisted = { ...ownProfile, active: false };
+    const repo = repository({
+      findProfile: vi.fn().mockResolvedValue(success(null)),
+      saveProfile: vi.fn().mockResolvedValue(success(persisted)),
+      setActiveProfile: vi.fn().mockResolvedValue(success(ownProfile)),
+    });
+    const result = await new TravelerService(repo).saveProfile(ownTrip.sessionId, {
+      id: ownProfile.id,
+      name: ownProfile.name,
+      interests: [],
+      active: true,
+    });
+    expect(result).toMatchObject({ ok: true, value: { active: true } });
+    expect(repo.saveProfile).toHaveBeenCalledWith(
+      expect.objectContaining({ active: false }),
+    );
+    expect(repo.setActiveProfile).toHaveBeenCalledWith(
+      ownTrip.sessionId,
+      ownProfile.id,
+    );
+  });
+
+  it("does not restore a soft-deleted profile through the update operation", async () => {
+    const repo = repository({
+      findProfile: vi
+        .fn()
+        .mockResolvedValue(
+          success({ ...ownProfile, deletedAt: "2030-01-02T00:00:00Z" }),
+        ),
+    });
+    const result = await new TravelerService(repo).saveProfile(ownTrip.sessionId, {
+      id: ownProfile.id,
+      name: "Restore attempt",
+      interests: [],
+      active: false,
+    });
+    expect(result).toMatchObject({ ok: false, error: { code: "NOT_FOUND" } });
+    expect(repo.saveProfile).not.toHaveBeenCalled();
+  });
   it("rejects a client UUID that already belongs to another session", async () => {
     const repo = repository({
       findTrip: vi.fn().mockResolvedValue(success(foreignTrip)),
@@ -131,6 +217,32 @@ describe("service-role traveler ownership boundary", () => {
     );
     expect(savedResult).toMatchObject({ ok: false, error: { code: "NOT_FOUND" } });
     expect(repo.savePlace).not.toHaveBeenCalled();
+  });
+
+  it("prevents an accidental duplicate Place within one itinerary day", async () => {
+    const item: TravelerItineraryItem = {
+      id: "73000000-0000-4000-8000-000000000009",
+      dayId: "72000000-0000-4000-8000-000000000001",
+      order: 1,
+      placeId: "74000000-0000-4000-8000-000000000001",
+      aiGenerated: false,
+    };
+    const repo = repository({
+      findTrip: vi.fn().mockResolvedValue(success(ownTrip)),
+      findItem: vi.fn().mockResolvedValue(success(null)),
+      listItems: vi
+        .fn()
+        .mockResolvedValue(
+          success([{ ...item, id: "73000000-0000-4000-8000-000000000008" }]),
+        ),
+    });
+    const result = await new TravelerService(repo).saveItem(
+      ownTrip.sessionId,
+      ownTrip.id,
+      item,
+    );
+    expect(result).toMatchObject({ ok: false, error: { code: "CONFLICT" } });
+    expect(repo.saveItem).not.toHaveBeenCalled();
   });
 });
 

@@ -7,6 +7,9 @@ import { failure, success } from "@/shared/result/result";
 const state = vi.hoisted(() => ({
   saveItem: vi.fn(),
   saveTrip: vi.fn(),
+  saveProfile: vi.fn(),
+  findOwnedProfile: vi.fn(),
+  setActiveProfile: vi.fn(),
   reorderItems: vi.fn(),
 }));
 
@@ -25,6 +28,9 @@ vi.mock("@/server/runtime", () => ({
     traveler: {
       saveItem: state.saveItem,
       saveTrip: state.saveTrip,
+      saveProfile: state.saveProfile,
+      findOwnedProfile: state.findOwnedProfile,
+      setActiveProfile: state.setActiveProfile,
       reorderItems: state.reorderItems,
     },
   },
@@ -66,6 +72,25 @@ describe("traveler itinerary route contracts", () => {
         status: "draft",
       }),
     );
+    state.saveProfile
+      .mockReset()
+      .mockImplementation(
+        async (_sessionId: string, profile: Record<string, unknown>) =>
+          success({ ...profile, sessionId: "70000000-0000-4000-8000-000000000001" }),
+      );
+    state.findOwnedProfile.mockReset().mockResolvedValue(
+      success({
+        id: "75000000-0000-4000-8000-000000000001",
+        sessionId: "70000000-0000-4000-8000-000000000001",
+        name: "Family holiday",
+        transportation: "public_transit",
+        travelStyle: "family",
+        companions: "family",
+        interests: ["food"],
+        active: true,
+      }),
+    );
+    state.setActiveProfile.mockReset().mockResolvedValue(success(undefined));
   });
 
   it("persists a valid wall-clock plannedAt through the canonical owned-Trip route", async () => {
@@ -155,5 +180,58 @@ describe("traveler itinerary route contracts", () => {
       "70000000-0000-4000-8000-000000000001",
       expect.objectContaining({ id: expect.not.stringMatching(attackerId) }),
     );
+  });
+
+  it("creates a profile with server-authenticated ownership and ignores client IDs", async () => {
+    const response = await POST(
+      request("/api/v1/profiles", {
+        id: "75000000-0000-4000-8000-000000000099",
+        sessionId: "70000000-0000-4000-8000-000000000099",
+        name: "Road trip",
+        transportation: "private_car",
+        active: true,
+      }),
+      context(["profiles"]),
+    );
+    expect(response.status).toBe(201);
+    expect(state.saveProfile).toHaveBeenCalledWith(
+      "70000000-0000-4000-8000-000000000001",
+      expect.objectContaining({
+        id: expect.not.stringMatching(/000000000099$/),
+        name: "Road trip",
+      }),
+    );
+  });
+
+  it("preserves omitted fields on profile PATCH and supports explicit preference reset", async () => {
+    const profileId = "75000000-0000-4000-8000-000000000001";
+    const response = await POST(
+      request(`/api/v1/profiles/${profileId}`, {
+        name: "Family in Thailand",
+        transportation: null,
+      }),
+      context(["profiles", profileId]),
+    );
+    expect(response.status).toBe(200);
+    expect(state.saveProfile).toHaveBeenCalledWith(
+      "70000000-0000-4000-8000-000000000001",
+      expect.objectContaining({
+        name: "Family in Thailand",
+        transportation: undefined,
+        travelStyle: "family",
+        companions: "family",
+        interests: ["food"],
+      }),
+    );
+  });
+
+  it("rejects an empty profile update", async () => {
+    const profileId = "75000000-0000-4000-8000-000000000001";
+    const response = await POST(
+      request(`/api/v1/profiles/${profileId}`, {}),
+      context(["profiles", profileId]),
+    );
+    expect(response.status).toBe(400);
+    expect(state.saveProfile).not.toHaveBeenCalled();
   });
 });

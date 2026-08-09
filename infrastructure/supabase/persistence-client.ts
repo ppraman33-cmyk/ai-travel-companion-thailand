@@ -19,6 +19,7 @@ export type PersistenceTable =
   | "events"
   | "event_occurrences"
   | "traveler_sessions"
+  | "traveler_profiles"
   | "itinerary_days"
   | "itinerary_items"
   | "saved_places"

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 
 import {
   recommendedCategories,
@@ -12,13 +12,30 @@ import {
   Badge,
   Button,
   ContentCard,
+  Dialog,
+  Field,
+  Select,
   StatusState,
+  Toast,
 } from "@/components/ui/design-system";
 import { Icon } from "@/components/ui/icon";
 
 interface SavedRecord {
   readonly placeId: string;
   readonly tripId?: string;
+}
+interface TripRecord {
+  readonly id: string;
+  readonly title: string;
+  readonly travelerProfileId?: string;
+}
+interface DayRecord {
+  readonly id: string;
+  readonly plannedDate: string;
+}
+interface ItineraryRecord {
+  readonly dayId: string;
+  readonly order: number;
 }
 
 type SavedState =
@@ -46,6 +63,10 @@ const resolveDemoItem = (placeId: string) =>
 export function SavedClient() {
   const [state, setState] = useState<SavedState>({ status: "loading" });
   const [prefs, setPrefs] = useState<TravelerPreferences>({});
+  const [trips, setTrips] = useState<readonly TripRecord[]>([]);
+  const [days, setDays] = useState<readonly DayRecord[]>([]);
+  const [adding, setAdding] = useState<string>();
+  const [toast, setToast] = useState<string>();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -59,12 +80,30 @@ export function SavedClient() {
         if (controller.signal.aborted) return;
         setState({ status: "unavailable" });
       });
-    fetch("/api/v1/preferences", { signal: controller.signal })
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((body: { data: TravelerPreferences }) => {
-        if (!controller.signal.aborted) setPrefs(body.data);
+    Promise.all([
+      fetch("/api/v1/profiles", { signal: controller.signal }),
+      fetch("/api/v1/preferences", { signal: controller.signal }),
+    ])
+      .then(async ([profilesResponse, preferencesResponse]) => {
+        const profileBody = profilesResponse.ok
+          ? ((await profilesResponse.json()) as {
+              data?: readonly (TravelerPreferences & { active?: boolean })[];
+            })
+          : {};
+        const active = profileBody.data?.find((profile) => profile.active);
+        if (active) return active;
+        return preferencesResponse.ok
+          ? ((await preferencesResponse.json()) as { data: TravelerPreferences }).data
+          : {};
       })
-      .catch(() => {});
+      .then((preferences) => {
+        if (!controller.signal.aborted) setPrefs(preferences);
+      })
+      .catch(() => undefined);
+    fetch("/api/v1/trips", { signal: controller.signal })
+      .then((response) => (response.ok ? response.json() : Promise.reject()))
+      .then((body: { data: readonly TripRecord[] }) => setTrips(body.data))
+      .catch(() => undefined);
     return () => controller.abort();
   }, []);
 
@@ -85,16 +124,60 @@ export function SavedClient() {
     }
   }
 
+  async function loadDays(tripId: string) {
+    if (!tripId) return setDays([]);
+    const response = await fetch(`/api/v1/trips/${tripId}/days`);
+    setDays(
+      response.ok
+        ? ((await response.json()) as { data: readonly DayRecord[] }).data
+        : [],
+    );
+  }
+
+  async function addToTrip(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!adding) return;
+    const form = new FormData(event.currentTarget);
+    const tripId = String(form.get("tripId"));
+    const dayId = String(form.get("dayId"));
+    const itemsResponse = await fetch(`/api/v1/trips/${tripId}/items`);
+    if (!itemsResponse.ok) {
+      setToast("Could not verify the Trip itinerary. Nothing was added.");
+      return;
+    }
+    const itemBody = (await itemsResponse.json()) as { data?: unknown };
+    const existingItems = Array.isArray(itemBody.data)
+      ? (itemBody.data as readonly ItineraryRecord[])
+      : [];
+    const order = existingItems
+      .filter((item) => item.dayId === dayId)
+      .reduce((highest, item) => Math.max(highest, item.order + 1), 0);
+    const response = await fetch(`/api/v1/trips/${tripId}/items`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-csrf-token": readCookie("atct_csrf") ?? "",
+      },
+      body: JSON.stringify({ dayId, placeId: adding, order, aiGenerated: false }),
+    });
+    setToast(
+      response.ok
+        ? "Saved place added to the Trip."
+        : "Could not add this place. It may already be on that day.",
+    );
+    if (response.ok) setAdding(undefined);
+  }
+
   const recommended = recommendedCategories(prefs);
   const recommendedItems = recommended.length
     ? demoItems.filter(
-        (item) =>
-          item.category !== "emergency" && recommended.includes(item.category),
+        (item) => item.category !== "emergency" && recommended.includes(item.category),
       )
     : [];
-  const savedIds = state.status === "ready"
-    ? new Set(state.items.map((i) => i.placeId))
-    : new Set<string>();
+  const savedIds =
+    state.status === "ready"
+      ? new Set(state.items.map((i) => i.placeId))
+      : new Set<string>();
   const suggestions = recommendedItems.filter((i) => !savedIds.has(i.id));
 
   if (state.status === "loading")
@@ -141,7 +224,9 @@ export function SavedClient() {
                   <div className="flex flex-1 flex-col p-5">
                     <div className="flex flex-wrap gap-2">
                       {demo ? (
-                        <Badge tone={emergency ? "danger" : "info"}>Synthetic demo</Badge>
+                        <Badge tone={emergency ? "danger" : "info"}>
+                          Synthetic demo
+                        </Badge>
                       ) : (
                         <Badge tone="neutral">Session-owned Place</Badge>
                       )}
@@ -169,7 +254,8 @@ export function SavedClient() {
                       </p>
                     ) : (
                       <p className="mt-3 flex-1 text-sm text-slate-600">
-                        Catalog details are resolved through the public API when eligible.
+                        Catalog details are resolved through the public API when
+                        eligible.
                       </p>
                     )}
                     {demo?.meta ? (
@@ -180,10 +266,15 @@ export function SavedClient() {
                       </p>
                     ) : null}
                     <div className="relative z-10 mt-4">
-                      <Button
-                        onClick={() => remove(item.placeId)}
-                        variant="secondary"
-                      >
+                      {!emergency ? (
+                        <Button
+                          className="mr-2"
+                          onClick={() => setAdding(item.placeId)}
+                        >
+                          Add to Trip
+                        </Button>
+                      ) : null}
+                      <Button onClick={() => remove(item.placeId)} variant="secondary">
                         Remove
                       </Button>
                     </div>
@@ -233,6 +324,57 @@ export function SavedClient() {
           </Button>
         </div>
       ) : null}
+      {adding ? (
+        <Dialog
+          onClose={() => setAdding(undefined)}
+          open
+          title="Add saved place to Trip"
+        >
+          <form className="grid gap-4" onSubmit={addToTrip}>
+            <Field label="Trip">
+              <Select
+                name="tripId"
+                onChange={(event) => void loadDays(event.target.value)}
+                required
+              >
+                <option value="">Choose Trip</option>
+                {trips.map((trip) => (
+                  <option key={trip.id} value={trip.id}>
+                    {trip.title}
+                  </option>
+                ))}
+              </Select>
+            </Field>
+            <Field label="Itinerary day">
+              <Select disabled={days.length === 0} name="dayId" required>
+                <option value="">Choose day</option>
+                {days.map((day) => (
+                  <option key={day.id} value={day.id}>
+                    {day.plannedDate}
+                  </option>
+                ))}
+              </Select>
+            </Field>
+            <p className="text-sm text-slate-600">
+              The Place remains synthetic and cannot enter a production publication
+              state.
+            </p>
+            <div className="flex justify-end gap-2">
+              <Button
+                onClick={() => setAdding(undefined)}
+                type="button"
+                variant="secondary"
+              >
+                Cancel
+              </Button>
+              <Button disabled={days.length === 0} type="submit">
+                Add to itinerary
+              </Button>
+            </div>
+          </form>
+        </Dialog>
+      ) : null}
+      {toast ? <Toast>{toast}</Toast> : null}
     </div>
   );
 }
