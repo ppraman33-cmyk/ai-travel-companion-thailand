@@ -46,7 +46,7 @@ export default async function ExplorePage({
 
       <form
         action="/explore"
-        className="grid gap-3 rounded-3xl bg-white p-4 shadow-sm md:grid-cols-[1fr_12rem_12rem_auto]"
+        className="grid gap-3 rounded-3xl bg-white p-4 shadow-sm lg:grid-cols-[minmax(0,1fr)_minmax(0,12rem)_minmax(0,12rem)_auto]"
         role="search"
       >
         <label className="sr-only" htmlFor="explore-search">
