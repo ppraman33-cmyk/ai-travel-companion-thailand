@@ -35,7 +35,11 @@ test("first-run onboarding persists only after success and supports local-only s
 }) => {
   const requests: string[] = [];
   page.on("request", (request) => {
-    if (request.url().includes("/api/v1/")) requests.push(request.url());
+    if (
+      request.url().includes("/api/v1/") &&
+      !["GET", "HEAD", "OPTIONS"].includes(request.method())
+    )
+      requests.push(request.url());
   });
 
   await page.goto("/");
@@ -64,29 +68,36 @@ test("first-run onboarding persists only after success and supports local-only s
       status: 201,
     });
   });
-  let preferenceWrites = 0;
-  await page.route("**/api/v1/preferences", async (route) => {
+  let profileWrites = 0;
+  await page.route("**/api/v1/profiles", async (route) => {
     if (route.request().method() === "POST") {
-      preferenceWrites += 1;
+      profileWrites += 1;
       expect(route.request().headers()["x-csrf-token"]).toBe("synthetic-csrf");
       await route.fulfill({
-        body: JSON.stringify({ data: {} }),
+        body: JSON.stringify({ data: { id: "synthetic-profile", active: true } }),
         contentType: "application/json",
-        status: 200,
+        status: 201,
       });
       return;
     }
     await route.continue();
   });
   await page.reload();
-  for (let step = 0; step < 4; step += 1) {
+  for (const choice of [
+    "Public transit",
+    "Budget",
+    "Solo traveler",
+    "Low — relaxed pace",
+  ]) {
+    await page.getByRole("button", { name: choice, exact: true }).click();
     await page.getByRole("button", { name: "Next", exact: true }).click();
   }
-  await page.getByRole("button", { name: "Finish" }).click();
+  await page.getByRole("textbox", { name: /Profile name/ }).fill("Solo Thailand");
+  await page.getByRole("button", { name: "Save profile" }).click();
   await expect(
     page.getByRole("heading", { name: "Explore Thailand with confidence." }),
   ).toBeVisible();
-  expect(preferenceWrites).toBe(1);
+  expect(profileWrites).toBe(1);
 });
 
 test("renders the traveler PWA shell and primary navigation", async ({ page }) => {
@@ -233,11 +244,11 @@ test("Traveler UI Foundation Batch 1 renders all five production-shaped screens"
   }
 });
 
-test("traveler routes have no document overflow at approved viewports", async ({
-  page,
-}) => {
-  await useReturningTraveler(page);
-  for (const viewport of responsiveViewports) {
+for (const viewport of responsiveViewports) {
+  test(`traveler routes have no document overflow at ${viewport.width}x${viewport.height}`, async ({
+    page,
+  }) => {
+    await useReturningTraveler(page);
     await page.setViewportSize(viewport);
     for (const route of travelerRoutes) {
       await page.goto(route);
@@ -250,6 +261,97 @@ test("traveler routes have no document overflow at approved viewports", async ({
         `${route} overflowed at ${viewport.width}x${viewport.height}`,
       ).toBe(false);
     }
+  });
+}
+
+test("Batch 2 profiles, Trips and itinerary render from owned synthetic contracts", async ({
+  page,
+}) => {
+  await useReturningTraveler(page);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.route("**/api/v1/**", async (route) => {
+    const url = new URL(route.request().url());
+    const path = url.pathname;
+    const data = path.endsWith("/profiles")
+      ? [
+          {
+            id: "75000000-0000-4000-8000-000000000001",
+            name: "Solo Thailand",
+            transportation: "public_transit",
+            travelStyle: "cultural",
+            companions: "solo",
+            activityLevel: "moderate",
+            interests: [],
+            active: true,
+          },
+        ]
+      : path.endsWith("/trips")
+        ? [
+            {
+              id: "71000000-0000-4000-8000-000000000001",
+              title: "Synthetic northern loop",
+              status: "draft",
+              destination: "Demo Lanna Province",
+              timezone: "Asia/Bangkok",
+              travelerProfileId: "75000000-0000-4000-8000-000000000001",
+            },
+          ]
+        : path.endsWith("/days")
+          ? [
+              {
+                id: "72000000-0000-4000-8000-000000000001",
+                tripId: "71000000-0000-4000-8000-000000000001",
+                plannedDate: "2030-01-01",
+                dayOrder: 0,
+              },
+            ]
+          : path.endsWith("/items")
+            ? [
+                {
+                  id: "73000000-0000-4000-8000-000000000001",
+                  dayId: "72000000-0000-4000-8000-000000000001",
+                  order: 0,
+                  placeId: "00000000-0000-4000-8000-000000000101",
+                  plannedAt: "09:30",
+                  notes: "Synthetic stop",
+                  aiGenerated: false,
+                },
+              ]
+            : [];
+    await route.fulfill({
+      body: JSON.stringify({ data, error: null, meta: { requestId: "e2e" } }),
+      contentType: "application/json",
+      status: 200,
+    });
+  });
+
+  await page.goto("/profile");
+  await expect(page.getByText("Solo Thailand").first()).toBeVisible();
+  await expect(page.getByText("Live AI disabled")).toBeVisible();
+
+  await page.goto("/trips");
+  await page.getByText("Synthetic northern loop").first().click();
+  await expect(page.getByText("Lantern Garden")).toBeVisible();
+  await expect(page.getByText("09:30")).toBeVisible();
+  await expect(page.getByText(/Live AI is off/)).toBeVisible();
+  for (const viewport of responsiveViewports) {
+    await page.setViewportSize(viewport);
+    const overflow = await page.evaluate(() => ({
+      documentWidth: document.documentElement.scrollWidth,
+      viewportWidth: innerWidth,
+      offenders: [...document.querySelectorAll<HTMLElement>("body *")]
+        .filter((element) => element.getBoundingClientRect().right > innerWidth + 1)
+        .map((element) => ({
+          className: element.className,
+          tag: element.tagName,
+          text: element.textContent?.trim().slice(0, 80),
+        }))
+        .slice(0, 10),
+    }));
+    expect(
+      overflow,
+      `${viewport.width}x${viewport.height}: ${JSON.stringify(overflow.offenders)}`,
+    ).toMatchObject({ documentWidth: overflow.viewportWidth });
   }
 });
 

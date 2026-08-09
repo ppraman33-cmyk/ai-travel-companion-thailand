@@ -6,6 +6,7 @@ import {
   demoProvinces,
 } from "@/application/traveler/synthetic-content";
 import { DemoCard } from "@/components/traveler/demo-card";
+import { ExploreRecommendations } from "@/components/traveler/explore-recommendations";
 import { OnboardingGate } from "@/components/traveler/onboarding-gate";
 import { SyntheticVisual } from "@/components/traveler/synthetic-visual";
 import { TravelerShell } from "@/components/traveler/traveler-shell";
@@ -169,6 +170,8 @@ export default function HomePage() {
             </ContentCard>
           </div>
         </section>
+
+        <ExploreRecommendations />
 
         <Showcase title="Featured provinces" link="/explore">
           {demoProvinces.map((province) => (

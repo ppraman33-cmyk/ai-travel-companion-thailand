@@ -2,6 +2,7 @@ import type {
   TravelerItineraryDay,
   TravelerItineraryItem,
   TravelerPreferences,
+  TravelerProfile,
   TravelerReport,
   TravelerRepository,
   TravelerSavedPlace,
@@ -19,6 +20,27 @@ interface TripRecord {
   readonly start_date: string | null;
   readonly end_date: string | null;
   readonly notes: string | null;
+  readonly destination: string | null;
+  readonly timezone: string;
+  readonly traveler_profile_id: string | null;
+}
+
+interface ProfileRecord {
+  readonly id: string;
+  readonly traveler_session_id: string;
+  readonly profile_name: string;
+  readonly description: string | null;
+  readonly transportation: string | null;
+  readonly travel_style: string | null;
+  readonly companions: string | null;
+  readonly activity_level: string | null;
+  readonly mobility_needs: string | null;
+  readonly budget_style: string | null;
+  readonly preferred_interests: readonly string[];
+  readonly is_active: boolean;
+  readonly created_at: string;
+  readonly updated_at: string;
+  readonly deleted_at: string | null;
 }
 
 interface SavedRecord {
@@ -53,6 +75,80 @@ interface SessionRecord {
 
 export class TravelerPersistenceAdapter implements TravelerRepository {
   constructor(private readonly client: PersistenceClient) {}
+
+  async listProfiles(sessionId: string) {
+    const result = await this.client.selectMany<ProfileRecord>({
+      table: "traveler_profiles",
+      filters: [
+        { column: "traveler_session_id", operator: "eq", value: sessionId },
+        { column: "deleted_at", operator: "is", value: null },
+      ],
+      orderBy: { column: "created_at", ascending: true },
+      limit: 20,
+    });
+    return result.ok ? success(result.value.map(this.mapProfile)) : result;
+  }
+
+  async findProfile(id: string) {
+    const result = await this.client.selectOne<ProfileRecord>({
+      table: "traveler_profiles",
+      filters: [{ column: "id", operator: "eq", value: id }],
+    });
+    return result.ok
+      ? success(result.value ? this.mapProfile(result.value) : null)
+      : result;
+  }
+
+  async saveProfile(profile: TravelerProfile) {
+    const result = await this.client.upsert<ProfileRecord, Record<string, unknown>>(
+      "traveler_profiles",
+      {
+        id: profile.id,
+        traveler_session_id: profile.sessionId,
+        profile_name: profile.name,
+        description: profile.description ?? null,
+        transportation: profile.transportation ?? null,
+        travel_style: profile.travelStyle ?? null,
+        companions: profile.companions ?? null,
+        activity_level: profile.activityLevel ?? null,
+        mobility_needs: profile.mobilityNeeds ?? null,
+        budget_style: profile.budget ?? null,
+        preferred_interests: profile.interests,
+        is_active: profile.active,
+        deleted_at: profile.deletedAt ?? null,
+      },
+      "id",
+    );
+    return result.ok ? success(this.mapProfile(result.value)) : result;
+  }
+
+  async setActiveProfile(sessionId: string, profileId: string) {
+    if (!this.client.rpc) {
+      return failure(appError("UNAVAILABLE", "Profile activation is unavailable."));
+    }
+    const result = await this.client.rpc<ProfileRecord>("set_active_traveler_profile", {
+      target_session_id: sessionId,
+      target_profile_id: profileId,
+    });
+    return result.ok ? success(this.mapProfile(result.value)) : result;
+  }
+
+  async deleteProfile(
+    sessionId: string,
+    profileId: string,
+    action: "block" | "reassign" | "detach",
+    replacementProfileId?: string,
+  ) {
+    if (!this.client.rpc) {
+      return failure(appError("UNAVAILABLE", "Profile deletion is unavailable."));
+    }
+    return this.client.rpc<void>("delete_traveler_profile", {
+      target_session_id: sessionId,
+      target_profile_id: profileId,
+      linked_trip_action: action,
+      replacement_profile_id: replacementProfileId ?? null,
+    });
+  }
 
   async listTrips(sessionId: string, limit: number) {
     const result = await this.client.selectMany<TripRecord>({
@@ -122,6 +218,8 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
         start_date: trip.startDate ?? null,
         end_date: trip.endDate ?? null,
         notes: trip.notes ?? null,
+        destination: trip.destination ?? null,
+        traveler_profile_id: trip.travelerProfileId ?? null,
         timezone: "Asia/Bangkok",
         data_classification: "real",
       },
@@ -378,6 +476,29 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       startDate: row.start_date ?? undefined,
       endDate: row.end_date ?? undefined,
       notes: row.notes ?? undefined,
+      destination: row.destination ?? undefined,
+      timezone: row.timezone,
+      travelerProfileId: row.traveler_profile_id ?? undefined,
+    };
+  }
+
+  private mapProfile(row: ProfileRecord): TravelerProfile {
+    return {
+      id: row.id,
+      sessionId: row.traveler_session_id,
+      name: row.profile_name,
+      description: row.description ?? undefined,
+      transportation: row.transportation ?? undefined,
+      travelStyle: row.travel_style ?? undefined,
+      companions: row.companions ?? undefined,
+      activityLevel: row.activity_level ?? undefined,
+      mobilityNeeds: row.mobility_needs ?? undefined,
+      budget: row.budget_style ?? undefined,
+      interests: row.preferred_interests ?? [],
+      active: row.is_active,
+      createdAt: row.created_at,
+      updatedAt: row.updated_at,
+      deletedAt: row.deleted_at ?? undefined,
     };
   }
 

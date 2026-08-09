@@ -38,13 +38,77 @@ const sessionSchema = z.object({
     .regex(/^[a-z]{2,3}(?:-[A-Z]{2})?$/)
     .default("en"),
 });
-const tripSchema = z.object({
-  title: z.string().trim().min(1).max(120),
-  status: z.enum(["draft", "active", "completed"]).default("draft"),
-  startDate: z.string().trim().max(10).optional(),
-  endDate: z.string().trim().max(10).optional(),
-  notes: z.string().trim().max(5000).optional(),
+const tripSchema = z
+  .object({
+    title: z.string().trim().min(1).max(120),
+    status: z.enum(["draft", "active", "completed"]).default("draft"),
+    startDate: z.string().trim().max(10).optional(),
+    endDate: z.string().trim().max(10).optional(),
+    notes: z.string().trim().max(5000).optional(),
+    destination: z.string().trim().min(1).max(160).optional(),
+    travelerProfileId: z.uuid().nullable().optional(),
+  })
+  .refine(
+    (value) => !value.startDate || !value.endDate || value.endDate >= value.startDate,
+    { message: "Trip end date must not be before its start date." },
+  );
+const profileInputSchema = z.object({
+  name: z.string().trim().min(1).max(80),
+  description: z.string().trim().max(500).nullable().optional(),
+  transportation: z
+    .enum([
+      "public_transit",
+      "private_car",
+      "motorcycle",
+      "bicycle",
+      "walking",
+      "mixed",
+    ])
+    .nullable()
+    .optional(),
+  travelStyle: z
+    .enum([
+      "budget",
+      "relaxation",
+      "adventure",
+      "cultural",
+      "food",
+      "nature",
+      "family",
+      "mixed",
+    ])
+    .nullable()
+    .optional(),
+  companions: z
+    .enum(["solo", "couple", "friends", "family", "children", "older_adults", "group"])
+    .nullable()
+    .optional(),
+  activityLevel: z.enum(["low", "moderate", "high", "very_high"]).nullable().optional(),
+  mobilityNeeds: z.string().trim().max(300).nullable().optional(),
+  budget: z.enum(["budget", "mid_range", "luxury", "mixed"]).nullable().optional(),
+  interests: z.array(z.string().trim().min(1).max(40)).max(12).optional(),
+  active: z.boolean().optional(),
 });
+const profileCreateSchema = profileInputSchema.extend({
+  interests: profileInputSchema.shape.interests.default([]),
+  active: profileInputSchema.shape.active.default(false),
+});
+const profileUpdateSchema = profileInputSchema
+  .partial()
+  .refine((value) => Object.keys(value).length > 0, {
+    message: "At least one profile field is required.",
+  });
+const profileDeleteSchema = z
+  .object({
+    action: z.enum(["block", "reassign", "detach"]).default("block"),
+    replacementProfileId: z.uuid().optional(),
+  })
+  .refine(
+    (value) => value.action !== "reassign" || Boolean(value.replacementProfileId),
+    {
+      message: "A replacement profile is required.",
+    },
+  );
 const savedSchema = z.object({
   placeId: z.uuid(),
   tripId: z.uuid().optional(),
@@ -108,6 +172,8 @@ const requestKey = (request: NextRequest) =>
   "anonymous";
 
 const parseBody = async (request: NextRequest) => {
+  const declaredLength = Number(request.headers.get("content-length") ?? "0");
+  if (declaredLength > 65_536) return undefined;
   try {
     return await request.json();
   } catch {
@@ -176,6 +242,14 @@ export async function GET(request: NextRequest, context: RouteContext) {
     const result = id
       ? await appRuntime.traveler.findOwnedTrip(authenticated.value.id, id)
       : await appRuntime.traveler.listTrips(authenticated.value.id);
+    return result.ok
+      ? okResponse(result.value, requestId)
+      : errorResponse(result.error, requestId);
+  }
+  if (area === "profiles" && appRuntime.traveler) {
+    const result = id
+      ? await appRuntime.traveler.findOwnedProfile(authenticated.value.id, id)
+      : await appRuntime.traveler.listProfiles(authenticated.value.id);
     return result.ok
       ? okResponse(result.value, requestId)
       : errorResponse(result.error, requestId);
@@ -335,6 +409,14 @@ export async function POST(request: NextRequest, context: RouteContext) {
     if (!parsed.success) {
       return errorResponse(appError("VALIDATION", "Invalid Trip request."), requestId);
     }
+    const existing = resourceId
+      ? await appRuntime.traveler.findOwnedTrip(authenticated.value.id, resourceId)
+      : null;
+    if (existing && (!existing.ok || !existing.value)) {
+      return existing.ok
+        ? errorResponse(appError("NOT_FOUND", "Trip was not found."), requestId)
+        : errorResponse(existing.error, requestId);
+    }
     const result = await appRuntime.traveler.saveTrip(authenticated.value.id, {
       id: resourceId ?? randomUUID(),
       title: parsed.data.title,
@@ -342,6 +424,80 @@ export async function POST(request: NextRequest, context: RouteContext) {
       startDate: parsed.data.startDate,
       endDate: parsed.data.endDate,
       notes: parsed.data.notes,
+      destination: parsed.data.destination,
+      timezone: "Asia/Bangkok",
+      travelerProfileId:
+        parsed.data.travelerProfileId === null
+          ? undefined
+          : (parsed.data.travelerProfileId ?? existing?.value?.travelerProfileId),
+    });
+    return result.ok
+      ? okResponse(result.value, requestId, resourceId ? 200 : 201)
+      : errorResponse(result.error, requestId);
+  }
+  if (area === "profiles" && appRuntime.traveler) {
+    if (resourceId && nested === "activate") {
+      const result = await appRuntime.traveler.setActiveProfile(
+        authenticated.value.id,
+        resourceId,
+      );
+      return result.ok
+        ? okResponse(result.value, requestId)
+        : errorResponse(result.error, requestId);
+    }
+    const parsed = (resourceId ? profileUpdateSchema : profileCreateSchema).safeParse(
+      await parseBody(request),
+    );
+    if (!parsed.success) {
+      return errorResponse(
+        appError("VALIDATION", "Invalid travel profile request."),
+        requestId,
+      );
+    }
+    const existing = resourceId
+      ? await appRuntime.traveler.findOwnedProfile(authenticated.value.id, resourceId)
+      : null;
+    if (existing && (!existing.ok || !existing.value)) {
+      return existing.ok
+        ? errorResponse(
+            appError("NOT_FOUND", "Travel profile was not found."),
+            requestId,
+          )
+        : errorResponse(existing.error, requestId);
+    }
+    const result = await appRuntime.traveler.saveProfile(authenticated.value.id, {
+      id: resourceId ?? randomUUID(),
+      name: parsed.data.name ?? existing?.value?.name ?? "",
+      description:
+        "description" in parsed.data
+          ? (parsed.data.description ?? undefined)
+          : existing?.value?.description,
+      transportation:
+        "transportation" in parsed.data
+          ? (parsed.data.transportation ?? undefined)
+          : existing?.value?.transportation,
+      travelStyle:
+        "travelStyle" in parsed.data
+          ? (parsed.data.travelStyle ?? undefined)
+          : existing?.value?.travelStyle,
+      companions:
+        "companions" in parsed.data
+          ? (parsed.data.companions ?? undefined)
+          : existing?.value?.companions,
+      activityLevel:
+        "activityLevel" in parsed.data
+          ? (parsed.data.activityLevel ?? undefined)
+          : existing?.value?.activityLevel,
+      mobilityNeeds:
+        "mobilityNeeds" in parsed.data
+          ? (parsed.data.mobilityNeeds ?? undefined)
+          : existing?.value?.mobilityNeeds,
+      budget:
+        "budget" in parsed.data
+          ? (parsed.data.budget ?? undefined)
+          : existing?.value?.budget,
+      interests: parsed.data.interests ?? existing?.value?.interests ?? [],
+      active: parsed.data.active ?? existing?.value?.active ?? false,
     });
     return result.ok
       ? okResponse(result.value, requestId, resourceId ? 200 : 201)
@@ -430,6 +586,24 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
   }
   const authenticated = await appRuntime.sessions.authenticate(secret);
   if (!authenticated.ok) return errorResponse(authenticated.error, requestId);
+  if (area === "profiles" && id && appRuntime.traveler) {
+    const parsed = profileDeleteSchema.safeParse(await parseBody(request));
+    if (!parsed.success) {
+      return errorResponse(
+        appError("VALIDATION", "Invalid profile deletion request."),
+        requestId,
+      );
+    }
+    const result = await appRuntime.traveler.deleteProfile(
+      authenticated.value.id,
+      id,
+      parsed.data.action,
+      parsed.data.replacementProfileId,
+    );
+    return result.ok
+      ? okResponse({ deleted: true }, requestId)
+      : errorResponse(result.error, requestId);
+  }
   if (area === "trips" && id && nested === "items" && nestedId && appRuntime.traveler) {
     const result = await appRuntime.traveler.deleteItem(
       authenticated.value.id,

@@ -1,81 +1,85 @@
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { ProfileClient } from "@/components/traveler/profile-client";
 
-const json = (data: unknown) =>
-  Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve({ data }),
-  } as Response);
+const response = (data: unknown, ok = true) =>
+  Promise.resolve({ ok, json: () => Promise.resolve({ data }) } as Response);
+
+const activeProfile = {
+  id: "profile-a",
+  name: "Solo Thailand",
+  transportation: "walking",
+  travelStyle: "nature",
+  companions: "solo",
+  activityLevel: "moderate",
+  interests: [],
+  active: true,
+};
 
 describe("ProfileClient", () => {
   const originalFetch = global.fetch;
 
   beforeEach(() => {
     vi.restoreAllMocks();
-    global.fetch = vi.fn();
+    HTMLDialogElement.prototype.showModal = vi.fn(function (this: HTMLDialogElement) {
+      this.setAttribute("open", "");
+    });
+    HTMLDialogElement.prototype.close = vi.fn(function (this: HTMLDialogElement) {
+      this.removeAttribute("open");
+    });
+    global.fetch = vi.fn((input) =>
+      String(input).endsWith("/profiles")
+        ? response([activeProfile])
+        : response([
+            {
+              id: "trip-a",
+              title: "Northern loop",
+              travelerProfileId: "profile-a",
+              status: "draft",
+            },
+          ]),
+    ) as typeof fetch;
   });
 
   afterEach(() => {
+    cleanup();
     global.fetch = originalFetch;
   });
 
-  it("shows a loading state, then displays saved preference badges", async () => {
-    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue(
-      json({
-        transportation: "walking",
-        travelStyle: "nature",
-        companions: "solo",
-      }),
-    );
-
+  it("shows the active profile, preference summary, and linked Trip count", async () => {
     render(<ProfileClient />);
-
-    expect(
-      (await screen.findAllByText("Walking / hiking")).length,
-    ).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("Nature & outdoors").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("Solo traveler").length).toBeGreaterThanOrEqual(1);
+    expect((await screen.findAllByText("Solo Thailand")).length).toBe(2);
+    expect(screen.getByText("Walking / hiking")).toBeVisible();
+    expect(screen.getByText("Nature & outdoors")).toBeVisible();
+    expect(screen.getByText("1 linked Trips")).toBeVisible();
   });
 
-  it("shows an empty state when no preferences are set", async () => {
-    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue(json({}));
-
+  it("supports an empty no-personalization state", async () => {
+    (global.fetch as ReturnType<typeof vi.fn>)
+      .mockResolvedValueOnce(await response([]))
+      .mockResolvedValueOnce(await response([]));
     render(<ProfileClient />);
-
-    expect(
-      (await screen.findAllByText(/No preferences set/)).length,
-    ).toBeGreaterThanOrEqual(1);
+    expect(await screen.findByText("No travel profiles")).toBeVisible();
+    expect(screen.getByText("No personalization")).toBeVisible();
   });
 
-  it("shows an error state when preferences endpoint is unavailable", async () => {
-    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
-      ok: false,
-      json: () => Promise.resolve({}),
-    } as Response);
-
+  it("fails safely when the profile endpoint is unavailable", async () => {
+    (global.fetch as ReturnType<typeof vi.fn>)
+      .mockResolvedValueOnce(await response(undefined, false))
+      .mockResolvedValueOnce(await response([]));
     render(<ProfileClient />);
-
-    expect(
-      (await screen.findAllByText("Profile unavailable")).length,
-    ).toBeGreaterThanOrEqual(1);
+    expect(await screen.findByText("Travel profiles unavailable")).toBeVisible();
   });
 
-  it("enters edit mode when Edit preferences is clicked", async () => {
+  it("opens the selected profile editor without exposing its UUID", async () => {
     const user = userEvent.setup();
-    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue(
-      json({ transportation: "walking" }),
-    );
-
     render(<ProfileClient />);
-
-    await screen.findAllByText("Walking / hiking");
-    const editButtons = screen.getAllByRole("button", { name: "Edit preferences" });
-    await user.click(editButtons[0]);
-
-    expect(screen.getAllByText("Save preferences").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("Reset all").length).toBeGreaterThanOrEqual(1);
+    await screen.findAllByText("Solo Thailand");
+    await user.click(screen.getByRole("button", { name: "Edit" }));
+    expect(screen.getByRole("dialog", { name: "Edit travel profile" })).toBeVisible();
+    expect(screen.getByLabelText("Profile name")).toHaveValue("Solo Thailand");
+    expect(screen.queryByText("profile-a")).not.toBeInTheDocument();
   });
 });
