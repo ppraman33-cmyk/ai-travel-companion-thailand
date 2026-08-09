@@ -9,45 +9,59 @@ import {
 import {
   Badge,
   ContentCard,
-  HeroShell,
   LinkButton,
-  QuickActionGrid,
-  StatusState,
   SyntheticNotice,
 } from "@/components/ui/design-system";
 import { Icon } from "@/components/ui/icon";
-
 import { DemoCard } from "./demo-card";
+import { SyntheticVisual } from "./synthetic-visual";
 
-const categories: DemoCategory[] = ["attractions", "restaurants", "foods", "events"];
+const categories: DemoCategory[] = ["attractions", "restaurants", "events", "foods"];
 
 export function ProvinceExperience() {
   const base = `/thailand/${demoProvince.region}/${demoProvince.slug}`;
   return (
     <>
       <SyntheticNotice />
-      <HeroShell
-        eyebrow="Northern Thailand · synthetic route"
-        title={demoProvince.name}
-        description={demoProvince.introduction}
-      >
-        <Badge tone="warning">Evidence pending</Badge>
-        <span className="text-sm text-emerald-100" lang="th">
-          {demoProvince.thaiName}
-        </span>
-      </HeroShell>
-      <section aria-labelledby="quick-actions">
-        <h2 className="text-2xl font-bold" id="quick-actions">
-          Explore this province
+      <section className="relative isolate min-h-[26rem] overflow-hidden rounded-[2rem] bg-emerald-950 text-white shadow-[var(--shadow-card)]">
+        <div className="absolute inset-0 opacity-70">
+          <SyntheticVisual
+            className="h-full"
+            icon="place"
+            label="Synthetic province atmosphere"
+            palette="emerald"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-emerald-950/55 to-transparent" />
+        <div className="relative flex min-h-[26rem] flex-col justify-end p-6 sm:p-10">
+          <Badge tone="warning">Evidence pending</Badge>
+          <p className="mt-4 text-sm font-bold uppercase tracking-[.2em] text-emerald-100">
+            Northern Thailand · synthetic province
+          </p>
+          <h1 className="mt-2 text-5xl font-black tracking-tight sm:text-7xl">
+            {demoProvince.name}
+          </h1>
+          <p className="mt-2 text-emerald-100" lang="th">
+            {demoProvince.thaiName}
+          </p>
+          <p className="mt-4 max-w-2xl text-lg text-emerald-50">
+            {demoProvince.introduction}
+          </p>
+        </div>
+      </section>
+      <section aria-labelledby="province-actions">
+        <h2 className="text-2xl font-black" id="province-actions">
+          Explore the province
         </h2>
-        <QuickActionGrid>
+        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {categories.map((category) => (
             <Link
-              className="flex min-h-24 flex-col justify-between rounded-2xl border border-emerald-100 bg-white p-4 font-bold text-emerald-950 shadow-sm hover:bg-emerald-50"
+              className="flex min-h-24 flex-col justify-between rounded-2xl border border-emerald-100 bg-white p-4 font-bold shadow-sm hover:bg-emerald-50"
               href={`${base}/${category}`}
               key={category}
             >
               <Icon
+                className="size-7 text-emerald-700"
                 name={
                   category === "restaurants" || category === "foods"
                     ? "food"
@@ -56,35 +70,51 @@ export function ProvinceExperience() {
                       : "place"
                 }
               />
-              <span>{categoryLabels[category]}</span>
+              {category === "foods" ? "Local products" : categoryLabels[category]}
             </Link>
           ))}
-        </QuickActionGrid>
+        </div>
       </section>
-      <section className="grid gap-5 lg:grid-cols-2">
+      <section className="grid gap-5 lg:grid-cols-[1.15fr_.85fr]">
         <ContentCard>
-          <Badge tone="info">Media slot</Badge>
-          <h2 className="mt-3 text-2xl font-bold">Province infographic</h2>
-          <div className="mt-5 grid min-h-48 place-items-center rounded-2xl bg-emerald-50 text-center text-sm text-emerald-900">
-            Rights-reviewed infographic will appear here.
-            <br />
-            No real geography is represented.
-          </div>
+          <h2 className="text-sm font-bold uppercase tracking-wider text-emerald-700">
+            Province highlights
+          </h2>
+          <p className="mt-2 text-3xl font-black">A thoughtful demo guide</p>
+          <p className="mt-3 text-slate-600">
+            This layout is production-shaped without making real claims. Highlights
+            remain synthetic and clearly separated from evidence-approved publication.
+          </p>
+          <dl className="mt-6 grid grid-cols-2 gap-4">
+            <div>
+              <dt className="text-sm text-slate-500">Featured places</dt>
+              <dd className="text-3xl font-black">{demoItems.length}</dd>
+            </div>
+            <div>
+              <dt className="text-sm text-slate-500">Verified real records</dt>
+              <dd className="text-3xl font-black">0</dd>
+            </div>
+          </dl>
         </ContentCard>
-        <ContentCard>
-          <Badge tone="info">Map slot</Badge>
-          <h2 className="mt-3 text-2xl font-bold">Illustrated interactive map</h2>
-          <div className="mt-5 grid min-h-48 place-items-center rounded-2xl border border-dashed border-emerald-200 bg-white text-center text-sm text-slate-600">
-            <Icon className="mb-2 size-10 text-emerald-700" name="map" />
-            Geography and image rights pending
-          </div>
+        <ContentCard className="overflow-hidden p-0">
+          <SyntheticVisual
+            className="min-h-64 h-full"
+            icon="map"
+            label="Future illustrated province map"
+            palette="sky"
+          />
         </ContentCard>
       </section>
       <section>
-        <div className="flex items-end justify-between">
-          <h2 className="text-2xl font-bold">Featured demo content</h2>
-          <Link className="font-bold text-emerald-700" href={`${base}/attractions`}>
-            View categories
+        <div className="flex items-start justify-between gap-3">
+          <h2 className="min-w-0 text-2xl font-black">
+            Featured in {demoProvince.name}
+          </h2>
+          <Link
+            className="inline-flex min-h-11 flex-none items-center font-bold text-emerald-700"
+            href={`${base}/attractions`}
+          >
+            View all →
           </Link>
         </div>
         <ul className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -95,22 +125,29 @@ export function ProvinceExperience() {
           ))}
         </ul>
       </section>
-      <ContentCard className="border-red-200 bg-red-50">
-        <Badge tone="danger">Emergency safety</Badge>
-        <h2 className="mt-3 text-2xl font-bold text-red-950">Verified help only</h2>
-        <p className="mt-2 text-red-900">
-          Demo emergency records never expose call or map actions. Real services require
-          current verification before publication.
-        </p>
-        <LinkButton className="mt-5" href="/help" variant="danger">
-          Open Help & emergency
-        </LinkButton>
-      </ContentCard>
-      <StatusState
-        description="This state is intentionally available until lawful, verified province evidence is approved."
-        state="empty"
-        title="Evidence-pending content is never invented"
-      />
+      <section className="grid gap-4 md:grid-cols-2">
+        <ContentCard>
+          <Icon className="size-8 text-emerald-700" name="place" />
+          <h2 className="mt-3 text-xl font-black">Nearby discovery</h2>
+          <p className="mt-2 text-slate-600">
+            Location-aware results require consent and verified records.
+          </p>
+          <LinkButton className="mt-5" href="/explore">
+            Explore nearby structure
+          </LinkButton>
+        </ContentCard>
+        <ContentCard>
+          <Icon className="size-8 text-emerald-700" name="map" />
+          <h2 className="mt-3 text-xl font-black">External navigation only</h2>
+          <p className="mt-2 text-slate-600">
+            Directions hand off to trusted map providers. No internal navigation engine
+            is built.
+          </p>
+          <LinkButton className="mt-5" href="/explore" variant="secondary">
+            Map handoff information
+          </LinkButton>
+        </ContentCard>
+      </section>
     </>
   );
 }

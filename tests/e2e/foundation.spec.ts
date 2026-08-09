@@ -1,5 +1,11 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+async function useReturningTraveler(page: Page) {
+  await page.addInitScript(() => {
+    localStorage.setItem("atct-onboarding-completed", "synthetic-e2e-complete");
+  });
+}
 
 const responsiveViewports = [
   { width: 320, height: 568 },
@@ -12,6 +18,7 @@ const responsiveViewports = [
 
 const travelerRoutes = [
   "/",
+  "/welcome",
   "/explore",
   "/thailand/northern/demo-lanna-province",
   "/thailand/northern/demo-lanna-province/restaurants",
@@ -22,6 +29,65 @@ const travelerRoutes = [
   "/profile",
   "/help",
 ] as const;
+
+test("first-run onboarding persists only after success and supports local-only skip", async ({
+  page,
+}) => {
+  const requests: string[] = [];
+  page.on("request", (request) => {
+    if (request.url().includes("/api/v1/")) requests.push(request.url());
+  });
+
+  await page.goto("/");
+  await expect(page.getByText("Step 1 of 5")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Explore Thailand with confidence." }),
+  ).toBeHidden();
+  await page.getByRole("button", { name: "Skip all" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Explore Thailand with confidence." }),
+  ).toBeVisible();
+  expect(requests).toEqual([]);
+  await page.reload();
+  await expect(
+    page.getByRole("heading", { name: "Explore Thailand with confidence." }),
+  ).toBeVisible();
+
+  await page.evaluate(() => localStorage.removeItem("atct-onboarding-completed"));
+  await page.route("**/api/v1/sessions", async (route) => {
+    await route.fulfill({
+      body: JSON.stringify({ data: { id: "synthetic-session" } }),
+      headers: {
+        "content-type": "application/json",
+        "set-cookie": "atct_csrf=synthetic-csrf; Path=/; SameSite=Lax",
+      },
+      status: 201,
+    });
+  });
+  let preferenceWrites = 0;
+  await page.route("**/api/v1/preferences", async (route) => {
+    if (route.request().method() === "POST") {
+      preferenceWrites += 1;
+      expect(route.request().headers()["x-csrf-token"]).toBe("synthetic-csrf");
+      await route.fulfill({
+        body: JSON.stringify({ data: {} }),
+        contentType: "application/json",
+        status: 200,
+      });
+      return;
+    }
+    await route.continue();
+  });
+  await page.reload();
+  for (let step = 0; step < 4; step += 1) {
+    await page.getByRole("button", { name: "Next", exact: true }).click();
+  }
+  await page.getByRole("button", { name: "Finish" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Explore Thailand with confidence." }),
+  ).toBeVisible();
+  expect(preferenceWrites).toBe(1);
+});
 
 test("renders the traveler PWA shell and primary navigation", async ({ page }) => {
   const hydrationErrors: string[] = [];
@@ -43,15 +109,13 @@ test("renders the traveler PWA shell and primary navigation", async ({ page }) =
   }
   await expect(
     page.getByRole("heading", {
-      name: "Thailand, thoughtfully explored",
+      name: "Explore Thailand with confidence.",
     }),
   ).toBeVisible();
   await expect(
     page.getByRole("navigation", { name: "Mobile navigation" }),
   ).toBeVisible();
-  await expect(
-    page.getByRole("link", { name: /Help & emergency/ }).first(),
-  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Help & assistance" })).toBeVisible();
   await expect(
     page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("link"),
   ).toHaveCount(5);
@@ -66,9 +130,113 @@ test("renders the traveler PWA shell and primary navigation", async ({ page }) =
   expect(thaiButtonBox?.height).toBeGreaterThanOrEqual(44);
 });
 
+test("Traveler UI Foundation Batch 1 renders all five production-shaped screens", async ({
+  page,
+}) => {
+  await useReturningTraveler(page);
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  await page.goto("/welcome");
+  await expect(
+    page.getByRole("heading", {
+      name: "Thailand feels closer with a trusted companion.",
+    }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Start exploring" })).toBeVisible();
+  await expect(page.getByText("Approved mascot direction")).toBeVisible();
+
+  await page.goto("/");
+  await expect(
+    page.getByRole("button", { name: "SOS unavailable in demo" }),
+  ).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Coming later" })).toBeDisabled();
+  await expect(
+    page.getByLabel("Start your journey").getByRole("link", { name: "Trips" }),
+  ).toHaveAttribute("href", "/trips");
+  await expect(page.getByRole("link", { name: "Saved places" })).toHaveAttribute(
+    "href",
+    "/saved",
+  );
+  await expect(page.getByRole("link", { name: "Travel profile" })).toHaveAttribute(
+    "href",
+    "/profile",
+  );
+  await expect(page.getByRole("link", { name: "Help & assistance" })).toHaveAttribute(
+    "href",
+    "/help",
+  );
+  await expect(page.getByRole("heading", { name: "Featured provinces" })).toBeVisible();
+  await expect(page.getByText("Synthetic visual").first()).toBeVisible();
+  for (const link of [
+    page.getByRole("link", { name: "Open Help information" }),
+    page.getByRole("link", { name: "See all →" }).first(),
+  ]) {
+    const box = await link.boundingBox();
+    expect(box?.height).toBeGreaterThanOrEqual(44);
+  }
+
+  await page.route("**/api/v1/preferences", async (route) => {
+    await route.fulfill({
+      body: JSON.stringify({ data: { travelStyle: "food" } }),
+      contentType: "application/json",
+      status: 200,
+    });
+  });
+
+  await page.goto("/explore");
+  await expect(page.getByRole("search")).toBeVisible();
+  await expect(page.getByLabel("Region", { exact: true })).toBeVisible();
+  await expect(page.getByLabel("Province", { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Recommended based on your preferences" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Choose a demo region, then go deeper." }),
+  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Explore results" })).toBeVisible();
+  await page.getByLabel("Search demo content").fill("River Leaf");
+  await page.getByRole("button", { name: "Search" }).click();
+  await expect(page).toHaveURL(/q=River(?:\+|%20)Leaf/);
+  await expect(page.getByText("1 results")).toBeVisible();
+
+  await page.goto("/thailand/northern/demo-lanna-province");
+  await expect(
+    page.getByRole("heading", { name: "Demo Lanna Province", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Province highlights" }),
+  ).toBeVisible();
+  await expect(page.getByText("Future illustrated province map")).toBeVisible();
+  const provinceViewAllBox = await page
+    .getByRole("link", { name: "View all →" })
+    .boundingBox();
+  expect(provinceViewAllBox?.height).toBeGreaterThanOrEqual(44);
+
+  await page.goto(
+    "/thailand/northern/demo-lanna-province/restaurants/river-leaf-kitchen",
+  );
+  await expect(
+    page.getByRole("heading", { name: "River Leaf Kitchen", level: 1 }),
+  ).toBeVisible();
+  await expect(page.getByText("Opening hours")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Nearby & related" })).toBeVisible();
+  for (const link of [
+    page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", {
+      name: "Explore",
+    }),
+    page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", {
+      name: "Restaurants",
+    }),
+  ]) {
+    const box = await link.boundingBox();
+    expect(box?.height).toBeGreaterThanOrEqual(44);
+  }
+});
+
 test("traveler routes have no document overflow at approved viewports", async ({
   page,
 }) => {
+  await useReturningTraveler(page);
   for (const viewport of responsiveViewports) {
     await page.setViewportSize(viewport);
     for (const route of travelerRoutes) {
@@ -88,6 +256,7 @@ test("traveler routes have no document overflow at approved viewports", async ({
 test("primary traveler pages have no serious or critical axe violations", async ({
   page,
 }) => {
+  await useReturningTraveler(page);
   for (const route of [
     "/",
     "/explore",
@@ -150,7 +319,7 @@ test("M2 canonical province journey remains synthetic and responsive", async ({
   await expect(page.getByTestId("synthetic-banner")).toBeVisible();
   await page.getByRole("link", { name: "Province guide" }).click();
   await expect(
-    page.getByRole("heading", { name: "Demo Lanna Province" }),
+    page.getByRole("heading", { name: "Demo Lanna Province", exact: true }),
   ).toBeVisible();
   await page.getByRole("link", { name: "Restaurants" }).click();
   await page.getByRole("link", { name: "River Leaf Kitchen" }).click();
@@ -171,6 +340,7 @@ test("M2 canonical province journey remains synthetic and responsive", async ({
 test("desktop shell, keyboard focus and reduced-motion preference are supported", async ({
   page,
 }) => {
+  await useReturningTraveler(page);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/");

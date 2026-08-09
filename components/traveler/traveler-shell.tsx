@@ -74,13 +74,13 @@ function TravelerFrame({ children }: { readonly children: ReactNode }) {
           <TravelerNavigation />
         </aside>
         <main
-          className="grid min-w-0 gap-8 px-4 py-6 pb-28 sm:px-6 lg:px-8 lg:pb-10"
+          className="grid min-w-0 gap-8 px-4 py-6 pb-[calc(7rem+env(safe-area-inset-bottom))] [&>*]:min-w-0 sm:px-6 lg:px-8 lg:pb-10"
           id="main-content"
         >
           {children}
         </main>
       </div>
-      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-[var(--color-border)] bg-white/95 backdrop-blur lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-[var(--color-border)] bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
         <TravelerNavigation mobile />
       </div>
     </>

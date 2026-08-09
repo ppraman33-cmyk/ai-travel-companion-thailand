@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { DemoCategory } from "@/application/traveler/synthetic-content";
 import { Badge, ContentCard } from "@/components/ui/design-system";
 import { Icon } from "@/components/ui/icon";
+import { SyntheticVisual } from "./synthetic-visual";
 
 const icons = {
   attractions: "place",
@@ -30,11 +31,23 @@ export function DemoCard({
     <ContentCard
       className={`group relative flex h-full flex-col overflow-hidden p-0 ${emergency ? "border-red-200" : ""}`}
     >
-      <div
-        className={`grid aspect-[16/9] place-items-center ${emergency ? "bg-red-50 text-red-700" : "bg-gradient-to-br from-emerald-100 via-teal-50 to-amber-50 text-emerald-800"}`}
-      >
-        <Icon className="size-10" name={icons[item.category]} />
-      </div>
+      {emergency ? (
+        <div className="grid aspect-[16/9] place-items-center bg-red-50 text-red-700">
+          <Icon className="size-10" name="help" />
+        </div>
+      ) : (
+        <SyntheticVisual
+          icon={icons[item.category]}
+          label={item.name}
+          palette={
+            item.category === "events"
+              ? "violet"
+              : item.category === "foods"
+                ? "amber"
+                : "emerald"
+          }
+        />
+      )}
       <div className="flex flex-1 flex-col p-5">
         <div className="flex flex-wrap gap-2">
           <Badge tone={emergency ? "danger" : "info"}>Synthetic demo</Badge>
