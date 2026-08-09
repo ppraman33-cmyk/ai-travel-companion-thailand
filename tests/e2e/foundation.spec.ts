@@ -244,11 +244,11 @@ test("Traveler UI Foundation Batch 1 renders all five production-shaped screens"
   }
 });
 
-test("traveler routes have no document overflow at approved viewports", async ({
-  page,
-}) => {
-  await useReturningTraveler(page);
-  for (const viewport of responsiveViewports) {
+for (const viewport of responsiveViewports) {
+  test(`traveler routes have no document overflow at ${viewport.width}x${viewport.height}`, async ({
+    page,
+  }) => {
+    await useReturningTraveler(page);
     await page.setViewportSize(viewport);
     for (const route of travelerRoutes) {
       await page.goto(route);
@@ -261,8 +261,8 @@ test("traveler routes have no document overflow at approved viewports", async ({
         `${route} overflowed at ${viewport.width}x${viewport.height}`,
       ).toBe(false);
     }
-  }
-});
+  });
+}
 
 test("Batch 2 profiles, Trips and itinerary render from owned synthetic contracts", async ({
   page,
