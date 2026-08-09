@@ -106,9 +106,14 @@ export function ProvinceExperience() {
         </ContentCard>
       </section>
       <section>
-        <div className="flex items-end justify-between">
-          <h2 className="text-2xl font-black">Featured in {demoProvince.name}</h2>
-          <Link className="font-bold text-emerald-700" href={`${base}/attractions`}>
+        <div className="flex items-start justify-between gap-3">
+          <h2 className="min-w-0 text-2xl font-black">
+            Featured in {demoProvince.name}
+          </h2>
+          <Link
+            className="inline-flex min-h-11 flex-none items-center font-bold text-emerald-700"
+            href={`${base}/attractions`}
+          >
             View all →
           </Link>
         </div>

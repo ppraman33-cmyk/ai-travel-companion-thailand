@@ -167,6 +167,13 @@ test("Traveler UI Foundation Batch 1 renders all five production-shaped screens"
   );
   await expect(page.getByRole("heading", { name: "Featured provinces" })).toBeVisible();
   await expect(page.getByText("Synthetic visual").first()).toBeVisible();
+  for (const link of [
+    page.getByRole("link", { name: "Open Help information" }),
+    page.getByRole("link", { name: "See all →" }).first(),
+  ]) {
+    const box = await link.boundingBox();
+    expect(box?.height).toBeGreaterThanOrEqual(44);
+  }
 
   await page.route("**/api/v1/preferences", async (route) => {
     await route.fulfill({
@@ -200,6 +207,10 @@ test("Traveler UI Foundation Batch 1 renders all five production-shaped screens"
     page.getByRole("heading", { name: "Province highlights" }),
   ).toBeVisible();
   await expect(page.getByText("Future illustrated province map")).toBeVisible();
+  const provinceViewAllBox = await page
+    .getByRole("link", { name: "View all →" })
+    .boundingBox();
+  expect(provinceViewAllBox?.height).toBeGreaterThanOrEqual(44);
 
   await page.goto(
     "/thailand/northern/demo-lanna-province/restaurants/river-leaf-kitchen",
@@ -209,6 +220,17 @@ test("Traveler UI Foundation Batch 1 renders all five production-shaped screens"
   ).toBeVisible();
   await expect(page.getByText("Opening hours")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Nearby & related" })).toBeVisible();
+  for (const link of [
+    page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", {
+      name: "Explore",
+    }),
+    page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", {
+      name: "Restaurants",
+    }),
+  ]) {
+    const box = await link.boundingBox();
+    expect(box?.height).toBeGreaterThanOrEqual(44);
+  }
 });
 
 test("traveler routes have no document overflow at approved viewports", async ({

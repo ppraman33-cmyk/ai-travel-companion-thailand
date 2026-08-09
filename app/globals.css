@@ -27,6 +27,10 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+button {
+  min-height: 2.75rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;

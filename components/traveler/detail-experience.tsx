@@ -34,10 +34,22 @@ export function DetailExperience({
   return (
     <>
       <SyntheticNotice />
-      <nav aria-label="Breadcrumb" className="text-sm text-slate-600">
-        <Link href="/explore">Explore</Link> <span aria-hidden="true">/</span>{" "}
-        <Link href={`${base}/${item.category}`}>{categoryLabels[item.category]}</Link>{" "}
-        <span aria-hidden="true">/</span> {item.name}
+      <nav
+        aria-label="Breadcrumb"
+        className="flex flex-wrap items-center gap-x-2 text-sm text-slate-600"
+      >
+        <Link className="inline-flex min-h-11 items-center" href="/explore">
+          Explore
+        </Link>
+        <span aria-hidden="true">/</span>
+        <Link
+          className="inline-flex min-h-11 items-center"
+          href={`${base}/${item.category}`}
+        >
+          {categoryLabels[item.category]}
+        </Link>
+        <span aria-hidden="true">/</span>
+        <span>{item.name}</span>
       </nav>
       <section className="grid gap-3 lg:grid-cols-[1.55fr_.75fr]">
         <SyntheticVisual

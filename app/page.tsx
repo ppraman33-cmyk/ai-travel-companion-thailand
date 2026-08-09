@@ -145,7 +145,10 @@ export default function HomePage() {
               >
                 SOS unavailable in demo
               </button>
-              <Link className="mt-3 block font-bold underline" href="/help">
+              <Link
+                className="mt-3 inline-flex min-h-11 items-center font-bold underline"
+                href="/help"
+              >
                 Open Help information
               </Link>
             </ContentCard>
@@ -233,9 +236,12 @@ function Showcase({
 }) {
   return (
     <section className="min-w-0 max-w-full overflow-hidden">
-      <div className="flex items-end justify-between gap-3">
-        <h2 className="text-2xl font-black">{title}</h2>
-        <Link className="font-bold text-emerald-700" href={link}>
+      <div className="flex items-start justify-between gap-3">
+        <h2 className="min-w-0 text-2xl font-black">{title}</h2>
+        <Link
+          className="inline-flex min-h-11 flex-none items-center font-bold text-emerald-700"
+          href={link}
+        >
           See all →
         </Link>
       </div>
