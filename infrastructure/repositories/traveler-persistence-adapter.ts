@@ -81,6 +81,36 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       : result;
   }
 
+  async findDay(id: string) {
+    const result = await this.client.selectOne<DayRecord>({
+      table: "itinerary_days",
+      filters: [{ column: "id", operator: "eq", value: id }],
+    });
+    return result.ok
+      ? success(
+          result.value
+            ? {
+                id: result.value.id,
+                tripId: result.value.trip_id,
+                plannedDate: result.value.planned_date,
+                dayOrder: result.value.day_order,
+                notes: result.value.notes ?? undefined,
+              }
+            : null,
+        )
+      : result;
+  }
+
+  async findItem(id: string) {
+    const result = await this.client.selectOne<ItemRecord>({
+      table: "itinerary_items",
+      filters: [{ column: "id", operator: "eq", value: id }],
+    });
+    return result.ok
+      ? success(result.value ? this.mapItem(result.value) : null)
+      : result;
+  }
+
   async saveTrip(trip: TravelerTrip) {
     const result = await this.client.upsert<TripRecord, Record<string, unknown>>(
       "trips",
@@ -196,18 +226,7 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       },
       "id",
     );
-    return result.ok
-      ? success({
-          id: result.value.id,
-          dayId: result.value.itinerary_day_id,
-          order: result.value.item_order,
-          placeId: result.value.place_id ?? undefined,
-          eventOccurrenceId: result.value.event_occurrence_id ?? undefined,
-          notes: result.value.notes ?? undefined,
-          plannedAt: result.value.planned_at ?? undefined,
-          aiGenerated: result.value.ai_generated,
-        })
-      : result;
+    return result.ok ? success(this.mapItem(result.value)) : result;
   }
 
   async deleteItem(_sessionId: string, tripId: string, itemId: string) {
@@ -246,18 +265,7 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       orderBy: { column: "item_order", ascending: true },
     });
     return result.ok
-      ? success(
-          result.value.map((row): TravelerItineraryItem => ({
-            id: row.id,
-            dayId: row.itinerary_day_id,
-            order: row.item_order,
-            placeId: row.place_id ?? undefined,
-            eventOccurrenceId: row.event_occurrence_id ?? undefined,
-            notes: row.notes ?? undefined,
-            plannedAt: row.planned_at ?? undefined,
-            aiGenerated: row.ai_generated,
-          })),
-        )
+      ? success(result.value.map((row): TravelerItineraryItem => this.mapItem(row)))
       : result;
   }
 
@@ -303,6 +311,29 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       : result;
   }
 
+  async reorderItems(
+    sessionId: string,
+    tripId: string,
+    dayId: string,
+    orderedItemIds: readonly string[],
+  ) {
+    if (!this.client.rpc) {
+      return failure(
+        appError("UNAVAILABLE", "Atomic itinerary reorder is unavailable."),
+      );
+    }
+    const result = await this.client.rpc<readonly ItemRecord[]>(
+      "reorder_itinerary_items",
+      {
+        target_session_id: sessionId,
+        target_trip_id: tripId,
+        target_day_id: dayId,
+        ordered_item_ids: orderedItemIds,
+      },
+    );
+    return result.ok ? success(result.value.map((row) => this.mapItem(row))) : result;
+  }
+
   async getPreferences(sessionId: string) {
     const result = await this.client.selectOne<SessionRecord>({
       table: "traveler_sessions",
@@ -312,7 +343,8 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
     if (!result.value) {
       return failure(appError("NOT_FOUND", "Session was not found."));
     }
-    const prefs = (result.value.traveler_preferences ?? {}) as Partial<TravelerPreferences>;
+    const prefs = (result.value.traveler_preferences ??
+      {}) as Partial<TravelerPreferences>;
     return success({
       transportation: prefs.transportation,
       travelStyle: prefs.travelStyle,
@@ -333,9 +365,7 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       "id",
     );
     return result.ok
-      ? success(
-          (result.value.traveler_preferences ?? {}) as TravelerPreferences,
-        )
+      ? success((result.value.traveler_preferences ?? {}) as TravelerPreferences)
       : result;
   }
 
@@ -348,6 +378,19 @@ export class TravelerPersistenceAdapter implements TravelerRepository {
       startDate: row.start_date ?? undefined,
       endDate: row.end_date ?? undefined,
       notes: row.notes ?? undefined,
+    };
+  }
+
+  private mapItem(row: ItemRecord): TravelerItineraryItem {
+    return {
+      id: row.id,
+      dayId: row.itinerary_day_id,
+      order: row.item_order,
+      placeId: row.place_id ?? undefined,
+      eventOccurrenceId: row.event_occurrence_id ?? undefined,
+      notes: row.notes ?? undefined,
+      plannedAt: row.planned_at ? row.planned_at.slice(0, 5) : undefined,
+      aiGenerated: row.ai_generated,
     };
   }
 }

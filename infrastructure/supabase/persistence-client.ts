@@ -53,4 +53,8 @@ export interface PersistenceClient {
     table: PersistenceTable,
     filters: readonly PersistenceFilter[],
   ): Promise<Result<void, AppError>>;
+  rpc?<Row>(
+    functionName: string,
+    parameters: Readonly<Record<string, unknown>>,
+  ): Promise<Result<Row, AppError>>;
 }

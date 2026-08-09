@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 
 import {
   Button,
@@ -23,10 +23,22 @@ const readCookie = (name: string) =>
     .join("=");
 
 const STEPS = [
-  { key: "transportation", label: "Preferred transportation", options: preferenceOptions.transportation },
+  {
+    key: "transportation",
+    label: "Preferred transportation",
+    options: preferenceOptions.transportation,
+  },
   { key: "travelStyle", label: "Travel style", options: preferenceOptions.travelStyle },
-  { key: "companions", label: "Travel companions", options: preferenceOptions.companions },
-  { key: "activityLevel", label: "Activity level", options: preferenceOptions.activityLevel },
+  {
+    key: "companions",
+    label: "Travel companions",
+    options: preferenceOptions.companions,
+  },
+  {
+    key: "activityLevel",
+    label: "Activity level",
+    options: preferenceOptions.activityLevel,
+  },
   { key: "budget", label: "Budget preference", options: preferenceOptions.budget },
 ] as const;
 
@@ -34,27 +46,43 @@ export function OnboardingFlow({ onComplete }: { readonly onComplete: () => void
   const [step, setStep] = useState(0);
   const [prefs, setPrefs] = useState<Record<string, string>>({});
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const savingRef = useRef(false);
 
   async function savePreferences(finalPrefs: Record<string, string>) {
+    if (savingRef.current) return false;
+    savingRef.current = true;
     setSaving(true);
-    let csrf = readCookie("atct_csrf");
-    if (!csrf) {
-      const session = await fetch("/api/v1/sessions", {
+    setSaveError(null);
+    try {
+      let csrf = readCookie("atct_csrf");
+      if (!csrf) {
+        const session = await fetch("/api/v1/sessions", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ locale: document.documentElement.lang }),
+        });
+        if (!session.ok) throw new Error("session");
+        csrf = readCookie("atct_csrf");
+      }
+      const response = await fetch("/api/v1/preferences", {
         method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ locale: document.documentElement.lang }),
+        headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
+        body: JSON.stringify(finalPrefs),
       });
-      if (session.ok) csrf = readCookie("atct_csrf");
+      if (!response.ok) throw new Error("preferences");
+      onComplete();
+      return true;
+    } catch {
+      setSaveError("Your preferences could not be saved. Please try again.");
+      return false;
+    } finally {
+      savingRef.current = false;
+      setSaving(false);
     }
-    await fetch("/api/v1/preferences", {
-      method: "POST",
-      headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
-      body: JSON.stringify(finalPrefs),
-    });
-    setSaving(false);
   }
 
-  function next(event: FormEvent<HTMLFormElement>) {
+  async function next(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const key = STEPS[step].key;
@@ -65,23 +93,22 @@ export function OnboardingFlow({ onComplete }: { readonly onComplete: () => void
     if (step < STEPS.length - 1) {
       setStep(step + 1);
     } else {
-      onComplete();
-      void savePreferences({ ...updated, language: document.documentElement.lang });
+      await savePreferences({ ...updated, language: document.documentElement.lang });
     }
   }
 
-  function skip() {
+  async function skip() {
     if (step < STEPS.length - 1) {
       setStep(step + 1);
     } else {
-      onComplete();
-      void savePreferences({ ...prefs, language: document.documentElement.lang });
+      await savePreferences({ ...prefs, language: document.documentElement.lang });
     }
   }
 
   function skipAll() {
+    // Explicit privacy-preserving skip: complete locally without creating a
+    // server session or claiming that preferences were persisted.
     onComplete();
-    void savePreferences({ language: document.documentElement.lang });
   }
 
   const current = STEPS[step];
@@ -97,6 +124,7 @@ export function OnboardingFlow({ onComplete }: { readonly onComplete: () => void
           </p>
           <button
             className="text-sm font-semibold text-slate-500 hover:text-slate-700"
+            disabled={saving}
             onClick={skipAll}
             type="button"
           >
@@ -116,6 +144,14 @@ export function OnboardingFlow({ onComplete }: { readonly onComplete: () => void
       </div>
 
       <form className="mt-6 grid gap-4" onSubmit={next}>
+        {saveError ? (
+          <p
+            className="rounded-xl bg-red-50 p-3 text-sm font-semibold text-red-800"
+            role="alert"
+          >
+            {saveError}
+          </p>
+        ) : null}
         <Field label={current.label}>
           <Select defaultValue={prefs[current.key] ?? ""} name={current.key}>
             <option value="">Prefer not to say</option>
@@ -136,7 +172,12 @@ export function OnboardingFlow({ onComplete }: { readonly onComplete: () => void
             Back
           </Button>
           <div className="flex gap-2">
-            <Button onClick={skip} type="button" variant="secondary">
+            <Button
+              disabled={saving}
+              onClick={() => void skip()}
+              type="button"
+              variant="secondary"
+            >
               Skip
             </Button>
             <Button disabled={saving} type="submit">

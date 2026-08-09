@@ -8,7 +8,7 @@ export function proxy(request: NextRequest) {
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${development ? " 'unsafe-eval'" : ""}`,
     `style-src 'self' 'nonce-${nonce}'${development ? " 'unsafe-inline'" : ""}`,
-    "img-src 'self' blob: data: https://images.pexels.com",
+    "img-src 'self' blob: data:",
     "font-src 'self'",
     "connect-src 'self'",
     "worker-src 'self'",

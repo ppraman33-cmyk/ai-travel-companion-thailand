@@ -36,6 +36,11 @@ test("renders the traveler PWA shell and primary navigation", async ({ page }) =
   expect(csp).toMatch(/'nonce-[A-Za-z0-9+/=]+'/);
 
   await expect(page).toHaveTitle(/AI Travel Companion Thailand/);
+  const skipAll = page.getByRole("button", { name: "Skip all" });
+  if (await skipAll.isVisible()) {
+    await skipAll.click();
+    await page.reload();
+  }
   await expect(
     page.getByRole("heading", {
       name: "Thailand, thoughtfully explored",

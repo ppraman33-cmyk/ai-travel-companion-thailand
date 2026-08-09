@@ -14,7 +14,7 @@ const seedSql = readFileSync(resolve(process.cwd(), "supabase/seed.sql"), "utf8"
 
 describe("Phase 3B migration contract", () => {
   it("uses deterministic ordered migration names", () => {
-    expect(migrations).toHaveLength(12);
+    expect(migrations).toHaveLength(13);
     expect(migrations).toEqual([...migrations].sort());
     expect(new Set(migrations.map((file) => file.slice(0, 12))).size).toBe(
       migrations.length,
@@ -32,6 +32,9 @@ describe("Phase 3B migration contract", () => {
     expect(migrationSql).toContain("assertion does not belong to content");
     expect(migrationSql).toContain("real content requires atomic provenance intake");
     expect(migrationSql).toContain("Remove the earlier direct-write grants");
+    expect(migrationSql).toContain("revoke insert on public.traveler_sessions");
+    expect(migrationSql).toContain("reorder_itinerary_items");
+    expect(migrationSql).toContain("deferrable initially immediate");
   });
 
   it("keeps Event and Food separate from the Place subtype constraint", () => {
@@ -56,7 +59,10 @@ describe("Phase 3B migration contract", () => {
 
   it("contains no credentials or dynamic SQL execution", () => {
     expect(migrationSql).not.toMatch(
-      /service_role|supabase_service_role_key|execute\s+format\s*\(/i,
+      /supabase_service_role_key|execute\s+format\s*\(/i,
+    );
+    expect(migrationSql).toContain(
+      "grant execute on function public.reorder_itinerary_items(uuid, uuid, uuid, uuid[]) to service_role",
     );
     expect(seedSql).not.toMatch(/eyJ[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9_-]{16,}/);
   });

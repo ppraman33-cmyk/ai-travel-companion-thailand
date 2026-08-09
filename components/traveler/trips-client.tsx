@@ -198,13 +198,13 @@ export function TripsClient() {
   async function saveTripEdit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!editingTrip) return;
+    const editingTripId = editingTrip.id;
     const form = new FormData(event.currentTarget);
     const csrf = readCookie("atct_csrf");
-    const response = await fetch("/api/v1/trips", {
-      method: "POST",
+    const response = await fetch(`/api/v1/trips/${editingTripId}`, {
+      method: "PATCH",
       headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
       body: JSON.stringify({
-        id: editingTrip.id,
         title: form.get("title"),
         status: form.get("status") ?? editingTrip.status,
         startDate: form.get("startDate") || undefined,
@@ -257,7 +257,6 @@ export function TripsClient() {
       method: "POST",
       headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
       body: JSON.stringify({
-        tripId: activeTrip.id,
         plannedDate: form.get("plannedDate"),
         dayOrder,
         notes: form.get("notes") || undefined,
@@ -274,12 +273,13 @@ export function TripsClient() {
 
   async function addItem(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!addItemDialog) return;
+    if (!addItemDialog || !activeTrip) return;
+    const tripId = activeTrip.id;
     const form = new FormData(event.currentTarget);
     const csrf = readCookie("atct_csrf");
     const dayItems = items.filter((i) => i.dayId === addItemDialog.dayId);
     const order = dayItems.length;
-    const response = await fetch("/api/v1/trips/items", {
+    const response = await fetch(`/api/v1/trips/${tripId}/items`, {
       method: "POST",
       headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
       body: JSON.stringify({
@@ -294,7 +294,7 @@ export function TripsClient() {
     if (response.ok) {
       setToast("Item added to itinerary.");
       setAddItemDialog(null);
-      if (activeTrip) await loadItinerary(activeTrip.id);
+      await loadItinerary(tripId);
     } else {
       setToast("Item could not be added.");
     }
@@ -313,16 +313,39 @@ export function TripsClient() {
     }
   }
 
-  function moveItem(itemId: string, direction: -1 | 1) {
-    setItems((current) => {
-      const index = current.findIndex((i) => i.id === itemId);
-      if (index < 0) return current;
-      const target = index + direction;
-      if (target < 0 || target >= current.length) return current;
-      const copy = [...current];
-      [copy[index], copy[target]] = [copy[target], copy[index]];
-      return copy;
-    });
+  async function moveItem(itemId: string, direction: -1 | 1) {
+    if (!activeTrip) return;
+    const original = [...items];
+    const item = original.find((candidate) => candidate.id === itemId);
+    if (!item) return;
+    const dayItems = original
+      .filter((candidate) => candidate.dayId === item.dayId)
+      .sort((a, b) => a.order - b.order);
+    const index = dayItems.findIndex((candidate) => candidate.id === itemId);
+    const target = index + direction;
+    if (index < 0 || target < 0 || target >= dayItems.length) return;
+    [dayItems[index], dayItems[target]] = [dayItems[target], dayItems[index]];
+    const reordered = dayItems.map((candidate, order) => ({ ...candidate, order }));
+    setItems((current) => [
+      ...current.filter((candidate) => candidate.dayId !== item.dayId),
+      ...reordered,
+    ]);
+    const csrf = readCookie("atct_csrf");
+    const response = await fetch(
+      `/api/v1/trips/${activeTrip.id}/days/${item.dayId}/reorder`,
+      {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-csrf-token": csrf ?? "" },
+        body: JSON.stringify({ orderedItemIds: reordered.map((entry) => entry.id) }),
+      },
+    );
+    if (!response.ok) {
+      setItems(original);
+      setToast("Itinerary order could not be saved.");
+      return;
+    }
+    await loadItinerary(activeTrip.id);
+    setToast("Itinerary order saved.");
   }
 
   const isReady = tripsState.status === "ready";
@@ -476,10 +499,7 @@ export function TripsClient() {
               <p className="mt-1 text-sm text-slate-500">
                 Add a day to start building your timeline.
               </p>
-              <Button
-                className="mt-4"
-                onClick={() => setAddDayDialog(true)}
-              >
+              <Button className="mt-4" onClick={() => setAddDayDialog(true)}>
                 Add first day
               </Button>
             </div>
@@ -597,11 +617,7 @@ export function TripsClient() {
       ) : null}
 
       {editingTrip ? (
-        <Dialog
-          onClose={() => setEditingTrip(null)}
-          open
-          title="Edit trip"
-        >
+        <Dialog onClose={() => setEditingTrip(null)} open title="Edit trip">
           <form className="grid gap-4" onSubmit={saveTripEdit}>
             <Field label="Trip name">
               <TextInput
@@ -656,11 +672,7 @@ export function TripsClient() {
       ) : null}
 
       {addDayDialog ? (
-        <Dialog
-          onClose={() => setAddDayDialog(false)}
-          open
-          title="Add itinerary day"
-        >
+        <Dialog onClose={() => setAddDayDialog(false)} open title="Add itinerary day">
           <form className="grid gap-4" onSubmit={addDay}>
             <Field label="Date">
               <TextInput name="plannedDate" required type="date" />

@@ -128,6 +128,16 @@ export class SupabasePersistenceClient implements PersistenceClient {
       : success(undefined);
   }
 
+  async rpc<Row>(
+    functionName: string,
+    parameters: Readonly<Record<string, unknown>>,
+  ): Promise<Result<Row, AppError>> {
+    const response = await this.client.rpc(functionName as never, parameters as never);
+    return response.error
+      ? failure(mapDatabaseError(response.error))
+      : success(response.data as Row);
+  }
+
   private buildSelect(query: PersistenceQuery): UntypedQuery {
     let builder = this.client
       .from(query.table)

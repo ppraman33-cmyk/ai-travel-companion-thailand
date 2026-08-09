@@ -8,8 +8,7 @@ export default function TripsPage() {
       <SyntheticNotice />
       <HeroShell
         compact
-        coverImage="https://images.pexels.com/photos/8821868/pexels-photo-8821868.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-        eyebrow="Anonymous-session ownership"
+        eyebrow="Synthetic visual · anonymous-session ownership"
         title="Plan your trip"
         description="Create trips, build day-by-day itineraries, and manage your stops."
       />
