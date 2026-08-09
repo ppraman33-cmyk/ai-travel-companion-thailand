@@ -2272,6 +2272,71 @@ export type Database = {
           },
         ]
       }
+      traveler_profiles: {
+        Row: {
+          activity_level: string | null
+          budget_style: string | null
+          companions: string | null
+          correlation_id: string
+          created_at: string
+          deleted_at: string | null
+          description: string | null
+          id: string
+          is_active: boolean
+          mobility_needs: string | null
+          preferred_interests: string[]
+          profile_name: string
+          transportation: string | null
+          travel_style: string | null
+          traveler_session_id: string
+          updated_at: string
+        }
+        Insert: {
+          activity_level?: string | null
+          budget_style?: string | null
+          companions?: string | null
+          correlation_id?: string
+          created_at?: string
+          deleted_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          mobility_needs?: string | null
+          preferred_interests?: string[]
+          profile_name: string
+          transportation?: string | null
+          travel_style?: string | null
+          traveler_session_id: string
+          updated_at?: string
+        }
+        Update: {
+          activity_level?: string | null
+          budget_style?: string | null
+          companions?: string | null
+          correlation_id?: string
+          created_at?: string
+          deleted_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          mobility_needs?: string | null
+          preferred_interests?: string[]
+          profile_name?: string
+          transportation?: string | null
+          travel_style?: string | null
+          traveler_session_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "traveler_profiles_traveler_session_id_fkey"
+            columns: ["traveler_session_id"]
+            isOneToOne: false
+            referencedRelation: "traveler_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       traveler_sessions: {
         Row: {
           created_at: string
@@ -2330,12 +2395,14 @@ export type Database = {
           created_at: string
           data_classification: Database["public"]["Enums"]["data_classification"]
           deleted_at: string | null
+          destination: string | null
           end_date: string | null
           id: string
           notes: string | null
           start_date: string | null
           timezone: string
           title: string
+          traveler_profile_id: string | null
           traveler_session_id: string
           trip_status: string
           updated_at: string
@@ -2344,12 +2411,14 @@ export type Database = {
           created_at?: string
           data_classification: Database["public"]["Enums"]["data_classification"]
           deleted_at?: string | null
+          destination?: string | null
           end_date?: string | null
           id?: string
           notes?: string | null
           start_date?: string | null
           timezone?: string
           title: string
+          traveler_profile_id?: string | null
           traveler_session_id: string
           trip_status?: string
           updated_at?: string
@@ -2358,17 +2427,26 @@ export type Database = {
           created_at?: string
           data_classification?: Database["public"]["Enums"]["data_classification"]
           deleted_at?: string | null
+          destination?: string | null
           end_date?: string | null
           id?: string
           notes?: string | null
           start_date?: string | null
           timezone?: string
           title?: string
+          traveler_profile_id?: string | null
           traveler_session_id?: string
           trip_status?: string
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "trips_traveler_profile_id_fkey"
+            columns: ["traveler_profile_id"]
+            isOneToOne: false
+            referencedRelation: "traveler_profiles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "trips_traveler_session_id_fkey"
             columns: ["traveler_session_id"]
@@ -2495,6 +2573,15 @@ export type Database = {
         Returns: Json
       }
       current_traveler_session_id: { Args: never; Returns: string }
+      delete_traveler_profile: {
+        Args: {
+          linked_trip_action?: string
+          replacement_profile_id?: string
+          target_profile_id: string
+          target_session_id: string
+        }
+        Returns: undefined
+      }
       destination_profile_has_approved_source: {
         Args: { target_destination_id: string }
         Returns: boolean
@@ -2537,6 +2624,33 @@ export type Database = {
           to: "itinerary_items"
           isOneToOne: false
           isSetofReturn: true
+        }
+      }
+      set_active_traveler_profile: {
+        Args: { target_profile_id: string; target_session_id: string }
+        Returns: {
+          activity_level: string | null
+          budget_style: string | null
+          companions: string | null
+          correlation_id: string
+          created_at: string
+          deleted_at: string | null
+          description: string | null
+          id: string
+          is_active: boolean
+          mobility_needs: string | null
+          preferred_interests: string[]
+          profile_name: string
+          transportation: string | null
+          travel_style: string | null
+          traveler_session_id: string
+          updated_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "traveler_profiles"
+          isOneToOne: true
+          isSetofReturn: false
         }
       }
     }
