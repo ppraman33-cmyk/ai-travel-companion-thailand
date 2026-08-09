@@ -15,7 +15,11 @@ export type IconName =
   | "arrow"
   | "close"
   | "report"
-  | "car";
+  | "car"
+  | "bell"
+  | "filter"
+  | "gift"
+  | "bot";
 
 const paths: Record<IconName, string> = {
   home: "M3 11.5 12 4l9 7.5V21h-6v-6H9v6H3z",
@@ -37,6 +41,10 @@ const paths: Record<IconName, string> = {
   report:
     "M12 9v4m0 4v.01M10.3 3.8 2.6 18a2 2 0 0 0 1.8 3h15.2a2 2 0 0 0 1.8-3L13.7 3.8a2 2 0 0 0-3.4 0Z",
   car: "M3 14l2-6h14l2 6v5h-2v-2H5v2H3Zm3-4-1 4h14l-1-4ZM7 15h.01M17 15h.01",
+  bell: "M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Zm-8 12h4",
+  filter: "M4 6h16M7 12h10M10 18h4",
+  gift: "M4 10h16v11H4zM3 6h18v4H3zm9 0v15m0-15H8.5a2.5 2.5 0 1 1 2.5-2.5V6Zm0 0h3.5A2.5 2.5 0 1 0 13 3.5V6Z",
+  bot: "M8 9h8a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4Zm4 0V5m-1-2h2M8 14h.01M16 14h.01M7 18v2m10-2v2",
 };
 
 export function Icon({

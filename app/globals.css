@@ -66,6 +66,32 @@ dialog::backdrop {
   border-radius: 50%;
 }
 
+.home-rail {
+  scrollbar-width: none;
+}
+
+.home-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.home-rail-card {
+  position: relative;
+  flex: 0 0 8.8rem;
+  min-height: 9.5rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  scroll-snap-align: start;
+  background: var(--color-emerald-100);
+  box-shadow: var(--shadow-card);
+}
+
+@media (min-width: 640px) {
+  .home-rail-card {
+    flex-basis: 12rem;
+    min-height: 12rem;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .welcome-glow {
     animation: welcome-drift 8s ease-in-out infinite alternate;

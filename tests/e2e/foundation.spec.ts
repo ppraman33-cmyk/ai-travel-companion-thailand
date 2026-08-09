@@ -11,6 +11,7 @@ const responsiveViewports = [
   { width: 320, height: 568 },
   { width: 375, height: 667 },
   { width: 390, height: 844 },
+  { width: 430, height: 932 },
   { width: 768, height: 1024 },
   { width: 1280, height: 800 },
   { width: 1440, height: 900 },
@@ -44,18 +45,12 @@ test("first-run onboarding persists only after success and supports local-only s
 
   await page.goto("/");
   await expect(page.getByText("Step 1 of 5")).toBeVisible();
-  await expect(
-    page.getByRole("heading", { name: "Explore Thailand with confidence." }),
-  ).toBeHidden();
+  await expect(page.getByRole("heading", { name: "Demo Lanna" })).toBeHidden();
   await page.getByRole("button", { name: "Skip all" }).click();
-  await expect(
-    page.getByRole("heading", { name: "Explore Thailand with confidence." }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Demo Lanna" })).toBeVisible();
   expect(requests).toEqual([]);
   await page.reload();
-  await expect(
-    page.getByRole("heading", { name: "Explore Thailand with confidence." }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Demo Lanna" })).toBeVisible();
 
   await page.evaluate(() => localStorage.removeItem("atct-onboarding-completed"));
   await page.route("**/api/v1/sessions", async (route) => {
@@ -94,9 +89,7 @@ test("first-run onboarding persists only after success and supports local-only s
   }
   await page.getByRole("textbox", { name: /Profile name/ }).fill("Solo Thailand");
   await page.getByRole("button", { name: "Save profile" }).click();
-  await expect(
-    page.getByRole("heading", { name: "Explore Thailand with confidence." }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Demo Lanna" })).toBeVisible();
   expect(profileWrites).toBe(1);
 });
 
@@ -120,7 +113,7 @@ test("renders the traveler PWA shell and primary navigation", async ({ page }) =
   }
   await expect(
     page.getByRole("heading", {
-      name: "Explore Thailand with confidence.",
+      name: "Demo Lanna",
     }),
   ).toBeVisible();
   await expect(
@@ -131,7 +124,11 @@ test("renders the traveler PWA shell and primary navigation", async ({ page }) =
     page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("link"),
   ).toHaveCount(5);
   await page.getByRole("button", { name: "TH" }).click();
-  await expect(page.getByRole("link", { name: "สำรวจ" })).toBeVisible();
+  await expect(
+    page
+      .getByRole("navigation", { name: "เมนูนำทางบนมือถือ" })
+      .getByRole("link", { name: "สำรวจ", exact: true }),
+  ).toBeVisible();
   await expect(page.locator("html")).toHaveAttribute("lang", "th");
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("lang", "th");
@@ -139,6 +136,47 @@ test("renders the traveler PWA shell and primary navigation", async ({ page }) =
   const thaiButtonBox = await page.getByRole("button", { name: "TH" }).boundingBox();
   expect(thaiButtonBox?.width).toBeGreaterThanOrEqual(44);
   expect(thaiButtonBox?.height).toBeGreaterThanOrEqual(44);
+});
+
+test("reference Home keeps deterministic planning and synthetic safety contracts", async ({
+  page,
+}) => {
+  await useReturningTraveler(page);
+  await page.route("**/api/v1/profiles", async (route) => {
+    await route.fulfill({
+      body: JSON.stringify({
+        data: [{ name: "Food demo", travelStyle: "food", active: true }],
+      }),
+      contentType: "application/json",
+      status: 200,
+    });
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  await expect(page.getByRole("heading", { name: "Demo Lanna" })).toBeVisible();
+  await expect(page.getByRole("search")).toBeVisible();
+  await expect(page.getByText("Live AI remains disabled.")).toBeVisible();
+  await expect(
+    page.getByRole("img", { name: "Official mascot placement slot" }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "AI assistant" })).toHaveAttribute(
+    "href",
+    "/assistant",
+  );
+  const recommendedRail = page.locator("section").filter({
+    has: page.getByRole("heading", { name: "Recommended for you" }),
+  });
+  await expect(recommendedRail.locator(".home-rail-card").first()).toContainText(
+    "River Leaf Kitchen",
+  );
+  await expect(page.locator("main img")).toHaveCount(0);
+  const quickExplore = page
+    .getByRole("navigation", { name: "Quick categories" })
+    .getByRole("link", { name: "Explore" });
+  const box = await quickExplore.boundingBox();
+  expect(box?.width).toBeGreaterThanOrEqual(44);
+  expect(box?.height).toBeGreaterThanOrEqual(44);
 });
 
 test("Traveler UI Foundation Batch 1 renders all five production-shaped screens", async ({
@@ -157,30 +195,31 @@ test("Traveler UI Foundation Batch 1 renders all five production-shaped screens"
   await expect(page.getByText("Approved mascot direction")).toBeVisible();
 
   await page.goto("/");
-  await expect(
-    page.getByRole("button", { name: "SOS unavailable in demo" }),
-  ).toBeDisabled();
-  await expect(page.getByRole("button", { name: "Coming later" })).toBeDisabled();
-  await expect(
-    page.getByLabel("Start your journey").getByRole("link", { name: "Trips" }),
-  ).toHaveAttribute("href", "/trips");
-  await expect(page.getByRole("link", { name: "Saved places" })).toHaveAttribute(
+  await expect(page.getByRole("link", { name: /Start planning/ })).toHaveAttribute(
+    "href",
+    "/trips",
+  );
+  await expect(page.getByRole("link", { name: "Saved" })).toHaveAttribute(
     "href",
     "/saved",
   );
-  await expect(page.getByRole("link", { name: "Travel profile" })).toHaveAttribute(
-    "href",
-    "/profile",
-  );
-  await expect(page.getByRole("link", { name: "Help & assistance" })).toHaveAttribute(
-    "href",
-    "/help",
-  );
-  await expect(page.getByRole("heading", { name: "Featured provinces" })).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Profile", exact: true }),
+  ).toHaveAttribute("href", "/profile");
+  await expect(
+    page.getByRole("link", { name: "Notifications unavailable in demo" }),
+  ).toHaveAttribute("href", "/help");
+  await expect(
+    page.getByRole("heading", { name: "Trending destinations" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Recommended for you" }),
+  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Nearby you" })).toBeVisible();
   await expect(page.getByText("Synthetic visual").first()).toBeVisible();
   for (const link of [
-    page.getByRole("link", { name: "Open Help information" }),
-    page.getByRole("link", { name: "See all →" }).first(),
+    page.getByRole("link", { name: "Notifications unavailable in demo" }),
+    page.getByRole("link", { name: /See all/ }).first(),
   ]) {
     const box = await link.boundingBox();
     expect(box?.height).toBeGreaterThanOrEqual(44);
