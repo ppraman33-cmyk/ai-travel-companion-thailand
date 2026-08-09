@@ -74,7 +74,7 @@ function TravelerFrame({ children }: { readonly children: ReactNode }) {
           <TravelerNavigation />
         </aside>
         <main
-          className="grid min-w-0 gap-8 px-4 py-6 pb-28 sm:px-6 lg:px-8 lg:pb-10"
+          className="grid min-w-0 gap-8 px-4 py-6 pb-28 [&>*]:min-w-0 sm:px-6 lg:px-8 lg:pb-10"
           id="main-content"
         >
           {children}

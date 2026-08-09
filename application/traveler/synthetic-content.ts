@@ -63,6 +63,33 @@ export const demoItems = [
   },
 ] as const;
 
+export const demoProvinces = [
+  {
+    name: "Demo Lanna",
+    thaiName: "ล้านนาจำลอง",
+    region: "Northern",
+    palette: "emerald",
+  },
+  {
+    name: "Demo Andaman",
+    thaiName: "อันดามันจำลอง",
+    region: "Southern",
+    palette: "sky",
+  },
+  {
+    name: "Demo Isan",
+    thaiName: "อีสานจำลอง",
+    region: "Northeastern",
+    palette: "amber",
+  },
+  {
+    name: "Demo Riverside",
+    thaiName: "ริมน้ำจำลอง",
+    region: "Central",
+    palette: "violet",
+  },
+] as const;
+
 export const categoryLabels: Record<DemoCategory, string> = {
   attractions: "Attractions",
   restaurants: "Restaurants",

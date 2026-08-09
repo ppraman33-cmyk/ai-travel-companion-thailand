@@ -52,6 +52,36 @@ dialog::backdrop {
   backdrop-filter: blur(2px);
 }
 
+.welcome-stage::after {
+  content: "";
+  position: absolute;
+  inset: auto -8% -18% auto;
+  width: 42rem;
+  height: 42rem;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .welcome-glow {
+    animation: welcome-drift 8s ease-in-out infinite alternate;
+  }
+  .welcome-mascot {
+    animation: welcome-float 4s ease-in-out infinite;
+  }
+}
+
+@keyframes welcome-drift {
+  to {
+    transform: translate(4rem, 2rem) scale(1.08);
+  }
+}
+@keyframes welcome-float {
+  50% {
+    transform: translateY(-0.6rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -14,7 +14,8 @@ export type IconName =
   | "place"
   | "arrow"
   | "close"
-  | "report";
+  | "report"
+  | "car";
 
 const paths: Record<IconName, string> = {
   home: "M3 11.5 12 4l9 7.5V21h-6v-6H9v6H3z",
@@ -35,6 +36,7 @@ const paths: Record<IconName, string> = {
   close: "M6 6l12 12M18 6 6 18",
   report:
     "M12 9v4m0 4v.01M10.3 3.8 2.6 18a2 2 0 0 0 1.8 3h15.2a2 2 0 0 0 1.8-3L13.7 3.8a2 2 0 0 0-3.4 0Z",
+  car: "M3 14l2-6h14l2 6v5h-2v-2H5v2H3Zm3-4-1 4h14l-1-4ZM7 15h.01M17 15h.01",
 };
 
 export function Icon({
