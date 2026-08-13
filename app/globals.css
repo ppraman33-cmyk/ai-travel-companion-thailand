@@ -74,6 +74,30 @@ dialog::backdrop {
   display: none;
 }
 
+.reference-rail {
+  scrollbar-width: none;
+}
+
+.reference-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.reference-page {
+  margin-inline: auto;
+  display: grid;
+  width: 100%;
+  max-width: 72rem;
+  min-width: 0;
+  gap: 1.5rem;
+}
+
+.reference-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
 .home-rail-card {
   position: relative;
   flex: 0 0 8.8rem;
