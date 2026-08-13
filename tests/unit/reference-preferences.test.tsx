@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
 import { PreferencePage } from "@/components/traveler/preference-page";
+afterEach(cleanup);
 describe("reference traveler preference pages", () => {
   it("does not imply registered-account controls", () => {
     render(<PreferencePage kind="privacy" />);

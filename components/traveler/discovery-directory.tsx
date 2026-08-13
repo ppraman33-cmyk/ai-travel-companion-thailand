@@ -40,7 +40,7 @@ export function DiscoveryDirectory({
       />
       <form
         action="/explore"
-        className="reference-card flex min-h-14 items-center gap-3 p-3"
+        className="reference-card grid min-h-14 min-w-0 gap-2 p-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center"
         role="search"
       >
         <label className="sr-only" htmlFor={`${kind}-search`}>
@@ -52,7 +52,7 @@ export function DiscoveryDirectory({
           name="q"
           placeholder="Search synthetic previews"
         />
-        <button className="rounded-xl bg-emerald-600 px-4 font-bold text-white">
+        <button className="w-full rounded-xl bg-emerald-800 px-4 font-bold text-white sm:w-auto">
           Search
         </button>
       </form>

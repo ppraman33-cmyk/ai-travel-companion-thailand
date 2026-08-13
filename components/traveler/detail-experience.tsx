@@ -135,9 +135,10 @@ export function DetailExperience({
               </p>
             </div>
           </div>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <TravelerActions emergency={emergency} placeId={item.id} />
-          </div>
+          <p className="mt-4 text-sm text-slate-600">
+            Save, report and confirmed external-map actions remain available in the
+            sticky action bar.
+          </p>
         </ContentCard>
       </section>
       <section aria-labelledby="reviews-title">

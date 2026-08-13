@@ -21,14 +21,22 @@ const travelerRoutes = [
   "/",
   "/welcome",
   "/explore",
+  "/thailand",
+  "/thailand/regions",
+  "/thailand/provinces",
   "/thailand/northern/demo-lanna-province",
   "/thailand/northern/demo-lanna-province/restaurants",
   "/thailand/northern/demo-lanna-province/restaurants/river-leaf-kitchen",
   "/saved",
   "/trips",
+  "/settings",
+  "/notifications",
+  "/privacy",
   "/assistant",
   "/profile",
   "/help",
+  "/help/safe-traveler-features",
+  "/about",
 ] as const;
 
 test("first-run onboarding persists only after success and supports local-only skip", async ({
@@ -268,7 +276,7 @@ test("Traveler UI Foundation Batch 1 renders all five production-shaped screens"
   await expect(
     page.getByRole("heading", { name: "River Leaf Kitchen", level: 1 }),
   ).toBeVisible();
-  await expect(page.getByText("Opening hours")).toBeVisible();
+  await expect(page.getByText("Hours / schedule")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Nearby & related" })).toBeVisible();
   for (const link of [
     page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", {
@@ -401,8 +409,17 @@ test("primary traveler pages have no serious or critical axe violations", async 
   for (const route of [
     "/",
     "/explore",
+    "/thailand",
+    "/thailand/regions",
+    "/thailand/provinces",
     "/thailand/northern/demo-lanna-province/restaurants/river-leaf-kitchen",
+    "/settings",
+    "/notifications",
+    "/privacy",
+    "/assistant",
     "/help",
+    "/help/safe-traveler-features",
+    "/about",
   ]) {
     await page.goto(route);
     const result = await new AxeBuilder({ page }).analyze();

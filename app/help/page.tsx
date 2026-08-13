@@ -94,7 +94,7 @@ export default function HelpPage() {
         title="No verified emergency records are available"
         description="AI and synthetic fixtures never fill missing phone, address or coordinate fields."
       />
-      <p className="text-xs text-slate-500">
+      <p className="text-xs text-slate-600">
         Synthetic province context: {demoProvince.name}. Emergency responses are
         excluded from service-worker caching.
       </p>

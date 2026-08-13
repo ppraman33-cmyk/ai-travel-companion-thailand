@@ -36,7 +36,7 @@ export function SyntheticCatalogPage({
           name="q"
           placeholder={`Search ${title.toLowerCase()}`}
         />
-        <button className="rounded-xl bg-emerald-600 px-4 font-bold text-white">
+        <button className="rounded-xl bg-emerald-800 px-4 font-bold text-white">
           Search
         </button>
       </form>
