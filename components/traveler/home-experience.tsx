@@ -179,7 +179,7 @@ export function HomeExperience() {
           {t.search}
         </label>
         <input
-          className="min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-slate-500"
+          className="min-h-11 min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-slate-500"
           id="home-search"
           name="q"
           placeholder={t.search}

@@ -164,6 +164,10 @@ test("reference Home keeps deterministic planning and synthetic safety contracts
 
   await expect(page.getByRole("heading", { name: "Demo Lanna" })).toBeVisible();
   await expect(page.getByRole("search")).toBeVisible();
+  const searchInputBox = await page
+    .getByRole("searchbox", { name: "Where do you want to explore?" })
+    .boundingBox();
+  expect(searchInputBox?.height).toBeGreaterThanOrEqual(44);
   await expect(page.getByText("Live AI remains disabled.")).toBeVisible();
   await expect(
     page.getByRole("img", { name: "Official mascot placement slot" }),
