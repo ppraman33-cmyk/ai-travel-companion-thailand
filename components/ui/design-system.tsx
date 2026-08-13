@@ -224,7 +224,9 @@ export function HeroShell({
       className={cx(
         "relative isolate overflow-hidden rounded-[2rem] text-white shadow-[var(--shadow-card)]",
         compact ? "px-6 py-8" : "min-h-[25rem] px-6 py-12 sm:px-10",
-        coverImage ? "bg-emerald-950" : "bg-gradient-to-br from-emerald-950 via-emerald-800 to-teal-500",
+        coverImage
+          ? "bg-emerald-950"
+          : "bg-gradient-to-br from-emerald-950 via-emerald-800 to-teal-500",
       )}
     >
       {coverImage ? (
@@ -378,6 +380,117 @@ export function ResponsiveLayout({
     <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 py-8 lg:grid-cols-[15rem_minmax(0,1fr)]">
       {sidebar ? <aside className="hidden lg:block">{sidebar}</aside> : null}
       <section>{children}</section>
+    </div>
+  );
+}
+
+export function SectionHeader({
+  title,
+  description,
+  href,
+  actionLabel = "See all",
+}: {
+  readonly title: string;
+  readonly description?: string;
+  readonly href?: string;
+  readonly actionLabel?: string;
+}) {
+  return (
+    <div className="flex items-end justify-between gap-4">
+      <div className="min-w-0">
+        <h2 className="text-xl font-black tracking-tight sm:text-2xl">{title}</h2>
+        {description ? (
+          <p className="mt-1 text-sm text-slate-600">{description}</p>
+        ) : null}
+      </div>
+      {href ? (
+        <Link
+          className="inline-flex min-h-11 shrink-0 items-center rounded-xl px-2 text-sm font-bold text-slate-600 hover:bg-white"
+          href={href}
+        >
+          {actionLabel} <span aria-hidden="true">›</span>
+        </Link>
+      ) : null}
+    </div>
+  );
+}
+
+export function HorizontalRail({
+  children,
+  label,
+}: {
+  readonly children: ReactNode;
+  readonly label: string;
+}) {
+  return (
+    <div
+      aria-label={label}
+      className="reference-rail -mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0"
+      role="list"
+    >
+      {children}
+    </div>
+  );
+}
+
+export function PageHeader({
+  eyebrow,
+  title,
+  description,
+  actions,
+}: {
+  readonly eyebrow?: string;
+  readonly title: string;
+  readonly description?: string;
+  readonly actions?: ReactNode;
+}) {
+  return (
+    <header className="flex items-start justify-between gap-4">
+      <div className="min-w-0">
+        {eyebrow ? (
+          <p className="text-xs font-bold uppercase tracking-[.16em] text-emerald-700">
+            {eyebrow}
+          </p>
+        ) : null}
+        <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-5xl">{title}</h1>
+        {description ? (
+          <p className="mt-2 max-w-2xl text-slate-600">{description}</p>
+        ) : null}
+      </div>
+      {actions ? <div className="flex shrink-0 gap-2">{actions}</div> : null}
+    </header>
+  );
+}
+
+export function FactsGrid({ children }: { readonly children: ReactNode }) {
+  return <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">{children}</dl>;
+}
+
+export function Fact({
+  label,
+  value,
+}: {
+  readonly label: string;
+  readonly value: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-4">
+      <dt className="text-xs font-bold uppercase tracking-wide text-slate-500">
+        {label}
+      </dt>
+      <dd className="mt-1 font-bold text-slate-900">{value}</dd>
+    </div>
+  );
+}
+
+export function MascotSlot({ label }: { readonly label: string }) {
+  return (
+    <div
+      aria-label={label}
+      className="grid aspect-square min-h-24 place-items-center rounded-full border-2 border-dashed border-emerald-300 bg-emerald-50 text-center text-xs font-bold text-emerald-800"
+      role="img"
+    >
+      {label}
     </div>
   );
 }

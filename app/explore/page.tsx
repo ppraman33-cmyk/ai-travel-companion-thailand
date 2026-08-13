@@ -148,7 +148,7 @@ export default async function ExplorePage({
               Explore results
             </h2>
           </div>
-          <span className="text-sm text-slate-500">{filtered.length} results</span>
+          <span className="text-sm text-slate-600">{filtered.length} results</span>
         </div>
         {state === "loading" ? (
           <div className="mt-4">

@@ -1,4 +1,5 @@
 import { demoItems, demoProvince } from "@/application/traveler/synthetic-content";
+import Link from "next/link";
 import { TravelerShell } from "@/components/traveler/traveler-shell";
 import {
   Badge,
@@ -54,6 +55,22 @@ export default function HelpPage() {
           )}
         </div>
       </section>
+      <section aria-labelledby="help-guides">
+        <h2 className="text-2xl font-bold" id="help-guides">
+          Help guides
+        </h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <Link
+            className="reference-card min-h-16 p-4 font-bold"
+            href="/help/safe-traveler-features"
+          >
+            Using safe traveler features
+          </Link>
+          <Link className="reference-card min-h-16 p-4 font-bold" href="/about">
+            About this application
+          </Link>
+        </div>
+      </section>
       <ContentCard className="border-red-200">
         <div className="flex gap-2">
           <Badge tone="danger">Expired demo</Badge>
@@ -77,7 +94,7 @@ export default function HelpPage() {
         title="No verified emergency records are available"
         description="AI and synthetic fixtures never fill missing phone, address or coordinate fields."
       />
-      <p className="text-xs text-slate-500">
+      <p className="text-xs text-slate-600">
         Synthetic province context: {demoProvince.name}. Emergency responses are
         excluded from service-worker caching.
       </p>

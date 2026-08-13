@@ -16,13 +16,17 @@ export function TravelerNavigation({ mobile = false }: { readonly mobile?: boole
   const primary: { label: string; href: string; icon: IconName }[] = [
     { label: strings.home, href: "/", icon: "home" },
     { label: strings.explore, href: "/explore", icon: "search" },
-    { label: strings.trips, href: "/trips", icon: "trip" },
+    { label: strings.assistant, href: "/assistant", icon: "bot" },
     { label: strings.saved, href: "/saved", icon: "heart" },
     { label: strings.profile, href: "/profile", icon: "user" },
   ];
   const desktop = [
-    ...primary,
-    { label: strings.assistant, href: "/assistant", icon: "spark" as IconName },
+    primary[0],
+    primary[1],
+    { label: strings.trips, href: "/trips", icon: "trip" as IconName },
+    primary[2],
+    primary[3],
+    primary[4],
     { label: strings.help, href: "/help", icon: "help" as IconName },
   ];
   const items = mobile ? primary : desktop;

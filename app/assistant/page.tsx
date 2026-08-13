@@ -42,6 +42,48 @@ export default function AssistantPage() {
           </p>
         </ContentCard>
       </div>
+      <section aria-labelledby="suggestion-title">
+        <h2 className="text-2xl font-black" id="suggestion-title">
+          Suggested deterministic actions
+        </h2>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {[
+            "Find synthetic attractions",
+            "Open my Trips",
+            "Review travel preferences",
+          ].map((label) => (
+            <span
+              className="inline-flex min-h-11 items-center rounded-full border border-emerald-200 bg-white px-4 text-sm font-bold"
+              key={label}
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+      </section>
+      <ContentCard>
+        <label className="font-bold" htmlFor="assistant-input">
+          Ask the assistant
+        </label>
+        <div className="mt-3 flex gap-2">
+          <input
+            aria-describedby="assistant-availability"
+            className="min-h-12 min-w-0 flex-1 rounded-xl border px-4"
+            disabled
+            id="assistant-input"
+            placeholder="Live AI is not available"
+          />
+          <button
+            className="rounded-xl bg-slate-200 px-4 font-bold text-slate-500"
+            disabled
+          >
+            Send
+          </button>
+        </div>
+        <p className="mt-2 text-sm text-slate-600" id="assistant-availability">
+          No provider is active. No prompt or location leaves this application.
+        </p>
+      </ContentCard>
       <StatusState
         state="empty"
         title="No live AI request will be sent"

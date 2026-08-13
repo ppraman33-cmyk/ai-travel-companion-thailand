@@ -1,14 +1,13 @@
-import { CatalogPreview } from "@/components/traveler/catalog-preview";
+import { SyntheticCatalogPage } from "@/components/traveler/synthetic-catalog-page";
 import { TravelerShell } from "@/components/traveler/traveler-shell";
 
 export default function EventsPage() {
   return (
     <TravelerShell>
-      <h1 className="text-3xl font-bold">Events and festivals</h1>
-      <CatalogPreview
-        endpoint="/api/v1/events?limit=20"
-        heading="Verified events"
-        href="/events"
+      <SyntheticCatalogPage
+        categories={["events"]}
+        title="Festivals and events"
+        description="Discover clearly labelled fictional previews while every real occurrence remains evidence-gated."
       />
     </TravelerShell>
   );

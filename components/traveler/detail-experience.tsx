@@ -6,7 +6,14 @@ import {
   demoProvince,
   type DemoCategory,
 } from "@/application/traveler/synthetic-content";
-import { Badge, ContentCard, SyntheticNotice } from "@/components/ui/design-system";
+import {
+  Badge,
+  ContentCard,
+  Fact,
+  FactsGrid,
+  StatusState,
+  SyntheticNotice,
+} from "@/components/ui/design-system";
 import { Icon } from "@/components/ui/icon";
 import { DemoCard } from "./demo-card";
 import { SyntheticVisual } from "./synthetic-visual";
@@ -71,7 +78,7 @@ export function DetailExperience({
           />
         </div>
       </section>
-      <header>
+      <header className="reference-card p-5 sm:p-7">
         <div className="flex flex-wrap gap-2">
           <Badge tone={emergency ? "danger" : "info"}>Synthetic demo</Badge>
           <Badge tone="warning">Evidence pending</Badge>
@@ -96,17 +103,26 @@ export function DetailExperience({
           <p className="mt-1 text-sm">Phone, map and contact actions are suppressed.</p>
         </div>
       ) : null}
+      <FactsGrid>
+        <Fact label="Rating" value="Unavailable · evidence required" />
+        <Fact label="Hours / schedule" value="Verification pending" />
+        <Fact label="Contact" value="Suppressed" />
+        <Fact label="Media rights" value="Synthetic placeholder only" />
+      </FactsGrid>
       <section className="grid gap-5 lg:grid-cols-[1.1fr_.9fr]">
         <ContentCard>
           <h2 className="text-2xl font-black">About this place</h2>
           <p className="mt-3 text-slate-600">{item.summary}</p>
           <h3 className="mt-7 font-black">Quick facts</h3>
-          <dl className="mt-3 grid gap-4 sm:grid-cols-2">
-            <Fact label="Opening hours" value="Unknown · verification required" />
-            <Fact label="Price" value={item.meta} />
-            <Fact label="Contact" value="Not available in demo" />
-            <Fact label="Website" value="No verified first-party URL" />
-          </dl>
+          <div className="mt-3 grid gap-3">
+            <p className="rounded-xl bg-emerald-50 p-4 text-sm text-emerald-950">
+              {item.meta}
+            </p>
+            <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">
+              Amenities, menus and schedules appear only when their entity subtype and
+              evidence records support them.
+            </p>
+          </div>
         </ContentCard>
         <ContentCard>
           <h2 className="text-2xl font-black">Plan your visit</h2>
@@ -119,10 +135,23 @@ export function DetailExperience({
               </p>
             </div>
           </div>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <TravelerActions emergency={emergency} placeId={item.id} />
-          </div>
+          <p className="mt-4 text-sm text-slate-600">
+            Save, report and confirmed external-map actions remain available in the
+            sticky action bar.
+          </p>
         </ContentCard>
+      </section>
+      <section aria-labelledby="reviews-title">
+        <h2 className="text-2xl font-black" id="reviews-title">
+          Traveler reviews
+        </h2>
+        <div className="mt-4">
+          <StatusState
+            state="empty"
+            title="No verified reviews"
+            description="Synthetic reviews and ratings are never generated."
+          />
+        </div>
       </section>
       <section>
         <h2 className="text-2xl font-black">Nearby & related</h2>
@@ -146,15 +175,11 @@ export function DetailExperience({
           <Fact label="Media rights" value="No real media attached" />
         </dl>
       </ContentCard>
+      <div className="sticky bottom-[calc(5rem+env(safe-area-inset-bottom))] z-10 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-lg backdrop-blur lg:bottom-4">
+        <div className="flex flex-wrap justify-end gap-2">
+          <TravelerActions emergency={emergency} placeId={item.id} />
+        </div>
+      </div>
     </>
-  );
-}
-
-function Fact({ label, value }: { readonly label: string; readonly value: string }) {
-  return (
-    <div>
-      <dt className="font-bold">{label}</dt>
-      <dd className="mt-1 text-slate-600">{value}</dd>
-    </div>
   );
 }
