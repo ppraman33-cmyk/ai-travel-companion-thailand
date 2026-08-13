@@ -1,4 +1,5 @@
 import { demoItems, demoProvince } from "@/application/traveler/synthetic-content";
+import Link from "next/link";
 import { TravelerShell } from "@/components/traveler/traveler-shell";
 import {
   Badge,
@@ -52,6 +53,22 @@ export default function HelpPage() {
               </div>
             ),
           )}
+        </div>
+      </section>
+      <section aria-labelledby="help-guides">
+        <h2 className="text-2xl font-bold" id="help-guides">
+          Help guides
+        </h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <Link
+            className="reference-card min-h-16 p-4 font-bold"
+            href="/help/safe-traveler-features"
+          >
+            Using safe traveler features
+          </Link>
+          <Link className="reference-card min-h-16 p-4 font-bold" href="/about">
+            About this application
+          </Link>
         </div>
       </section>
       <ContentCard className="border-red-200">
