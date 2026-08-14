@@ -48,7 +48,7 @@ function runInvalidFixture(
   writeFileSync(path, JSON.stringify(fixture));
   return spawnSync(
     process.execPath,
-    ["scripts/build-thailand-province-map.mjs", path],
+    ["scripts/build-thailand-province-map.mjs", path, "--fail-fast"],
     {
       cwd: root,
       encoding: "utf8",
@@ -98,9 +98,9 @@ describe("Thailand province geography foundation", () => {
         coordinates: [
           [
             [100, 10],
-            [101, 11],
-            [100, 11],
-            [101, 10],
+            [102, 12],
+            [100, 12],
+            [101.5, 10],
             [100, 10],
           ],
         ],
@@ -110,5 +110,5 @@ describe("Thailand province geography foundation", () => {
     expect(selfIntersecting.stderr).toMatch(
       /(self-intersecting|topologically invalid) geometry/,
     );
-  }, 30_000);
+  });
 });

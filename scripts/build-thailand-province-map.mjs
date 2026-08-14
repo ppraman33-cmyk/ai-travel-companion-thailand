@@ -23,14 +23,22 @@ const registry = new Map(
 
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 const failures = [];
+const failFast = process.argv.includes("--fail-fast");
+function recordFailure(message) {
+  failures.push(message);
+  if (failFast) {
+    console.error(message);
+    process.exit(1);
+  }
+}
 const seenGeometry = new Set();
 const bounds = [Infinity, Infinity, -Infinity, -Infinity];
 
 function validateRing(ring, code) {
   if (!Array.isArray(ring) || ring.length < 4)
-    failures.push(`${code}: ring has fewer than four positions`);
+    recordFailure(`${code}: ring has fewer than four positions`);
   if (JSON.stringify(ring[0]) !== JSON.stringify(ring.at(-1)))
-    failures.push(`${code}: ring is not closed`);
+    recordFailure(`${code}: ring is not closed`);
   let twiceArea = 0;
   for (let index = 0; index < ring.length; index += 1) {
     const position = ring[index];
@@ -39,12 +47,12 @@ function validateRing(ring, code) {
       position.length < 2 ||
       !position.slice(0, 2).every(Number.isFinite)
     ) {
-      failures.push(`${code}: invalid coordinate`);
+      recordFailure(`${code}: invalid coordinate`);
       continue;
     }
     const [longitude, latitude] = position;
     if (longitude < 96 || longitude > 107 || latitude < 4 || latitude > 22) {
-      failures.push(`${code}: coordinate outside Thailand validation envelope`);
+      recordFailure(`${code}: coordinate outside Thailand validation envelope`);
     }
     bounds[0] = Math.min(bounds[0], longitude);
     bounds[1] = Math.min(bounds[1], latitude);
@@ -55,20 +63,20 @@ function validateRing(ring, code) {
       twiceArea += previousLongitude * latitude - longitude * previousLatitude;
     }
   }
-  if (Math.abs(twiceArea) < 1e-10) failures.push(`${code}: zero-area ring`);
+  if (Math.abs(twiceArea) < 1e-10) recordFailure(`${code}: zero-area ring`);
 }
 
 function validateGeometry(geometry, code) {
   if (!geometry || !["Polygon", "MultiPolygon"].includes(geometry.type)) {
-    failures.push(`${code}: geometry must be Polygon or MultiPolygon`);
+    recordFailure(`${code}: geometry must be Polygon or MultiPolygon`);
     return;
   }
   const polygons =
     geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
-  if (!polygons.length) failures.push(`${code}: empty geometry`);
+  if (!polygons.length) recordFailure(`${code}: empty geometry`);
   for (const polygon of polygons) {
     if (!Array.isArray(polygon) || !polygon.length)
-      failures.push(`${code}: empty polygon`);
+      recordFailure(`${code}: empty polygon`);
     for (const ring of polygon) validateRing(ring, code);
     const intersections = polygonSelfIntersections({
       type: "Feature",
@@ -76,27 +84,27 @@ function validateGeometry(geometry, code) {
       geometry: { type: "Polygon", coordinates: polygon },
     });
     if (intersections.geometry.coordinates.length)
-      failures.push(`${code}: self-intersecting geometry`);
+      recordFailure(`${code}: self-intersecting geometry`);
   }
   const fingerprint = sha256(JSON.stringify(geometry));
-  if (seenGeometry.has(fingerprint)) failures.push(`${code}: duplicate geometry`);
+  if (seenGeometry.has(fingerprint)) recordFailure(`${code}: duplicate geometry`);
   seenGeometry.add(fingerprint);
   if (!booleanValid({ type: "Feature", properties: {}, geometry }))
-    failures.push(`${code}: topologically invalid geometry`);
+    recordFailure(`${code}: topologically invalid geometry`);
 }
 
 if (source.type !== "FeatureCollection")
-  failures.push("source: expected FeatureCollection");
+  recordFailure("source: expected FeatureCollection");
 if (source.features?.length !== 77)
-  failures.push(`source: expected 77 features, found ${source.features?.length ?? 0}`);
+  recordFailure(`source: expected 77 features, found ${source.features?.length ?? 0}`);
 if (registry.size !== 77)
-  failures.push(`registry: expected 77 records, found ${registry.size}`);
+  recordFailure(`registry: expected 77 records, found ${registry.size}`);
 
 const normalizedFeatures = (source.features ?? []).map((feature) => {
   const code = feature.properties?.shapeISO;
   const record = registry.get(code);
   if (!record)
-    failures.push(`${code ?? "missing-code"}: no authoritative registry mapping`);
+    recordFailure(`${code ?? "missing-code"}: no authoritative registry mapping`);
   validateGeometry(feature.geometry, code ?? "missing-code");
   return {
     type: "Feature",
@@ -120,14 +128,14 @@ for (const [label, values] of [
   ["English names", englishNames],
   ["Thai names", thaiNames],
 ]) {
-  if (values.some((value) => !value)) failures.push(`${label}: empty value`);
-  if (new Set(values).size !== 77) failures.push(`${label}: expected 77 unique values`);
+  if (values.some((value) => !value)) recordFailure(`${label}: empty value`);
+  if (new Set(values).size !== 77) recordFailure(`${label}: expected 77 unique values`);
 }
-if (!codes.includes("TH-10")) failures.push("Bangkok TH-10 is missing");
+if (!codes.includes("TH-10")) recordFailure("Bangkok TH-10 is missing");
 if (englishNames.some((name) => /pattaya/i.test(name)))
-  failures.push("Pattaya must not be a province record");
+  recordFailure("Pattaya must not be a province record");
 for (const code of registry.keys())
-  if (!codes.includes(code)) failures.push(`${code}: missing source feature`);
+  if (!codes.includes(code)) recordFailure(`${code}: missing source feature`);
 
 if (failures.length) {
   console.error(failures.join("\n"));
