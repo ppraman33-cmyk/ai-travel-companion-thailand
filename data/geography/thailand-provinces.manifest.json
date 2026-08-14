@@ -1,0 +1,36 @@
+{
+  "dataset": "geoBoundaries gbOpen Thailand ADM1",
+  "publisher": "William & Mary geoLab / geoBoundaries",
+  "sourceOwner": "OpenStreetMap contributors; boundary extraction credited to Wambacher",
+  "sourceUrl": "https://www.geoboundaries.org/api/current/gbOpen/THA/ADM1/",
+  "geometryUrl": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/THA/ADM1/geoBoundaries-THA-ADM1.geojson",
+  "pinnedRevision": "9469f09",
+  "representedYear": "2017",
+  "sourceUpdated": "2023-01-19",
+  "retrievedAt": "2026-08-14",
+  "crs": "WGS84 / OGC:CRS84 (longitude, latitude)",
+  "license": "Open Data Commons Open Database License 1.0 (ODbL-1.0)",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "attribution": "© OpenStreetMap contributors; boundary data via geoBoundaries (William & Mary geoLab), ODbL 1.0",
+  "sourceSha256": "145beb11e52785a42e16997c92a65426b3df8d009941db6b012ec8e411f3e33c",
+  "normalizedSha256": "312105b9b994977871215c8abd91571469609d0230b1c18d09d608f6104e0d51",
+  "featureCount": 77,
+  "bounds": [
+    97.3438072,
+    5.612851,
+    105.636812,
+    20.4648337
+  ],
+  "validation": {
+    "uniqueCodes": 77,
+    "uniqueEnglishNames": 77,
+    "uniqueThaiNames": 77,
+    "bangkokIncluded": true,
+    "pattayaExcluded": true,
+    "geometryTypes": [
+      "MultiPolygon",
+      "Polygon"
+    ],
+    "structuralGeometryValidation": "passed: Turf topological validity, no polygon self-intersections, non-empty closed rings, non-zero ring area, finite coordinates, Thailand envelope, unique geometry"
+  }
+}

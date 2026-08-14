@@ -5,6 +5,9 @@ package-lock.json
 playwright-report
 test-results
 infrastructure/supabase/types.generated.ts
+data/geography/*.geojson
+data/geography/*.json
+docs/geography/Thailand_77_Province_Validation.md
 docs/01_Project_Vision.md
 docs/02_System_Architecture.md
 docs/03_Database_Design.md
