@@ -11,6 +11,7 @@ import { DemoCard } from "@/components/traveler/demo-card";
 import { ExploreRecommendations } from "@/components/traveler/explore-recommendations";
 import { SyntheticVisual } from "@/components/traveler/synthetic-visual";
 import { TravelerShell } from "@/components/traveler/traveler-shell";
+import { ThailandMapSection } from "@/components/traveler/thailand-map-section";
 import {
   CategoryChip,
   Select,
@@ -94,6 +95,8 @@ export default async function ExplorePage({
       </nav>
 
       <ExploreRecommendations />
+
+      <ThailandMapSection />
 
       <section
         aria-labelledby="province-discovery-title"

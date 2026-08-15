@@ -295,6 +295,55 @@ test("Traveler UI Foundation Batch 1 renders all five production-shaped screens"
   }
 });
 
+test("nationwide map exposes all 77 province selections and accessible controls", async ({
+  page,
+}) => {
+  await useReturningTraveler(page);
+  await page.goto("/thailand/provinces");
+  await expect(
+    page.getByRole("heading", { name: "Thailand province map" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /Bangkok, กรุงเทพมหานคร/ }),
+  ).toBeVisible();
+  await expect(page.locator(".province-map-directory li")).toHaveCount(77);
+  await expect(page.getByText(/Pattaya/)).toHaveCount(0);
+  await page.getByLabel("Map region").selectOption("northern");
+  await expect(page.getByRole("heading", { name: /Province list/ })).toBeVisible();
+  const reset = page.getByRole("button", { name: "Reset view" });
+  const box = await reset.boundingBox();
+  expect(box?.width).toBeGreaterThanOrEqual(44);
+  expect(box?.height).toBeGreaterThanOrEqual(44);
+  await page
+    .getByRole("link", { name: /Bangkok, กรุงเทพมหานคร/ })
+    .first()
+    .focus();
+  await expect(
+    page.getByRole("link", { name: /Bangkok, กรุงเทพมหานคร/ }).first(),
+  ).toBeFocused();
+});
+
+test("nationwide map fails over to its accessible 2D vector and province list", async ({
+  page,
+}) => {
+  await useReturningTraveler(page);
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (
+      this: HTMLCanvasElement,
+      ...args: Parameters<HTMLCanvasElement["getContext"]>
+    ) {
+      if (args[0] === "webgl" || args[0] === "webgl2") return null;
+      return original.apply(this, args);
+    } as typeof original;
+  });
+  await page.goto("/thailand/provinces");
+  await expect(page.getByText("2D vector fallback active")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Tilt" })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Rotate" })).toBeDisabled();
+  await expect(page.locator(".province-map-directory li")).toHaveCount(77);
+});
+
 for (const viewport of responsiveViewports) {
   test(`traveler routes have no document overflow at ${viewport.width}x${viewport.height}`, async ({
     page,
