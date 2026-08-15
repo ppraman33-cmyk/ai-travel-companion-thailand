@@ -20,6 +20,7 @@
     "db:types:generate": "bash scripts/supabase-types.sh update",
     "db:types:check": "bash scripts/supabase-types.sh check",
     "db:schema:check": "node scripts/check-schema-contract.mjs",
+    "geography:districts:check": "node scripts/validate-thailand-district-evidence.mjs",
     "security:secrets": "node scripts/check-secrets.mjs"
   },
   "dependencies": {
