@@ -8,6 +8,8 @@ infrastructure/supabase/types.generated.ts
 data/geography/*.geojson
 data/geography/*.json
 data/research/thailand-district-evidence.json
+data/research/thailand-subdistrict-evidence.json
+docs/geography/Thailand_Subdistrict_Coverage_Matrix.md
 docs/geography/Thailand_77_Province_Validation.md
 docs/01_Project_Vision.md
 docs/02_System_Architecture.md
