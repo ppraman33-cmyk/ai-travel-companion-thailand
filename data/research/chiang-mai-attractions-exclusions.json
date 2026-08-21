@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "status": "research_evidence_only",
+  "contentPolicy": "Names and short exclusion reasons only; no copied third-party descriptions are retained.",
+  "items": [
+    {
+      "candidate": "Mae Chaem rice terraces and weaving sites",
+      "districtCode": "5003",
+      "reason": "No single site identity, responsible authority and exact parent were jointly verified from an official source."
+    },
+    {
+      "candidate": "Doi Saket hot-spring and community sites",
+      "districtCode": "5005",
+      "reason": "Current responsible-authority evidence and exact site identity were incomplete."
+    },
+    {
+      "candidate": "Samoeng strawberry and viewpoint sites",
+      "districtCode": "5008",
+      "reason": "Seasonal/general destination references did not establish a stable attraction record."
+    },
+    {
+      "candidate": "Tha Ton temple and river sites",
+      "districtCode": "5010",
+      "reason": "Exact owner/authority and assertion-level official source were incomplete."
+    },
+    {
+      "candidate": "San Pa Tong cultural sites",
+      "districtCode": "5012",
+      "reason": "No candidate completed the evidence contract."
+    },
+    {
+      "candidate": "Bo Sang handicraft village",
+      "districtCode": "5013",
+      "reason": "Official source reviewed did not jointly confirm current responsible authority and exact district assertion."
+    },
+    {
+      "candidate": "San Sai agricultural/community sites",
+      "districtCode": "5014",
+      "reason": "Project references were not sufficient evidence of a current visitor attraction."
+    },
+    {
+      "candidate": "Ob Luang",
+      "districtCode": "5016",
+      "reason": "Current DNP site-level evidence and exact district locator were not obtained in this batch."
+    },
+    {
+      "candidate": "Wiang Kum Kam sites",
+      "districtCode": "5019",
+      "reason": "Border-sensitive candidates require individual parent-district verification; no site was borrowed across the boundary."
+    },
+    {
+      "candidate": "Wiang Haeng historic and mountain sites",
+      "districtCode": "5020",
+      "reason": "No candidate completed identity, authority and exact parent verification."
+    },
+    {
+      "candidate": "Chai Prakan historic/community sites",
+      "districtCode": "5021",
+      "reason": "Current responsible-authority and site identity evidence were incomplete."
+    },
+    {
+      "candidate": "Pha Chor",
+      "districtCode": "5022",
+      "reason": "Excluded from Mae Wang because provincial evidence places the attraction in Doi Lo; park naming is not used to override the site parent."
+    },
+    {
+      "candidate": "Mae Kampong",
+      "districtCode": "5023",
+      "reason": "Current responsible-authority evidence supporting exact parent and visitor facts was not obtained."
+    },
+    {
+      "candidate": "Wat Chan forest sites",
+      "districtCode": "5025",
+      "reason": "General destination mention did not establish a current site-level attraction and responsible authority."
+    }
+  ]
+}

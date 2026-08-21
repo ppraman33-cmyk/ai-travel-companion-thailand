@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "status": "research_evidence_only",
+  "provinceCode": "TH-50",
+  "publicationEligibility": "blocked",
+  "districts": [
+    {
+      "code": "5001",
+      "nameTh": "เมืองเชียงใหม่",
+      "nameEn": "Mueang Chiang Mai",
+      "recordIds": ["cm-attraction-5001-tha-phae-gate"],
+      "coverageStatus": "partial",
+      "gap": "Only one identity candidate; site authority, district locator and current visitor facts remain pending."
+    },
+    {
+      "code": "5002",
+      "nameTh": "จอมทอง",
+      "nameEn": "Chom Thong",
+      "recordIds": ["cm-attraction-5002-doi-inthanon-national-park"],
+      "coverageStatus": "partial",
+      "gap": "Current DNP visitor rules, operating status and subdistrict locator remain pending."
+    },
+    {
+      "code": "5003",
+      "nameTh": "แม่แจ่ม",
+      "nameEn": "Mae Chaem",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+    },
+    {
+      "code": "5004",
+      "nameTh": "เชียงดาว",
+      "nameEn": "Chiang Dao",
+      "recordIds": ["cm-attraction-5004-pong-ang-hot-spring"],
+      "coverageStatus": "partial",
+      "gap": "Current authority, English name and visitor facts remain pending."
+    },
+    {
+      "code": "5005",
+      "nameTh": "ดอยสะเก็ด",
+      "nameEn": "Doi SaKet",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+    },
+    {
+      "code": "5006",
+      "nameTh": "แม่แตง",
+      "nameEn": "Mae Taeng",
+      "recordIds": ["cm-attraction-5006-kaeng-kuet"],
+      "coverageStatus": "partial",
+      "gap": "Subdistrict locator and current authority/visitor facts remain pending."
+    },
+    {
+      "code": "5007",
+      "nameTh": "แม่ริม",
+      "nameEn": "Mae Rim",
+      "recordIds": ["cm-attraction-5007-huai-tueng-thao"],
+      "coverageStatus": "partial",
+      "gap": "Current authority and visitor facts remain pending."
+    },
+    {
+      "code": "5008",
+      "nameTh": "สะเมิง",
+      "nameEn": "Samoeng",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+    },
+    {
+      "code": "5009",
+      "nameTh": "ฝาง",
+      "nameEn": "Fang",
+      "recordIds": ["cm-attraction-5009-fang-hot-spring"],
+      "coverageStatus": "partial",
+      "gap": "Current DNP visitor rules and site-level English name remain pending."
+    },
+    {
+      "code": "5010",
+      "nameTh": "แม่อาย",
+      "nameEn": "Mae Ai",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+    },
+    {
+      "code": "5011",
+      "nameTh": "พร้าว",
+      "nameEn": "Phrao",
+      "recordIds": ["cm-attraction-5011-doi-mon-lan-station"],
+      "coverageStatus": "partial",
+      "gap": "Present visitor access and operating authority remain pending."
+    },
+    {
+      "code": "5012",
+      "nameTh": "สันป่าตอง",
+      "nameEn": "San Pa Tong",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+    },
+    {
+      "code": "5013",
+      "nameTh": "สันกำแพง",
+      "nameEn": "San Kamphaeng",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "Candidate handicraft sites were excluded because a current owner/source and exact district assertion were not jointly verified."
+    },
+    {
+      "code": "5014",
+      "nameTh": "สันทราย",
+      "nameEn": "San Sai",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+    },
+    {
+      "code": "5015",
+      "nameTh": "หางดง",
+      "nameEn": "Hang Dong",
+      "recordIds": ["cm-attraction-5015-chiang-mai-night-safari"],
+      "coverageStatus": "partial",
+      "gap": "Official site-level district locator and current visitor facts remain pending."
+    },
+    {
+      "code": "5016",
+      "nameTh": "ฮอด",
+      "nameEn": "Hot",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "Ob Luang was not admitted because this review did not obtain a current site-level district assertion."
+    },
+    {
+      "code": "5017",
+      "nameTh": "ดอยเต่า",
+      "nameEn": "Doi Tao",
+      "recordIds": ["cm-attraction-5017-doi-tao-lake"],
+      "coverageStatus": "partial",
+      "gap": "Current lake conditions, activities and access remain pending."
+    },
+    {
+      "code": "5018",
+      "nameTh": "อมก๋อย",
+      "nameEn": "Omkoi",
+      "recordIds": ["cm-attraction-5018-doi-mon-chong"],
+      "coverageStatus": "partial",
+      "gap": "Seasonal access, permission and current conservation authority evidence remain pending."
+    },
+    {
+      "code": "5019",
+      "nameTh": "สารภี",
+      "nameEn": "Saraphi",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "Border-sensitive Wiang Kum Kam candidates were excluded until every site has an authoritative district parent."
+    },
+    {
+      "code": "5020",
+      "nameTh": "เวียงแหง",
+      "nameEn": "Wiang Haeng",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+    },
+    {
+      "code": "5021",
+      "nameTh": "ไชยปราการ",
+      "nameEn": "Chai Prakan",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "Historical/community candidates lacked a current responsible-authority source and were not admitted."
+    },
+    {
+      "code": "5022",
+      "nameTh": "แม่วาง",
+      "nameEn": "Mae Wang",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "Pha Chor was not borrowed from this district; provincial evidence explicitly locates it in Doi Lo."
+    },
+    {
+      "code": "5023",
+      "nameTh": "แม่ออน",
+      "nameEn": "Mae On",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "Mae Kampong was not admitted without a current responsible-authority source supporting exact parent and visitor facts."
+    },
+    {
+      "code": "5024",
+      "nameTh": "ดอยหล่อ",
+      "nameEn": "Doi Lo",
+      "recordIds": ["cm-attraction-5024-pha-chor"],
+      "coverageStatus": "partial",
+      "gap": "Current DNP visitor rules, English name and subdistrict remain pending."
+    },
+    {
+      "code": "5025",
+      "nameTh": "กัลยาณิวัฒนา",
+      "nameEn": "Galyani Vadhana",
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "Wat Chan forest candidates were not admitted without current site-level authority and exact attraction identity evidence."
+    }
+  ]
+}

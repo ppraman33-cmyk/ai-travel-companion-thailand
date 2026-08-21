@@ -1,0 +1,518 @@
+{
+  "schemaVersion": 1,
+  "status": "research_evidence_only",
+  "provinceCode": "TH-50",
+  "publicationEligibility": "blocked",
+  "recordDefaults": {
+    "openingHoursStatus": "pending",
+    "admissionStatus": "pending",
+    "accessibilityStatus": "pending",
+    "mapStatus": "pending_no_coordinates",
+    "freshnessStatus": "review_required_before_use",
+    "rightsStatus": "facts_only_rights_pending",
+    "mediaRightsStatus": "not_assessed_no_media_downloaded",
+    "publicationEligibility": "blocked"
+  },
+  "records": [
+    {
+      "id": "cm-attraction-5001-tha-phae-gate",
+      "nameTh": "ประตูท่าแพ",
+      "nameEn": "Tha Phae Gate",
+      "englishNameStatus": "verified_official_tat",
+      "category": "historic_site",
+      "districtCode": "5001",
+      "districtNameTh": "เมืองเชียงใหม่",
+      "districtNameEn": "Mueang Chiang Mai",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "Historic city-gate landmark identified by the Tourism Authority of Thailand in Chiang Mai visitor information.",
+      "responsibleAuthority": "Responsible site authority pending verification",
+      "sourceIds": [
+        "TAT-CNX-PROVINCE-101",
+        "TAT-CNX-CURRENT-STATUS-2024",
+        "TAT-CNX-PROVINCE-EN-101"
+      ],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "TAT-CNX-CURRENT-STATUS-2024",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "TAT-CNX-PROVINCE-101",
+          "status": "pending_primary_locator"
+        }
+      ],
+      "representedAt": "2024-10-10",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "stale_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "partial_district_assertion_pending",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "No operating hours, admission, coordinates or accessibility assertions recorded."
+      ]
+    },
+    {
+      "id": "cm-attraction-5002-doi-inthanon-national-park",
+      "nameTh": "อุทยานแห่งชาติดอยอินทนนท์",
+      "nameEn": "Doi Inthanon National Park",
+      "englishNameStatus": "verified_official_tat",
+      "category": "national_park",
+      "districtCode": "5002",
+      "districtNameTh": "จอมทอง",
+      "districtNameEn": "Chom Thong",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "National park whose official TAT attraction page and a current Chiang Mai Provincial Office report identify its location in Chom Thong district.",
+      "responsibleAuthority": "Department of National Parks, Wildlife and Plant Conservation",
+      "sourceIds": [
+        "TAT-CNX-TRIP-LAMPANG-LAMPHUN-CNX",
+        "TAT-CNX-DOI-INTHANON-DIRECT",
+        "CM-PROVINCE-NEWS-14279",
+        "TAT-CNX-PROVINCE-101",
+        "TAT-CNX-PROVINCE-EN-101"
+      ],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "TAT-CNX-TRIP-LAMPANG-LAMPHUN-CNX",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "TAT-CNX-DOI-INTHANON-DIRECT",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent_supporting_current",
+          "sourceId": "CM-PROVINCE-NEWS-14279",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2026-01-15",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "The direct TAT page has no verified represented date; 2026-01-15 comes only from the supporting provincial report.",
+        "Current park conditions and visitor rules require fresh DNP evidence."
+      ]
+    },
+    {
+      "id": "cm-attraction-5004-pong-ang-hot-spring",
+      "nameTh": "น้ำพุร้อนโป่งอ่าง",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "hot_spring",
+      "districtCode": "5004",
+      "districtNameTh": "เชียงดาว",
+      "districtNameEn": "Chiang Dao",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "Hot-spring attraction named with Chiang Dao district in a Chiang Mai provincial tourism-access project.",
+      "responsibleAuthority": "Responsible site authority pending verification",
+      "sourceIds": ["CM-PROVINCE-TOURISM-ROADS-2018"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "CM-PROVINCE-TOURISM-ROADS-2018",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "CM-PROVINCE-TOURISM-ROADS-2018",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2018-05-30",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "stale_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": ["English name and current responsible authority remain pending."]
+    },
+    {
+      "id": "cm-attraction-5006-kaeng-kuet",
+      "nameTh": "แก่งกื้ด",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "river_nature_site",
+      "districtCode": "5006",
+      "districtNameTh": "แม่แตง",
+      "districtNameEn": "Mae Taeng",
+      "subdistrictCode": "500612",
+      "subdistrictNameTh": "กื้ดช้าง",
+      "subdistrictNameEn": "Kuet Chang",
+      "coordinates": null,
+      "description": "River attraction named in an official provincial project for tourism access in Mae Taeng district.",
+      "responsibleAuthority": "Responsible site authority pending verification",
+      "sourceIds": ["CM-PROVINCE-TOURISM-ROADS-2018"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "CM-PROVINCE-TOURISM-ROADS-2018",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "CM-PROVINCE-TOURISM-ROADS-2018",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "CM-PROVINCE-TOURISM-ROADS-2018",
+          "status": "pending_primary_locator"
+        }
+      ],
+      "representedAt": "2018-05-30",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "stale_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "partial_subdistrict_assertion_pending",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "Subdistrict is retained as pending until a site-level official source confirms it."
+      ]
+    },
+    {
+      "id": "cm-attraction-5007-huai-tueng-thao",
+      "nameTh": "ห้วยตึงเฒ่า",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "reservoir_recreation",
+      "districtCode": "5007",
+      "districtNameTh": "แม่ริม",
+      "districtNameEn": "Mae Rim",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "Recreation site named with Mae Rim district in a Chiang Mai provincial tourism-access project.",
+      "responsibleAuthority": "Responsible site authority pending verification",
+      "sourceIds": ["CM-PROVINCE-TOURISM-ROADS-2018"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "CM-PROVINCE-TOURISM-ROADS-2018",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "CM-PROVINCE-TOURISM-ROADS-2018",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2018-05-30",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "stale_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "Current operating authority and visitor conditions require new evidence."
+      ]
+    },
+    {
+      "id": "cm-attraction-5009-fang-hot-spring",
+      "nameTh": "น้ำพุร้อนฝาง",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "hot_spring",
+      "districtCode": "5009",
+      "districtNameTh": "ฝาง",
+      "districtNameEn": "Fang",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "Hot-spring attraction named with Fang district in official provincial tourism-access planning.",
+      "responsibleAuthority": "Department of National Parks, Wildlife and Plant Conservation; site-level confirmation pending",
+      "sourceIds": ["CM-PROVINCE-TOURISM-ROADS-2018", "CM-PROVINCE-TOURISM-PLAN-2025"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "CM-PROVINCE-TOURISM-PLAN-2025",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "CM-PROVINCE-TOURISM-ROADS-2018",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2025-04-23",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": ["Visitor rules require current site-level DNP evidence."]
+    },
+    {
+      "id": "cm-attraction-5011-doi-mon-lan-station",
+      "nameTh": "สถานีพัฒนาการเกษตรที่สูงตามพระราชดำริดอยม่อนล้าน",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "highland_learning_site",
+      "districtCode": "5011",
+      "districtNameTh": "พร้าว",
+      "districtNameEn": "Phrao",
+      "subdistrictCode": "501104",
+      "subdistrictNameTh": "ป่าไหน่",
+      "subdistrictNameEn": "Pa Nai",
+      "coordinates": null,
+      "description": "Highland agricultural development station described by the province as a nature-and-culture tourism development site in Pa Nai, Phrao.",
+      "responsibleAuthority": "Responsible project authority pending current confirmation",
+      "sourceIds": ["CM-PROVINCE-MON-LAN"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "CM-PROVINCE-MON-LAN",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "CM-PROVINCE-MON-LAN",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "CM-PROVINCE-MON-LAN",
+          "status": "supported"
+        }
+      ],
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "undated_source_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_district_and_subdistrict_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "Tourist access and present operation are not inferred from project history."
+      ]
+    },
+    {
+      "id": "cm-attraction-5015-chiang-mai-night-safari",
+      "nameTh": "เชียงใหม่ไนท์ซาฟารี",
+      "nameEn": "Chiang Mai Night Safari",
+      "englishNameStatus": "verified_official_tat",
+      "category": "wildlife_visitor_attraction",
+      "districtCode": "5015",
+      "districtNameTh": "หางดง",
+      "districtNameEn": "Hang Dong",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "Visitor attraction named by TAT among Chiang Mai sites operating after the October 2024 flooding event.",
+      "responsibleAuthority": "Responsible site authority pending verification",
+      "sourceIds": ["TAT-CNX-CURRENT-STATUS-2024"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "TAT-CNX-CURRENT-STATUS-2024",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "TAT-CNX-CURRENT-STATUS-2024",
+          "status": "pending_primary_locator"
+        }
+      ],
+      "representedAt": "2024-10-10",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "stale_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "partial_district_assertion_pending",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "District parent needs an official site-level locator before use."
+      ]
+    },
+    {
+      "id": "cm-attraction-5017-doi-tao-lake",
+      "nameTh": "ทะเลสาบดอยเต่า",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "lake_recreation",
+      "districtCode": "5017",
+      "districtNameTh": "ดอยเต่า",
+      "districtNameEn": "Doi Tao",
+      "subdistrictCode": "501702",
+      "subdistrictNameTh": "ท่าเดื่อ",
+      "subdistrictNameEn": "Tha Duea",
+      "coordinates": null,
+      "description": "Lake attraction named in a provincial community-tourism project assigned to Tha Duea local authority.",
+      "responsibleAuthority": "Tha Duea Subdistrict Administrative Organization",
+      "sourceIds": ["CM-PROVINCE-MEETING-2020"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "CM-PROVINCE-MEETING-2020",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "CM-PROVINCE-MEETING-2020",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "CM-PROVINCE-MEETING-2020",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2020-10-02",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "stale_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_district_and_subdistrict_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "Current lake conditions and activity availability are not asserted."
+      ]
+    },
+    {
+      "id": "cm-attraction-5018-doi-mon-chong",
+      "nameTh": "ดอยม่อนจอง",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "mountain_nature_site",
+      "districtCode": "5018",
+      "districtNameTh": "อมก๋อย",
+      "districtNameEn": "Omkoi",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "Mountain attraction named with Omkoi district in a provincial tourism-route project.",
+      "responsibleAuthority": "Responsible conservation authority pending current confirmation",
+      "sourceIds": ["CM-PROVINCE-TOURISM-PLAN-2025"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "CM-PROVINCE-TOURISM-PLAN-2025",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "CM-PROVINCE-TOURISM-PLAN-2025",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2025-04-23",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "Seasonal access and visitor permission require current authority evidence."
+      ]
+    },
+    {
+      "id": "cm-attraction-5024-pha-chor",
+      "nameTh": "ผาช่อ",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "geological_nature_site",
+      "districtCode": "5024",
+      "districtNameTh": "ดอยหล่อ",
+      "districtNameEn": "Doi Lo",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "Geological nature attraction explicitly assigned to Doi Lo district in provincial tourism-access records.",
+      "responsibleAuthority": "Mae Wang National Park authority; site-level confirmation pending",
+      "sourceIds": ["CM-PROVINCE-TOURISM-ROADS-2018", "CM-PROVINCE-TOURISM-PLAN-2025"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "CM-PROVINCE-TOURISM-PLAN-2025",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "CM-PROVINCE-TOURISM-ROADS-2018",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2025-04-23",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "District assignment was reviewed separately because the park name can cause cross-district confusion."
+      ]
+    }
+  ]
+}

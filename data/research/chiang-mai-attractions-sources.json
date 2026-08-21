@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "status": "research_evidence_only",
+  "retrievedAt": "2026-08-21",
+  "rightsStatus": "pending_explicit_redistribution_terms",
+  "publicationEligibility": "blocked",
+  "sources": [
+    {
+      "id": "TAT-CNX-PROVINCE-101",
+      "tier": 4,
+      "publisher": "Tourism Authority of Thailand",
+      "title": "Chiang Mai destination overview",
+      "url": "https://thai.tourismthailand.org/Destinations/Provinces/chiang-mai/101",
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "locator": "Highlights and province introduction; also enumerates all 25 Chiang Mai districts",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "TAT-CNX-TRIP-LAMPANG-LAMPHUN-CNX",
+      "tier": 4,
+      "publisher": "Tourism Authority of Thailand",
+      "title": "Lampang - Lamphun - Chiang Mai 4 days",
+      "url": "https://www.tourismthailand.org/Trip-Planner/Suggestion-Detail/lampang-lamphun-chiang-mai-4-days",
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "locator": "Chiang Mai days: Doi Inthanon National Park and Chom Thong district statement",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "TAT-CNX-DOI-INTHANON-DIRECT",
+      "tier": 4,
+      "publisher": "Tourism Authority of Thailand",
+      "title": "Doi Inthanon National Park",
+      "url": "https://www.tourismthailand.org/Attraction/doi-inthanon-national-park",
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "locator": "Official attraction location identifies Chom Thong, Chiang Mai; the page exposes no verified represented date",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "CM-PROVINCE-TOURISM-ROADS-2018",
+      "tier": 3,
+      "publisher": "Chiang Mai Provincial Office",
+      "title": "Provincial meeting report on tourism access routes",
+      "url": "https://www.chiangmai.go.th/managing/public/D8/8D30May2018171135.pdf",
+      "representedAt": "2018-05-30",
+      "retrievedAt": "2026-08-21",
+      "locator": "Tourism-route table naming Pong Ang, Huai Tueng Thao, Kaeng Kuet, Mae Ya, Doi Ang Khang/Fang Hot Spring and Pha Chor with districts",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "CM-PROVINCE-TOURISM-PLAN-2025",
+      "tier": 3,
+      "publisher": "Chiang Mai Provincial Office",
+      "title": "Tourism infrastructure project proposal",
+      "url": "https://www.chiangmai.go.th/managing/public/D12/12D23Apr2025172557.pdf",
+      "representedAt": "2025-04-23",
+      "retrievedAt": "2026-08-21",
+      "locator": "Project rationale and named access routes for Fang Hot Spring, Pha Chor, Chom Thong, and Doi Mon Chong in Omkoi",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "CM-PROVINCE-MON-LAN",
+      "tier": 3,
+      "publisher": "Chiang Mai Provincial Office",
+      "title": "Doi Mon Lan Highland Agricultural Development Station",
+      "url": "https://www.chiangmai.go.th/project/monlan/monlan_history.html",
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "locator": "History identifies Pa Nai subdistrict, Phrao district and tourism-development purpose",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "CM-PROVINCE-MEETING-2020",
+      "tier": 3,
+      "publisher": "Chiang Mai Provincial Office",
+      "title": "Provincial meeting report: community tourism projects",
+      "url": "https://www.chiangmai.go.th/managing/public/M2/R02Oct2020135119.pdf",
+      "representedAt": "2020-10-02",
+      "retrievedAt": "2026-08-21",
+      "locator": "Community-tourism table names Doi Tao Lake and Wat Phra That Doi Noi responsible local authorities",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "CM-PROVINCE-NEWS-14279",
+      "tier": 3,
+      "publisher": "Chiang Mai Provincial Office",
+      "title": "Chiang Mai prepares for official visit at Doi Inthanon National Park",
+      "url": "https://www.chiangmai.go.th/managing/public/newsshow/14279",
+      "representedAt": "2026-01-15",
+      "retrievedAt": "2026-08-21",
+      "locator": "Recorded date 15/01/2026; article identifies Doi Inthanon National Park headquarters in Chom Thong district, Chiang Mai",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "TAT-CNX-CURRENT-STATUS-2024",
+      "tier": 4,
+      "publisher": "Tourism Authority of Thailand",
+      "title": "Hug Chiang Mai",
+      "url": "https://thai.tourismthailand.org/Articles/hug-chiangmai",
+      "representedAt": "2024-10-10",
+      "retrievedAt": "2026-08-21",
+      "locator": "Names Tha Phae Gate, Chiang Mai Night Safari and other visitor sites as operating after flooding",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "TAT-CNX-PROVINCE-EN-101",
+      "tier": 4,
+      "publisher": "Tourism Authority of Thailand",
+      "title": "Chiang Mai destination overview (English)",
+      "url": "https://www.tourismthailand.org/Destinations/Provinces/Chiang-Mai/101",
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "locator": "Official English labels for selected province highlights",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    }
+  ]
+}
