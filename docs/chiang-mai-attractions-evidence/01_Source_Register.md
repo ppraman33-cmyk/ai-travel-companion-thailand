@@ -7,8 +7,8 @@ Publication: `blocked`
 Retrieved: 2026-08-21
 
 The machine-readable source register is
-`data/research/chiang-mai-attractions-sources.json`. It contains eight official
-sources: five Chiang Mai Provincial Office sources and three Tourism Authority
+`data/research/chiang-mai-attractions-sources.json`. It contains ten official
+sources: five Chiang Mai Provincial Office sources and five Tourism Authority
 of Thailand sources. No Google Maps, Facebook page, blog, aggregator, or search
 snippet is used as final evidence.
 
@@ -34,3 +34,13 @@ documents support historical identity/parent assertions only; they do not prove
 current opening hours, fees, access, safety, accessibility, or operating status.
 Those fields remain pending and require a fresh authority review before any
 future publication decision.
+
+## Doi Inthanon district remediation
+
+The Doi Inthanon record no longer uses the broad TAT itinerary as its decisive
+district-parent assertion. The direct TAT attraction page identifies Chom Thong,
+Chiang Mai, and has no verified represented date, so its `representedAt` remains
+`null`. Chiang Mai Provincial Office news record 14279 independently identifies
+the park headquarters in Chom Thong and displays a recorded date of 2026-01-15.
+That date is attached only to the provincial assertion; it is not treated as a
+current visitor-hours, admission, accessibility, or operating-status claim.

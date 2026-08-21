@@ -58,6 +58,47 @@ describe("Chiang Mai attractions research evidence baseline", () => {
     ).toBe(true);
   });
 
+  it("binds Doi Inthanon to Chom Thong with direct and current supporting evidence", () => {
+    const record = data.registry.records.find(
+      ({ id }) => id === "cm-attraction-5002-doi-inthanon-national-park",
+    );
+    const sources = new Map(data.sources.sources.map((source) => [source.id, source]));
+
+    expect(record).toMatchObject({
+      districtCode: "5002",
+      representedAt: "2026-01-15",
+      rightsStatus: "facts_only_rights_pending",
+      mediaRightsStatus: "not_assessed_no_media_downloaded",
+      publicationEligibility: "blocked",
+      coordinates: null,
+      openingHoursStatus: "pending",
+      admissionStatus: "pending",
+      accessibilityStatus: "pending",
+    });
+    expect(record?.assertions).toEqual(
+      expect.arrayContaining([
+        {
+          field: "district_parent",
+          sourceId: "TAT-CNX-DOI-INTHANON-DIRECT",
+          status: "supported",
+        },
+        {
+          field: "district_parent_supporting_current",
+          sourceId: "CM-PROVINCE-NEWS-14279",
+          status: "supported",
+        },
+      ]),
+    );
+    expect(sources.get("TAT-CNX-DOI-INTHANON-DIRECT")).toMatchObject({
+      representedAt: null,
+      retrievedAt: "2026-08-21",
+    });
+    expect(sources.get("CM-PROVINCE-NEWS-14279")).toMatchObject({
+      representedAt: "2026-01-15",
+      retrievedAt: "2026-08-21",
+    });
+  });
+
   it("does not leak research data into runtime paths or retain source binaries", () => {
     expect(findChiangMaiAttractionRuntimeLeakage(process.cwd())).toEqual([]);
     expect(findProhibitedAttractionFiles(process.cwd())).toEqual([]);

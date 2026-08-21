@@ -157,6 +157,36 @@ export function validateChiangMaiAttractions(data) {
     new Set(coverage.districts.flatMap(({ recordIds }) => recordIds)).size !== ids.size
   )
     failures.push("coverage matrix does not account for every record exactly once");
+  const doiInthanon = registry.records.find(
+    ({ id }) => id === "cm-attraction-5002-doi-inthanon-national-park",
+  );
+  const doiInthanonDistrictAssertions = doiInthanon?.assertions.filter(({ field }) =>
+    field.startsWith("district_parent"),
+  );
+  if (
+    doiInthanon?.representedAt !== "2026-01-15" ||
+    !doiInthanon?.sourceIds.includes("TAT-CNX-DOI-INTHANON-DIRECT") ||
+    !doiInthanon?.sourceIds.includes("CM-PROVINCE-NEWS-14279") ||
+    doiInthanonDistrictAssertions?.length !== 2 ||
+    !doiInthanonDistrictAssertions.some(
+      ({ sourceId, status }) =>
+        sourceId === "TAT-CNX-DOI-INTHANON-DIRECT" && status === "supported",
+    ) ||
+    !doiInthanonDistrictAssertions.some(
+      ({ sourceId, status }) =>
+        sourceId === "CM-PROVINCE-NEWS-14279" && status === "supported",
+    )
+  )
+    failures.push("Doi Inthanon direct district evidence contract invalid");
+  const tatDoiInthanon = sourceById.get("TAT-CNX-DOI-INTHANON-DIRECT");
+  const provinceDoiInthanon = sourceById.get("CM-PROVINCE-NEWS-14279");
+  if (
+    tatDoiInthanon?.representedAt !== null ||
+    tatDoiInthanon?.retrievedAt !== "2026-08-21" ||
+    provinceDoiInthanon?.representedAt !== "2026-01-15" ||
+    provinceDoiInthanon?.retrievedAt !== "2026-08-21"
+  )
+    failures.push("Doi Inthanon source dates invalid");
   if (
     exclusions.items.some(
       ({ districtCode, reason }) =>

@@ -74,10 +74,12 @@
       "subdistrictNameTh": null,
       "subdistrictNameEn": null,
       "coordinates": null,
-      "description": "National park on Doi Inthanon identified in an official TAT itinerary for Chiang Mai and Chom Thong district.",
+      "description": "National park whose official TAT attraction page and a current Chiang Mai Provincial Office report identify its location in Chom Thong district.",
       "responsibleAuthority": "Department of National Parks, Wildlife and Plant Conservation",
       "sourceIds": [
         "TAT-CNX-TRIP-LAMPANG-LAMPHUN-CNX",
+        "TAT-CNX-DOI-INTHANON-DIRECT",
+        "CM-PROVINCE-NEWS-14279",
         "TAT-CNX-PROVINCE-101",
         "TAT-CNX-PROVINCE-EN-101"
       ],
@@ -89,22 +91,28 @@
         },
         {
           "field": "district_parent",
-          "sourceId": "TAT-CNX-TRIP-LAMPANG-LAMPHUN-CNX",
+          "sourceId": "TAT-CNX-DOI-INTHANON-DIRECT",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent_supporting_current",
+          "sourceId": "CM-PROVINCE-NEWS-14279",
           "status": "supported"
         }
       ],
-      "representedAt": null,
+      "representedAt": "2026-01-15",
       "retrievedAt": "2026-08-21",
       "openingHoursStatus": "pending",
       "admissionStatus": "pending",
       "accessibilityStatus": "pending",
       "mapStatus": "pending_no_coordinates",
-      "freshnessStatus": "undated_source_reverification_required",
+      "freshnessStatus": "review_required_before_use",
       "rightsStatus": "facts_only_rights_pending",
       "mediaRightsStatus": "not_assessed_no_media_downloaded",
       "evidenceStatus": "identity_and_district_supported",
       "publicationEligibility": "blocked",
       "reviewNotes": [
+        "The direct TAT page has no verified represented date; 2026-01-15 comes only from the supporting provincial report.",
         "Current park conditions and visitor rules require fresh DNP evidence."
       ]
     },
