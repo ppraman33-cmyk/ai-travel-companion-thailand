@@ -124,6 +124,54 @@
       "locator": "Official English labels for selected province highlights",
       "rightsStatus": "facts_only_rights_pending",
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "DNP-KHUN-KHAN-NEWS-30591",
+      "tier": 2,
+      "publisher": "Department of National Parks, Wildlife and Plant Conservation",
+      "title": "Khun Khan National Park area and community engagement",
+      "url": "https://news.dnp.go.th/news/30591",
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "locator": "Official DNP article identifies Khun Khan National Park as covering Samoeng district and names its four Samoeng subdistrict areas; no represented date was recorded because the page date could not be independently verified",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "FAD-WIANG-THA-KAN-30229",
+      "tier": 2,
+      "publisher": "Fine Arts Department",
+      "title": "Wiang Tha Kan exhibition",
+      "url": "https://www.finearts.go.th/performing/view/30229",
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "locator": "Official Fine Arts Department page identifies Wiang Tha Kan in Ban Tha Kan, Ban Klang subdistrict, San Pa Tong district, Chiang Mai; no represented date was exposed",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "DNP-OB-LUANG-NEWS-25005",
+      "tier": 2,
+      "publisher": "Department of National Parks, Wildlife and Plant Conservation",
+      "title": "Public consultation on Ob Luang National Park expansion",
+      "url": "https://news.dnp.go.th/news/25005",
+      "representedAt": "2023-08-29",
+      "retrievedAt": "2026-08-21",
+      "locator": "Official DNP article dated 29 August 2023 identifies Ob Luang National Park and states that its area covers Hot district, Chiang Mai",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "FAD-WIANG-KUM-KAM-64609",
+      "tier": 2,
+      "publisher": "Fine Arts Department, Chiang Mai National Museum",
+      "title": "Ayutthaya-style Buddha image from Wiang Kum Kam",
+      "url": "https://www.finearts.go.th/chiangmaimuseum/view/64609",
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "locator": "Official museum page identifies Wiang Kum Kam in Tha Wang Tan subdistrict, Saraphi district, Chiang Mai; no represented date was exposed",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
     }
   ]
 }

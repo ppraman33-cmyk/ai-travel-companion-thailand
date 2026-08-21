@@ -16,10 +16,10 @@ describe("Chiang Mai attractions research evidence baseline", () => {
 
   it("accounts for all 25 districts without equalizing or borrowing records", () => {
     expect(data.coverage.districts).toHaveLength(25);
-    expect(data.registry.records).toHaveLength(11);
+    expect(data.registry.records).toHaveLength(15);
     expect(
       data.coverage.districts.filter(({ coverageStatus }) => coverageStatus === "gap"),
-    ).toHaveLength(14);
+    ).toHaveLength(10);
     expect(
       data.coverage.districts.every(({ code, recordIds }) =>
         recordIds.every(
@@ -29,6 +29,41 @@ describe("Chiang Mai attractions research evidence baseline", () => {
         ),
       ),
     ).toBe(true);
+  });
+
+  it("admits only the four Batch 2 districts with direct official parent evidence", () => {
+    const admitted = new Map(
+      data.registry.records.map((record) => [record.districtCode, record]),
+    );
+    expect([...admitted.keys()]).toEqual(
+      expect.arrayContaining(["5008", "5012", "5016", "5019"]),
+    );
+    for (const code of ["5008", "5012", "5016", "5019"]) {
+      expect(admitted.get(code)?.assertions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ field: "district_parent", status: "supported" }),
+        ]),
+      );
+    }
+  });
+
+  it("keeps the ten unresolved districts explicit instead of equalizing coverage", () => {
+    expect(
+      data.coverage.districts
+        .filter(({ coverageStatus }) => coverageStatus === "gap")
+        .map(({ code }) => code),
+    ).toEqual([
+      "5003",
+      "5005",
+      "5010",
+      "5013",
+      "5014",
+      "5020",
+      "5021",
+      "5022",
+      "5023",
+      "5025",
+    ]);
   });
 
   it("keeps every record rights-pending and publication-blocked", () => {

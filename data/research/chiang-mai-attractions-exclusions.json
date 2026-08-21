@@ -24,11 +24,6 @@
       "reason": "Exact owner/authority and assertion-level official source were incomplete."
     },
     {
-      "candidate": "San Pa Tong cultural sites",
-      "districtCode": "5012",
-      "reason": "No candidate completed the evidence contract."
-    },
-    {
       "candidate": "Bo Sang handicraft village",
       "districtCode": "5013",
       "reason": "Official source reviewed did not jointly confirm current responsible authority and exact district assertion."
@@ -39,14 +34,9 @@
       "reason": "Project references were not sufficient evidence of a current visitor attraction."
     },
     {
-      "candidate": "Ob Luang",
-      "districtCode": "5016",
-      "reason": "Current DNP site-level evidence and exact district locator were not obtained in this batch."
-    },
-    {
-      "candidate": "Wiang Kum Kam sites",
+      "candidate": "Individual Wiang Kum Kam monuments outside the verified Tha Wang Tan identity",
       "districtCode": "5019",
-      "reason": "Border-sensitive candidates require individual parent-district verification; no site was borrowed across the boundary."
+      "reason": "Each monument remains excluded until an authoritative site-level parent confirms that it is not across the Mueang Chiang Mai boundary."
     },
     {
       "candidate": "Wiang Haeng historic and mountain sites",

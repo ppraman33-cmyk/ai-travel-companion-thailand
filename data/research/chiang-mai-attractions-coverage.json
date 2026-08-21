@@ -64,9 +64,9 @@
       "code": "5008",
       "nameTh": "สะเมิง",
       "nameEn": "Samoeng",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+      "recordIds": ["cm-attraction-5008-khun-khan-national-park"],
+      "coverageStatus": "partial",
+      "gap": "Current visitor operations, entrance location and site-level subdistrict remain pending."
     },
     {
       "code": "5009",
@@ -96,9 +96,9 @@
       "code": "5012",
       "nameTh": "สันป่าตอง",
       "nameEn": "San Pa Tong",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+      "recordIds": ["cm-attraction-5012-wiang-tha-kan"],
+      "coverageStatus": "partial",
+      "gap": "Current visitor access, English name, hours and accessibility remain pending."
     },
     {
       "code": "5013",
@@ -128,9 +128,9 @@
       "code": "5016",
       "nameTh": "ฮอด",
       "nameEn": "Hot",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "Ob Luang was not admitted because this review did not obtain a current site-level district assertion."
+      "recordIds": ["cm-attraction-5016-ob-luang-national-park"],
+      "coverageStatus": "partial",
+      "gap": "The official area source is stale for visitor operations and does not establish a point entrance or current visitor facts."
     },
     {
       "code": "5017",
@@ -152,9 +152,9 @@
       "code": "5019",
       "nameTh": "สารภี",
       "nameEn": "Saraphi",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "Border-sensitive Wiang Kum Kam candidates were excluded until every site has an authoritative district parent."
+      "recordIds": ["cm-attraction-5019-wiang-kum-kam"],
+      "coverageStatus": "partial",
+      "gap": "The Tha Wang Tan parent is supported for the registered identity, but individual monuments and visitor facts require separate verification."
     },
     {
       "code": "5020",

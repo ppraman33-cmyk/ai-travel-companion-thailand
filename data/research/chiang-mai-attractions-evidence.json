@@ -472,6 +472,186 @@
       ]
     },
     {
+      "id": "cm-attraction-5008-khun-khan-national-park",
+      "nameTh": "อุทยานแห่งชาติขุนขาน",
+      "nameEn": "Khun Khan National Park",
+      "englishNameStatus": "verified_official_dnp",
+      "category": "national_park",
+      "districtCode": "5008",
+      "districtNameTh": "สะเมิง",
+      "districtNameEn": "Samoeng",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "National park whose official DNP evidence places its protected area within Samoeng district.",
+      "responsibleAuthority": "Department of National Parks, Wildlife and Plant Conservation",
+      "sourceIds": ["DNP-KHUN-KHAN-NEWS-30591"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "DNP-KHUN-KHAN-NEWS-30591",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "DNP-KHUN-KHAN-NEWS-30591",
+          "status": "supported"
+        }
+      ],
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "No current visitor operations or point location is asserted from the area-level source."
+      ]
+    },
+    {
+      "id": "cm-attraction-5012-wiang-tha-kan",
+      "nameTh": "เวียงท่ากาน",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "archaeological_site",
+      "districtCode": "5012",
+      "districtNameTh": "สันป่าตอง",
+      "districtNameEn": "San Pa Tong",
+      "subdistrictCode": "501207",
+      "subdistrictNameTh": "บ้านกลาง",
+      "subdistrictNameEn": "Ban Klang",
+      "coordinates": null,
+      "description": "Ancient settlement identified by the Fine Arts Department in Ban Klang subdistrict, San Pa Tong district.",
+      "responsibleAuthority": "Fine Arts Department",
+      "sourceIds": ["FAD-WIANG-THA-KAN-30229"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "FAD-WIANG-THA-KAN-30229",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "FAD-WIANG-THA-KAN-30229",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "FAD-WIANG-THA-KAN-30229",
+          "status": "supported"
+        }
+      ],
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_district_and_subdistrict_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": ["English name and all current visitor facts remain pending."]
+    },
+    {
+      "id": "cm-attraction-5016-ob-luang-national-park",
+      "nameTh": "อุทยานแห่งชาติออบหลวง",
+      "nameEn": "Ob Luang National Park",
+      "englishNameStatus": "verified_official_dnp",
+      "category": "national_park",
+      "districtCode": "5016",
+      "districtNameTh": "ฮอด",
+      "districtNameEn": "Hot",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "National park whose official DNP area notice includes Hot district, Chiang Mai.",
+      "responsibleAuthority": "Department of National Parks, Wildlife and Plant Conservation",
+      "sourceIds": ["DNP-OB-LUANG-NEWS-25005"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "DNP-OB-LUANG-NEWS-25005",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "DNP-OB-LUANG-NEWS-25005",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2023-08-29",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "stale_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "Area coverage does not establish a visitor entrance point or current operating conditions."
+      ]
+    },
+    {
+      "id": "cm-attraction-5019-wiang-kum-kam",
+      "nameTh": "เวียงกุมกาม",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "archaeological_site",
+      "districtCode": "5019",
+      "districtNameTh": "สารภี",
+      "districtNameEn": "Saraphi",
+      "subdistrictCode": "501910",
+      "subdistrictNameTh": "ท่าวังตาล",
+      "subdistrictNameEn": "Tha Wang Tan",
+      "coordinates": null,
+      "description": "Ancient settlement identified by the Fine Arts Department within Saraphi district; the exact canonical subdistrict remains under review.",
+      "responsibleAuthority": "Fine Arts Department",
+      "sourceIds": ["FAD-WIANG-KUM-KAM-64609"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "FAD-WIANG-KUM-KAM-64609",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "FAD-WIANG-KUM-KAM-64609",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "FAD-WIANG-KUM-KAM-64609",
+          "status": "supported"
+        }
+      ],
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_district_and_subdistrict_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "Border-sensitive parentage was checked at the named Tha Wang Tan site; individual monuments still require their own parent review."
+      ]
+    },
+    {
       "id": "cm-attraction-5024-pha-chor",
       "nameTh": "ผาช่อ",
       "nameEn": null,

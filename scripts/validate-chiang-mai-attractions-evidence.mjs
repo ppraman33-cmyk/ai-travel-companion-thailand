@@ -36,8 +36,8 @@ export function validateChiangMaiAttractions(data) {
     failures.push(`coverage matrix must contain 25 districts`);
   if (new Set(coverage.districts.map(({ code }) => code)).size !== 25)
     failures.push("coverage district codes must be unique");
-  if (registry.records.length !== 11)
-    failures.push(`expected 11 admitted records, found ${registry.records.length}`);
+  if (registry.records.length !== 15)
+    failures.push(`expected 15 admitted records, found ${registry.records.length}`);
 
   for (const rootRecord of [registry, sources, coverage, exclusions]) {
     if (
@@ -254,6 +254,6 @@ if (
     process.exit(1);
   }
   console.log(
-    "Chiang Mai attraction evidence OK: 11 records, 25/25 districts, publication blocked",
+    "Chiang Mai attraction evidence OK: 15 records, 25/25 districts, publication blocked",
   );
 }
