@@ -48,10 +48,11 @@ current visitor-hours, admission, accessibility, or operating-status claim.
 
 ## Batch 2 official-source decisions
 
-Four coverage gaps gained direct official parent evidence: Khun Khan National
-Park (DNP/Samoeng), Wiang Tha Kan (Fine Arts Department/San Pa Tong), Ob Luang
-National Park (DNP/Hot), and Wiang Kum Kam at Tha Wang Tan (Fine Arts
-Department/Saraphi). Undated pages retain `representedAt: null`; the dated Ob
-Luang notice is historical area evidence and is not treated as proof of current
-visitor operations. The remaining discovery candidates were not admitted where
-identity, authority, and exact district could not be jointly supported.
+Two coverage gaps gained direct, unambiguous official parent evidence: Khun
+Khan National Park (DNP/Samoeng) and Wiang Tha Kan (Fine Arts Department/San
+Pa Tong). Khun Khan's DNP article is dated 2025-03-05, while the Wiang Tha Kan
+page exposes no represented date. The DNP source for Ob Luang describes a park
+spanning Chom Thong, Hot, and Mae Chaem, so it cannot establish a singular Hot
+attraction parent. The Fine Arts source describes Wiang Kum Kam as an
+archaeological locality in Tha Wang Tan, not one visitor-attraction identity;
+individual monuments remain excluded pending border-sensitive parent evidence.

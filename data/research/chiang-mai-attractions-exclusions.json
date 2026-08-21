@@ -34,9 +34,14 @@
       "reason": "Project references were not sufficient evidence of a current visitor attraction."
     },
     {
-      "candidate": "Individual Wiang Kum Kam monuments outside the verified Tha Wang Tan identity",
+      "candidate": "Wiang Kum Kam locality and individual monuments",
       "districtCode": "5019",
-      "reason": "Each monument remains excluded until an authoritative site-level parent confirms that it is not across the Mueang Chiang Mai boundary."
+      "reason": "The official source identifies the archaeological locality in Tha Wang Tan but does not define one visitor-attraction identity; each monument needs its own parent and authority evidence across the Mueang Chiang Mai–Saraphi boundary."
+    },
+    {
+      "candidate": "Ob Luang National Park",
+      "districtCode": "5016",
+      "reason": "The official source states that the park spans Chom Thong, Hot and Mae Chaem, so it cannot support a singular Hot attraction parent without a site-level entrance or attraction locator."
     },
     {
       "candidate": "Wiang Haeng historic and mountain sites",

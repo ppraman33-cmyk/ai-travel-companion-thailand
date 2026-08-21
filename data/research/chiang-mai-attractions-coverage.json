@@ -128,9 +128,9 @@
       "code": "5016",
       "nameTh": "ฮอด",
       "nameEn": "Hot",
-      "recordIds": ["cm-attraction-5016-ob-luang-national-park"],
-      "coverageStatus": "partial",
-      "gap": "The official area source is stale for visitor operations and does not establish a point entrance or current visitor facts."
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "Ob Luang spans Chom Thong, Hot and Mae Chaem; the reviewed area source does not establish a Hot-specific attraction point or entrance."
     },
     {
       "code": "5017",
@@ -152,9 +152,9 @@
       "code": "5019",
       "nameTh": "สารภี",
       "nameEn": "Saraphi",
-      "recordIds": ["cm-attraction-5019-wiang-kum-kam"],
-      "coverageStatus": "partial",
-      "gap": "The Tha Wang Tan parent is supported for the registered identity, but individual monuments and visitor facts require separate verification."
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "The source establishes Wiang Kum Kam as an archaeological locality in Tha Wang Tan, but not a single visitor-attraction identity; individual monuments require separate border-sensitive parent evidence."
     },
     {
       "code": "5020",

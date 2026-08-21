@@ -36,8 +36,8 @@ export function validateChiangMaiAttractions(data) {
     failures.push(`coverage matrix must contain 25 districts`);
   if (new Set(coverage.districts.map(({ code }) => code)).size !== 25)
     failures.push("coverage district codes must be unique");
-  if (registry.records.length !== 15)
-    failures.push(`expected 15 admitted records, found ${registry.records.length}`);
+  if (registry.records.length !== 13)
+    failures.push(`expected 13 admitted records, found ${registry.records.length}`);
 
   for (const rootRecord of [registry, sources, coverage, exclusions]) {
     if (
@@ -187,6 +187,32 @@ export function validateChiangMaiAttractions(data) {
     provinceDoiInthanon?.retrievedAt !== "2026-08-21"
   )
     failures.push("Doi Inthanon source dates invalid");
+  const khunKhan = registry.records.find(
+    ({ id }) => id === "cm-attraction-5008-khun-khan-national-park",
+  );
+  const khunKhanSource = sourceById.get("DNP-KHUN-KHAN-NEWS-30591");
+  if (
+    khunKhan?.nameEn !== null ||
+    khunKhan?.englishNameStatus !== "pending" ||
+    khunKhan?.representedAt !== "2025-03-05" ||
+    khunKhanSource?.representedAt !== "2025-03-05"
+  )
+    failures.push("Khun Khan date/English-name evidence contract invalid");
+  if (
+    registry.records.some(({ id }) =>
+      [
+        "cm-attraction-5016-ob-luang-national-park",
+        "cm-attraction-5019-wiang-kum-kam",
+      ].includes(id),
+    )
+  )
+    failures.push("multi-district park or archaeological locality admitted as site");
+  const exclusionNames = new Set(exclusions.items.map(({ candidate }) => candidate));
+  if (
+    !exclusionNames.has("Ob Luang National Park") ||
+    !exclusionNames.has("Wiang Kum Kam locality and individual monuments")
+  )
+    failures.push("Founder-review exclusion contract missing");
   if (
     exclusions.items.some(
       ({ districtCode, reason }) =>
@@ -254,6 +280,6 @@ if (
     process.exit(1);
   }
   console.log(
-    "Chiang Mai attraction evidence OK: 15 records, 25/25 districts, publication blocked",
+    "Chiang Mai attraction evidence OK: 13 records, 25/25 districts, publication blocked",
   );
 }

@@ -16,10 +16,10 @@ describe("Chiang Mai attractions research evidence baseline", () => {
 
   it("accounts for all 25 districts without equalizing or borrowing records", () => {
     expect(data.coverage.districts).toHaveLength(25);
-    expect(data.registry.records).toHaveLength(15);
+    expect(data.registry.records).toHaveLength(13);
     expect(
       data.coverage.districts.filter(({ coverageStatus }) => coverageStatus === "gap"),
-    ).toHaveLength(10);
+    ).toHaveLength(12);
     expect(
       data.coverage.districts.every(({ code, recordIds }) =>
         recordIds.every(
@@ -31,23 +31,23 @@ describe("Chiang Mai attractions research evidence baseline", () => {
     ).toBe(true);
   });
 
-  it("admits only the four Batch 2 districts with direct official parent evidence", () => {
+  it("admits only Batch 2 identities with direct, unambiguous parent evidence", () => {
     const admitted = new Map(
       data.registry.records.map((record) => [record.districtCode, record]),
     );
-    expect([...admitted.keys()]).toEqual(
-      expect.arrayContaining(["5008", "5012", "5016", "5019"]),
-    );
-    for (const code of ["5008", "5012", "5016", "5019"]) {
+    expect([...admitted.keys()]).toEqual(expect.arrayContaining(["5008", "5012"]));
+    for (const code of ["5008", "5012"]) {
       expect(admitted.get(code)?.assertions).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ field: "district_parent", status: "supported" }),
         ]),
       );
     }
+    expect(admitted.has("5016")).toBe(false);
+    expect(admitted.has("5019")).toBe(false);
   });
 
-  it("keeps the ten unresolved districts explicit instead of equalizing coverage", () => {
+  it("keeps the twelve unresolved districts explicit instead of equalizing coverage", () => {
     expect(
       data.coverage.districts
         .filter(({ coverageStatus }) => coverageStatus === "gap")
@@ -58,12 +58,44 @@ describe("Chiang Mai attractions research evidence baseline", () => {
       "5010",
       "5013",
       "5014",
+      "5016",
+      "5019",
       "5020",
       "5021",
       "5022",
       "5023",
       "5025",
     ]);
+  });
+
+  it("does not translate DNP names or collapse multi-district/locality evidence", () => {
+    const khunKhan = data.registry.records.find(
+      ({ id }) => id === "cm-attraction-5008-khun-khan-national-park",
+    );
+    const sources = new Map(data.sources.sources.map((source) => [source.id, source]));
+
+    expect(khunKhan).toMatchObject({
+      nameEn: null,
+      englishNameStatus: "pending",
+      representedAt: "2025-03-05",
+    });
+    expect(sources.get("DNP-KHUN-KHAN-NEWS-30591")).toMatchObject({
+      representedAt: "2025-03-05",
+    });
+    expect(
+      data.registry.records.some(({ id }) =>
+        [
+          "cm-attraction-5016-ob-luang-national-park",
+          "cm-attraction-5019-wiang-kum-kam",
+        ].includes(id),
+      ),
+    ).toBe(false);
+    expect(data.exclusions.items.map(({ candidate }) => candidate)).toEqual(
+      expect.arrayContaining([
+        "Ob Luang National Park",
+        "Wiang Kum Kam locality and individual monuments",
+      ]),
+    );
   });
 
   it("keeps every record rights-pending and publication-blocked", () => {
