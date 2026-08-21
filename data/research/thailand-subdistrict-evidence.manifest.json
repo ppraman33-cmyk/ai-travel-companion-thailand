@@ -16,9 +16,15 @@
       "reference": "DOPA-POPULATION-ADM3-2026-03",
       "publisher": "Bureau of Registration Administration, Department of Provincial Administration, Ministry of Interior",
       "sourceUrl": "https://stat.bora.dopa.go.th/new_stat/file/69/3_6903.xls",
+      "catalogUrl": "https://stat.bora.dopa.go.th/new_stat/webPage/statByMooBan.php?month=03&year=69",
       "retrievedAt": "2026-08-20",
       "representedAt": "2026-03",
-      "evidenceLocator": "all rows; province code, registration-office/district code, subdistrict code and Thai name",
+      "artifactPathParameters": {
+        "BuddhistYearTwoDigit": "69",
+        "administrativeLevel": "3",
+        "yearMonth": "6903"
+      },
+      "evidenceLocator": "artifact /69/3_6903.xls; every data row has year-month field 6903; columns province code, registration-office code, subdistrict code and Thai name",
       "sha256": "cc8902fd622cf4733b244942849854e549b07f66d72e352579dcca3aeeb443d4",
       "rightsStatus": "pending_explicit_redistribution_terms"
     }

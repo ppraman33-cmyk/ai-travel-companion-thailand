@@ -22,15 +22,16 @@ The source page documents the two-digit province, district, subdistrict and vill
 
 - Dataset: DOPA monthly population statistics, ADM3 level
 - Publisher/owner: Bureau of Registration Administration, Department of Provincial Administration, Ministry of Interior
-- Catalog page: https://stat.bora.dopa.go.th/new_stat/webPage/statByMooBan.php?month=07&year=60
+- Exact catalog query: https://stat.bora.dopa.go.th/new_stat/webPage/statByMooBan.php?month=03&year=69
 - File URL: https://stat.bora.dopa.go.th/new_stat/file/69/3_6903.xls
 - Retrieved: 2026-08-20
 - Represented month: 2026-03
-- Locator: all data rows; province code, registration-office/district code, subdistrict code and Thai name
+- Artifact parameters: Buddhist-year suffix `69`, administrative level `3`, year-month `6903`
+- Locator: artifact `/69/3_6903.xls`; every data row has year-month field `6903`; columns for province code, registration-office code, subdistrict code and Thai name
 - SHA-256: `cc8902fd622cf4733b244942849854e549b07f66d72e352579dcca3aeeb443d4`
 - Rights: **pending explicit redistribution terms**
 
-Only the unique ADM3 identity columns are used for a checksum-pinned cross-check. Population and demographic values are not retained. The cross-check confirms all 7,436 active identities and their 928 parent relationships but does not resolve redistribution rights.
+The URL path and every artifact row bind this evidence to March 2026 (`6903`), independently of the retrieval date. Registration-office codes can include municipal offices and are not treated as administrative parents; ADM3 parentage is derived from the authoritative CCAATT code. Only the unique ADM3 identity columns are used for a checksum-pinned cross-check. Population and demographic values are not retained. The cross-check confirms all 7,436 active identities and their 928 parent relationships but does not resolve redistribution rights.
 
 ## Reconciled result
 

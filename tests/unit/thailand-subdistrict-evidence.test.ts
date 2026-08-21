@@ -168,6 +168,32 @@ describe("Thailand nationwide subdistrict evidence baseline", () => {
     expect(manifest.extraRecords).toEqual([]);
   });
 
+  it("binds March 2026 freshness to its exact catalog query and artifact parameters", () => {
+    const freshness = manifest.sourceRegister.find(
+      ({ reference }: { reference: string }) =>
+        reference === "DOPA-POPULATION-ADM3-2026-03",
+    );
+    expect(freshness).toMatchObject({
+      representedAt: "2026-03",
+      sourceUrl: "https://stat.bora.dopa.go.th/new_stat/file/69/3_6903.xls",
+      catalogUrl:
+        "https://stat.bora.dopa.go.th/new_stat/webPage/statByMooBan.php?month=03&year=69",
+      artifactPathParameters: {
+        BuddhistYearTwoDigit: "69",
+        administrativeLevel: "3",
+        yearMonth: "6903",
+      },
+    });
+    const wrongMonth = structuredClone(manifest);
+    wrongMonth.sourceRegister.find(
+      ({ reference }: { reference: string }) =>
+        reference === "DOPA-POPULATION-ADM3-2026-03",
+    ).artifactPathParameters.yearMonth = "6904";
+    expect(validateSubdistrictManifest(wrongMonth)).toEqual(
+      expect.arrayContaining([expect.stringContaining("exact artifact parameters")]),
+    );
+  });
+
   it("does not leak into production imports, APIs, UI, public or offline assets", () => {
     expect(findSubdistrictRuntimeLeakage(root)).toEqual([]);
   });

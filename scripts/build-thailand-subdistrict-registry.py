@@ -25,6 +25,11 @@ IDENTITY_REFERENCE = "DOPA-CCAATT-2023-09-01"
 FRESHNESS_REFERENCE = "DOPA-POPULATION-ADM3-2026-03"
 IDENTITY_URL = "https://stat.bora.dopa.go.th/dload/ccaatt.xlsx"
 FRESHNESS_URL = "https://stat.bora.dopa.go.th/new_stat/file/69/3_6903.xls"
+FRESHNESS_CATALOG_URL = (
+    "https://stat.bora.dopa.go.th/new_stat/webPage/"
+    "statByMooBan.php?month=03&year=69"
+)
+FRESHNESS_PERIOD = "6903"
 EXPECTED_TAMBON = 7256
 EXPECTED_KHWAENG = 180
 
@@ -101,6 +106,12 @@ def read_freshness_identities(path: Path) -> dict[str, dict[str, str]]:
     parser.feed(path.read_text(encoding="utf-8"))
     identities: dict[str, dict[str, str]] = {}
     for row in parser.rows[1:]:
+        represented_period = row[0].lstrip("\ufeff")
+        if represented_period != FRESHNESS_PERIOD:
+            raise SystemExit(
+                f"freshness evidence period must be {FRESHNESS_PERIOD}, "
+                f"found {represented_period or 'empty'}"
+            )
         province_code, district_code, code = row[1], row[3], row[5]
         if not (province_code.isdigit() and district_code.isdigit() and code.isdigit()):
             continue
@@ -276,9 +287,15 @@ def build(identity_path: Path, freshness_path: Path) -> None:
                 "reference": FRESHNESS_REFERENCE,
                 "publisher": "Bureau of Registration Administration, Department of Provincial Administration, Ministry of Interior",
                 "sourceUrl": FRESHNESS_URL,
+                "catalogUrl": FRESHNESS_CATALOG_URL,
                 "retrievedAt": "2026-08-20",
                 "representedAt": "2026-03",
-                "evidenceLocator": "all rows; province code, registration-office/district code, subdistrict code and Thai name",
+                "artifactPathParameters": {
+                    "BuddhistYearTwoDigit": "69",
+                    "administrativeLevel": "3",
+                    "yearMonth": FRESHNESS_PERIOD,
+                },
+                "evidenceLocator": "artifact /69/3_6903.xls; every data row has year-month field 6903; columns province code, registration-office code, subdistrict code and Thai name",
                 "sha256": FRESHNESS_SHA256,
                 "rightsStatus": "pending_explicit_redistribution_terms",
             },

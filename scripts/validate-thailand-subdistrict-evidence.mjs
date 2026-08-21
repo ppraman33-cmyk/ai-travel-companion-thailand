@@ -98,6 +98,23 @@ export function validateSubdistrictManifest(manifest) {
     if (source.rightsStatus !== "pending_explicit_redistribution_terms")
       failures.push(`${source.reference}: rights must remain pending`);
   }
+  const freshness = manifest?.sourceRegister?.find(
+    ({ reference }) => reference === "DOPA-POPULATION-ADM3-2026-03",
+  );
+  if (
+    freshness?.representedAt !== "2026-03" ||
+    freshness?.sourceUrl !==
+      "https://stat.bora.dopa.go.th/new_stat/file/69/3_6903.xls" ||
+    freshness?.catalogUrl !==
+      "https://stat.bora.dopa.go.th/new_stat/webPage/statByMooBan.php?month=03&year=69" ||
+    freshness?.artifactPathParameters?.BuddhistYearTwoDigit !== "69" ||
+    freshness?.artifactPathParameters?.administrativeLevel !== "3" ||
+    freshness?.artifactPathParameters?.yearMonth !== "6903" ||
+    !freshness?.evidenceLocator?.includes("year-month field 6903")
+  )
+    failures.push(
+      "freshness source must bind represented month to exact artifact parameters",
+    );
   if (Object.keys(manifest?.provinceCounts ?? {}).length !== 77)
     failures.push("province coverage must be 77");
   if (Object.keys(manifest?.parentDistrictCounts ?? {}).length !== 928)
