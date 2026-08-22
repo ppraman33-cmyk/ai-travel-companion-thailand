@@ -709,26 +709,34 @@
       "coordinates": null,
       "description": "Royal-initiative hot-spring tourism site explicitly assigned by Chiang Mai Province to Mae On district.",
       "responsibleAuthority": "Management authority pending; Chiang Mai Provincial Office coordinates oversight",
-      "sourceIds": ["CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-10734"],
+      "sourceIds": [
+        "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
+        "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-10734"
+      ],
       "assertions": [
         {
           "field": "identity",
-          "sourceId": "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-10734",
+          "sourceId": "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
           "status": "supported"
         },
         {
           "field": "district_parent",
+          "sourceId": "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent_historical_support",
           "sourceId": "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-10734",
           "status": "supported"
         }
       ],
-      "representedAt": "2023-03-13",
+      "representedAt": "2025-06-13",
       "retrievedAt": "2026-08-22",
       "openingHoursStatus": "pending",
       "admissionStatus": "pending",
       "accessibilityStatus": "pending",
       "mapStatus": "pending_no_coordinates",
-      "freshnessStatus": "stale_reverification_required",
+      "freshnessStatus": "review_required_before_use",
       "rightsStatus": "facts_only_rights_pending",
       "mediaRightsStatus": "not_assessed_no_media_downloaded",
       "evidenceStatus": "identity_and_district_supported",

@@ -71,3 +71,7 @@ Undated pages retain `representedAt: null`; retrieval on 2026-08-22 is recorded
 separately and is not treated as freshness. The broad Wiang Kum Kam locality,
 Ob Luang park area, Mae Kampong, Bo Sang, Pha Daeng and Ob Khan remain excluded
 from the relevant gap districts.
+
+Founder review supplements the Mae On hot-spring record with provincial news
+13436, recorded 2025-06-13. It is the current identity and district-parent
+assertion; the 2023 page is retained as historical corroboration only.

@@ -13,7 +13,7 @@ Review date: 2026-08-22
 | Records                     |     13 |    18 |
 | Districts with records      |     13 |    18 |
 | Coverage gaps               |     12 |     7 |
-| New direct official sources |      0 |     5 |
+| New direct official sources |      0 |     6 |
 | Coordinates                 |      0 |     0 |
 | Visitor-fact sets asserted  |      0 |     0 |
 | Rights cleared              |      0 |     0 |
@@ -33,6 +33,11 @@ locality. Doi Bo Luang is independent of Ob Luang; the latter remains excluded
 without a Hot-specific entrance or attraction locator. The hot spring's name is
 not used to infer San Kamphaeng district because the official source explicitly
 assigns it to Mae On.
+
+Founder review added Chiang Mai Provincial Office record 13436, recorded
+2025-06-13, as the current identity and district-parent assertion for the Mae
+On hot spring. The 2023 provincial record remains historical support only;
+neither retrieval date is used as represented date.
 
 ## Remaining coverage gaps
 

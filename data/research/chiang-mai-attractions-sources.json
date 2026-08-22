@@ -222,6 +222,18 @@
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
     },
     {
+      "id": "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
+      "tier": 3,
+      "publisher": "Chiang Mai Provincial Office",
+      "title": "Chiang Mai advances sustainable management of San Kamphaeng Hot Springs",
+      "url": "https://www.chiangmai.go.th/managing/public/newsshow/13436",
+      "representedAt": "2025-06-13",
+      "retrievedAt": "2026-08-22",
+      "locator": "Official provincial article recorded 13 June 2025 identifies San Kamphaeng Hot Springs under the Royal Initiative as a tourism site in Mae On district, Chiang Mai",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
       "id": "FIO-BAN-WAT-CHAN-487",
       "tier": 1,
       "publisher": "Forest Industry Organization",

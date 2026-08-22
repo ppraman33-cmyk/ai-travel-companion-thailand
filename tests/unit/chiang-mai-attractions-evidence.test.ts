@@ -60,7 +60,7 @@ describe("Chiang Mai attractions research evidence baseline", () => {
       ["5005", "CM-PROVINCE-HUAI-HONG-KHRAI"],
       ["5016", "FIO-DOI-BO-LUANG-2135"],
       ["5019", "FAD-KHU-PA-DOM-52710"],
-      ["5023", "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-10734"],
+      ["5023", "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436"],
       ["5025", "FIO-BAN-WAT-CHAN-487"],
     ]);
     for (const [districtCode, sourceId] of expected) {
@@ -74,6 +74,20 @@ describe("Chiang Mai attractions research evidence baseline", () => {
         ]),
       );
     }
+  });
+
+  it("uses the current represented date for the Mae On hot-spring assertion", () => {
+    const record = data.registry.records.find(
+      ({ id }) => id === "cm-attraction-5023-san-kamphaeng-hot-springs",
+    );
+    const source = data.sources.sources.find(
+      ({ id }) => id === "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
+    );
+    expect(record?.representedAt).toBe("2025-06-13");
+    expect(source).toMatchObject({
+      representedAt: "2025-06-13",
+      retrievedAt: "2026-08-22",
+    });
   });
 
   it("keeps broad cross-district identities excluded while admitting specific sites", () => {

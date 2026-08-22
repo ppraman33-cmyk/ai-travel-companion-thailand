@@ -221,7 +221,7 @@ export function validateChiangMaiAttractions(data) {
       "5023",
       [
         "cm-attraction-5023-san-kamphaeng-hot-springs",
-        "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-10734",
+        "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
       ],
     ],
     [
@@ -258,6 +258,18 @@ export function validateChiangMaiAttractions(data) {
     khuPaDom?.nameTh !== "โบราณสถานกู่ป้าด้อม"
   )
     failures.push("Khu Pa Dom monument identity/parent contract invalid");
+  const maeOnHotSpring = registry.records.find(
+    ({ id }) => id === "cm-attraction-5023-san-kamphaeng-hot-springs",
+  );
+  const maeOnCurrentSource = sourceById.get(
+    "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
+  );
+  if (
+    maeOnHotSpring?.representedAt !== "2025-06-13" ||
+    maeOnCurrentSource?.representedAt !== "2025-06-13" ||
+    maeOnCurrentSource?.retrievedAt !== "2026-08-22"
+  )
+    failures.push("Mae On current represented/retrieval date contract invalid");
   const exclusionNames = new Set(exclusions.items.map(({ candidate }) => candidate));
   if (
     !exclusionNames.has("Ob Luang National Park") ||
