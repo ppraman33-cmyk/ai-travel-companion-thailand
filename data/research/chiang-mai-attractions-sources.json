@@ -172,6 +172,78 @@
       "locator": "Official museum page identifies Wiang Kum Kam in Tha Wang Tan subdistrict, Saraphi district, Chiang Mai; no represented date was exposed",
       "rightsStatus": "facts_only_rights_pending",
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "CM-PROVINCE-HUAI-HONG-KHRAI",
+      "tier": 3,
+      "publisher": "Chiang Mai Provincial Office",
+      "title": "Huai Hong Khrai Royal Development Study Centre",
+      "url": "https://www.chiangmai.go.th/project/hoyhongkai.html",
+      "representedAt": null,
+      "retrievedAt": "2026-08-22",
+      "locator": "Official project page identifies the centre in Doi Saket district, Chiang Mai, and describes its public learning role; no represented date was exposed",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "FIO-DOI-BO-LUANG-2135",
+      "tier": 1,
+      "publisher": "Forest Industry Organization",
+      "title": "Doi Bo Luang Forest Plantation visitor-service update",
+      "url": "https://www.fio.co.th/th/detailAll/2135/nw/4",
+      "representedAt": "2025-09-01",
+      "retrievedAt": "2026-08-22",
+      "locator": "Official owner article dated 1 September 2025 identifies Doi Bo Luang Forest Plantation as an ecotourism destination in Hot district, Chiang Mai",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "FAD-KHU-PA-DOM-52710",
+      "tier": 1,
+      "publisher": "Fine Arts Department",
+      "title": "Conservation response at Khu Pa Dom archaeological monument",
+      "url": "https://www.finearts.go.th/promotion/view/52710-",
+      "representedAt": null,
+      "retrievedAt": "2026-08-22",
+      "locator": "Official authority article identifies Khu Pa Dom archaeological monument in Tha Wang Tan subdistrict, Saraphi district, Chiang Mai; no represented date was exposed",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-10734",
+      "tier": 3,
+      "publisher": "Chiang Mai Provincial Office",
+      "title": "San Kamphaeng Hot Springs management review",
+      "url": "https://www.chiangmai.go.th/managing/public/newsshow/10734",
+      "representedAt": "2023-03-13",
+      "retrievedAt": "2026-08-22",
+      "locator": "Official provincial article dated 13 March 2023 identifies San Kamphaeng Hot Springs under the Royal Initiative as a tourism site in Mae On district, Chiang Mai",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
+      "tier": 3,
+      "publisher": "Chiang Mai Provincial Office",
+      "title": "Chiang Mai advances sustainable management of San Kamphaeng Hot Springs",
+      "url": "https://www.chiangmai.go.th/managing/public/newsshow/13436",
+      "representedAt": "2025-06-13",
+      "retrievedAt": "2026-08-22",
+      "locator": "Official provincial article recorded 13 June 2025 identifies San Kamphaeng Hot Springs under the Royal Initiative as a tourism site in Mae On district, Chiang Mai",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "FIO-BAN-WAT-CHAN-487",
+      "tier": 1,
+      "publisher": "Forest Industry Organization",
+      "title": "Ban Wat Chan Forest Plantation tourism-readiness inspection",
+      "url": "https://www.fio.co.th/th/detailAll/487/nw/4",
+      "representedAt": "2024-11-10",
+      "retrievedAt": "2026-08-22",
+      "locator": "Official owner article reports a 10 November 2024 visitor-readiness inspection at Ban Wat Chan Forest Plantation in Galyani Vadhana district, Chiang Mai",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
     }
   ]
 }

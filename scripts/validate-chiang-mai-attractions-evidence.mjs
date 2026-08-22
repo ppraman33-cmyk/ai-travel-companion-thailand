@@ -36,8 +36,8 @@ export function validateChiangMaiAttractions(data) {
     failures.push(`coverage matrix must contain 25 districts`);
   if (new Set(coverage.districts.map(({ code }) => code)).size !== 25)
     failures.push("coverage district codes must be unique");
-  if (registry.records.length !== 13)
-    failures.push(`expected 13 admitted records, found ${registry.records.length}`);
+  if (registry.records.length !== 18)
+    failures.push(`expected 18 admitted records, found ${registry.records.length}`);
 
   for (const rootRecord of [registry, sources, coverage, exclusions]) {
     if (
@@ -207,6 +207,69 @@ export function validateChiangMaiAttractions(data) {
     )
   )
     failures.push("multi-district park or archaeological locality admitted as site");
+  const batch3Contracts = new Map([
+    [
+      "5005",
+      ["cm-attraction-5005-huai-hong-khrai-centre", "CM-PROVINCE-HUAI-HONG-KHRAI"],
+    ],
+    [
+      "5016",
+      ["cm-attraction-5016-doi-bo-luang-forest-plantation", "FIO-DOI-BO-LUANG-2135"],
+    ],
+    ["5019", ["cm-attraction-5019-khu-pa-dom", "FAD-KHU-PA-DOM-52710"]],
+    [
+      "5023",
+      [
+        "cm-attraction-5023-san-kamphaeng-hot-springs",
+        "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
+      ],
+    ],
+    [
+      "5025",
+      ["cm-attraction-5025-ban-wat-chan-forest-plantation", "FIO-BAN-WAT-CHAN-487"],
+    ],
+  ]);
+  for (const [districtCode, [recordId, sourceId]] of batch3Contracts) {
+    const record = registry.records.find(({ id }) => id === recordId);
+    if (
+      record?.districtCode !== districtCode ||
+      !record?.sourceIds.includes(sourceId) ||
+      !record?.assertions.some(
+        (assertion) =>
+          assertion.field === "identity" &&
+          assertion.sourceId === sourceId &&
+          assertion.status === "supported",
+      ) ||
+      !record?.assertions.some(
+        (assertion) =>
+          assertion.field === "district_parent" &&
+          assertion.sourceId === sourceId &&
+          assertion.status === "supported",
+      )
+    )
+      failures.push(`${recordId}: Batch 3 direct identity/parent contract invalid`);
+  }
+  const khuPaDom = registry.records.find(
+    ({ id }) => id === "cm-attraction-5019-khu-pa-dom",
+  );
+  if (
+    khuPaDom?.subdistrictCode !== "501910" ||
+    khuPaDom?.subdistrictNameTh !== "ท่าวังตาล" ||
+    khuPaDom?.nameTh !== "โบราณสถานกู่ป้าด้อม"
+  )
+    failures.push("Khu Pa Dom monument identity/parent contract invalid");
+  const maeOnHotSpring = registry.records.find(
+    ({ id }) => id === "cm-attraction-5023-san-kamphaeng-hot-springs",
+  );
+  const maeOnCurrentSource = sourceById.get(
+    "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
+  );
+  if (
+    maeOnHotSpring?.representedAt !== "2025-06-13" ||
+    maeOnCurrentSource?.representedAt !== "2025-06-13" ||
+    maeOnCurrentSource?.retrievedAt !== "2026-08-22"
+  )
+    failures.push("Mae On current represented/retrieval date contract invalid");
   const exclusionNames = new Set(exclusions.items.map(({ candidate }) => candidate));
   if (
     !exclusionNames.has("Ob Luang National Park") ||
@@ -280,6 +343,6 @@ if (
     process.exit(1);
   }
   console.log(
-    "Chiang Mai attraction evidence OK: 13 records, 25/25 districts, publication blocked",
+    "Chiang Mai attraction evidence OK: 18 records, 25/25 districts, publication blocked",
   );
 }

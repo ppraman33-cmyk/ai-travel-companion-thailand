@@ -11,7 +11,7 @@
     {
       "candidate": "Doi Saket hot-spring and community sites",
       "districtCode": "5005",
-      "reason": "Current responsible-authority evidence and exact site identity were incomplete."
+      "reason": "These candidates remain unsupported; Huai Hong Khrai was admitted separately from direct provincial evidence."
     },
     {
       "candidate": "Samoeng strawberry and viewpoint sites",
@@ -66,7 +66,22 @@
     {
       "candidate": "Wat Chan forest sites",
       "districtCode": "5025",
-      "reason": "General destination mention did not establish a current site-level attraction and responsible authority."
+      "reason": "Broad or ambiguous Wat Chan candidates remain excluded; the specifically named Ban Wat Chan Forest Plantation was admitted from a direct owner source."
+    },
+    {
+      "candidate": "Mae Chaem Forest Plantation",
+      "districtCode": "5003",
+      "reason": "The official source reviewed describes future tourism development rather than establishing a current visitor attraction with a direct district locator."
+    },
+    {
+      "candidate": "Pha Daeng National Park area",
+      "districtCode": "5021",
+      "reason": "The park spans multiple districts and no Chai Prakan-specific entrance or visitor point was established."
+    },
+    {
+      "candidate": "Ob Khan National Park area",
+      "districtCode": "5022",
+      "reason": "Area-level evidence did not establish a Mae Wang-specific entrance or visitor attraction point."
     }
   ]
 }

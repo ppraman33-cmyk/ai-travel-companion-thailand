@@ -561,6 +561,234 @@
       "reviewNotes": ["English name and all current visitor facts remain pending."]
     },
     {
+      "id": "cm-attraction-5005-huai-hong-khrai-centre",
+      "nameTh": "ศูนย์ศึกษาการพัฒนาห้วยฮ่องไคร้อันเนื่องมาจากพระราชดำริ",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "learning_nature_site",
+      "districtCode": "5005",
+      "districtNameTh": "ดอยสะเก็ด",
+      "districtNameEn": "Doi SaKet",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "Royal development study centre identified by Chiang Mai Province as a public learning site in Doi Saket district.",
+      "responsibleAuthority": "Huai Hong Khrai Royal Development Study Centre",
+      "sourceIds": ["CM-PROVINCE-HUAI-HONG-KHRAI"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "CM-PROVINCE-HUAI-HONG-KHRAI",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "CM-PROVINCE-HUAI-HONG-KHRAI",
+          "status": "supported"
+        }
+      ],
+      "representedAt": null,
+      "retrievedAt": "2026-08-22",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "represented_date_unavailable_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "English name, subdistrict and all current visitor facts remain pending."
+      ]
+    },
+    {
+      "id": "cm-attraction-5016-doi-bo-luang-forest-plantation",
+      "nameTh": "สวนป่าดอยบ่อหลวง",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "forest_ecotourism_site",
+      "districtCode": "5016",
+      "districtNameTh": "ฮอด",
+      "districtNameEn": "Hot",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "Forest Industry Organization ecotourism site explicitly located in Hot district.",
+      "responsibleAuthority": "Forest Industry Organization",
+      "sourceIds": ["FIO-DOI-BO-LUANG-2135"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "FIO-DOI-BO-LUANG-2135",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "FIO-DOI-BO-LUANG-2135",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2025-09-01",
+      "retrievedAt": "2026-08-22",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "Ob Luang remains excluded; no visitor hours, admission, coordinates or accessibility facts were imported."
+      ]
+    },
+    {
+      "id": "cm-attraction-5019-khu-pa-dom",
+      "nameTh": "โบราณสถานกู่ป้าด้อม",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "archaeological_site",
+      "districtCode": "5019",
+      "districtNameTh": "สารภี",
+      "districtNameEn": "Saraphi",
+      "subdistrictCode": "501910",
+      "subdistrictNameTh": "ท่าวังตาล",
+      "subdistrictNameEn": "Tha Wang Tan",
+      "coordinates": null,
+      "description": "Individual archaeological monument identified by the Fine Arts Department in Tha Wang Tan, Saraphi.",
+      "responsibleAuthority": "Fine Arts Department",
+      "sourceIds": ["FAD-KHU-PA-DOM-52710"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "FAD-KHU-PA-DOM-52710",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "FAD-KHU-PA-DOM-52710",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "FAD-KHU-PA-DOM-52710",
+          "status": "supported"
+        }
+      ],
+      "representedAt": null,
+      "retrievedAt": "2026-08-22",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "represented_date_unavailable_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_district_and_subdistrict_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "This is one monument identity; the broad Wiang Kum Kam locality remains excluded."
+      ]
+    },
+    {
+      "id": "cm-attraction-5023-san-kamphaeng-hot-springs",
+      "nameTh": "น้ำพุร้อนสันกำแพง อำเภอแม่ออน ตามพระราชดำริ",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "hot_spring",
+      "districtCode": "5023",
+      "districtNameTh": "แม่ออน",
+      "districtNameEn": "Mae On",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "Royal-initiative hot-spring tourism site explicitly assigned by Chiang Mai Province to Mae On district.",
+      "responsibleAuthority": "Management authority pending; Chiang Mai Provincial Office coordinates oversight",
+      "sourceIds": [
+        "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
+        "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-10734"
+      ],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-13436",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent_historical_support",
+          "sourceId": "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-10734",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2025-06-13",
+      "retrievedAt": "2026-08-22",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "The San Kamphaeng name is not used to override the official Mae On district assertion; current visitor facts remain pending."
+      ]
+    },
+    {
+      "id": "cm-attraction-5025-ban-wat-chan-forest-plantation",
+      "nameTh": "สวนป่าบ้านวัดจันทร์",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "forest_ecotourism_site",
+      "districtCode": "5025",
+      "districtNameTh": "กัลยาณิวัฒนา",
+      "districtNameEn": "Galyani Vadhana",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "Forest Industry Organization visitor site explicitly located in Galyani Vadhana district.",
+      "responsibleAuthority": "Forest Industry Organization",
+      "sourceIds": ["FIO-BAN-WAT-CHAN-487"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "FIO-BAN-WAT-CHAN-487",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "FIO-BAN-WAT-CHAN-487",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2024-11-10",
+      "retrievedAt": "2026-08-22",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "No media, coordinates, hours, admission or accessibility facts were imported."
+      ]
+    },
+    {
       "id": "cm-attraction-5024-pha-chor",
       "nameTh": "ผาช่อ",
       "nameEn": null,
