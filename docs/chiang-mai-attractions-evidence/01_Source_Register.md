@@ -56,3 +56,18 @@ spanning Chom Thong, Hot, and Mae Chaem, so it cannot establish a singular Hot
 attraction parent. The Fine Arts source describes Wiang Kum Kam as an
 archaeological locality in Tha Wang Tan, not one visitor-attraction identity;
 individual monuments remain excluded pending border-sensitive parent evidence.
+
+## Batch 3 official-source decisions
+
+Five additional identities passed the direct identity-plus-parent gate:
+
+- Huai Hong Khrai Royal Development Study Centre — Chiang Mai Provincial Office
+- Doi Bo Luang Forest Plantation — Forest Industry Organization
+- Khu Pa Dom archaeological monument — Fine Arts Department
+- San Kamphaeng Hot Springs under the Royal Initiative — Chiang Mai Provincial Office, explicitly in Mae On
+- Ban Wat Chan Forest Plantation — Forest Industry Organization
+
+Undated pages retain `representedAt: null`; retrieval on 2026-08-22 is recorded
+separately and is not treated as freshness. The broad Wiang Kum Kam locality,
+Ob Luang park area, Mae Kampong, Bo Sang, Pha Daeng and Ob Khan remain excluded
+from the relevant gap districts.

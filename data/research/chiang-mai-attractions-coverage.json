@@ -40,9 +40,9 @@
       "code": "5005",
       "nameTh": "ดอยสะเก็ด",
       "nameEn": "Doi SaKet",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+      "recordIds": ["cm-attraction-5005-huai-hong-khrai-centre"],
+      "coverageStatus": "partial",
+      "gap": "English name, exact subdistrict and current visitor facts remain pending."
     },
     {
       "code": "5006",
@@ -128,9 +128,9 @@
       "code": "5016",
       "nameTh": "ฮอด",
       "nameEn": "Hot",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "Ob Luang spans Chom Thong, Hot and Mae Chaem; the reviewed area source does not establish a Hot-specific attraction point or entrance."
+      "recordIds": ["cm-attraction-5016-doi-bo-luang-forest-plantation"],
+      "coverageStatus": "partial",
+      "gap": "Doi Bo Luang is supported independently; Ob Luang remains excluded without a Hot-specific entrance or attraction locator."
     },
     {
       "code": "5017",
@@ -152,9 +152,9 @@
       "code": "5019",
       "nameTh": "สารภี",
       "nameEn": "Saraphi",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "The source establishes Wiang Kum Kam as an archaeological locality in Tha Wang Tan, but not a single visitor-attraction identity; individual monuments require separate border-sensitive parent evidence."
+      "recordIds": ["cm-attraction-5019-khu-pa-dom"],
+      "coverageStatus": "partial",
+      "gap": "Khu Pa Dom is supported as one monument; the broad Wiang Kum Kam locality and other monuments remain excluded pending separate border-sensitive evidence."
     },
     {
       "code": "5020",
@@ -184,9 +184,9 @@
       "code": "5023",
       "nameTh": "แม่ออน",
       "nameEn": "Mae On",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "Mae Kampong was not admitted without a current responsible-authority source supporting exact parent and visitor facts."
+      "recordIds": ["cm-attraction-5023-san-kamphaeng-hot-springs"],
+      "coverageStatus": "partial",
+      "gap": "The hot-spring identity and Mae On parent are supported; current authority, subdistrict and visitor facts require re-verification. Mae Kampong remains excluded."
     },
     {
       "code": "5024",
@@ -200,9 +200,9 @@
       "code": "5025",
       "nameTh": "กัลยาณิวัฒนา",
       "nameEn": "Galyani Vadhana",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "Wat Chan forest candidates were not admitted without current site-level authority and exact attraction identity evidence."
+      "recordIds": ["cm-attraction-5025-ban-wat-chan-forest-plantation"],
+      "coverageStatus": "partial",
+      "gap": "Owner and district evidence support the forest-plantation identity; English name, subdistrict and current visitor facts remain pending."
     }
   ]
 }

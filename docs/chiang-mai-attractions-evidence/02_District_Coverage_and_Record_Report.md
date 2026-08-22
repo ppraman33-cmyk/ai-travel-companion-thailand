@@ -1,7 +1,7 @@
 # District Coverage and Attraction Record Report
 
-All 25 Chiang Mai districts are represented in the coverage matrix. Thirteen
-districts contain one evidence record; twelve intentionally remain coverage
+All 25 Chiang Mai districts are represented in the coverage matrix. Eighteen
+districts contain one evidence record; seven intentionally remain coverage
 gaps. Record counts are not equalized and no site is borrowed from another
 district.
 
@@ -11,7 +11,7 @@ district.
 | 5002 | จอมทอง         | อุทยานแห่งชาติดอยอินทนนท์                        | national park               | partial; direct district sources added |
 | 5003 | แม่แจ่ม        | —                                                | —                           | gap                                    |
 | 5004 | เชียงดาว       | น้ำพุร้อนโป่งอ่าง                                | hot spring                  | partial                                |
-| 5005 | ดอยสะเก็ด      | —                                                | —                           | gap                                    |
+| 5005 | ดอยสะเก็ด      | ศูนย์ศึกษาการพัฒนาห้วยฮ่องไคร้ฯ                  | learning nature site        | partial                                |
 | 5006 | แม่แตง         | แก่งกื้ด                                         | river nature site           | partial                                |
 | 5007 | แม่ริม         | ห้วยตึงเฒ่า                                      | reservoir recreation        | partial                                |
 | 5008 | สะเมิง         | อุทยานแห่งชาติขุนขาน                             | national park               | partial                                |
@@ -22,23 +22,23 @@ district.
 | 5013 | สันกำแพง       | —                                                | —                           | gap                                    |
 | 5014 | สันทราย        | —                                                | —                           | gap                                    |
 | 5015 | หางดง          | เชียงใหม่ไนท์ซาฟารี                              | wildlife visitor attraction | partial                                |
-| 5016 | ฮอด            | —                                                | —                           | gap; park spans three districts        |
+| 5016 | ฮอด            | สวนป่าดอยบ่อหลวง                                 | forest ecotourism site      | partial; Ob Luang remains excluded     |
 | 5017 | ดอยเต่า        | ทะเลสาบดอยเต่า                                   | lake recreation             | partial                                |
 | 5018 | อมก๋อย         | ดอยม่อนจอง                                       | mountain nature site        | partial                                |
-| 5019 | สารภี          | —                                                | —                           | gap; locality is not one attraction    |
+| 5019 | สารภี          | โบราณสถานกู่ป้าด้อม                              | archaeological site         | partial; one monument only             |
 | 5020 | เวียงแหง       | —                                                | —                           | gap                                    |
 | 5021 | ไชยปราการ      | —                                                | —                           | gap                                    |
 | 5022 | แม่วาง         | —                                                | —                           | gap                                    |
-| 5023 | แม่ออน         | —                                                | —                           | gap                                    |
+| 5023 | แม่ออน         | น้ำพุร้อนสันกำแพง อำเภอแม่ออนฯ                   | hot spring                  | partial                                |
 | 5024 | ดอยหล่อ        | ผาช่อ                                            | geological nature site      | partial                                |
-| 5025 | กัลยาณิวัฒนา   | —                                                | —                           | gap                                    |
+| 5025 | กัลยาณิวัฒนา   | สวนป่าบ้านวัดจันทร์                              | forest ecotourism site      | partial                                |
 
 ## Counts
 
-- Records: 13
+- Records: 18
 - Districts represented: 25/25
-- Districts with a retained record: 13
-- Coverage-gap districts: 12
+- Districts with a retained record: 18
+- Coverage-gap districts: 7
 - Publication eligible: 0
 - Rights cleared: 0
 - Media rights cleared: 0

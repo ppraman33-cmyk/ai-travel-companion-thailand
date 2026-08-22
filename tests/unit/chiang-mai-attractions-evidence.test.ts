@@ -16,10 +16,10 @@ describe("Chiang Mai attractions research evidence baseline", () => {
 
   it("accounts for all 25 districts without equalizing or borrowing records", () => {
     expect(data.coverage.districts).toHaveLength(25);
-    expect(data.registry.records).toHaveLength(13);
+    expect(data.registry.records).toHaveLength(18);
     expect(
       data.coverage.districts.filter(({ coverageStatus }) => coverageStatus === "gap"),
-    ).toHaveLength(12);
+    ).toHaveLength(7);
     expect(
       data.coverage.districts.every(({ code, recordIds }) =>
         recordIds.every(
@@ -31,7 +31,7 @@ describe("Chiang Mai attractions research evidence baseline", () => {
     ).toBe(true);
   });
 
-  it("admits only Batch 2 identities with direct, unambiguous parent evidence", () => {
+  it("preserves the two Batch 2 identities with direct parent evidence", () => {
     const admitted = new Map(
       data.registry.records.map((record) => [record.districtCode, record]),
     );
@@ -43,29 +43,45 @@ describe("Chiang Mai attractions research evidence baseline", () => {
         ]),
       );
     }
-    expect(admitted.has("5016")).toBe(false);
-    expect(admitted.has("5019")).toBe(false);
+    expect(admitted.get("5008")?.id).toBe("cm-attraction-5008-khun-khan-national-park");
+    expect(admitted.get("5012")?.id).toBe("cm-attraction-5012-wiang-tha-kan");
   });
 
-  it("keeps the twelve unresolved districts explicit instead of equalizing coverage", () => {
+  it("keeps the seven unresolved districts explicit instead of equalizing coverage", () => {
     expect(
       data.coverage.districts
         .filter(({ coverageStatus }) => coverageStatus === "gap")
         .map(({ code }) => code),
-    ).toEqual([
-      "5003",
-      "5005",
-      "5010",
-      "5013",
-      "5014",
-      "5016",
-      "5019",
-      "5020",
-      "5021",
-      "5022",
-      "5023",
-      "5025",
+    ).toEqual(["5003", "5010", "5013", "5014", "5020", "5021", "5022"]);
+  });
+
+  it("admits Batch 3 records only where one official source supports identity and district", () => {
+    const expected = new Map([
+      ["5005", "CM-PROVINCE-HUAI-HONG-KHRAI"],
+      ["5016", "FIO-DOI-BO-LUANG-2135"],
+      ["5019", "FAD-KHU-PA-DOM-52710"],
+      ["5023", "CM-PROVINCE-SAN-KAMPHAENG-HOT-SPRINGS-10734"],
+      ["5025", "FIO-BAN-WAT-CHAN-487"],
     ]);
+    for (const [districtCode, sourceId] of expected) {
+      const record = data.registry.records.find(
+        (candidate) => candidate.districtCode === districtCode,
+      );
+      expect(record?.assertions).toEqual(
+        expect.arrayContaining([
+          { field: "identity", sourceId, status: "supported" },
+          { field: "district_parent", sourceId, status: "supported" },
+        ]),
+      );
+    }
+  });
+
+  it("keeps broad cross-district identities excluded while admitting specific sites", () => {
+    const ids = data.registry.records.map(({ id }) => id);
+    expect(ids).toContain("cm-attraction-5019-khu-pa-dom");
+    expect(ids).toContain("cm-attraction-5016-doi-bo-luang-forest-plantation");
+    expect(ids).not.toContain("cm-attraction-5019-wiang-kum-kam");
+    expect(ids).not.toContain("cm-attraction-5016-ob-luang-national-park");
   });
 
   it("does not translate DNP names or collapse multi-district/locality evidence", () => {
