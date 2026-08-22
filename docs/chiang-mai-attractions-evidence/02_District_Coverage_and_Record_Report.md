@@ -1,7 +1,7 @@
 # District Coverage and Attraction Record Report
 
-All 25 Chiang Mai districts are represented in the coverage matrix. Eleven
-districts contain one evidence record; fourteen intentionally remain coverage
+All 25 Chiang Mai districts are represented in the coverage matrix. Thirteen
+districts contain one evidence record; twelve intentionally remain coverage
 gaps. Record counts are not equalized and no site is borrowed from another
 district.
 
@@ -14,18 +14,18 @@ district.
 | 5005 | ดอยสะเก็ด      | —                                                | —                           | gap                                    |
 | 5006 | แม่แตง         | แก่งกื้ด                                         | river nature site           | partial                                |
 | 5007 | แม่ริม         | ห้วยตึงเฒ่า                                      | reservoir recreation        | partial                                |
-| 5008 | สะเมิง         | —                                                | —                           | gap                                    |
+| 5008 | สะเมิง         | อุทยานแห่งชาติขุนขาน                             | national park               | partial                                |
 | 5009 | ฝาง            | น้ำพุร้อนฝาง                                     | hot spring                  | partial                                |
 | 5010 | แม่อาย         | —                                                | —                           | gap                                    |
 | 5011 | พร้าว          | สถานีพัฒนาการเกษตรที่สูงตามพระราชดำริดอยม่อนล้าน | highland learning site      | partial                                |
-| 5012 | สันป่าตอง      | —                                                | —                           | gap                                    |
+| 5012 | สันป่าตอง      | เวียงท่ากาน                                      | archaeological site         | partial                                |
 | 5013 | สันกำแพง       | —                                                | —                           | gap                                    |
 | 5014 | สันทราย        | —                                                | —                           | gap                                    |
 | 5015 | หางดง          | เชียงใหม่ไนท์ซาฟารี                              | wildlife visitor attraction | partial                                |
-| 5016 | ฮอด            | —                                                | —                           | gap                                    |
+| 5016 | ฮอด            | —                                                | —                           | gap; park spans three districts        |
 | 5017 | ดอยเต่า        | ทะเลสาบดอยเต่า                                   | lake recreation             | partial                                |
 | 5018 | อมก๋อย         | ดอยม่อนจอง                                       | mountain nature site        | partial                                |
-| 5019 | สารภี          | —                                                | —                           | gap                                    |
+| 5019 | สารภี          | —                                                | —                           | gap; locality is not one attraction    |
 | 5020 | เวียงแหง       | —                                                | —                           | gap                                    |
 | 5021 | ไชยปราการ      | —                                                | —                           | gap                                    |
 | 5022 | แม่วาง         | —                                                | —                           | gap                                    |
@@ -35,10 +35,10 @@ district.
 
 ## Counts
 
-- Records: 11
+- Records: 13
 - Districts represented: 25/25
-- Districts with a retained record: 11
-- Coverage-gap districts: 14
+- Districts with a retained record: 13
+- Coverage-gap districts: 12
 - Publication eligible: 0
 - Rights cleared: 0
 - Media rights cleared: 0

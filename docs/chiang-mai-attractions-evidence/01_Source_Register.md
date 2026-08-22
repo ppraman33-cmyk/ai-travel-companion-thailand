@@ -7,9 +7,10 @@ Publication: `blocked`
 Retrieved: 2026-08-21
 
 The machine-readable source register is
-`data/research/chiang-mai-attractions-sources.json`. It contains ten official
-sources: five Chiang Mai Provincial Office sources and five Tourism Authority
-of Thailand sources. No Google Maps, Facebook page, blog, aggregator, or search
+`data/research/chiang-mai-attractions-sources.json`. It contains fourteen
+official sources: five Chiang Mai Provincial Office sources, five Tourism
+Authority of Thailand sources, two Department of National Parks sources, and
+two Fine Arts Department sources. No Google Maps, Facebook page, blog, aggregator, or search
 snippet is used as final evidence.
 
 ## Reliability and use
@@ -44,3 +45,14 @@ Chiang Mai, and has no verified represented date, so its `representedAt` remains
 the park headquarters in Chom Thong and displays a recorded date of 2026-01-15.
 That date is attached only to the provincial assertion; it is not treated as a
 current visitor-hours, admission, accessibility, or operating-status claim.
+
+## Batch 2 official-source decisions
+
+Two coverage gaps gained direct, unambiguous official parent evidence: Khun
+Khan National Park (DNP/Samoeng) and Wiang Tha Kan (Fine Arts Department/San
+Pa Tong). Khun Khan's DNP article is dated 2025-03-05, while the Wiang Tha Kan
+page exposes no represented date. The DNP source for Ob Luang describes a park
+spanning Chom Thong, Hot, and Mae Chaem, so it cannot establish a singular Hot
+attraction parent. The Fine Arts source describes Wiang Kum Kam as an
+archaeological locality in Tha Wang Tan, not one visitor-attraction identity;
+individual monuments remain excluded pending border-sensitive parent evidence.

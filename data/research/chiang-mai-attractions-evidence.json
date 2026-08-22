@@ -472,6 +472,95 @@
       ]
     },
     {
+      "id": "cm-attraction-5008-khun-khan-national-park",
+      "nameTh": "อุทยานแห่งชาติขุนขาน",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "national_park",
+      "districtCode": "5008",
+      "districtNameTh": "สะเมิง",
+      "districtNameEn": "Samoeng",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "National park whose official DNP evidence places its protected area within Samoeng district.",
+      "responsibleAuthority": "Department of National Parks, Wildlife and Plant Conservation",
+      "sourceIds": ["DNP-KHUN-KHAN-NEWS-30591"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "DNP-KHUN-KHAN-NEWS-30591",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "DNP-KHUN-KHAN-NEWS-30591",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2025-03-05",
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "No current visitor operations or point location is asserted from the area-level source."
+      ]
+    },
+    {
+      "id": "cm-attraction-5012-wiang-tha-kan",
+      "nameTh": "เวียงท่ากาน",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "archaeological_site",
+      "districtCode": "5012",
+      "districtNameTh": "สันป่าตอง",
+      "districtNameEn": "San Pa Tong",
+      "subdistrictCode": "501207",
+      "subdistrictNameTh": "บ้านกลาง",
+      "subdistrictNameEn": "Ban Klang",
+      "coordinates": null,
+      "description": "Ancient settlement identified by the Fine Arts Department in Ban Klang subdistrict, San Pa Tong district.",
+      "responsibleAuthority": "Fine Arts Department",
+      "sourceIds": ["FAD-WIANG-THA-KAN-30229"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "FAD-WIANG-THA-KAN-30229",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "FAD-WIANG-THA-KAN-30229",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "FAD-WIANG-THA-KAN-30229",
+          "status": "supported"
+        }
+      ],
+      "representedAt": null,
+      "retrievedAt": "2026-08-21",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_district_and_subdistrict_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": ["English name and all current visitor facts remain pending."]
+    },
+    {
       "id": "cm-attraction-5024-pha-chor",
       "nameTh": "ผาช่อ",
       "nameEn": null,

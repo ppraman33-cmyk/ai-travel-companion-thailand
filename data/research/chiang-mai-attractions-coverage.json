@@ -64,9 +64,9 @@
       "code": "5008",
       "nameTh": "สะเมิง",
       "nameEn": "Samoeng",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+      "recordIds": ["cm-attraction-5008-khun-khan-national-park"],
+      "coverageStatus": "partial",
+      "gap": "Current visitor operations, entrance location and site-level subdistrict remain pending."
     },
     {
       "code": "5009",
@@ -96,9 +96,9 @@
       "code": "5012",
       "nameTh": "สันป่าตอง",
       "nameEn": "San Pa Tong",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+      "recordIds": ["cm-attraction-5012-wiang-tha-kan"],
+      "coverageStatus": "partial",
+      "gap": "Current visitor access, English name, hours and accessibility remain pending."
     },
     {
       "code": "5013",
@@ -130,7 +130,7 @@
       "nameEn": "Hot",
       "recordIds": [],
       "coverageStatus": "gap",
-      "gap": "Ob Luang was not admitted because this review did not obtain a current site-level district assertion."
+      "gap": "Ob Luang spans Chom Thong, Hot and Mae Chaem; the reviewed area source does not establish a Hot-specific attraction point or entrance."
     },
     {
       "code": "5017",
@@ -154,7 +154,7 @@
       "nameEn": "Saraphi",
       "recordIds": [],
       "coverageStatus": "gap",
-      "gap": "Border-sensitive Wiang Kum Kam candidates were excluded until every site has an authoritative district parent."
+      "gap": "The source establishes Wiang Kum Kam as an archaeological locality in Tha Wang Tan, but not a single visitor-attraction identity; individual monuments require separate border-sensitive parent evidence."
     },
     {
       "code": "5020",
