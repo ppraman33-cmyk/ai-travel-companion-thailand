@@ -244,6 +244,102 @@
       "locator": "Official owner article reports a 10 November 2024 visitor-readiness inspection at Ban Wat Chan Forest Plantation in Galyani Vadhana district, Chiang Mai",
       "rightsStatus": "facts_only_rights_pending",
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "MFL-ROI-JAI-RAK-DIRECT",
+      "tier": 1,
+      "publisher": "Mae Fah Luang Foundation under Royal Patronage",
+      "title": "Roi Jai Rak Project, Mae Ai, Chiang Mai",
+      "url": "https://www.maefahluang.org/domestic-program-01/",
+      "representedAt": null,
+      "retrievedAt": "2026-08-25",
+      "locator": "Direct project-owner page identifies the Roi Jai Rak Project, its 2018–2029 programme period, and its area in Tha Ton subdistrict, Mae Ai district, Chiang Mai; the page exposes no publication date",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "MFL-ROI-JAI-RAK-ANNUAL-2023",
+      "tier": 1,
+      "publisher": "Mae Fah Luang Foundation under Royal Patronage",
+      "title": "Mae Fah Luang Foundation Annual Report 2023",
+      "url": "https://www.maefahluang.org/wp-content/uploads/2024/06/AnnualReport-2566-compressed.pdf",
+      "representedAt": null,
+      "retrievedAt": "2026-08-25",
+      "locator": "The project-owner annual report for reporting year 2023 identifies Roi Jai Rak Garden as a tourism place receiving visitors; no exact publication date was assigned and the source binary was not committed",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "MAE-AI-POLICE-TOURISM-DIRECTORY",
+      "tier": 3,
+      "publisher": "Mae Ai Provincial Police Station",
+      "title": "Mae Ai district responsibility-area profile",
+      "url": "https://maeai.chiangmai.police.go.th/about/%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%9C%E0%B8%B4%E0%B8%94%E0%B8%8A%E0%B8%AD%E0%B8%9A/",
+      "representedAt": null,
+      "retrievedAt": "2026-08-25",
+      "locator": "Official district profile lists Roi Jai Rak Garden as a tourist place at Ban Huai San, village 10, Tha Ton subdistrict, Mae Ai district; no represented date was exposed",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "MAIIAM-VISIT-DIRECT",
+      "tier": 1,
+      "publisher": "MAIIAM Contemporary Art Museum",
+      "title": "Visit MAIIAM",
+      "url": "https://maiiam.com/th/visit",
+      "representedAt": null,
+      "retrievedAt": "2026-08-25",
+      "locator": "Direct museum page identifies MAIIAM as a contemporary-art museum and gives its address in Ton Pao, San Kamphaeng district, Chiang Mai; no represented date was exposed",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "MJU-THAI-AGRICULTURAL-CULTURE-MUSEUM",
+      "tier": 1,
+      "publisher": "Maejo University Archives",
+      "title": "Thai Agricultural Culture Museum",
+      "url": "https://archives.mju.ac.th/ssd/?p=4494",
+      "representedAt": "2022-01-21",
+      "retrievedAt": "2026-08-25",
+      "locator": "Official university archive article dated 21 January 2022 identifies the museum and states that Maejo University's Division of Art and Culture Promotion manages it",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "MJU-MUSEUM-SAN-SAI-LOCATION",
+      "tier": 1,
+      "publisher": "Maejo University",
+      "title": "University activity at the Thai Agricultural Culture Museum",
+      "url": "https://erp.mju.ac.th/hrDevelopmentRegister.aspx?ID=40302",
+      "representedAt": "2017-06-01",
+      "retrievedAt": "2026-08-25",
+      "locator": "Official university activity record names the Thai Agricultural Culture Museum as the venue and displays Maejo University's Nong Han, San Sai, Chiang Mai address; the represented date is the activity start date, not the retrieval date",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "DOA-KHUN-WANG-AGROTOURISM",
+      "tier": 1,
+      "publisher": "Department of Agriculture",
+      "title": "Agricultural conservation tourism programme",
+      "url": "https://www.doa.go.th/agrotour/",
+      "representedAt": "2025-03-04",
+      "retrievedAt": "2026-08-25",
+      "locator": "Official Department of Agriculture tourism portal lists Chiang Mai Royal Agricultural Research Centre (Khun Wang) as an agricultural-conservation tourism centre and dates its tourism-calendar entry 4 March 2025",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "DOA-KHUN-WANG-MAE-WANG",
+      "tier": 1,
+      "publisher": "Chiang Mai Royal Agricultural Research Centre, Department of Agriculture",
+      "title": "International study visit at Chiang Mai Royal Agricultural Research Centre (Khun Wang)",
+      "url": "https://www.doa.go.th/hc/cmrarc/?p=8688",
+      "representedAt": "2023-03-09",
+      "retrievedAt": "2026-08-25",
+      "locator": "Direct centre article records activity on 9 March 2023 and explicitly locates the Khun Wang centre in Mae Wang district, Chiang Mai",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
     }
   ]
 }

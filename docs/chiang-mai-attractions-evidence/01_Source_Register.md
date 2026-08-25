@@ -4,17 +4,20 @@ Status: `research_evidence_only`
 
 Publication: `blocked`
 
-Retrieved: 2026-08-21
+Latest Batch 4 retrieval: 2026-08-25
 
 The machine-readable source register is
-`data/research/chiang-mai-attractions-sources.json`. It contains fourteen
-official sources: five Chiang Mai Provincial Office sources, five Tourism
-Authority of Thailand sources, two Department of National Parks sources, and
-two Fine Arts Department sources. No Google Maps, Facebook page, blog, aggregator, or search
-snippet is used as final evidence.
+`data/research/chiang-mai-attractions-sources.json`. It contains 27 direct-owner
+or official-government sources across the four evidence batches. No Google
+Maps, Facebook page, blog, aggregator, or search snippet is used as final
+evidence.
 
 ## Reliability and use
 
+- Tier 1 means a direct responsible-owner or operator source. The owner may be
+  public, private or nonprofit; this tier must not be described as a government
+  source unless the publisher is actually a government body.
+- Tier 2 means a national government authority source.
 - Tier 3 provincial sources support named attraction-to-district or
   attraction-to-subdistrict assertions where the cited locator says so.
 - Tier 4 TAT sources support attraction identity and official English labels.
@@ -75,3 +78,28 @@ from the relevant gap districts.
 Founder review supplements the Mae On hot-spring record with provincial news
 13436, recorded 2025-06-13. It is the current identity and district-parent
 assertion; the 2023 page is retained as historical corroboration only.
+
+## Batch 4 official-source decisions
+
+Four candidates passed the identity, responsible-authority and district gate:
+
+- Roi Jai Rak Garden — the Mae Fah Luang Foundation project page and 2023
+  annual report plus an official Mae Ai district tourism listing
+- MAIIAM Contemporary Art Museum — direct museum-owner visitor page
+- Thai Agricultural Culture Museum — Maejo University Archives plus an official
+  university activity record that names the museum venue and San Sai address
+- Chiang Mai Royal Agricultural Research Centre (Khun Wang) — Department of
+  Agriculture tourism and district-specific centre pages
+
+Undated sources retain `representedAt: null`; retrieval on 2026-08-25 is not
+used as a represented date. Mae Chaem remains a gap because the reviewed
+municipal material did not expose a stable site identity and authority without
+requiring an uncommitted source binary. Wiang Haeng remains a gap because Doi
+Dam is explicitly on the Wiang Haeng–Pai boundary and no district-specific
+visitor point was established. No source image, PDF, spreadsheet or other
+binary was downloaded into or committed to the repository.
+
+Founder final review removed the Doi Wiang Pha public-service unit. The DNP
+source proved only a public-assistance and incident-reporting unit, not a
+visitor attraction or catalog-suitable visitor point. Chai Prakan therefore
+remains a coverage gap, and the wider multi-district park remains excluded.

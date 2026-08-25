@@ -21,17 +21,17 @@
     {
       "candidate": "Tha Ton temple and river sites",
       "districtCode": "5010",
-      "reason": "Exact owner/authority and assertion-level official source were incomplete."
+      "reason": "Exact site authority and current assertion-level evidence remain incomplete; Roi Jai Rak Garden was admitted separately from project-owner and official district sources."
     },
     {
       "candidate": "Bo Sang handicraft village",
       "districtCode": "5013",
-      "reason": "Official source reviewed did not jointly confirm current responsible authority and exact district assertion."
+      "reason": "Official sources reviewed did not jointly confirm one stable attraction identity, its current responsible authority and an exact district assertion; MAIIAM was admitted separately from its owner page."
     },
     {
       "candidate": "San Sai agricultural/community sites",
       "districtCode": "5014",
-      "reason": "Project references were not sufficient evidence of a current visitor attraction."
+      "reason": "Broad project references were not sufficient evidence of one current visitor attraction; Maejo University's Thai Agricultural Culture Museum was admitted separately."
     },
     {
       "candidate": "Wiang Kum Kam locality and individual monuments",
@@ -46,12 +46,12 @@
     {
       "candidate": "Wiang Haeng historic and mountain sites",
       "districtCode": "5020",
-      "reason": "No candidate completed identity, authority and exact parent verification."
+      "reason": "No candidate completed identity, current authority and exact site-level parent verification. Doi Dam is explicitly described on the Wiang Haeng–Pai boundary and cannot be assigned to one district."
     },
     {
       "candidate": "Chai Prakan historic/community sites",
       "districtCode": "5021",
-      "reason": "Current responsible-authority and site identity evidence were incomplete."
+      "reason": "Current responsible-authority and site identity evidence were incomplete; only the district-specific Doi Wiang Pha public-service unit was admitted."
     },
     {
       "candidate": "Pha Chor",
@@ -82,6 +82,16 @@
       "candidate": "Ob Khan National Park area",
       "districtCode": "5022",
       "reason": "Area-level evidence did not establish a Mae Wang-specific entrance or visitor attraction point."
+    },
+    {
+      "candidate": "Doi Dam viewpoint",
+      "districtCode": "5020",
+      "reason": "Official PRD reporting places the viewpoint on the boundary between Wiang Haeng, Chiang Mai and Pai, Mae Hong Son; no district-specific entrance or visitor point was established."
+    },
+    {
+      "candidate": "Doi Wiang Pha National Park area",
+      "districtCode": "5021",
+      "reason": "Official DNP evidence describes the park across several districts, while the district-specific source identifies only a public-assistance unit and does not prove an attraction or visitor point suitable for the catalog."
     }
   ]
 }
