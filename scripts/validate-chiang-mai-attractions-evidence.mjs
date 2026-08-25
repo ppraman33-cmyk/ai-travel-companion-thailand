@@ -36,8 +36,8 @@ export function validateChiangMaiAttractions(data) {
     failures.push(`coverage matrix must contain 25 districts`);
   if (new Set(coverage.districts.map(({ code }) => code)).size !== 25)
     failures.push("coverage district codes must be unique");
-  if (registry.records.length !== 23)
-    failures.push(`expected 23 admitted records, found ${registry.records.length}`);
+  if (registry.records.length !== 22)
+    failures.push(`expected 22 admitted records, found ${registry.records.length}`);
 
   for (const rootRecord of [registry, sources, coverage, exclusions]) {
     if (
@@ -271,15 +271,7 @@ export function validateChiangMaiAttractions(data) {
       [
         "cm-attraction-5014-thai-agricultural-culture-museum",
         "MJU-THAI-AGRICULTURAL-CULTURE-MUSEUM",
-        "MJU-SAN-SAI-CONTACT",
-      ],
-    ],
-    [
-      "5021",
-      [
-        "cm-attraction-5021-doi-wiang-pha-public-service-unit",
-        "DNP-DOI-WIANG-PHA-VISITOR-SERVICE",
-        "DNP-DOI-WIANG-PHA-VISITOR-SERVICE",
+        "MJU-MUSEUM-SAN-SAI-LOCATION",
       ],
     ],
     [
@@ -321,19 +313,17 @@ export function validateChiangMaiAttractions(data) {
   const batch4GapCodes = coverage.districts
     .filter(({ coverageStatus }) => coverageStatus === "gap")
     .map(({ code }) => code);
-  if (JSON.stringify(batch4GapCodes) !== JSON.stringify(["5003", "5020"]))
+  if (JSON.stringify(batch4GapCodes) !== JSON.stringify(["5003", "5020", "5021"]))
     failures.push("Batch 4 unresolved district contract invalid");
-  const doiWiangPhaService = registry.records.find(
-    ({ id }) => id === "cm-attraction-5021-doi-wiang-pha-public-service-unit",
-  );
   if (
-    doiWiangPhaService?.subdistrictCode !== null ||
-    doiWiangPhaService?.representedAt !== null ||
-    !doiWiangPhaService?.reviewNotes.some((note) =>
-      note.includes("wider park is not assigned solely to Chai Prakan"),
-    )
+    registry.records.some(
+      ({ id }) => id === "cm-attraction-5021-doi-wiang-pha-public-service-unit",
+    ) ||
+    sources.sources.some(({ id }) => id === "DNP-DOI-WIANG-PHA-VISITOR-SERVICE")
   )
-    failures.push("Doi Wiang Pha district-specific service-point contract invalid");
+    failures.push(
+      "Doi Wiang Pha public-service unit must not enter attraction records",
+    );
   const khuPaDom = registry.records.find(
     ({ id }) => id === "cm-attraction-5019-khu-pa-dom",
   );
@@ -430,6 +420,6 @@ if (
     process.exit(1);
   }
   console.log(
-    "Chiang Mai attraction evidence OK: 23 records, 25/25 districts, publication blocked",
+    "Chiang Mai attraction evidence OK: 22 records, 25/25 districts, publication blocked",
   );
 }

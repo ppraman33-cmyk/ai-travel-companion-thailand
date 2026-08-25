@@ -258,6 +258,18 @@
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
     },
     {
+      "id": "MFL-ROI-JAI-RAK-ANNUAL-2023",
+      "tier": 1,
+      "publisher": "Mae Fah Luang Foundation under Royal Patronage",
+      "title": "Mae Fah Luang Foundation Annual Report 2023",
+      "url": "https://www.maefahluang.org/wp-content/uploads/2024/06/AnnualReport-2566-compressed.pdf",
+      "representedAt": null,
+      "retrievedAt": "2026-08-25",
+      "locator": "The project-owner annual report for reporting year 2023 identifies Roi Jai Rak Garden as a tourism place receiving visitors; no exact publication date was assigned and the source binary was not committed",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
       "id": "MAE-AI-POLICE-TOURISM-DIRECTORY",
       "tier": 3,
       "publisher": "Mae Ai Provincial Police Station",
@@ -294,26 +306,14 @@
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
     },
     {
-      "id": "MJU-SAN-SAI-CONTACT",
+      "id": "MJU-MUSEUM-SAN-SAI-LOCATION",
       "tier": 1,
       "publisher": "Maejo University",
-      "title": "Maejo University contact address",
-      "url": "https://center.mju.ac.th/wtms_contact.aspx?lang=th-TH",
-      "representedAt": null,
+      "title": "University activity at the Thai Agricultural Culture Museum",
+      "url": "https://erp.mju.ac.th/hrDevelopmentRegister.aspx?ID=40302",
+      "representedAt": "2017-06-01",
       "retrievedAt": "2026-08-25",
-      "locator": "Official university contact page locates the main campus at Nong Han subdistrict, San Sai district, Chiang Mai; no represented date was exposed",
-      "rightsStatus": "facts_only_rights_pending",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
-      "id": "DNP-DOI-WIANG-PHA-VISITOR-SERVICE",
-      "tier": 2,
-      "publisher": "Department of National Parks, Wildlife and Plant Conservation",
-      "title": "Public and wildfire-reporting service units for the Songkran period",
-      "url": "https://portal.dnp.go.th/DNP/FileSystem/download?uuid=b27f1b15-997e-4e59-8ffa-2190c7345f28.pdf",
-      "representedAt": null,
-      "retrievedAt": "2026-08-25",
-      "locator": "Official DNP service-unit table identifies Doi Wiang Pha National Park (preparatory status) in Chai Prakan district, Chiang Mai, as a staffed visitor-assistance point; no reliable represented date was inferred from retrieval or search metadata",
+      "locator": "Official university activity record names the Thai Agricultural Culture Museum as the venue and displays Maejo University's Nong Han, San Sai, Chiang Mai address; the represented date is the activity start date, not the retrieval date",
       "rightsStatus": "facts_only_rights_pending",
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
     },

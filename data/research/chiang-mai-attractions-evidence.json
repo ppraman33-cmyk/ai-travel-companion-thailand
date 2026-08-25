@@ -803,7 +803,11 @@
       "coordinates": null,
       "description": "Named garden and community-tourism place within the Roi Jai Rak development area in Tha Ton, Mae Ai.",
       "responsibleAuthority": "Mae Fah Luang Foundation under Royal Patronage",
-      "sourceIds": ["MFL-ROI-JAI-RAK-DIRECT", "MAE-AI-POLICE-TOURISM-DIRECTORY"],
+      "sourceIds": [
+        "MFL-ROI-JAI-RAK-DIRECT",
+        "MFL-ROI-JAI-RAK-ANNUAL-2023",
+        "MAE-AI-POLICE-TOURISM-DIRECTORY"
+      ],
       "assertions": [
         {
           "field": "identity",
@@ -812,7 +816,7 @@
         },
         {
           "field": "responsible_authority",
-          "sourceId": "MFL-ROI-JAI-RAK-DIRECT",
+          "sourceId": "MFL-ROI-JAI-RAK-ANNUAL-2023",
           "status": "supported"
         },
         {
@@ -909,7 +913,10 @@
       "coordinates": null,
       "description": "Maejo University museum preserving institutional and agricultural-history collections on its San Sai campus.",
       "responsibleAuthority": "Division of Art and Culture Promotion, Maejo University",
-      "sourceIds": ["MJU-THAI-AGRICULTURAL-CULTURE-MUSEUM", "MJU-SAN-SAI-CONTACT"],
+      "sourceIds": [
+        "MJU-THAI-AGRICULTURAL-CULTURE-MUSEUM",
+        "MJU-MUSEUM-SAN-SAI-LOCATION"
+      ],
       "assertions": [
         {
           "field": "identity",
@@ -923,12 +930,12 @@
         },
         {
           "field": "district_parent",
-          "sourceId": "MJU-SAN-SAI-CONTACT",
+          "sourceId": "MJU-MUSEUM-SAN-SAI-LOCATION",
           "status": "supported"
         },
         {
           "field": "subdistrict_parent",
-          "sourceId": "MJU-SAN-SAI-CONTACT",
+          "sourceId": "MJU-MUSEUM-SAN-SAI-LOCATION",
           "status": "supported"
         }
       ],
@@ -945,54 +952,6 @@
       "publicationEligibility": "blocked",
       "reviewNotes": [
         "The museum article is historical evidence from 2022; present opening and visitor conditions require direct re-verification."
-      ]
-    },
-    {
-      "id": "cm-attraction-5021-doi-wiang-pha-public-service-unit",
-      "nameTh": "หน่วยบริการประชาชนอุทยานแห่งชาติดอยเวียงผา (เตรียมการ)",
-      "nameEn": null,
-      "englishNameStatus": "pending",
-      "category": "national_park_visitor_service",
-      "districtCode": "5021",
-      "districtNameTh": "ไชยปราการ",
-      "districtNameEn": "Chai Prakan",
-      "subdistrictCode": null,
-      "subdistrictNameTh": null,
-      "subdistrictNameEn": null,
-      "coordinates": null,
-      "description": "District-specific DNP public-assistance point associated with the multi-district Doi Wiang Pha National Park area.",
-      "responsibleAuthority": "Department of National Parks, Wildlife and Plant Conservation",
-      "sourceIds": ["DNP-DOI-WIANG-PHA-VISITOR-SERVICE"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "DNP-DOI-WIANG-PHA-VISITOR-SERVICE",
-          "status": "supported"
-        },
-        {
-          "field": "responsible_authority",
-          "sourceId": "DNP-DOI-WIANG-PHA-VISITOR-SERVICE",
-          "status": "supported"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "DNP-DOI-WIANG-PHA-VISITOR-SERVICE",
-          "status": "supported"
-        }
-      ],
-      "representedAt": null,
-      "retrievedAt": "2026-08-25",
-      "openingHoursStatus": "pending",
-      "admissionStatus": "pending",
-      "accessibilityStatus": "pending",
-      "mapStatus": "pending_no_coordinates",
-      "freshnessStatus": "represented_date_unavailable_reverification_required",
-      "rightsStatus": "facts_only_rights_pending",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "visitor_point_identity_authority_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "Only the district-specific public-service unit is admitted; the wider park is not assigned solely to Chai Prakan and all personal contact details in the source were excluded."
       ]
     },
     {

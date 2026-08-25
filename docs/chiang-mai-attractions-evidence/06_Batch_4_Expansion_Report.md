@@ -10,10 +10,10 @@ Review date: 2026-08-25
 
 | Measure                    | Before | After |
 | -------------------------- | -----: | ----: |
-| Records                    |     18 |    23 |
-| Districts with records     |     18 |    23 |
-| Coverage gaps              |      7 |     2 |
-| New registered sources     |      0 |     8 |
+| Records                    |     18 |    22 |
+| Districts with records     |     18 |    22 |
+| Coverage gaps              |      7 |     3 |
+| New registered sources     |      0 |     7 |
 | Coordinates                |      0 |     0 |
 | Visitor-fact sets asserted |      0 |     0 |
 | Rights cleared             |      0 |     0 |
@@ -25,13 +25,18 @@ Review date: 2026-08-25
 - 5010 Mae Ai: สวนร้อยใจรักษ์
 - 5013 San Kamphaeng: พิพิธภัณฑ์ศิลปะร่วมสมัยใหม่เอี่ยม
 - 5014 San Sai: พิพิธภัณฑ์วัฒนธรรมการเกษตรไทย
-- 5021 Chai Prakan: หน่วยบริการประชาชนอุทยานแห่งชาติดอยเวียงผา (เตรียมการ)
 - 5022 Mae Wang: ศูนย์วิจัยเกษตรหลวงเชียงใหม่ (ขุนวาง)
 
-The Chai Prakan record is only the DNP public-service unit named for that
-district. It does not assign the wider Doi Wiang Pha park, which spans several
-districts, to Chai Prakan. The Mae Wang record is independent of Pha Chor,
+The reviewed Chai Prakan source proved only a DNP public-assistance and
+incident-reporting unit, not a visitor attraction or catalog-suitable visitor
+point, so no record was admitted. The Mae Wang record is independent of Pha Chor,
 which remains assigned to Doi Lo, and of the broad Ob Khan area.
+
+Founder final review strengthened the Mae Ai record with the project owner's
+2023 annual report, which identifies the garden as a tourism place, and the San
+Sai record with a university activity page that binds the named museum venue to
+the Nong Han/San Sai address. Private and nonprofit direct-owner pages remain
+Tier 1 owner evidence; they are not described as government sources.
 
 ## Remaining gaps
 
@@ -43,10 +48,13 @@ which remains assigned to Doi Lo, and of the broad Ob Khan area.
   boundary. No district-specific entrance or visitor point was verified, and
   other broad historic/community candidates lacked a direct current authority
   record.
+- 5021 Chai Prakan: the DNP source identifies a public-service unit, while the
+  wider park spans multiple districts. Neither establishes a catalog-suitable
+  Chai Prakan attraction or visitor entrance.
 
 ## Rights and quarantine
 
-All 23 records remain `facts_only_rights_pending`; media remains
+All 22 records remain `facts_only_rights_pending`; media remains
 `not_assessed_no_media_downloaded`; publication remains blocked. Coordinates,
 opening hours, admission and accessibility are pending for every record. No
 external image or source binary was downloaded or committed. The registry

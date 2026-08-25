@@ -16,10 +16,10 @@ describe("Chiang Mai attractions research evidence baseline", () => {
 
   it("accounts for all 25 districts without equalizing or borrowing records", () => {
     expect(data.coverage.districts).toHaveLength(25);
-    expect(data.registry.records).toHaveLength(23);
+    expect(data.registry.records).toHaveLength(22);
     expect(
       data.coverage.districts.filter(({ coverageStatus }) => coverageStatus === "gap"),
-    ).toHaveLength(2);
+    ).toHaveLength(3);
     expect(
       data.coverage.districts.every(({ code, recordIds }) =>
         recordIds.every(
@@ -47,12 +47,12 @@ describe("Chiang Mai attractions research evidence baseline", () => {
     expect(admitted.get("5012")?.id).toBe("cm-attraction-5012-wiang-tha-kan");
   });
 
-  it("keeps the two unresolved districts explicit instead of equalizing coverage", () => {
+  it("keeps the three unresolved districts explicit instead of equalizing coverage", () => {
     expect(
       data.coverage.districts
         .filter(({ coverageStatus }) => coverageStatus === "gap")
         .map(({ code }) => code),
-    ).toEqual(["5003", "5020"]);
+    ).toEqual(["5003", "5020", "5021"]);
   });
 
   it("admits Batch 4 records only with official identity, authority and district evidence", () => {
@@ -60,7 +60,6 @@ describe("Chiang Mai attractions research evidence baseline", () => {
       ["5010", "cm-attraction-5010-roi-jai-rak-garden"],
       ["5013", "cm-attraction-5013-maiiam-contemporary-art-museum"],
       ["5014", "cm-attraction-5014-thai-agricultural-culture-museum"],
-      ["5021", "cm-attraction-5021-doi-wiang-pha-public-service-unit"],
       [
         "5022",
         "cm-attraction-5022-chiang-mai-royal-agricultural-research-centre-khun-wang",
@@ -92,15 +91,51 @@ describe("Chiang Mai attractions research evidence baseline", () => {
     }
   });
 
-  it("keeps boundary-spanning candidates fail-closed and site-specific", () => {
-    const service = data.registry.records.find(
-      ({ id }) => id === "cm-attraction-5021-doi-wiang-pha-public-service-unit",
+  it("uses direct owner locators without misclassifying private sources as government", () => {
+    const sources = new Map(data.sources.sources.map((source) => [source.id, source]));
+    const roiJaiRak = data.registry.records.find(
+      ({ id }) => id === "cm-attraction-5010-roi-jai-rak-garden",
     );
-    expect(service).toMatchObject({
-      districtCode: "5021",
-      subdistrictCode: null,
+    const museum = data.registry.records.find(
+      ({ id }) => id === "cm-attraction-5014-thai-agricultural-culture-museum",
+    );
+
+    expect(sources.get("MAIIAM-VISIT-DIRECT")).toMatchObject({
+      tier: 1,
+      publisher: "MAIIAM Contemporary Art Museum",
       representedAt: null,
     });
+    expect(sources.get("MFL-ROI-JAI-RAK-ANNUAL-2023")).toMatchObject({
+      tier: 1,
+      publisher: "Mae Fah Luang Foundation under Royal Patronage",
+      representedAt: null,
+    });
+    expect(roiJaiRak?.assertions).toContainEqual({
+      field: "responsible_authority",
+      sourceId: "MFL-ROI-JAI-RAK-ANNUAL-2023",
+      status: "supported",
+    });
+    expect(sources.get("MJU-MUSEUM-SAN-SAI-LOCATION")).toMatchObject({
+      tier: 1,
+      representedAt: "2017-06-01",
+      retrievedAt: "2026-08-25",
+    });
+    expect(museum?.assertions).toContainEqual({
+      field: "district_parent",
+      sourceId: "MJU-MUSEUM-SAN-SAI-LOCATION",
+      status: "supported",
+    });
+  });
+
+  it("keeps service-only and boundary-spanning candidates outside the catalog", () => {
+    expect(
+      data.registry.records.some(
+        ({ id }) => id === "cm-attraction-5021-doi-wiang-pha-public-service-unit",
+      ),
+    ).toBe(false);
+    expect(
+      data.sources.sources.some(({ id }) => id === "DNP-DOI-WIANG-PHA-VISITOR-SERVICE"),
+    ).toBe(false);
     expect(data.exclusions.items.map(({ candidate }) => candidate)).toEqual(
       expect.arrayContaining([
         "Doi Dam viewpoint",
@@ -109,6 +144,43 @@ describe("Chiang Mai attractions research evidence baseline", () => {
         "Pha Chor",
       ]),
     );
+  });
+
+  it("preserves all 18 records inherited from main without replacement", () => {
+    const inherited = new Map([
+      ["cm-attraction-5001-tha-phae-gate", "ประตูท่าแพ"],
+      ["cm-attraction-5002-doi-inthanon-national-park", "อุทยานแห่งชาติดอยอินทนนท์"],
+      ["cm-attraction-5004-pong-ang-hot-spring", "น้ำพุร้อนโป่งอ่าง"],
+      [
+        "cm-attraction-5005-huai-hong-khrai-centre",
+        "ศูนย์ศึกษาการพัฒนาห้วยฮ่องไคร้อันเนื่องมาจากพระราชดำริ",
+      ],
+      ["cm-attraction-5006-kaeng-kuet", "แก่งกื้ด"],
+      ["cm-attraction-5007-huai-tueng-thao", "ห้วยตึงเฒ่า"],
+      ["cm-attraction-5008-khun-khan-national-park", "อุทยานแห่งชาติขุนขาน"],
+      ["cm-attraction-5009-fang-hot-spring", "น้ำพุร้อนฝาง"],
+      [
+        "cm-attraction-5011-doi-mon-lan-station",
+        "สถานีพัฒนาการเกษตรที่สูงตามพระราชดำริดอยม่อนล้าน",
+      ],
+      ["cm-attraction-5012-wiang-tha-kan", "เวียงท่ากาน"],
+      ["cm-attraction-5015-chiang-mai-night-safari", "เชียงใหม่ไนท์ซาฟารี"],
+      ["cm-attraction-5016-doi-bo-luang-forest-plantation", "สวนป่าดอยบ่อหลวง"],
+      ["cm-attraction-5017-doi-tao-lake", "ทะเลสาบดอยเต่า"],
+      ["cm-attraction-5018-doi-mon-chong", "ดอยม่อนจอง"],
+      ["cm-attraction-5019-khu-pa-dom", "โบราณสถานกู่ป้าด้อม"],
+      [
+        "cm-attraction-5023-san-kamphaeng-hot-springs",
+        "น้ำพุร้อนสันกำแพง อำเภอแม่ออน ตามพระราชดำริ",
+      ],
+      ["cm-attraction-5024-pha-chor", "ผาช่อ"],
+      ["cm-attraction-5025-ban-wat-chan-forest-plantation", "สวนป่าบ้านวัดจันทร์"],
+    ]);
+    const current = new Map(
+      data.registry.records.map(({ id, nameTh }) => [id, nameTh]),
+    );
+    expect(inherited.size).toBe(18);
+    for (const [id, nameTh] of inherited) expect(current.get(id)).toBe(nameTh);
   });
 
   it("admits Batch 3 records only where one official source supports identity and district", () => {

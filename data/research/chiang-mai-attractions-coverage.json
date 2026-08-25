@@ -168,9 +168,9 @@
       "code": "5021",
       "nameTh": "ไชยปราการ",
       "nameEn": "Chai Prakan",
-      "recordIds": ["cm-attraction-5021-doi-wiang-pha-public-service-unit"],
-      "coverageStatus": "partial",
-      "gap": "A DNP public-service unit is supported in Chai Prakan; the wider multi-district park, exact subdistrict and current operations remain outside the assertion."
+      "recordIds": [],
+      "coverageStatus": "gap",
+      "gap": "The reviewed DNP source establishes a public-assistance unit, not a visitor attraction or catalog-suitable visitor point. The wider multi-district park also lacks a Chai Prakan-specific entrance assertion."
     },
     {
       "code": "5022",
