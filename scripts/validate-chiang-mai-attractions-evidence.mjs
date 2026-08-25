@@ -36,8 +36,8 @@ export function validateChiangMaiAttractions(data) {
     failures.push(`coverage matrix must contain 25 districts`);
   if (new Set(coverage.districts.map(({ code }) => code)).size !== 25)
     failures.push("coverage district codes must be unique");
-  if (registry.records.length !== 18)
-    failures.push(`expected 18 admitted records, found ${registry.records.length}`);
+  if (registry.records.length !== 23)
+    failures.push(`expected 23 admitted records, found ${registry.records.length}`);
 
   for (const rootRecord of [registry, sources, coverage, exclusions]) {
     if (
@@ -249,6 +249,91 @@ export function validateChiangMaiAttractions(data) {
     )
       failures.push(`${recordId}: Batch 3 direct identity/parent contract invalid`);
   }
+  const batch4Contracts = new Map([
+    [
+      "5010",
+      [
+        "cm-attraction-5010-roi-jai-rak-garden",
+        "MAE-AI-POLICE-TOURISM-DIRECTORY",
+        "MFL-ROI-JAI-RAK-DIRECT",
+      ],
+    ],
+    [
+      "5013",
+      [
+        "cm-attraction-5013-maiiam-contemporary-art-museum",
+        "MAIIAM-VISIT-DIRECT",
+        "MAIIAM-VISIT-DIRECT",
+      ],
+    ],
+    [
+      "5014",
+      [
+        "cm-attraction-5014-thai-agricultural-culture-museum",
+        "MJU-THAI-AGRICULTURAL-CULTURE-MUSEUM",
+        "MJU-SAN-SAI-CONTACT",
+      ],
+    ],
+    [
+      "5021",
+      [
+        "cm-attraction-5021-doi-wiang-pha-public-service-unit",
+        "DNP-DOI-WIANG-PHA-VISITOR-SERVICE",
+        "DNP-DOI-WIANG-PHA-VISITOR-SERVICE",
+      ],
+    ],
+    [
+      "5022",
+      [
+        "cm-attraction-5022-chiang-mai-royal-agricultural-research-centre-khun-wang",
+        "DOA-KHUN-WANG-AGROTOURISM",
+        "DOA-KHUN-WANG-MAE-WANG",
+      ],
+    ],
+  ]);
+  for (const [
+    districtCode,
+    [recordId, identitySourceId, districtSourceId],
+  ] of batch4Contracts) {
+    const record = registry.records.find(({ id }) => id === recordId);
+    if (
+      record?.districtCode !== districtCode ||
+      record?.retrievedAt !== "2026-08-25" ||
+      !record?.assertions.some(
+        ({ field, sourceId, status }) =>
+          field === "identity" &&
+          sourceId === identitySourceId &&
+          status === "supported",
+      ) ||
+      !record?.assertions.some(
+        ({ field, sourceId, status }) =>
+          field === "district_parent" &&
+          sourceId === districtSourceId &&
+          status === "supported",
+      ) ||
+      !record?.assertions.some(
+        ({ field, status }) =>
+          field === "responsible_authority" && status === "supported",
+      )
+    )
+      failures.push(`${recordId}: Batch 4 identity/authority/parent contract invalid`);
+  }
+  const batch4GapCodes = coverage.districts
+    .filter(({ coverageStatus }) => coverageStatus === "gap")
+    .map(({ code }) => code);
+  if (JSON.stringify(batch4GapCodes) !== JSON.stringify(["5003", "5020"]))
+    failures.push("Batch 4 unresolved district contract invalid");
+  const doiWiangPhaService = registry.records.find(
+    ({ id }) => id === "cm-attraction-5021-doi-wiang-pha-public-service-unit",
+  );
+  if (
+    doiWiangPhaService?.subdistrictCode !== null ||
+    doiWiangPhaService?.representedAt !== null ||
+    !doiWiangPhaService?.reviewNotes.some((note) =>
+      note.includes("wider park is not assigned solely to Chai Prakan"),
+    )
+  )
+    failures.push("Doi Wiang Pha district-specific service-point contract invalid");
   const khuPaDom = registry.records.find(
     ({ id }) => id === "cm-attraction-5019-khu-pa-dom",
   );
@@ -273,7 +358,9 @@ export function validateChiangMaiAttractions(data) {
   const exclusionNames = new Set(exclusions.items.map(({ candidate }) => candidate));
   if (
     !exclusionNames.has("Ob Luang National Park") ||
-    !exclusionNames.has("Wiang Kum Kam locality and individual monuments")
+    !exclusionNames.has("Wiang Kum Kam locality and individual monuments") ||
+    !exclusionNames.has("Doi Dam viewpoint") ||
+    !exclusionNames.has("Doi Wiang Pha National Park area")
   )
     failures.push("Founder-review exclusion contract missing");
   if (
@@ -343,6 +430,6 @@ if (
     process.exit(1);
   }
   console.log(
-    "Chiang Mai attraction evidence OK: 18 records, 25/25 districts, publication blocked",
+    "Chiang Mai attraction evidence OK: 23 records, 25/25 districts, publication blocked",
   );
 }

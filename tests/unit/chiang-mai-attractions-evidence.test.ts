@@ -16,10 +16,10 @@ describe("Chiang Mai attractions research evidence baseline", () => {
 
   it("accounts for all 25 districts without equalizing or borrowing records", () => {
     expect(data.coverage.districts).toHaveLength(25);
-    expect(data.registry.records).toHaveLength(18);
+    expect(data.registry.records).toHaveLength(23);
     expect(
       data.coverage.districts.filter(({ coverageStatus }) => coverageStatus === "gap"),
-    ).toHaveLength(7);
+    ).toHaveLength(2);
     expect(
       data.coverage.districts.every(({ code, recordIds }) =>
         recordIds.every(
@@ -47,12 +47,68 @@ describe("Chiang Mai attractions research evidence baseline", () => {
     expect(admitted.get("5012")?.id).toBe("cm-attraction-5012-wiang-tha-kan");
   });
 
-  it("keeps the seven unresolved districts explicit instead of equalizing coverage", () => {
+  it("keeps the two unresolved districts explicit instead of equalizing coverage", () => {
     expect(
       data.coverage.districts
         .filter(({ coverageStatus }) => coverageStatus === "gap")
         .map(({ code }) => code),
-    ).toEqual(["5003", "5010", "5013", "5014", "5020", "5021", "5022"]);
+    ).toEqual(["5003", "5020"]);
+  });
+
+  it("admits Batch 4 records only with official identity, authority and district evidence", () => {
+    const expected = new Map([
+      ["5010", "cm-attraction-5010-roi-jai-rak-garden"],
+      ["5013", "cm-attraction-5013-maiiam-contemporary-art-museum"],
+      ["5014", "cm-attraction-5014-thai-agricultural-culture-museum"],
+      ["5021", "cm-attraction-5021-doi-wiang-pha-public-service-unit"],
+      [
+        "5022",
+        "cm-attraction-5022-chiang-mai-royal-agricultural-research-centre-khun-wang",
+      ],
+    ]);
+    for (const [districtCode, recordId] of expected) {
+      const record = data.registry.records.find(({ id }) => id === recordId);
+      expect(record).toMatchObject({
+        districtCode,
+        retrievedAt: "2026-08-25",
+        rightsStatus: "facts_only_rights_pending",
+        mediaRightsStatus: "not_assessed_no_media_downloaded",
+        publicationEligibility: "blocked",
+        coordinates: null,
+        openingHoursStatus: "pending",
+        admissionStatus: "pending",
+        accessibilityStatus: "pending",
+      });
+      expect(record?.assertions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ field: "identity", status: "supported" }),
+          expect.objectContaining({
+            field: "responsible_authority",
+            status: "supported",
+          }),
+          expect.objectContaining({ field: "district_parent", status: "supported" }),
+        ]),
+      );
+    }
+  });
+
+  it("keeps boundary-spanning candidates fail-closed and site-specific", () => {
+    const service = data.registry.records.find(
+      ({ id }) => id === "cm-attraction-5021-doi-wiang-pha-public-service-unit",
+    );
+    expect(service).toMatchObject({
+      districtCode: "5021",
+      subdistrictCode: null,
+      representedAt: null,
+    });
+    expect(data.exclusions.items.map(({ candidate }) => candidate)).toEqual(
+      expect.arrayContaining([
+        "Doi Dam viewpoint",
+        "Doi Wiang Pha National Park area",
+        "Ob Khan National Park area",
+        "Pha Chor",
+      ]),
+    );
   });
 
   it("admits Batch 3 records only where one official source supports identity and district", () => {

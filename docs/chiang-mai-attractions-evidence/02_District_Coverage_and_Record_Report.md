@@ -1,7 +1,7 @@
 # District Coverage and Attraction Record Report
 
-All 25 Chiang Mai districts are represented in the coverage matrix. Eighteen
-districts contain one evidence record; seven intentionally remain coverage
+All 25 Chiang Mai districts are represented in the coverage matrix. Twenty-three
+districts contain one evidence record; two intentionally remain coverage
 gaps. Record counts are not equalized and no site is borrowed from another
 district.
 
@@ -16,29 +16,29 @@ district.
 | 5007 | แม่ริม         | ห้วยตึงเฒ่า                                      | reservoir recreation        | partial                                |
 | 5008 | สะเมิง         | อุทยานแห่งชาติขุนขาน                             | national park               | partial                                |
 | 5009 | ฝาง            | น้ำพุร้อนฝาง                                     | hot spring                  | partial                                |
-| 5010 | แม่อาย         | —                                                | —                           | gap                                    |
+| 5010 | แม่อาย         | สวนร้อยใจรักษ์                                   | community agritourism       | partial                                |
 | 5011 | พร้าว          | สถานีพัฒนาการเกษตรที่สูงตามพระราชดำริดอยม่อนล้าน | highland learning site      | partial                                |
 | 5012 | สันป่าตอง      | เวียงท่ากาน                                      | archaeological site         | partial                                |
-| 5013 | สันกำแพง       | —                                                | —                           | gap                                    |
-| 5014 | สันทราย        | —                                                | —                           | gap                                    |
+| 5013 | สันกำแพง       | พิพิธภัณฑ์ศิลปะร่วมสมัยใหม่เอี่ยม                | art museum                  | partial                                |
+| 5014 | สันทราย        | พิพิธภัณฑ์วัฒนธรรมการเกษตรไทย                    | agricultural museum         | partial                                |
 | 5015 | หางดง          | เชียงใหม่ไนท์ซาฟารี                              | wildlife visitor attraction | partial                                |
 | 5016 | ฮอด            | สวนป่าดอยบ่อหลวง                                 | forest ecotourism site      | partial; Ob Luang remains excluded     |
 | 5017 | ดอยเต่า        | ทะเลสาบดอยเต่า                                   | lake recreation             | partial                                |
 | 5018 | อมก๋อย         | ดอยม่อนจอง                                       | mountain nature site        | partial                                |
 | 5019 | สารภี          | โบราณสถานกู่ป้าด้อม                              | archaeological site         | partial; one monument only             |
 | 5020 | เวียงแหง       | —                                                | —                           | gap                                    |
-| 5021 | ไชยปราการ      | —                                                | —                           | gap                                    |
-| 5022 | แม่วาง         | —                                                | —                           | gap                                    |
+| 5021 | ไชยปราการ      | หน่วยบริการประชาชนอุทยานแห่งชาติดอยเวียงผา       | park visitor service        | partial; wider park remains excluded   |
+| 5022 | แม่วาง         | ศูนย์วิจัยเกษตรหลวงเชียงใหม่ (ขุนวาง)            | agricultural tourism centre | partial                                |
 | 5023 | แม่ออน         | น้ำพุร้อนสันกำแพง อำเภอแม่ออนฯ                   | hot spring                  | partial                                |
 | 5024 | ดอยหล่อ        | ผาช่อ                                            | geological nature site      | partial                                |
 | 5025 | กัลยาณิวัฒนา   | สวนป่าบ้านวัดจันทร์                              | forest ecotourism site      | partial                                |
 
 ## Counts
 
-- Records: 18
+- Records: 23
 - Districts represented: 25/25
-- Districts with a retained record: 18
-- Coverage-gap districts: 7
+- Districts with a retained record: 23
+- Coverage-gap districts: 2 (Mae Chaem and Wiang Haeng)
 - Publication eligible: 0
 - Rights cleared: 0
 - Media rights cleared: 0

@@ -80,9 +80,9 @@
       "code": "5010",
       "nameTh": "แม่อาย",
       "nameEn": "Mae Ai",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+      "recordIds": ["cm-attraction-5010-roi-jai-rak-garden"],
+      "coverageStatus": "partial",
+      "gap": "Roi Jai Rak Garden identity and Tha Ton/Mae Ai parent are supported; current visitor operations, English name and rights remain pending."
     },
     {
       "code": "5011",
@@ -104,17 +104,17 @@
       "code": "5013",
       "nameTh": "สันกำแพง",
       "nameEn": "San Kamphaeng",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "Candidate handicraft sites were excluded because a current owner/source and exact district assertion were not jointly verified."
+      "recordIds": ["cm-attraction-5013-maiiam-contemporary-art-museum"],
+      "coverageStatus": "partial",
+      "gap": "MAIIAM identity, owner and Ton Pao/San Kamphaeng parent are supported; rights, coordinates and imported visitor facts remain pending. Bo Sang remains excluded."
     },
     {
       "code": "5014",
       "nameTh": "สันทราย",
       "nameEn": "San Sai",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+      "recordIds": ["cm-attraction-5014-thai-agricultural-culture-museum"],
+      "coverageStatus": "partial",
+      "gap": "Maejo University supports museum identity, management and Nong Han/San Sai campus parent; current opening and visitor conditions remain pending."
     },
     {
       "code": "5015",
@@ -168,17 +168,19 @@
       "code": "5021",
       "nameTh": "ไชยปราการ",
       "nameEn": "Chai Prakan",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "Historical/community candidates lacked a current responsible-authority source and were not admitted."
+      "recordIds": ["cm-attraction-5021-doi-wiang-pha-public-service-unit"],
+      "coverageStatus": "partial",
+      "gap": "A DNP public-service unit is supported in Chai Prakan; the wider multi-district park, exact subdistrict and current operations remain outside the assertion."
     },
     {
       "code": "5022",
       "nameTh": "แม่วาง",
       "nameEn": "Mae Wang",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "Pha Chor was not borrowed from this district; provincial evidence explicitly locates it in Doi Lo."
+      "recordIds": [
+        "cm-attraction-5022-chiang-mai-royal-agricultural-research-centre-khun-wang"
+      ],
+      "coverageStatus": "partial",
+      "gap": "The Khun Wang centre is supported independently in Mae Win/Mae Wang; Pha Chor remains assigned only to Doi Lo and Ob Khan remains excluded."
     },
     {
       "code": "5023",

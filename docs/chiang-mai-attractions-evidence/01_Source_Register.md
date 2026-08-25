@@ -4,14 +4,13 @@ Status: `research_evidence_only`
 
 Publication: `blocked`
 
-Retrieved: 2026-08-21
+Latest Batch 4 retrieval: 2026-08-25
 
 The machine-readable source register is
-`data/research/chiang-mai-attractions-sources.json`. It contains fourteen
-official sources: five Chiang Mai Provincial Office sources, five Tourism
-Authority of Thailand sources, two Department of National Parks sources, and
-two Fine Arts Department sources. No Google Maps, Facebook page, blog, aggregator, or search
-snippet is used as final evidence.
+`data/research/chiang-mai-attractions-sources.json`. It contains 28 direct-owner
+or official-government sources across the four evidence batches. No Google
+Maps, Facebook page, blog, aggregator, or search snippet is used as final
+evidence.
 
 ## Reliability and use
 
@@ -75,3 +74,25 @@ from the relevant gap districts.
 Founder review supplements the Mae On hot-spring record with provincial news
 13436, recorded 2025-06-13. It is the current identity and district-parent
 assertion; the 2023 page is retained as historical corroboration only.
+
+## Batch 4 official-source decisions
+
+Five candidates passed the identity, responsible-authority and district gate:
+
+- Roi Jai Rak Garden — direct Mae Fah Luang Foundation project evidence plus an
+  official Mae Ai district tourism listing
+- MAIIAM Contemporary Art Museum — direct museum-owner visitor page
+- Thai Agricultural Culture Museum — Maejo University Archives plus the
+  university's official San Sai campus address
+- Doi Wiang Pha public-service unit — DNP's district-specific visitor-assistance
+  register; the wider multi-district park is not assigned to Chai Prakan
+- Chiang Mai Royal Agricultural Research Centre (Khun Wang) — Department of
+  Agriculture tourism and district-specific centre pages
+
+Undated sources retain `representedAt: null`; retrieval on 2026-08-25 is not
+used as a represented date. Mae Chaem remains a gap because the reviewed
+municipal material did not expose a stable site identity and authority without
+requiring an uncommitted source binary. Wiang Haeng remains a gap because Doi
+Dam is explicitly on the Wiang Haeng–Pai boundary and no district-specific
+visitor point was established. No source image, PDF, spreadsheet or other
+binary was downloaded into or committed to the repository.

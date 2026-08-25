@@ -789,6 +789,266 @@
       ]
     },
     {
+      "id": "cm-attraction-5010-roi-jai-rak-garden",
+      "nameTh": "สวนร้อยใจรักษ์",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "community_agritourism_site",
+      "districtCode": "5010",
+      "districtNameTh": "แม่อาย",
+      "districtNameEn": "Mae Ai",
+      "subdistrictCode": "501005",
+      "subdistrictNameTh": "ท่าตอน",
+      "subdistrictNameEn": "Tha ton",
+      "coordinates": null,
+      "description": "Named garden and community-tourism place within the Roi Jai Rak development area in Tha Ton, Mae Ai.",
+      "responsibleAuthority": "Mae Fah Luang Foundation under Royal Patronage",
+      "sourceIds": ["MFL-ROI-JAI-RAK-DIRECT", "MAE-AI-POLICE-TOURISM-DIRECTORY"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "MAE-AI-POLICE-TOURISM-DIRECTORY",
+          "status": "supported"
+        },
+        {
+          "field": "responsible_authority",
+          "sourceId": "MFL-ROI-JAI-RAK-DIRECT",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "MFL-ROI-JAI-RAK-DIRECT",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "MFL-ROI-JAI-RAK-DIRECT",
+          "status": "supported"
+        }
+      ],
+      "representedAt": null,
+      "retrievedAt": "2026-08-25",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "represented_date_unavailable_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_authority_district_and_subdistrict_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "The project owner's page and an official Mae Ai district profile are used together; no visitor hours, admission, coordinates or accessibility claims were retained."
+      ]
+    },
+    {
+      "id": "cm-attraction-5013-maiiam-contemporary-art-museum",
+      "nameTh": "พิพิธภัณฑ์ศิลปะร่วมสมัยใหม่เอี่ยม",
+      "nameEn": "MAIIAM",
+      "englishNameStatus": "verified_official_owner",
+      "category": "art_museum",
+      "districtCode": "5013",
+      "districtNameTh": "สันกำแพง",
+      "districtNameEn": "San Kamphaeng",
+      "subdistrictCode": "501312",
+      "subdistrictNameTh": "ต้นเปา",
+      "subdistrictNameEn": "Ton  Pao",
+      "coordinates": null,
+      "description": "Privately operated contemporary-art museum whose official visitor page places it in Ton Pao, San Kamphaeng.",
+      "responsibleAuthority": "MAIIAM Contemporary Art Museum",
+      "sourceIds": ["MAIIAM-VISIT-DIRECT"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "MAIIAM-VISIT-DIRECT",
+          "status": "supported"
+        },
+        {
+          "field": "responsible_authority",
+          "sourceId": "MAIIAM-VISIT-DIRECT",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "MAIIAM-VISIT-DIRECT",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "MAIIAM-VISIT-DIRECT",
+          "status": "supported"
+        }
+      ],
+      "representedAt": null,
+      "retrievedAt": "2026-08-25",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "represented_date_unavailable_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_authority_district_and_subdistrict_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "Although the owner page displays visitor information, hours and admission were intentionally not imported into this research baseline."
+      ]
+    },
+    {
+      "id": "cm-attraction-5014-thai-agricultural-culture-museum",
+      "nameTh": "พิพิธภัณฑ์วัฒนธรรมการเกษตรไทย",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "agricultural_museum",
+      "districtCode": "5014",
+      "districtNameTh": "สันทราย",
+      "districtNameEn": "San Sai",
+      "subdistrictCode": "501408",
+      "subdistrictNameTh": "หนองหาร",
+      "subdistrictNameEn": "Nong Han",
+      "coordinates": null,
+      "description": "Maejo University museum preserving institutional and agricultural-history collections on its San Sai campus.",
+      "responsibleAuthority": "Division of Art and Culture Promotion, Maejo University",
+      "sourceIds": ["MJU-THAI-AGRICULTURAL-CULTURE-MUSEUM", "MJU-SAN-SAI-CONTACT"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "MJU-THAI-AGRICULTURAL-CULTURE-MUSEUM",
+          "status": "supported"
+        },
+        {
+          "field": "responsible_authority",
+          "sourceId": "MJU-THAI-AGRICULTURAL-CULTURE-MUSEUM",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "MJU-SAN-SAI-CONTACT",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "MJU-SAN-SAI-CONTACT",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2022-01-21",
+      "retrievedAt": "2026-08-25",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "stale_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_authority_district_and_subdistrict_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "The museum article is historical evidence from 2022; present opening and visitor conditions require direct re-verification."
+      ]
+    },
+    {
+      "id": "cm-attraction-5021-doi-wiang-pha-public-service-unit",
+      "nameTh": "หน่วยบริการประชาชนอุทยานแห่งชาติดอยเวียงผา (เตรียมการ)",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "national_park_visitor_service",
+      "districtCode": "5021",
+      "districtNameTh": "ไชยปราการ",
+      "districtNameEn": "Chai Prakan",
+      "subdistrictCode": null,
+      "subdistrictNameTh": null,
+      "subdistrictNameEn": null,
+      "coordinates": null,
+      "description": "District-specific DNP public-assistance point associated with the multi-district Doi Wiang Pha National Park area.",
+      "responsibleAuthority": "Department of National Parks, Wildlife and Plant Conservation",
+      "sourceIds": ["DNP-DOI-WIANG-PHA-VISITOR-SERVICE"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "DNP-DOI-WIANG-PHA-VISITOR-SERVICE",
+          "status": "supported"
+        },
+        {
+          "field": "responsible_authority",
+          "sourceId": "DNP-DOI-WIANG-PHA-VISITOR-SERVICE",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "DNP-DOI-WIANG-PHA-VISITOR-SERVICE",
+          "status": "supported"
+        }
+      ],
+      "representedAt": null,
+      "retrievedAt": "2026-08-25",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "represented_date_unavailable_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "visitor_point_identity_authority_and_district_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "Only the district-specific public-service unit is admitted; the wider park is not assigned solely to Chai Prakan and all personal contact details in the source were excluded."
+      ]
+    },
+    {
+      "id": "cm-attraction-5022-chiang-mai-royal-agricultural-research-centre-khun-wang",
+      "nameTh": "ศูนย์วิจัยเกษตรหลวงเชียงใหม่ (ขุนวาง)",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "agricultural_conservation_tourism_centre",
+      "districtCode": "5022",
+      "districtNameTh": "แม่วาง",
+      "districtNameEn": "Mae Wang",
+      "subdistrictCode": "502204",
+      "subdistrictNameTh": "แม่วิน",
+      "subdistrictNameEn": "Mae Win",
+      "coordinates": null,
+      "description": "Department of Agriculture research centre listed in its agricultural-conservation tourism programme and located in Mae Wang.",
+      "responsibleAuthority": "Department of Agriculture",
+      "sourceIds": ["DOA-KHUN-WANG-AGROTOURISM", "DOA-KHUN-WANG-MAE-WANG"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "DOA-KHUN-WANG-AGROTOURISM",
+          "status": "supported"
+        },
+        {
+          "field": "responsible_authority",
+          "sourceId": "DOA-KHUN-WANG-AGROTOURISM",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "DOA-KHUN-WANG-MAE-WANG",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "DOA-KHUN-WANG-MAE-WANG",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2025-03-04",
+      "retrievedAt": "2026-08-25",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "review_required_before_use",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_authority_district_and_subdistrict_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "The tourism portal and district-specific centre article are combined; seasonal displays, hours, admission and access are not asserted."
+      ]
+    },
+    {
       "id": "cm-attraction-5024-pha-chor",
       "nameTh": "ผาช่อ",
       "nameEn": null,
