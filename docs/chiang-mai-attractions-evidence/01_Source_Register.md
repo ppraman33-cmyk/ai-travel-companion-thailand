@@ -7,8 +7,8 @@ Publication: `blocked`
 Latest Batch 4 retrieval: 2026-08-25
 
 The machine-readable source register is
-`data/research/chiang-mai-attractions-sources.json`. It contains 27 direct-owner
-or official-government sources across the four evidence batches. No Google
+`data/research/chiang-mai-attractions-sources.json`. It contains 32 direct-owner
+or official-government sources across the evidence batches and final closure. No Google
 Maps, Facebook page, blog, aggregator, or search snippet is used as final
 evidence.
 
@@ -103,3 +103,20 @@ Founder final review removed the Doi Wiang Pha public-service unit. The DNP
 source proved only a public-assistance and incident-reporting unit, not a
 visitor attraction or catalog-suitable visitor point. Chai Prakan therefore
 remains a coverage gap, and the wider multi-district park remains excluded.
+
+## Final closure official-source decisions
+
+One final candidate passed the direct identity, authority and parent gate:
+
+- Mae Hae Royal Project Development Centre — the Royal Project Foundation
+  supplies the direct identity, authority and Mae Chaem/Mae Na Chon address;
+  the Mae Na Chon Subdistrict Administrative Organization supplies a dated
+  visitor-facing tourism listing.
+  Wiang Haeng and Chai Prakan remain documented evidence gaps. The reviewed Doi Dam source
+  places the area on the Wiang Haeng–Pai boundary, while the Paek Saem material
+  describes a development station rather than a catalog-suitable visitor
+  attraction. For Chai Prakan, the municipal tourism directory and maintenance
+  record use different park identities, and the accessible official evidence
+  does not establish that they are the same attraction. Undated direct pages
+  retain `representedAt: null`; retrieval on 2026-08-25 is not treated as a
+  represented date.

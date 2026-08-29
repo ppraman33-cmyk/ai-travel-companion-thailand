@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "status": "chiang_mai_attractions_evidence_baseline_research_closure",
+  "label": "Chiang Mai Attractions Evidence Baseline — Research Closure",
+  "baselineCommit": "f40965aa7315a61f6de30d6b93b9234487721a55",
+  "reviewedAt": "2026-08-25",
+  "districtsReviewed": ["5003", "5020", "5021"],
+  "districtCoverageCount": 25,
+  "finalRecordCount": 23,
+  "acceptedCoverageGaps": ["5020", "5021"],
+  "inheritedRecordCount": 22,
+  "inheritedIdentityLockSha256": "e3bad644f13b6332c2d115f452b470b3b7169c972e367cf5f3e341d0c86f5975",
+  "rightsStatus": "pending_explicit_redistribution_terms",
+  "mediaRightsStatus": "not_assessed_no_media_downloaded",
+  "publicationEligibility": "blocked",
+  "contentCompletenessClaim": "not_claimed",
+  "revalidationTriggers": [
+    "new_official_source",
+    "new_authority_or_ownership_evidence",
+    "new_exact_district_or_visitor_point_evidence",
+    "approved_rights_or_freshness_review"
+  ],
+  "notes": [
+    "Research was completed for all 25 districts; this is not a content-complete or publication-ready claim.",
+    "The baseline must not be reopened only to force equal record counts."
+  ]
+}

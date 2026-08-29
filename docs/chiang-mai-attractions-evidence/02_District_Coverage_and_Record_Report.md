@@ -1,15 +1,15 @@
 # District Coverage and Attraction Record Report
 
-All 25 Chiang Mai districts are represented in the coverage matrix. Twenty-two
-districts contain one evidence record; three intentionally remain coverage
-gaps. Record counts are not equalized and no site is borrowed from another
+All 25 Chiang Mai districts are represented in the coverage matrix. Twenty-three
+districts contain one evidence record; Wiang Haeng and Chai Prakan intentionally
+remain coverage gaps. Record counts are not equalized and no site is borrowed from another
 district.
 
 | Code | District       | Retained attraction                              | Category                    | Coverage                               |
 | ---- | -------------- | ------------------------------------------------ | --------------------------- | -------------------------------------- |
 | 5001 | เมืองเชียงใหม่ | ประตูท่าแพ                                       | historic site               | partial                                |
 | 5002 | จอมทอง         | อุทยานแห่งชาติดอยอินทนนท์                        | national park               | partial; direct district sources added |
-| 5003 | แม่แจ่ม        | —                                                | —                           | gap                                    |
+| 5003 | แม่แจ่ม        | ศูนย์พัฒนาโครงการหลวงแม่แฮ                       | agricultural learning site  | partial                                |
 | 5004 | เชียงดาว       | น้ำพุร้อนโป่งอ่าง                                | hot spring                  | partial                                |
 | 5005 | ดอยสะเก็ด      | ศูนย์ศึกษาการพัฒนาห้วยฮ่องไคร้ฯ                  | learning nature site        | partial                                |
 | 5006 | แม่แตง         | แก่งกื้ด                                         | river nature site           | partial                                |
@@ -27,7 +27,7 @@ district.
 | 5018 | อมก๋อย         | ดอยม่อนจอง                                       | mountain nature site        | partial                                |
 | 5019 | สารภี          | โบราณสถานกู่ป้าด้อม                              | archaeological site         | partial; one monument only             |
 | 5020 | เวียงแหง       | —                                                | —                           | gap                                    |
-| 5021 | ไชยปราการ      | —                                                | —                           | gap                                    |
+| 5021 | ไชยปราการ      | —                                                | —                           | gap; park identity collision           |
 | 5022 | แม่วาง         | ศูนย์วิจัยเกษตรหลวงเชียงใหม่ (ขุนวาง)            | agricultural tourism centre | partial                                |
 | 5023 | แม่ออน         | น้ำพุร้อนสันกำแพง อำเภอแม่ออนฯ                   | hot spring                  | partial                                |
 | 5024 | ดอยหล่อ        | ผาช่อ                                            | geological nature site      | partial                                |
@@ -35,10 +35,10 @@ district.
 
 ## Counts
 
-- Records: 22
+- Records: 23
 - Districts represented: 25/25
-- Districts with a retained record: 22
-- Coverage-gap districts: 3 (Mae Chaem, Wiang Haeng and Chai Prakan)
+- Districts with a retained record: 23
+- Coverage-gap districts: 2 (Wiang Haeng and Chai Prakan)
 - Publication eligible: 0
 - Rights cleared: 0
 - Media rights cleared: 0
