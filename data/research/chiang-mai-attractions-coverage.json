@@ -24,9 +24,9 @@
       "code": "5003",
       "nameTh": "แม่แจ่ม",
       "nameEn": "Mae Chaem",
-      "recordIds": [],
-      "coverageStatus": "gap",
-      "gap": "No attraction completed identity plus district-level primary-source verification in this batch."
+      "recordIds": ["cm-attraction-5003-mae-hae-royal-project-development-centre"],
+      "coverageStatus": "partial",
+      "gap": "Mae Hae centre identity, authority, exact parent and visitor listing are supported; current visitor operations and redistribution rights remain pending."
     },
     {
       "code": "5004",
@@ -170,7 +170,7 @@
       "nameEn": "Chai Prakan",
       "recordIds": [],
       "coverageStatus": "gap",
-      "gap": "The reviewed DNP source establishes a public-assistance unit, not a visitor attraction or catalog-suitable visitor point. The wider multi-district park also lacks a Chai Prakan-specific entrance assertion."
+      "gap": "The municipal tourism directory names Ban Chiang Man Health Garden, while the maintenance evidence uses a different Chaloem Phrakiat public-park identity; equivalence, current authority and exact parent are not jointly established. Doi Wiang Pha remains excluded."
     },
     {
       "code": "5022",

@@ -1008,6 +1008,64 @@
       ]
     },
     {
+      "id": "cm-attraction-5003-mae-hae-royal-project-development-centre",
+      "nameTh": "ศูนย์พัฒนาโครงการหลวงแม่แฮ",
+      "nameEn": null,
+      "englishNameStatus": "pending",
+      "category": "agricultural_learning_centre",
+      "districtCode": "5003",
+      "districtNameTh": "แม่แจ่ม",
+      "districtNameEn": "Mae Chaem",
+      "subdistrictCode": "500305",
+      "subdistrictNameTh": "แม่นาจร",
+      "subdistrictNameEn": "Mae Na Chon",
+      "coordinates": null,
+      "description": "Royal Project Foundation development and learning centre listed by the local authority as a visitor place in Mae Na Chon, Mae Chaem.",
+      "responsibleAuthority": "Royal Project Foundation",
+      "sourceIds": ["RPF-MAE-HAE-DIRECT", "MAE-NA-CHON-MAE-HAE-TOURISM"],
+      "assertions": [
+        {
+          "field": "identity",
+          "sourceId": "RPF-MAE-HAE-DIRECT",
+          "status": "supported"
+        },
+        {
+          "field": "responsible_authority",
+          "sourceId": "RPF-MAE-HAE-DIRECT",
+          "status": "supported"
+        },
+        {
+          "field": "district_parent",
+          "sourceId": "RPF-MAE-HAE-DIRECT",
+          "status": "supported"
+        },
+        {
+          "field": "subdistrict_parent",
+          "sourceId": "RPF-MAE-HAE-DIRECT",
+          "status": "supported"
+        },
+        {
+          "field": "catalog_suitability",
+          "sourceId": "MAE-NA-CHON-MAE-HAE-TOURISM",
+          "status": "supported"
+        }
+      ],
+      "representedAt": "2023-06-14",
+      "retrievedAt": "2026-08-25",
+      "openingHoursStatus": "pending",
+      "admissionStatus": "pending",
+      "accessibilityStatus": "pending",
+      "mapStatus": "pending_no_coordinates",
+      "freshnessStatus": "stale_reverification_required",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded",
+      "evidenceStatus": "identity_authority_parent_and_catalog_suitability_supported",
+      "publicationEligibility": "blocked",
+      "reviewNotes": [
+        "No coordinates, hours, admission, accessibility or current operating-status claim is imported."
+      ]
+    },
+    {
       "id": "cm-attraction-5024-pha-chor",
       "nameTh": "ผาช่อ",
       "nameEn": null,

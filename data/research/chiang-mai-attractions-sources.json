@@ -340,6 +340,54 @@
       "locator": "Direct centre article records activity on 9 March 2023 and explicitly locates the Khun Wang centre in Mae Wang district, Chiang Mai",
       "rightsStatus": "facts_only_rights_pending",
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "RPF-MAE-HAE-DIRECT",
+      "tier": 1,
+      "publisher": "Royal Project Foundation",
+      "title": "Mae Hae Royal Project Development Centre",
+      "url": "https://royalproject.org/devstation/maehae/",
+      "representedAt": null,
+      "retrievedAt": "2026-08-25",
+      "locator": "Direct responsible-foundation page identifies the Mae Hae centre and gives its address at village 3, Mae Na Chon subdistrict, Mae Chaem district, Chiang Mai; no represented date is exposed",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "MAE-NA-CHON-MAE-HAE-TOURISM",
+      "tier": 3,
+      "publisher": "Mae Na Chon Subdistrict Administrative Organization",
+      "title": "Mae Hae Royal Project Development Centre tourism entry",
+      "url": "https://www.maenajohn.go.th/view_file.php?id=785",
+      "representedAt": "2023-06-14",
+      "retrievedAt": "2026-08-25",
+      "locator": "Official local-government tourism section names the Mae Hae centre as a visitor place and dates the entry 14 June 2023; no source file was downloaded or committed",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "CHAI-PRAKAN-PARK-TOURISM-DIRECTORY",
+      "tier": 3,
+      "publisher": "Chai Prakan Subdistrict Municipality",
+      "title": "Tourism places in Chai Prakan municipality and district",
+      "url": "https://www.chaiprakarn.go.th/index/?page=article9186",
+      "representedAt": null,
+      "retrievedAt": "2026-08-25",
+      "locator": "Current municipal tourism directory identifies Ban Chiang Man Health Garden as a visitor-facing recreation place in Chai Prakan; it does not establish equivalence to the differently named Chaloem Phrakiat public park and exposes no reliable represented date",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "CHAI-PRAKAN-PARK-MAINTENANCE-2024",
+      "tier": 3,
+      "publisher": "Chai Prakan Subdistrict Municipality",
+      "title": "Landscape maintenance at Chaloem Phrakiat Public Park",
+      "url": "https://www.chaiprakarn.go.th/index/?detail=XJinSID01&page=picture0128",
+      "representedAt": "2024-10-25",
+      "retrievedAt": "2026-08-25",
+      "locator": "Municipal activity record dated 25 October 2024 documents municipality-directed maintenance at the Chaloem Phrakiat public park beside Chiang Man weir, village 5, Si Dong Yen; it does not establish equivalence to Ban Chiang Man Health Garden",
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
     }
   ]
 }

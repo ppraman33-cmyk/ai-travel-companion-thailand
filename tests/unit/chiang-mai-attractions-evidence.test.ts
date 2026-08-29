@@ -16,10 +16,10 @@ describe("Chiang Mai attractions research evidence baseline", () => {
 
   it("accounts for all 25 districts without equalizing or borrowing records", () => {
     expect(data.coverage.districts).toHaveLength(25);
-    expect(data.registry.records).toHaveLength(22);
+    expect(data.registry.records).toHaveLength(23);
     expect(
       data.coverage.districts.filter(({ coverageStatus }) => coverageStatus === "gap"),
-    ).toHaveLength(3);
+    ).toHaveLength(2);
     expect(
       data.coverage.districts.every(({ code, recordIds }) =>
         recordIds.every(
@@ -47,12 +47,12 @@ describe("Chiang Mai attractions research evidence baseline", () => {
     expect(admitted.get("5012")?.id).toBe("cm-attraction-5012-wiang-tha-kan");
   });
 
-  it("keeps the three unresolved districts explicit instead of equalizing coverage", () => {
+  it("keeps the final unresolved district explicit instead of equalizing coverage", () => {
     expect(
       data.coverage.districts
         .filter(({ coverageStatus }) => coverageStatus === "gap")
         .map(({ code }) => code),
-    ).toEqual(["5003", "5020", "5021"]);
+    ).toEqual(["5020", "5021"]);
   });
 
   it("admits Batch 4 records only with official identity, authority and district evidence", () => {
