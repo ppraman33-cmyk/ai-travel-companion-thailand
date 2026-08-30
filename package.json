@@ -24,6 +24,7 @@
     "geography:subdistricts:check": "node scripts/validate-thailand-subdistrict-evidence.mjs",
     "geography:villages:check": "node scripts/validate-thailand-village-evidence.mjs",
     "evidence:chiang-mai-attractions:check": "node scripts/validate-chiang-mai-attractions-evidence.mjs",
+    "evidence:chiang-mai-restaurants:check": "node scripts/validate-chiang-mai-restaurants-evidence.mjs",
     "security:secrets": "node scripts/check-secrets.mjs"
   },
   "dependencies": {

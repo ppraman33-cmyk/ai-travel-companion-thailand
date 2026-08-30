@@ -1,0 +1,421 @@
+{
+  "schemaVersion": 1,
+  "status": "research_evidence_only",
+  "provinceCode": "TH-50",
+  "targetPerDistrict": 10,
+  "targetIsQuota": false,
+  "publicationEligibility": "blocked",
+  "districts": [
+    {
+      "code": "5001",
+      "nameTh": "เมืองเชียงใหม่",
+      "nameEn": "Mueang Chiang Mai",
+      "recordIds": [
+        "cm-restaurant-5001-hello-solao",
+        "cm-restaurant-5001-khum-wiang-yong",
+        "cm-restaurant-5001-baan-rom-mai-bali",
+        "cm-restaurant-5001-lamiat-thai-kitchen-14077949101",
+        "cm-restaurant-5001-osm-place-4972332121",
+        "cm-restaurant-5001-rainbownoodle-12913876246",
+        "cm-restaurant-5001-osm-place-3287049585",
+        "cm-restaurant-5001-osm-place-13805318901",
+        "cm-restaurant-5001-osm-place-674670538",
+        "cm-restaurant-5001-osm-place-14069987674"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5002",
+      "nameTh": "จอมทอง",
+      "nameEn": "Chom Thong",
+      "recordIds": [
+        "cm-restaurant-5002-osm-place-8116642217",
+        "cm-restaurant-5002-pho-farm-hug-7284773285",
+        "cm-restaurant-5002-osm-place-13812812429",
+        "cm-restaurant-5002-banjaidee-3106985529",
+        "cm-restaurant-5002-royal-project-inthanon-7287833785",
+        "cm-restaurant-5002-osm-place-2685142595",
+        "cm-restaurant-5002-osm-place-2687048828",
+        "cm-restaurant-5002-osm-place-463999179",
+        "cm-restaurant-5002-osm-place-553959114",
+        "cm-restaurant-5002-dream-cafe-11369859950"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5003",
+      "nameTh": "แม่แจ่ม",
+      "nameEn": "Mae Chaem",
+      "recordIds": [
+        "cm-restaurant-5003-osm-place-5382073821",
+        "cm-restaurant-5003-osm-place-7887041885",
+        "cm-restaurant-5003-osm-place-3318840954",
+        "cm-restaurant-5003-osm-place-356969829",
+        "cm-restaurant-5003-noodle-shop-barbeque-5281104224",
+        "cm-restaurant-5003-osm-place-7125460685",
+        "cm-restaurant-5003-bolah-s-restaurant-12496755240",
+        "cm-restaurant-5003-sawasdee-mae-chaen-5255642224"
+      ],
+      "coverageStatus": "partial",
+      "gap": "8 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5004",
+      "nameTh": "เชียงดาว",
+      "nameEn": "Chiang Dao",
+      "recordIds": [
+        "cm-restaurant-5004-osm-place-14100144201",
+        "cm-restaurant-5004-osm-place-1376979658",
+        "cm-restaurant-5004-osm-place-4439443713",
+        "cm-restaurant-5004-osm-place-2411239356",
+        "cm-restaurant-5004-osm-place-2422005060",
+        "cm-restaurant-5004-osm-place-2623371144",
+        "cm-restaurant-5004-osm-place-4554696940",
+        "cm-restaurant-5004-osm-place-2088111608",
+        "cm-restaurant-5004-osm-place-4990013026",
+        "cm-restaurant-5004-osm-place-881788463"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5005",
+      "nameTh": "ดอยสะเก็ด",
+      "nameEn": "Doi SaKet",
+      "recordIds": [
+        "cm-restaurant-5005-osm-place-11755248919",
+        "cm-restaurant-5005-osm-place-12030550220",
+        "cm-restaurant-5005-osm-place-7252225925",
+        "cm-restaurant-5005-bualuang-terasse-1604441376",
+        "cm-restaurant-5005-osm-place-9032269404",
+        "cm-restaurant-5005-osm-place-2005917921",
+        "cm-restaurant-5005-osm-place-2497315366",
+        "cm-restaurant-5005-osm-place-3084687039",
+        "cm-restaurant-5005-osm-place-4474409870",
+        "cm-restaurant-5005-celapot-cafe-12201114507"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5006",
+      "nameTh": "แม่แตง",
+      "nameEn": "Mae Taeng",
+      "recordIds": [
+        "cm-restaurant-5006-huakhua-14100137101",
+        "cm-restaurant-5006-osm-place-2611322664",
+        "cm-restaurant-5006-osm-place-4366299394",
+        "cm-restaurant-5006-green-food-coffee-2423925024",
+        "cm-restaurant-5006-home-made-style-3326485793",
+        "cm-restaurant-5006-osm-place-6515687785",
+        "cm-restaurant-5006-osm-place-2623399473",
+        "cm-restaurant-5006-osm-place-4595151476",
+        "cm-restaurant-5006-osm-place-8200943607",
+        "cm-restaurant-5006-osm-place-4595135841"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5007",
+      "nameTh": "แม่ริม",
+      "nameEn": "Mae Rim",
+      "recordIds": [
+        "cm-restaurant-5007-osm-place-13475557570",
+        "cm-restaurant-5007-osm-place-9316917917",
+        "cm-restaurant-5007-11-2661625027",
+        "cm-restaurant-5007-osm-place-4177462694",
+        "cm-restaurant-5007-osm-place-4111432291",
+        "cm-restaurant-5007-osm-place-11164805265",
+        "cm-restaurant-5007-osm-place-5137777427",
+        "cm-restaurant-5007-bantunglom-resort-1168313004",
+        "cm-restaurant-5007-sheep-cafe-cowboy-farm-488843373",
+        "cm-restaurant-5007-chomna-mountain-view-1462476590"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5008",
+      "nameTh": "สะเมิง",
+      "nameEn": "Samoeng",
+      "recordIds": [
+        "cm-restaurant-5008-osm-place-3792253170",
+        "cm-restaurant-5008-osm-place-2575169216",
+        "cm-restaurant-5008-garden-view-restaurant-1481651344",
+        "cm-restaurant-5008-baan-mon-neung-doi-6136470916"
+      ],
+      "coverageStatus": "partial",
+      "gap": "4 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5009",
+      "nameTh": "ฝาง",
+      "nameEn": "Fang",
+      "recordIds": [
+        "cm-restaurant-5009-osm-place-347806330",
+        "cm-restaurant-5009-osm-place-9441622517",
+        "cm-restaurant-5009-osm-place-2697120188",
+        "cm-restaurant-5009-osm-place-12206408775",
+        "cm-restaurant-5009-yunnan-restuarant-4164220189",
+        "cm-restaurant-5009-osm-place-13247343001",
+        "cm-restaurant-5009-pp-barbeque-1599469327",
+        "cm-restaurant-5009-kfc-3139500829",
+        "cm-restaurant-5009-osm-place-2293321077",
+        "cm-restaurant-5009-osm-place-11132324950"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5010",
+      "nameTh": "แม่อาย",
+      "nameEn": "Mae Ai",
+      "recordIds": [
+        "cm-restaurant-5010-osm-place-6859261587",
+        "cm-restaurant-5010-osm-place-4932486921",
+        "cm-restaurant-5010-osm-place-493346962",
+        "cm-restaurant-5010-chankasem-restaurant-2795687234",
+        "cm-restaurant-5010-dear-friend-restaurant-4204302189",
+        "cm-restaurant-5010-osm-place-2620483298",
+        "cm-restaurant-5010-sunshine-cafe-4206128889",
+        "cm-restaurant-5010-de-love-tree-cafe-12491727158",
+        "cm-restaurant-5010-cafe-buffet-11116262139",
+        "cm-restaurant-5010-garden-home-restaurant-775867043"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5011",
+      "nameTh": "พร้าว",
+      "nameEn": "Phrao",
+      "recordIds": [
+        "cm-restaurant-5011-osm-place-12543434735",
+        "cm-restaurant-5011-osm-place-12545746142",
+        "cm-restaurant-5011-osm-place-4554696939",
+        "cm-restaurant-5011-osm-place-5391573521",
+        "cm-restaurant-5011-sa-ma-tha-restaurant-12347764139",
+        "cm-restaurant-5011-lab-11-7273954785",
+        "cm-restaurant-5011-osm-place-3485568807",
+        "cm-restaurant-5011-osm-place-4602747438",
+        "cm-restaurant-5011-osm-place-5578303321",
+        "cm-restaurant-5011-osm-place-4604699483"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5012",
+      "nameTh": "สันป่าตอง",
+      "nameEn": "San Pa Tong",
+      "recordIds": [
+        "cm-restaurant-5012-osm-place-8127904483",
+        "cm-restaurant-5012-osm-place-8128216624",
+        "cm-restaurant-5012-osm-place-13524372601",
+        "cm-restaurant-5012-osm-place-7645839885",
+        "cm-restaurant-5012-osm-place-3383942523"
+      ],
+      "coverageStatus": "partial",
+      "gap": "5 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5013",
+      "nameTh": "สันกำแพง",
+      "nameEn": "San Kamphaeng",
+      "recordIds": [
+        "cm-restaurant-5013-osm-place-13040779448",
+        "cm-restaurant-5013-osm-place-4686351107",
+        "cm-restaurant-5013-osm-place-1119908665",
+        "cm-restaurant-5013-osm-place-2802888337",
+        "cm-restaurant-5013-meena-rice-based-cuisine-537308760",
+        "cm-restaurant-5013-osm-place-4685165752",
+        "cm-restaurant-5013-osm-place-1505942280",
+        "cm-restaurant-5013-osm-place-969762852",
+        "cm-restaurant-5013-osm-place-1317147769",
+        "cm-restaurant-5013-osm-place-3671132280"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5014",
+      "nameTh": "สันทราย",
+      "nameEn": "San Sai",
+      "recordIds": [
+        "cm-restaurant-5014-osm-place-13527859601",
+        "cm-restaurant-5014-osm-place-4573410090",
+        "cm-restaurant-5014-osm-place-2817848201",
+        "cm-restaurant-5014-osm-place-3815458785",
+        "cm-restaurant-5014-osm-place-12709665779",
+        "cm-restaurant-5014-route-66-diner-chiang-mai-12084582995",
+        "cm-restaurant-5014-1-4438402332",
+        "cm-restaurant-5014-osm-place-3186582161",
+        "cm-restaurant-5014-osm-place-3931728036",
+        "cm-restaurant-5014-osm-place-3264698919"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5015",
+      "nameTh": "หางดง",
+      "nameEn": "Hang Dong",
+      "recordIds": [
+        "cm-restaurant-5015-osm-place-2508195128",
+        "cm-restaurant-5015-osm-place-11644899746",
+        "cm-restaurant-5015-osm-place-1082534462",
+        "cm-restaurant-5015-osm-place-3362873895",
+        "cm-restaurant-5015-osm-place-2576988521",
+        "cm-restaurant-5015-osm-place-3650069469",
+        "cm-restaurant-5015-osm-place-2118806187",
+        "cm-restaurant-5015-osm-place-243415939",
+        "cm-restaurant-5015-osm-place-546257209",
+        "cm-restaurant-5015-osm-place-723794121"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5016",
+      "nameTh": "ฮอด",
+      "nameEn": "Hot",
+      "recordIds": [
+        "cm-restaurant-5016-nong-bank-restaurant-7294436085",
+        "cm-restaurant-5016-osm-place-3442281424",
+        "cm-restaurant-5016-motorest-5855653385"
+      ],
+      "coverageStatus": "partial",
+      "gap": "3 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5017",
+      "nameTh": "ดอยเต่า",
+      "nameEn": "Doi Tao",
+      "recordIds": [
+        "cm-restaurant-5017-ruean-phae-luk-mae-ping",
+        "cm-restaurant-5017-ruean-phae-tharn-thip",
+        "cm-restaurant-5017-ruean-phae-doi-tao-rim-ping",
+        "cm-restaurant-5017-check-in-doi-tao"
+      ],
+      "coverageStatus": "partial",
+      "gap": "4 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5018",
+      "nameTh": "อมก๋อย",
+      "nameEn": "Omkoi",
+      "recordIds": [
+        "cm-restaurant-5018-osm-place-2617026518",
+        "cm-restaurant-5018-osm-place-2617015354",
+        "cm-restaurant-5018-osm-place-2617020096",
+        "cm-restaurant-5018-osm-place-2617023500",
+        "cm-restaurant-5018-osm-place-2617024829",
+        "cm-restaurant-5018-osm-place-2617029900",
+        "cm-restaurant-5018-osm-place-2617035512",
+        "cm-restaurant-5018-osm-place-2618255292",
+        "cm-restaurant-5018-ingdoi-restaurant-12488199996"
+      ],
+      "coverageStatus": "partial",
+      "gap": "9 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5019",
+      "nameTh": "สารภี",
+      "nameEn": "Saraphi",
+      "recordIds": [
+        "cm-restaurant-5019-osm-place-13382564001",
+        "cm-restaurant-5019-osm-place-384248271",
+        "cm-restaurant-5019-102-1-5664436709",
+        "cm-restaurant-5019-osm-place-5392544398",
+        "cm-restaurant-5019-osm-place-531917263",
+        "cm-restaurant-5019-osm-place-383728982",
+        "cm-restaurant-5019-aiya-cafe-4648351833",
+        "cm-restaurant-5019-ginger-farm-chiang-mai-677842671",
+        "cm-restaurant-5019-srisombat-farm-restaurant-13392625401",
+        "cm-restaurant-5019-chum-lanna-restaurant-good-local-food-13423332901"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5020",
+      "nameTh": "เวียงแหง",
+      "nameEn": "Wiang Haeng",
+      "recordIds": [
+        "cm-restaurant-5020-osm-place-13188261801",
+        "cm-restaurant-5020-best-place-5281995221"
+      ],
+      "coverageStatus": "partial",
+      "gap": "2 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5021",
+      "nameTh": "ไชยปราการ",
+      "nameEn": "Chai Prakan",
+      "recordIds": [
+        "cm-restaurant-5021-osm-place-1348999439",
+        "cm-restaurant-5021-osm-place-12443762305",
+        "cm-restaurant-5021-t2-steak-2696206876"
+      ],
+      "coverageStatus": "partial",
+      "gap": "3 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5022",
+      "nameTh": "แม่วาง",
+      "nameEn": "Mae Wang",
+      "recordIds": [
+        "cm-restaurant-5022-osm-place-6180280663",
+        "cm-restaurant-5022-osm-place-12617642101",
+        "cm-restaurant-5022-ban-bon-doi-5842059486",
+        "cm-restaurant-5022-osm-place-5300285325"
+      ],
+      "coverageStatus": "partial",
+      "gap": "4 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5023",
+      "nameTh": "แม่ออน",
+      "nameEn": "Mae On",
+      "recordIds": [
+        "cm-restaurant-5023-igarden-5148876321",
+        "cm-restaurant-5023-osm-place-8244213477",
+        "cm-restaurant-5023-osm-place-6873240285",
+        "cm-restaurant-5023-skugga-restaurant-2299241788",
+        "cm-restaurant-5023-osm-place-8230327829",
+        "cm-restaurant-5023-the-giant-chiang-mai-952588274",
+        "cm-restaurant-5023-osm-place-3345840112",
+        "cm-restaurant-5023-osm-place-3383978820",
+        "cm-restaurant-5023-osm-place-2488990969",
+        "cm-restaurant-5023-osm-place-8230327831"
+      ],
+      "coverageStatus": "partial",
+      "gap": "10 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5024",
+      "nameTh": "ดอยหล่อ",
+      "nameEn": "Doi Lo",
+      "recordIds": [
+        "cm-restaurant-5024-osm-place-3307023061",
+        "cm-restaurant-5024-osm-place-3322909005"
+      ],
+      "coverageStatus": "partial",
+      "gap": "2 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    },
+    {
+      "code": "5025",
+      "nameTh": "กัลยาณิวัฒนา",
+      "nameEn": "Galyani Vadhana",
+      "recordIds": [
+        "cm-restaurant-5025-baan-suan-ta-su-lor",
+        "cm-restaurant-5025-khrua-rim-thang"
+      ],
+      "coverageStatus": "partial",
+      "gap": "2 research record(s) admitted or quarantined; current operation and detailed visitor facts remain pending."
+    }
+  ]
+}
