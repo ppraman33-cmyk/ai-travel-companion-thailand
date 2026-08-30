@@ -31,12 +31,12 @@ const verified = new Map([
     {
       outcome: "verified_research_record",
       reason:
-        "The restaurant-controlled Facebook page confirms current restaurant activity and the Tourism Authority of Thailand listing independently confirms the San Kamphaeng address.",
+        "A dated restaurant-controlled Facebook post confirms current restaurant activity and the Tourism Authority of Thailand listing independently confirms the San Kamphaeng address.",
       checks: {
         identity: "supported_direct_owner",
-        currentOperation: "supported_direct_owner_current_page",
+        currentOperation: "supported_direct_owner_dated_post",
         districtParent: "supported_current_government_tourism_directory",
-        ownerOperator: "supported_direct_owner_social_page",
+        ownerOperator: "supported_direct_owner_social_post",
       },
       verificationSourceIds: [
         "MEENA-FACEBOOK-DIRECT-2026",
@@ -154,9 +154,9 @@ const output = {
       id: "MEENA-FACEBOOK-DIRECT-2026",
       tier: 1,
       publisher: "Meena Rice Based Cuisine",
-      sourceType: "direct_owner_social_page",
-      url: "https://www.facebook.com/meena.rice.based/",
-      representedAt: null,
+      sourceType: "direct_owner_social_post",
+      url: "https://www.facebook.com/meena.rice.based/videos/1545777360352425/",
+      representedAt: "2026-07-19",
       retrievedAt: reviewedAt,
       assertions: ["identity", "current_operation", "owner_operator"],
       rightsStatus: "facts_only_rights_pending",
