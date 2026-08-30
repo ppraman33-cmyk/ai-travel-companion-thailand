@@ -1,0 +1,2390 @@
+{
+  "schemaVersion": 1,
+  "status": "research_verification_only",
+  "provinceCode": "TH-50",
+  "reviewedAt": "2026-08-30",
+  "publicationEligibility": "blocked",
+  "productionImportEligibility": "blocked",
+  "verificationContract": {
+    "openingHoursDeferred": true,
+    "directOwnerOperationRequired": true,
+    "osmAloneCannotVerifyCurrentOperation": true,
+    "coordinatesImported": false,
+    "mediaDownloaded": false
+  },
+  "sources": [
+    {
+      "id": "HUEN-MUAN-JAI-INSTAGRAM-2026-08-09",
+      "tier": 1,
+      "publisher": "Huen Muan Jai",
+      "sourceType": "direct_owner_social_post",
+      "url": "https://www.instagram.com/huenmuanjai/p/Db0FHEuRaNB/",
+      "representedAt": "2026-08-09",
+      "retrievedAt": "2026-08-30",
+      "assertions": ["identity", "current_operation", "owner_operator"],
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "MICHELIN-HUEN-MUAN-JAI-2026",
+      "tier": 3,
+      "publisher": "Michelin Guide",
+      "sourceType": "current_independent_restaurant_directory",
+      "url": "https://guide.michelin.com/th/th/chiang-mai-region/chiang-mai/restaurant/huen-muan-jai",
+      "representedAt": null,
+      "retrievedAt": "2026-08-30",
+      "assertions": ["identity", "district_parent", "restaurant_category"],
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "MEENA-FACEBOOK-DIRECT-2026",
+      "tier": 1,
+      "publisher": "Meena Rice Based Cuisine",
+      "sourceType": "direct_owner_social_page",
+      "url": "https://www.facebook.com/meena.rice.based/",
+      "representedAt": null,
+      "retrievedAt": "2026-08-30",
+      "assertions": ["identity", "current_operation", "owner_operator"],
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "TAT-MEENA-RICE-BASED-CUISINE-2026",
+      "tier": 2,
+      "publisher": "Tourism Authority of Thailand",
+      "sourceType": "government_tourism_restaurant_directory",
+      "url": "https://www.tourismthailand.org/Restaurant/meena-rice-based-cuisine",
+      "representedAt": null,
+      "retrievedAt": "2026-08-30",
+      "assertions": ["identity", "district_parent", "restaurant_category"],
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "GINGER-FARM-FACEBOOK-2026-07-29",
+      "tier": 1,
+      "publisher": "Ginger Farm Chiangmai",
+      "sourceType": "direct_owner_social_post",
+      "url": "https://www.facebook.com/gingerfarmchiangmai/photos/1075975974575976/",
+      "representedAt": "2026-07-29",
+      "retrievedAt": "2026-08-30",
+      "assertions": ["identity", "current_operation", "owner_operator"],
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    },
+    {
+      "id": "GINGER-FARM-DIRECT-LOCATION-2026",
+      "tier": 1,
+      "publisher": "Ginger Farm Chiangmai",
+      "sourceType": "direct_owner_location_page",
+      "url": "https://sites.google.com/view/gingerfarmchiangmai/%E0%B9%81%E0%B8%9C%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%99",
+      "representedAt": null,
+      "retrievedAt": "2026-08-30",
+      "assertions": ["identity", "district_parent", "restaurant_category"],
+      "rightsStatus": "facts_only_rights_pending",
+      "mediaRightsStatus": "not_assessed_no_media_downloaded"
+    }
+  ],
+  "summary": {
+    "baselineRecords": 175,
+    "reviewedRecords": 175,
+    "verifiedResearchRecords": 3,
+    "pendingMoreEvidence": 172,
+    "excludedRecords": 0
+  },
+  "districts": [
+    {
+      "code": "5001",
+      "nameTh": "เมืองเชียงใหม่",
+      "reviewed": 10,
+      "verified": 1,
+      "pending": 9
+    },
+    {
+      "code": "5002",
+      "nameTh": "จอมทอง",
+      "reviewed": 9,
+      "verified": 0,
+      "pending": 9
+    },
+    {
+      "code": "5003",
+      "nameTh": "แม่แจ่ม",
+      "reviewed": 7,
+      "verified": 0,
+      "pending": 7
+    },
+    {
+      "code": "5004",
+      "nameTh": "เชียงดาว",
+      "reviewed": 9,
+      "verified": 0,
+      "pending": 9
+    },
+    {
+      "code": "5005",
+      "nameTh": "ดอยสะเก็ด",
+      "reviewed": 9,
+      "verified": 0,
+      "pending": 9
+    },
+    {
+      "code": "5006",
+      "nameTh": "แม่แตง",
+      "reviewed": 10,
+      "verified": 0,
+      "pending": 10
+    },
+    {
+      "code": "5007",
+      "nameTh": "แม่ริม",
+      "reviewed": 9,
+      "verified": 0,
+      "pending": 9
+    },
+    {
+      "code": "5008",
+      "nameTh": "สะเมิง",
+      "reviewed": 4,
+      "verified": 0,
+      "pending": 4
+    },
+    {
+      "code": "5009",
+      "nameTh": "ฝาง",
+      "reviewed": 9,
+      "verified": 0,
+      "pending": 9
+    },
+    {
+      "code": "5010",
+      "nameTh": "แม่อาย",
+      "reviewed": 9,
+      "verified": 0,
+      "pending": 9
+    },
+    {
+      "code": "5011",
+      "nameTh": "พร้าว",
+      "reviewed": 10,
+      "verified": 0,
+      "pending": 10
+    },
+    {
+      "code": "5012",
+      "nameTh": "สันป่าตอง",
+      "reviewed": 5,
+      "verified": 0,
+      "pending": 5
+    },
+    {
+      "code": "5013",
+      "nameTh": "สันกำแพง",
+      "reviewed": 9,
+      "verified": 1,
+      "pending": 8
+    },
+    {
+      "code": "5014",
+      "nameTh": "สันทราย",
+      "reviewed": 9,
+      "verified": 0,
+      "pending": 9
+    },
+    {
+      "code": "5015",
+      "nameTh": "หางดง",
+      "reviewed": 10,
+      "verified": 0,
+      "pending": 10
+    },
+    {
+      "code": "5016",
+      "nameTh": "ฮอด",
+      "reviewed": 3,
+      "verified": 0,
+      "pending": 3
+    },
+    {
+      "code": "5017",
+      "nameTh": "ดอยเต่า",
+      "reviewed": 4,
+      "verified": 0,
+      "pending": 4
+    },
+    {
+      "code": "5018",
+      "nameTh": "อมก๋อย",
+      "reviewed": 9,
+      "verified": 0,
+      "pending": 9
+    },
+    {
+      "code": "5019",
+      "nameTh": "สารภี",
+      "reviewed": 10,
+      "verified": 1,
+      "pending": 9
+    },
+    {
+      "code": "5020",
+      "nameTh": "เวียงแหง",
+      "reviewed": 1,
+      "verified": 0,
+      "pending": 1
+    },
+    {
+      "code": "5021",
+      "nameTh": "ไชยปราการ",
+      "reviewed": 3,
+      "verified": 0,
+      "pending": 3
+    },
+    {
+      "code": "5022",
+      "nameTh": "แม่วาง",
+      "reviewed": 3,
+      "verified": 0,
+      "pending": 3
+    },
+    {
+      "code": "5023",
+      "nameTh": "แม่ออน",
+      "reviewed": 10,
+      "verified": 0,
+      "pending": 10
+    },
+    {
+      "code": "5024",
+      "nameTh": "ดอยหล่อ",
+      "reviewed": 2,
+      "verified": 0,
+      "pending": 2
+    },
+    {
+      "code": "5025",
+      "nameTh": "กัลยาณิวัฒนา",
+      "reviewed": 2,
+      "verified": 0,
+      "pending": 2
+    }
+  ],
+  "decisions": [
+    {
+      "recordId": "cm-restaurant-5001-hello-solao",
+      "outcome": "pending_more_evidence",
+      "reason": "The official listing supports identity and district history, but its represented date is too old or absent to establish current operation without direct owner/operator reverification.",
+      "checks": {
+        "identity": "supported_historical_or_official",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5001-khum-wiang-yong",
+      "outcome": "pending_more_evidence",
+      "reason": "The official listing supports identity and district history, but its represented date is too old or absent to establish current operation without direct owner/operator reverification.",
+      "checks": {
+        "identity": "supported_historical_or_official",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5001-baan-rom-mai-bali",
+      "outcome": "pending_more_evidence",
+      "reason": "The official listing supports identity and district history, but its represented date is too old or absent to establish current operation without direct owner/operator reverification.",
+      "checks": {
+        "identity": "supported_historical_or_official",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5017-ruean-phae-luk-mae-ping",
+      "outcome": "pending_more_evidence",
+      "reason": "The official listing supports identity and district history, but its represented date is too old or absent to establish current operation without direct owner/operator reverification.",
+      "checks": {
+        "identity": "supported_historical_or_official",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5017-ruean-phae-tharn-thip",
+      "outcome": "pending_more_evidence",
+      "reason": "The official listing supports identity and district history, but its represented date is too old or absent to establish current operation without direct owner/operator reverification.",
+      "checks": {
+        "identity": "supported_historical_or_official",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5017-ruean-phae-doi-tao-rim-ping",
+      "outcome": "pending_more_evidence",
+      "reason": "The official listing supports identity and district history, but its represented date is too old or absent to establish current operation without direct owner/operator reverification.",
+      "checks": {
+        "identity": "supported_historical_or_official",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5017-check-in-doi-tao",
+      "outcome": "pending_more_evidence",
+      "reason": "The official listing supports identity and district history, but its represented date is too old or absent to establish current operation without direct owner/operator reverification.",
+      "checks": {
+        "identity": "supported_historical_or_official",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5025-baan-suan-ta-su-lor",
+      "outcome": "pending_more_evidence",
+      "reason": "The available official records support identity but retain a legacy district-header conflict; exact parent and current operator evidence are not sufficient for admission.",
+      "checks": {
+        "identity": "supported_historical_or_official",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "conflict_review_required",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5025-khrua-rim-thang",
+      "outcome": "pending_more_evidence",
+      "reason": "The available official records support identity but retain a legacy district-header conflict; exact parent and current operator evidence are not sufficient for admission.",
+      "checks": {
+        "identity": "supported_historical_or_official",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "conflict_review_required",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5001-lamiat-thai-kitchen-14077949101",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5001-osm-place-4972332121",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5001-rainbownoodle-12913876246",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5001-osm-place-3287049585",
+      "outcome": "verified_research_record",
+      "reason": "The restaurant-controlled website confirms the operating identity and a current Michelin Guide listing independently confirms the Mueang Chiang Mai parent.",
+      "checks": {
+        "identity": "supported_direct_owner",
+        "currentOperation": "supported_direct_owner_current_page",
+        "districtParent": "supported_current_independent_directory",
+        "ownerOperator": "supported_direct_owner_website"
+      },
+      "verificationSourceIds": [
+        "HUEN-MUAN-JAI-INSTAGRAM-2026-08-09",
+        "MICHELIN-HUEN-MUAN-JAI-2026"
+      ]
+    },
+    {
+      "recordId": "cm-restaurant-5001-osm-place-13805318901",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5001-osm-place-674670538",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5001-osm-place-14069987674",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5002-osm-place-8116642217",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5002-pho-farm-hug-7284773285",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5002-osm-place-13812812429",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5002-banjaidee-3106985529",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5002-royal-project-inthanon-7287833785",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5002-osm-place-2685142595",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5002-osm-place-2687048828",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5002-osm-place-463999179",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5002-dream-cafe-11369859950",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5003-osm-place-5382073821",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5003-osm-place-7887041885",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5003-osm-place-3318840954",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5003-osm-place-356969829",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5003-osm-place-7125460685",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5003-bolah-s-restaurant-12496755240",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5003-sawasdee-mae-chaen-5255642224",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5004-osm-place-14100144201",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5004-osm-place-1376979658",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5004-osm-place-4439443713",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5004-osm-place-2411239356",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5004-osm-place-2623371144",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5004-osm-place-4554696940",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5004-osm-place-2088111608",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5004-osm-place-4990013026",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5004-osm-place-881788463",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5005-osm-place-11755248919",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5005-osm-place-7252225925",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5005-bualuang-terasse-1604441376",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5005-osm-place-9032269404",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5005-osm-place-2005917921",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5005-osm-place-2497315366",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5005-osm-place-3084687039",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5005-osm-place-4474409870",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5005-celapot-cafe-12201114507",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5006-huakhua-14100137101",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5006-osm-place-2611322664",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5006-osm-place-4366299394",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5006-green-food-coffee-2423925024",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5006-home-made-style-3326485793",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5006-osm-place-6515687785",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5006-osm-place-2623399473",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5006-osm-place-4595151476",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5006-osm-place-8200943607",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5006-osm-place-4595135841",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5007-osm-place-13475557570",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5007-osm-place-9316917917",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5007-11-2661625027",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5007-osm-place-4177462694",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5007-osm-place-11164805265",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5007-osm-place-5137777427",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5007-bantunglom-resort-1168313004",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5007-sheep-cafe-cowboy-farm-488843373",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5007-chomna-mountain-view-1462476590",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5008-osm-place-3792253170",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5008-osm-place-2575169216",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5008-garden-view-restaurant-1481651344",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5008-baan-mon-neung-doi-6136470916",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5009-osm-place-347806330",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5009-osm-place-9441622517",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5009-osm-place-2697120188",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5009-osm-place-12206408775",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5009-yunnan-restuarant-4164220189",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5009-osm-place-13247343001",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5009-pp-barbeque-1599469327",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5009-osm-place-2293321077",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5009-osm-place-11132324950",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5010-osm-place-6859261587",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5010-osm-place-4932486921",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5010-osm-place-493346962",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5010-chankasem-restaurant-2795687234",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5010-dear-friend-restaurant-4204302189",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5010-osm-place-2620483298",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5010-sunshine-cafe-4206128889",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5010-de-love-tree-cafe-12491727158",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5010-garden-home-restaurant-775867043",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5011-osm-place-12543434735",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5011-osm-place-12545746142",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5011-osm-place-4554696939",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5011-osm-place-5391573521",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5011-sa-ma-tha-restaurant-12347764139",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5011-lab-11-7273954785",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5011-osm-place-3485568807",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5011-osm-place-4602747438",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5011-osm-place-5578303321",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5011-osm-place-4604699483",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5012-osm-place-8127904483",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5012-osm-place-8128216624",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5012-osm-place-13524372601",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5012-osm-place-7645839885",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5012-osm-place-3383942523",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5013-osm-place-13040779448",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5013-osm-place-4686351107",
+      "outcome": "verified_research_record",
+      "reason": "The restaurant-controlled Facebook page confirms current restaurant activity and the Tourism Authority of Thailand listing independently confirms the San Kamphaeng address.",
+      "checks": {
+        "identity": "supported_direct_owner",
+        "currentOperation": "supported_direct_owner_current_page",
+        "districtParent": "supported_current_government_tourism_directory",
+        "ownerOperator": "supported_direct_owner_social_page"
+      },
+      "verificationSourceIds": [
+        "MEENA-FACEBOOK-DIRECT-2026",
+        "TAT-MEENA-RICE-BASED-CUISINE-2026"
+      ]
+    },
+    {
+      "recordId": "cm-restaurant-5013-osm-place-1119908665",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5013-osm-place-2802888337",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5013-osm-place-4685165752",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5013-osm-place-1505942280",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5013-osm-place-969762852",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5013-osm-place-1317147769",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5013-osm-place-3671132280",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5014-osm-place-13527859601",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5014-osm-place-2817848201",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5014-osm-place-3815458785",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5014-osm-place-12709665779",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5014-route-66-diner-chiang-mai-12084582995",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5014-1-4438402332",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5014-osm-place-3186582161",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5014-osm-place-3931728036",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5014-osm-place-3264698919",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5015-osm-place-2508195128",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5015-osm-place-11644899746",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5015-osm-place-1082534462",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5015-osm-place-3362873895",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5015-osm-place-2576988521",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5015-osm-place-3650069469",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5015-osm-place-2118806187",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5015-osm-place-243415939",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5015-osm-place-546257209",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5015-osm-place-723794121",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5016-nong-bank-restaurant-7294436085",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5016-osm-place-3442281424",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5016-motorest-5855653385",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5018-osm-place-2617026518",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5018-osm-place-2617015354",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5018-osm-place-2617020096",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5018-osm-place-2617023500",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5018-osm-place-2617024829",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5018-osm-place-2617029900",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5018-osm-place-2617035512",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5018-osm-place-2618255292",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5018-ingdoi-restaurant-12488199996",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5019-osm-place-13382564001",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5019-osm-place-384248271",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5019-102-1-5664436709",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5019-osm-place-5392544398",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5019-osm-place-531917263",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5019-osm-place-383728982",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5019-aiya-cafe-4648351833",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5019-ginger-farm-chiang-mai-677842671",
+      "outcome": "verified_research_record",
+      "reason": "A dated direct-owner post confirms current operation and the operator-controlled location page confirms the exact Saraphi parent and restaurant service.",
+      "checks": {
+        "identity": "supported_direct_owner",
+        "currentOperation": "supported_direct_owner_current_page",
+        "districtParent": "supported_direct_owner_location_page",
+        "ownerOperator": "supported_direct_owner_social_and_location_pages"
+      },
+      "verificationSourceIds": [
+        "GINGER-FARM-FACEBOOK-2026-07-29",
+        "GINGER-FARM-DIRECT-LOCATION-2026"
+      ]
+    },
+    {
+      "recordId": "cm-restaurant-5019-srisombat-farm-restaurant-13392625401",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5019-chum-lanna-restaurant-good-local-food-13423332901",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5020-osm-place-13188261801",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5021-osm-place-1348999439",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5021-osm-place-12443762305",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5021-t2-steak-2696206876",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5022-osm-place-6180280663",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5022-osm-place-12617642101",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5022-ban-bon-doi-5842059486",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5023-igarden-5148876321",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5023-osm-place-8244213477",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5023-osm-place-6873240285",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5023-skugga-restaurant-2299241788",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5023-osm-place-8230327829",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5023-the-giant-chiang-mai-952588274",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5023-osm-place-3345840112",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5023-osm-place-3383978820",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5023-osm-place-2488990969",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5023-osm-place-8230327831",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5024-osm-place-3307023061",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    },
+    {
+      "recordId": "cm-restaurant-5024-osm-place-3322909005",
+      "outcome": "pending_more_evidence",
+      "reason": "OpenStreetMap supports discovery identity and spatial placement only; no qualifying direct owner/operator evidence of current operation was admitted in this review.",
+      "checks": {
+        "identity": "candidate_only",
+        "currentOperation": "pending_direct_owner_evidence",
+        "districtParent": "supported",
+        "ownerOperator": "pending"
+      },
+      "verificationSourceIds": []
+    }
+  ],
+  "revalidationTriggers": [
+    "new direct owner/operator source",
+    "new dated evidence of current operation",
+    "new exact district-parent evidence",
+    "approved rights and freshness review"
+  ]
+}
