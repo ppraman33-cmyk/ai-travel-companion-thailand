@@ -34,6 +34,17 @@ function normalizedName(value) {
   return value.normalize("NFC").toLocaleLowerCase("th").replace(/\s+/g, " ").trim();
 }
 
+function identityKey(value) {
+  return normalizedName(value)
+    .replace(/^(ร้านอาหาร|สวนอาหาร)/, "")
+    .replace(/[\s&'()./-]+/g, "")
+    .trim();
+}
+
+function identityKeys(...values) {
+  return new Set(values.filter(Boolean).map(identityKey).filter(Boolean));
+}
+
 function isGenericName(value) {
   return [
     "restaurant",
@@ -46,8 +57,14 @@ function isGenericName(value) {
     "thai food restaurant",
     "local noodle restaurant",
     "ร้านอาหารตามสั่ง",
+    "อาหารตามสั่ง",
+    "อาการตามสั่ง",
     "ร้านอาหารปักษ์ใต้",
     "thai cafe",
+    "ตลาดตอนเย็น",
+    "noodle shop/barbeque.",
+    "cafe buffet",
+    "best place",
   ].includes(normalizedName(value));
 }
 
@@ -56,7 +73,8 @@ function isOutOfFocus(element) {
   const cuisine = element.tags?.cuisine?.toLowerCase() ?? "";
   return (
     /(pizza|german|japanese|korean|indian|french|italian|western)/.test(cuisine) ||
-    /(pizza|german|minigolf|steakhouse)/.test(name)
+    /(pizza|german|minigolf|steakhouse|cooking school|คุ้กกิ้งสคูล)/.test(name) ||
+    name === "kfc"
   );
 }
 
@@ -132,7 +150,7 @@ const existingNamesByDistrict = new Map();
 for (const record of existingRegistry.records) {
   if (record.sourceIds?.some((sourceId) => sourceId.startsWith("OSM-"))) continue;
   const names = existingNamesByDistrict.get(record.districtCode) ?? new Set();
-  names.add(normalizedName(record.nameTh));
+  for (const key of identityKeys(record.nameTh, record.nameEn)) names.add(key);
   existingNamesByDistrict.set(record.districtCode, names);
 }
 
@@ -161,9 +179,9 @@ for (const district of districts) {
     )
     .sort((left, right) => candidateScore(right) - candidateScore(left))
     .filter(({ tags }) => {
-      const key = normalizedName(tags.name);
-      if (seen.has(key)) return false;
-      seen.add(key);
+      const keys = identityKeys(tags.name, tags["name:en"]);
+      if ([...keys].some((key) => seen.has(key))) return false;
+      for (const key of keys) seen.add(key);
       return true;
     })
     .slice(0, capacity);

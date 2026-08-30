@@ -26,6 +26,23 @@ export function validateChiangMaiRestaurantCoverage({
   const districtByCode = new Map(canonical.map((record) => [record.code, record]));
   const sourceById = new Map(sources.sources.map((source) => [source.id, source]));
   const recordById = new Map(registry.records.map((record) => [record.id, record]));
+  const identityByDistrict = new Map();
+  const identityKey = (value) =>
+    value
+      .normalize("NFC")
+      .toLocaleLowerCase("th")
+      .replace(/^(ร้านอาหาร|สวนอาหาร)/, "")
+      .replace(/[\s&'()./-]+/g, "")
+      .trim();
+  const prohibitedNames = new Set([
+    "อาหารตามสั่ง",
+    "อาการตามสั่ง",
+    "ตลาดตอนเย็น",
+    "noodle shop/barbeque.",
+    "cafe buffet",
+    "best place",
+    "kfc",
+  ]);
 
   if (coverage.status !== "research_evidence_only")
     failures.push("restaurant coverage must remain research evidence only");
@@ -74,6 +91,19 @@ export function validateChiangMaiRestaurantCoverage({
       failures.push(`${record.id}: district parent mismatch`);
     if (record.coordinates !== null)
       failures.push(`${record.id}: unapproved coordinates imported`);
+    if (prohibitedNames.has(record.nameTh.toLocaleLowerCase("th").trim()))
+      failures.push(`${record.id}: prohibited generic or chain identity`);
+    if (/cooking school|คุ้กกิ้งสคูล/i.test(`${record.nameTh} ${record.nameEn ?? ""}`))
+      failures.push(`${record.id}: non-restaurant candidate admitted`);
+    const districtIdentities = identityByDistrict.get(record.districtCode) ?? new Map();
+    for (const value of [record.nameTh, record.nameEn].filter(Boolean)) {
+      const key = identityKey(value);
+      const existingId = districtIdentities.get(key);
+      if (existingId && existingId !== record.id)
+        failures.push(`${record.id}: duplicate identity alias with ${existingId}`);
+      districtIdentities.set(key, record.id);
+    }
+    identityByDistrict.set(record.districtCode, districtIdentities);
     if (
       record.openingHoursStatus !== "pending" ||
       record.priceStatus !== "pending" ||

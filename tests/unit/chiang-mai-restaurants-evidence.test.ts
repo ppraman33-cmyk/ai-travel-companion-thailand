@@ -71,4 +71,22 @@ describe("Chiang Mai restaurant evidence baseline", () => {
       );
     }
   });
+
+  it("rejects generic, chain, non-restaurant and alias-duplicate candidates", () => {
+    expect(data.registry.records).toHaveLength(175);
+    const names = data.registry.records.map(({ nameTh }) => nameTh);
+    expect(names).not.toEqual(
+      expect.arrayContaining([
+        "ตลาดตอนเย็น",
+        "Noodle shop/barbeque.",
+        "อาหารตามสั่ง",
+        "KFC",
+        "Cafe buffet",
+        "สยามการ์เด้นคุ้กกิ้งสคูล",
+        "Best Place",
+        "อาการตามสั่ง",
+      ]),
+    );
+    expect(validateChiangMaiRestaurantCoverage(data)).toEqual([]);
+  });
 });

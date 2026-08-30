@@ -305,19 +305,6 @@
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
     },
     {
-      "id": "OSM-WAY-553959114",
-      "tier": 5,
-      "publisher": "OpenStreetMap contributors",
-      "sourceType": "open_collaborative_map_candidate",
-      "title": "ตลาดตอนเย็น OpenStreetMap element",
-      "url": "https://www.openstreetmap.org/way/553959114",
-      "representedAt": "2019-09-27",
-      "retrievedAt": "2026-08-29",
-      "locator": "Named restaurant element spatially contained by the canonical จอมทอง administrative boundary during candidate generation; direct-owner verification remains pending.",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
       "id": "OSM-NODE-11369859950",
       "tier": 5,
       "publisher": "OpenStreetMap contributors",
@@ -377,19 +364,6 @@
       "title": "ศูนย์อาหารเมืองแจ่ม OpenStreetMap element",
       "url": "https://www.openstreetmap.org/way/356969829",
       "representedAt": "2022-11-12",
-      "retrievedAt": "2026-08-29",
-      "locator": "Named restaurant element spatially contained by the canonical แม่แจ่ม administrative boundary during candidate generation; direct-owner verification remains pending.",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
-      "id": "OSM-NODE-5281104224",
-      "tier": 5,
-      "publisher": "OpenStreetMap contributors",
-      "sourceType": "open_collaborative_map_candidate",
-      "title": "Noodle shop/barbeque. OpenStreetMap element",
-      "url": "https://www.openstreetmap.org/node/5281104224",
-      "representedAt": "2017-12-13",
       "retrievedAt": "2026-08-29",
       "locator": "Named restaurant element spatially contained by the canonical แม่แจ่ม administrative boundary during candidate generation; direct-owner verification remains pending.",
       "rightsStatus": "open_data_odbl_compliance_review_required",
@@ -487,19 +461,6 @@
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
     },
     {
-      "id": "OSM-NODE-2422005060",
-      "tier": 5,
-      "publisher": "OpenStreetMap contributors",
-      "sourceType": "open_collaborative_map_candidate",
-      "title": "กาแฟ ใน สวน OpenStreetMap element",
-      "url": "https://www.openstreetmap.org/node/2422005060",
-      "representedAt": "2016-10-09",
-      "retrievedAt": "2026-08-29",
-      "locator": "Named restaurant element spatially contained by the canonical เชียงดาว administrative boundary during candidate generation; direct-owner verification remains pending.",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
       "id": "OSM-NODE-2623371144",
       "tier": 5,
       "publisher": "OpenStreetMap contributors",
@@ -572,19 +533,6 @@
       "title": "ลาบปลายายหล้า OpenStreetMap element",
       "url": "https://www.openstreetmap.org/node/11755248919",
       "representedAt": "2024-03-23",
-      "retrievedAt": "2026-08-29",
-      "locator": "Named restaurant element spatially contained by the canonical ดอยสะเก็ด administrative boundary during candidate generation; direct-owner verification remains pending.",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
-      "id": "OSM-NODE-12030550220",
-      "tier": 5,
-      "publisher": "OpenStreetMap contributors",
-      "sourceType": "open_collaborative_map_candidate",
-      "title": "อาหารตามสั่ง OpenStreetMap element",
-      "url": "https://www.openstreetmap.org/node/12030550220",
-      "representedAt": "2024-07-03",
       "retrievedAt": "2026-08-29",
       "locator": "Named restaurant element spatially contained by the canonical ดอยสะเก็ด administrative boundary during candidate generation; direct-owner verification remains pending.",
       "rightsStatus": "open_data_odbl_compliance_review_required",
@@ -877,19 +825,6 @@
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
     },
     {
-      "id": "OSM-NODE-4111432291",
-      "tier": 5,
-      "publisher": "OpenStreetMap contributors",
-      "sourceType": "open_collaborative_map_candidate",
-      "title": "ทุ่งห้าโบทานิค OpenStreetMap element",
-      "url": "https://www.openstreetmap.org/node/4111432291",
-      "representedAt": "2016-04-15",
-      "retrievedAt": "2026-08-29",
-      "locator": "Named restaurant element spatially contained by the canonical แม่ริม administrative boundary during candidate generation; direct-owner verification remains pending.",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
       "id": "OSM-NODE-11164805265",
       "tier": 5,
       "publisher": "OpenStreetMap contributors",
@@ -1098,19 +1033,6 @@
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
     },
     {
-      "id": "OSM-NODE-3139500829",
-      "tier": 5,
-      "publisher": "OpenStreetMap contributors",
-      "sourceType": "open_collaborative_map_candidate",
-      "title": "KFC OpenStreetMap element",
-      "url": "https://www.openstreetmap.org/node/3139500829",
-      "representedAt": "2022-11-19",
-      "retrievedAt": "2026-08-29",
-      "locator": "Named fast_food element spatially contained by the canonical ฝาง administrative boundary during candidate generation; direct-owner verification remains pending.",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
       "id": "OSM-NODE-2293321077",
       "tier": 5,
       "publisher": "OpenStreetMap contributors",
@@ -1235,19 +1157,6 @@
       "title": "Dé Love Tree Cafe OpenStreetMap element",
       "url": "https://www.openstreetmap.org/node/12491727158",
       "representedAt": "2025-01-11",
-      "retrievedAt": "2026-08-29",
-      "locator": "Named restaurant element spatially contained by the canonical แม่อาย administrative boundary during candidate generation; direct-owner verification remains pending.",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
-      "id": "OSM-NODE-11116262139",
-      "tier": 5,
-      "publisher": "OpenStreetMap contributors",
-      "sourceType": "open_collaborative_map_candidate",
-      "title": "Cafe buffet OpenStreetMap element",
-      "url": "https://www.openstreetmap.org/node/11116262139",
-      "representedAt": "2023-08-15",
       "retrievedAt": "2026-08-29",
       "locator": "Named restaurant element spatially contained by the canonical แม่อาย administrative boundary during candidate generation; direct-owner verification remains pending.",
       "rightsStatus": "open_data_odbl_compliance_review_required",
@@ -1514,19 +1423,6 @@
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
     },
     {
-      "id": "OSM-WAY-537308760",
-      "tier": 5,
-      "publisher": "OpenStreetMap contributors",
-      "sourceType": "open_collaborative_map_candidate",
-      "title": "Meena rice based cuisine OpenStreetMap element",
-      "url": "https://www.openstreetmap.org/way/537308760",
-      "representedAt": "2025-02-24",
-      "retrievedAt": "2026-08-29",
-      "locator": "Named restaurant element spatially contained by the canonical สันกำแพง administrative boundary during candidate generation; direct-owner verification remains pending.",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
       "id": "OSM-NODE-4685165752",
       "tier": 5,
       "publisher": "OpenStreetMap contributors",
@@ -1599,19 +1495,6 @@
       "title": "ตำหรับใต้ OpenStreetMap element",
       "url": "https://www.openstreetmap.org/node/13527859601",
       "representedAt": "2026-02-06",
-      "retrievedAt": "2026-08-29",
-      "locator": "Named restaurant element spatially contained by the canonical สันทราย administrative boundary during candidate generation; direct-owner verification remains pending.",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
-      "id": "OSM-NODE-4573410090",
-      "tier": 5,
-      "publisher": "OpenStreetMap contributors",
-      "sourceType": "open_collaborative_map_candidate",
-      "title": "สยามการ์เด้นคุ้กกิ้งสคูล OpenStreetMap element",
-      "url": "https://www.openstreetmap.org/node/4573410090",
-      "representedAt": "2025-04-01",
       "retrievedAt": "2026-08-29",
       "locator": "Named restaurant element spatially contained by the canonical สันทราย administrative boundary during candidate generation; direct-owner verification remains pending.",
       "rightsStatus": "open_data_odbl_compliance_review_required",
@@ -2151,19 +2034,6 @@
       "mediaRightsStatus": "not_assessed_no_media_downloaded"
     },
     {
-      "id": "OSM-NODE-5281995221",
-      "tier": 5,
-      "publisher": "OpenStreetMap contributors",
-      "sourceType": "open_collaborative_map_candidate",
-      "title": "Best Place OpenStreetMap element",
-      "url": "https://www.openstreetmap.org/node/5281995221",
-      "representedAt": "2019-11-27",
-      "retrievedAt": "2026-08-29",
-      "locator": "Named restaurant element spatially contained by the canonical เวียงแหง administrative boundary during candidate generation; direct-owner verification remains pending.",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
       "id": "OSM-WAY-1348999439",
       "tier": 5,
       "publisher": "OpenStreetMap contributors",
@@ -2236,19 +2106,6 @@
       "title": "Ban Bon Doi OpenStreetMap element",
       "url": "https://www.openstreetmap.org/node/5842059486",
       "representedAt": "2018-08-19",
-      "retrievedAt": "2026-08-29",
-      "locator": "Named restaurant element spatially contained by the canonical แม่วาง administrative boundary during candidate generation; direct-owner verification remains pending.",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded"
-    },
-    {
-      "id": "OSM-NODE-5300285325",
-      "tier": 5,
-      "publisher": "OpenStreetMap contributors",
-      "sourceType": "open_collaborative_map_candidate",
-      "title": "อาการตามสั่ง OpenStreetMap element",
-      "url": "https://www.openstreetmap.org/node/5300285325",
-      "representedAt": "2018-11-15",
       "retrievedAt": "2026-08-29",
       "locator": "Named restaurant element spatially contained by the canonical แม่วาง administrative boundary during candidate generation; direct-owner verification remains pending.",
       "rightsStatus": "open_data_odbl_compliance_review_required",

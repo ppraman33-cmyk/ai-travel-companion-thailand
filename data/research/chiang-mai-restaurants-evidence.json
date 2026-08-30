@@ -1130,52 +1130,6 @@
       ]
     },
     {
-      "id": "cm-restaurant-5002-osm-place-553959114",
-      "nameTh": "ตลาดตอนเย็น",
-      "nameEn": null,
-      "englishNameStatus": "pending",
-      "category": "restaurant_candidate",
-      "selectionFocus": "community_restaurant_candidate",
-      "districtCode": "5002",
-      "districtNameTh": "จอมทอง",
-      "districtNameEn": "Chom Thong",
-      "subdistrictCode": null,
-      "coordinates": null,
-      "sourceIds": ["OSM-WAY-553959114"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "OSM-WAY-553959114",
-          "status": "supported_open_data_candidate"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "OSM-WAY-553959114",
-          "status": "supported_spatial_boundary"
-        },
-        {
-          "field": "current_operation",
-          "sourceId": "OSM-WAY-553959114",
-          "status": "pending_direct_owner_reverification"
-        }
-      ],
-      "representedAt": "2019-09-27",
-      "retrievedAt": "2026-08-29",
-      "openingHoursStatus": "pending",
-      "priceStatus": "pending",
-      "menuStatus": "pending",
-      "accessibilityStatus": "pending",
-      "contactStatus": "pending",
-      "freshnessStatus": "direct_owner_reverification_required",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "open_data_candidate_identity_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "OpenStreetMap supplies candidate identity and boundary placement only; operation, owner, category focus and all visitor facts require independent verification."
-      ]
-    },
-    {
       "id": "cm-restaurant-5002-dream-cafe-11369859950",
       "nameTh": "DREAM Café",
       "nameEn": null,
@@ -1390,52 +1344,6 @@
         }
       ],
       "representedAt": "2022-11-12",
-      "retrievedAt": "2026-08-29",
-      "openingHoursStatus": "pending",
-      "priceStatus": "pending",
-      "menuStatus": "pending",
-      "accessibilityStatus": "pending",
-      "contactStatus": "pending",
-      "freshnessStatus": "direct_owner_reverification_required",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "open_data_candidate_identity_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "OpenStreetMap supplies candidate identity and boundary placement only; operation, owner, category focus and all visitor facts require independent verification."
-      ]
-    },
-    {
-      "id": "cm-restaurant-5003-noodle-shop-barbeque-5281104224",
-      "nameTh": "Noodle shop/barbeque.",
-      "nameEn": null,
-      "englishNameStatus": "pending",
-      "category": "restaurant_candidate",
-      "selectionFocus": "local_food_candidate",
-      "districtCode": "5003",
-      "districtNameTh": "แม่แจ่ม",
-      "districtNameEn": "Mae Chaem",
-      "subdistrictCode": null,
-      "coordinates": null,
-      "sourceIds": ["OSM-NODE-5281104224"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "OSM-NODE-5281104224",
-          "status": "supported_open_data_candidate"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "OSM-NODE-5281104224",
-          "status": "supported_spatial_boundary"
-        },
-        {
-          "field": "current_operation",
-          "sourceId": "OSM-NODE-5281104224",
-          "status": "pending_direct_owner_reverification"
-        }
-      ],
-      "representedAt": "2017-12-13",
       "retrievedAt": "2026-08-29",
       "openingHoursStatus": "pending",
       "priceStatus": "pending",
@@ -1774,52 +1682,6 @@
       ]
     },
     {
-      "id": "cm-restaurant-5004-osm-place-2422005060",
-      "nameTh": "กาแฟ ใน สวน",
-      "nameEn": "Cafe Nai Suan",
-      "englishNameStatus": "verified_open_data_tag",
-      "category": "restaurant_candidate",
-      "selectionFocus": "local_food_candidate",
-      "districtCode": "5004",
-      "districtNameTh": "เชียงดาว",
-      "districtNameEn": "Chiang Dao",
-      "subdistrictCode": null,
-      "coordinates": null,
-      "sourceIds": ["OSM-NODE-2422005060"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "OSM-NODE-2422005060",
-          "status": "supported_open_data_candidate"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "OSM-NODE-2422005060",
-          "status": "supported_spatial_boundary"
-        },
-        {
-          "field": "current_operation",
-          "sourceId": "OSM-NODE-2422005060",
-          "status": "pending_direct_owner_reverification"
-        }
-      ],
-      "representedAt": "2016-10-09",
-      "retrievedAt": "2026-08-29",
-      "openingHoursStatus": "pending",
-      "priceStatus": "pending",
-      "menuStatus": "pending",
-      "accessibilityStatus": "pending",
-      "contactStatus": "pending",
-      "freshnessStatus": "direct_owner_reverification_required",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "open_data_candidate_identity_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "OpenStreetMap supplies candidate identity and boundary placement only; operation, owner, category focus and all visitor facts require independent verification."
-      ]
-    },
-    {
       "id": "cm-restaurant-5004-osm-place-2623371144",
       "nameTh": "นกแล",
       "nameEn": "Nok Lae",
@@ -2080,52 +1942,6 @@
         }
       ],
       "representedAt": "2024-03-23",
-      "retrievedAt": "2026-08-29",
-      "openingHoursStatus": "pending",
-      "priceStatus": "pending",
-      "menuStatus": "pending",
-      "accessibilityStatus": "pending",
-      "contactStatus": "pending",
-      "freshnessStatus": "direct_owner_reverification_required",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "open_data_candidate_identity_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "OpenStreetMap supplies candidate identity and boundary placement only; operation, owner, category focus and all visitor facts require independent verification."
-      ]
-    },
-    {
-      "id": "cm-restaurant-5005-osm-place-12030550220",
-      "nameTh": "อาหารตามสั่ง",
-      "nameEn": null,
-      "englishNameStatus": "pending",
-      "category": "restaurant_candidate",
-      "selectionFocus": "local_food_candidate",
-      "districtCode": "5005",
-      "districtNameTh": "ดอยสะเก็ด",
-      "districtNameEn": "Doi SaKet",
-      "subdistrictCode": null,
-      "coordinates": null,
-      "sourceIds": ["OSM-NODE-12030550220"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "OSM-NODE-12030550220",
-          "status": "supported_open_data_candidate"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "OSM-NODE-12030550220",
-          "status": "supported_spatial_boundary"
-        },
-        {
-          "field": "current_operation",
-          "sourceId": "OSM-NODE-12030550220",
-          "status": "pending_direct_owner_reverification"
-        }
-      ],
-      "representedAt": "2024-07-03",
       "retrievedAt": "2026-08-29",
       "openingHoursStatus": "pending",
       "priceStatus": "pending",
@@ -3154,52 +2970,6 @@
       ]
     },
     {
-      "id": "cm-restaurant-5007-osm-place-4111432291",
-      "nameTh": "ทุ่งห้าโบทานิค",
-      "nameEn": null,
-      "englishNameStatus": "pending",
-      "category": "restaurant_candidate",
-      "selectionFocus": "local_food_candidate",
-      "districtCode": "5007",
-      "districtNameTh": "แม่ริม",
-      "districtNameEn": "Mae Rim",
-      "subdistrictCode": null,
-      "coordinates": null,
-      "sourceIds": ["OSM-NODE-4111432291"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "OSM-NODE-4111432291",
-          "status": "supported_open_data_candidate"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "OSM-NODE-4111432291",
-          "status": "supported_spatial_boundary"
-        },
-        {
-          "field": "current_operation",
-          "sourceId": "OSM-NODE-4111432291",
-          "status": "pending_direct_owner_reverification"
-        }
-      ],
-      "representedAt": "2016-04-15",
-      "retrievedAt": "2026-08-29",
-      "openingHoursStatus": "pending",
-      "priceStatus": "pending",
-      "menuStatus": "pending",
-      "accessibilityStatus": "pending",
-      "contactStatus": "pending",
-      "freshnessStatus": "direct_owner_reverification_required",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "open_data_candidate_identity_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "OpenStreetMap supplies candidate identity and boundary placement only; operation, owner, category focus and all visitor facts require independent verification."
-      ]
-    },
-    {
       "id": "cm-restaurant-5007-osm-place-11164805265",
       "nameTh": "ฮ้านถึงเจียงใหม่",
       "nameEn": null,
@@ -3936,52 +3706,6 @@
       ]
     },
     {
-      "id": "cm-restaurant-5009-kfc-3139500829",
-      "nameTh": "KFC",
-      "nameEn": "KFC",
-      "englishNameStatus": "verified_open_data_tag",
-      "category": "street_food_or_fast_food_candidate",
-      "selectionFocus": "street_food_candidate",
-      "districtCode": "5009",
-      "districtNameTh": "ฝาง",
-      "districtNameEn": "Fang",
-      "subdistrictCode": null,
-      "coordinates": null,
-      "sourceIds": ["OSM-NODE-3139500829"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "OSM-NODE-3139500829",
-          "status": "supported_open_data_candidate"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "OSM-NODE-3139500829",
-          "status": "supported_spatial_boundary"
-        },
-        {
-          "field": "current_operation",
-          "sourceId": "OSM-NODE-3139500829",
-          "status": "pending_direct_owner_reverification"
-        }
-      ],
-      "representedAt": "2022-11-19",
-      "retrievedAt": "2026-08-29",
-      "openingHoursStatus": "pending",
-      "priceStatus": "pending",
-      "menuStatus": "pending",
-      "accessibilityStatus": "pending",
-      "contactStatus": "pending",
-      "freshnessStatus": "direct_owner_reverification_required",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "open_data_candidate_identity_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "OpenStreetMap supplies candidate identity and boundary placement only; operation, owner, category focus and all visitor facts require independent verification."
-      ]
-    },
-    {
       "id": "cm-restaurant-5009-osm-place-2293321077",
       "nameTh": "ไก่ย่าง หมูกรอบ บ้านสันมะเฟือง",
       "nameEn": null,
@@ -4426,52 +4150,6 @@
         }
       ],
       "representedAt": "2025-01-11",
-      "retrievedAt": "2026-08-29",
-      "openingHoursStatus": "pending",
-      "priceStatus": "pending",
-      "menuStatus": "pending",
-      "accessibilityStatus": "pending",
-      "contactStatus": "pending",
-      "freshnessStatus": "direct_owner_reverification_required",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "open_data_candidate_identity_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "OpenStreetMap supplies candidate identity and boundary placement only; operation, owner, category focus and all visitor facts require independent verification."
-      ]
-    },
-    {
-      "id": "cm-restaurant-5010-cafe-buffet-11116262139",
-      "nameTh": "Cafe buffet",
-      "nameEn": null,
-      "englishNameStatus": "pending",
-      "category": "restaurant_candidate",
-      "selectionFocus": "community_restaurant_candidate",
-      "districtCode": "5010",
-      "districtNameTh": "แม่อาย",
-      "districtNameEn": "Mae Ai",
-      "subdistrictCode": null,
-      "coordinates": null,
-      "sourceIds": ["OSM-NODE-11116262139"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "OSM-NODE-11116262139",
-          "status": "supported_open_data_candidate"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "OSM-NODE-11116262139",
-          "status": "supported_spatial_boundary"
-        },
-        {
-          "field": "current_operation",
-          "sourceId": "OSM-NODE-11116262139",
-          "status": "pending_direct_owner_reverification"
-        }
-      ],
-      "representedAt": "2023-08-15",
       "retrievedAt": "2026-08-29",
       "openingHoursStatus": "pending",
       "priceStatus": "pending",
@@ -5408,52 +5086,6 @@
       ]
     },
     {
-      "id": "cm-restaurant-5013-meena-rice-based-cuisine-537308760",
-      "nameTh": "Meena rice based cuisine",
-      "nameEn": null,
-      "englishNameStatus": "pending",
-      "category": "restaurant_candidate",
-      "selectionFocus": "local_food_candidate",
-      "districtCode": "5013",
-      "districtNameTh": "สันกำแพง",
-      "districtNameEn": "San Kamphaeng",
-      "subdistrictCode": null,
-      "coordinates": null,
-      "sourceIds": ["OSM-WAY-537308760"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "OSM-WAY-537308760",
-          "status": "supported_open_data_candidate"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "OSM-WAY-537308760",
-          "status": "supported_spatial_boundary"
-        },
-        {
-          "field": "current_operation",
-          "sourceId": "OSM-WAY-537308760",
-          "status": "pending_direct_owner_reverification"
-        }
-      ],
-      "representedAt": "2025-02-24",
-      "retrievedAt": "2026-08-29",
-      "openingHoursStatus": "pending",
-      "priceStatus": "pending",
-      "menuStatus": "pending",
-      "accessibilityStatus": "pending",
-      "contactStatus": "pending",
-      "freshnessStatus": "direct_owner_reverification_required",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "open_data_candidate_identity_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "OpenStreetMap supplies candidate identity and boundary placement only; operation, owner, category focus and all visitor facts require independent verification."
-      ]
-    },
-    {
       "id": "cm-restaurant-5013-osm-place-4685165752",
       "nameTh": "แชมป์ส้มตำ",
       "nameEn": "Chaem Somtam",
@@ -5714,52 +5346,6 @@
         }
       ],
       "representedAt": "2026-02-06",
-      "retrievedAt": "2026-08-29",
-      "openingHoursStatus": "pending",
-      "priceStatus": "pending",
-      "menuStatus": "pending",
-      "accessibilityStatus": "pending",
-      "contactStatus": "pending",
-      "freshnessStatus": "direct_owner_reverification_required",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "open_data_candidate_identity_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "OpenStreetMap supplies candidate identity and boundary placement only; operation, owner, category focus and all visitor facts require independent verification."
-      ]
-    },
-    {
-      "id": "cm-restaurant-5014-osm-place-4573410090",
-      "nameTh": "สยามการ์เด้นคุ้กกิ้งสคูล",
-      "nameEn": "Siam Garden Cooking School",
-      "englishNameStatus": "verified_open_data_tag",
-      "category": "restaurant_candidate",
-      "selectionFocus": "local_food_candidate",
-      "districtCode": "5014",
-      "districtNameTh": "สันทราย",
-      "districtNameEn": "San Sai",
-      "subdistrictCode": null,
-      "coordinates": null,
-      "sourceIds": ["OSM-NODE-4573410090"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "OSM-NODE-4573410090",
-          "status": "supported_open_data_candidate"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "OSM-NODE-4573410090",
-          "status": "supported_spatial_boundary"
-        },
-        {
-          "field": "current_operation",
-          "sourceId": "OSM-NODE-4573410090",
-          "status": "pending_direct_owner_reverification"
-        }
-      ],
-      "representedAt": "2025-04-01",
       "retrievedAt": "2026-08-29",
       "openingHoursStatus": "pending",
       "priceStatus": "pending",
@@ -7662,52 +7248,6 @@
       ]
     },
     {
-      "id": "cm-restaurant-5020-best-place-5281995221",
-      "nameTh": "Best Place",
-      "nameEn": null,
-      "englishNameStatus": "pending",
-      "category": "restaurant_candidate",
-      "selectionFocus": "community_restaurant_candidate",
-      "districtCode": "5020",
-      "districtNameTh": "เวียงแหง",
-      "districtNameEn": "Wiang Haeng",
-      "subdistrictCode": null,
-      "coordinates": null,
-      "sourceIds": ["OSM-NODE-5281995221"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "OSM-NODE-5281995221",
-          "status": "supported_open_data_candidate"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "OSM-NODE-5281995221",
-          "status": "supported_spatial_boundary"
-        },
-        {
-          "field": "current_operation",
-          "sourceId": "OSM-NODE-5281995221",
-          "status": "pending_direct_owner_reverification"
-        }
-      ],
-      "representedAt": "2019-11-27",
-      "retrievedAt": "2026-08-29",
-      "openingHoursStatus": "pending",
-      "priceStatus": "pending",
-      "menuStatus": "pending",
-      "accessibilityStatus": "pending",
-      "contactStatus": "pending",
-      "freshnessStatus": "direct_owner_reverification_required",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "open_data_candidate_identity_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "OpenStreetMap supplies candidate identity and boundary placement only; operation, owner, category focus and all visitor facts require independent verification."
-      ]
-    },
-    {
       "id": "cm-restaurant-5021-osm-place-1348999439",
       "nameTh": "กุสุมากาแฟดอย",
       "nameEn": "Kusuma Cafe Doi",
@@ -7968,52 +7508,6 @@
         }
       ],
       "representedAt": "2018-08-19",
-      "retrievedAt": "2026-08-29",
-      "openingHoursStatus": "pending",
-      "priceStatus": "pending",
-      "menuStatus": "pending",
-      "accessibilityStatus": "pending",
-      "contactStatus": "pending",
-      "freshnessStatus": "direct_owner_reverification_required",
-      "rightsStatus": "open_data_odbl_compliance_review_required",
-      "mediaRightsStatus": "not_assessed_no_media_downloaded",
-      "evidenceStatus": "open_data_candidate_identity_and_district_supported",
-      "publicationEligibility": "blocked",
-      "reviewNotes": [
-        "OpenStreetMap supplies candidate identity and boundary placement only; operation, owner, category focus and all visitor facts require independent verification."
-      ]
-    },
-    {
-      "id": "cm-restaurant-5022-osm-place-5300285325",
-      "nameTh": "อาการตามสั่ง",
-      "nameEn": "Thai local food.",
-      "englishNameStatus": "verified_open_data_tag",
-      "category": "restaurant_candidate",
-      "selectionFocus": "community_restaurant_candidate",
-      "districtCode": "5022",
-      "districtNameTh": "แม่วาง",
-      "districtNameEn": "Mae Wang",
-      "subdistrictCode": null,
-      "coordinates": null,
-      "sourceIds": ["OSM-NODE-5300285325"],
-      "assertions": [
-        {
-          "field": "identity",
-          "sourceId": "OSM-NODE-5300285325",
-          "status": "supported_open_data_candidate"
-        },
-        {
-          "field": "district_parent",
-          "sourceId": "OSM-NODE-5300285325",
-          "status": "supported_spatial_boundary"
-        },
-        {
-          "field": "current_operation",
-          "sourceId": "OSM-NODE-5300285325",
-          "status": "pending_direct_owner_reverification"
-        }
-      ],
-      "representedAt": "2018-11-15",
       "retrievedAt": "2026-08-29",
       "openingHoursStatus": "pending",
       "priceStatus": "pending",
